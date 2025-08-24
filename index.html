@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CTRL</title>
+  
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-REKT5H0GXW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-REKT5H0GXW');
+  </script>
+  <style>
+    /* minimal design */
+    :root {
+      --typewriter: 'Lucida Console';
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      text-transform: lowercase;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Lucida Console' !important;
+      font-weight: inherit;
+    }
+
+    /* Ensure all headers use Lucida Console, including specific contexts */
+    .bento-card h1, .bento-card h2, .bento-card h3, .bento-card h4, .bento-card h5, .bento-card h6,
+    .hero-section h1, .hero-section h2, .hero-section h3, .hero-section h4, .hero-section h5, .hero-section h6,
+    .floating-highlights h1, .floating-highlights h2, .floating-highlights h3, .floating-highlights h4, .floating-highlights h5, .floating-highlights h6,
+    .coffee-connections-content h1, .coffee-connections-content h2, .coffee-connections-content h3, .coffee-connections-content h4, .coffee-connections-content h5, .coffee-connections-content h6 {
+      font-family: 'Lucida Console' !important;
+    }
+
+    .main-header {
+      background: transparent;
+      border-bottom: none;
+      padding: 3.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      left: 2rem;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+      background: #edf4ff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .social-nav-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .dashboard-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Rainbow Gradient Button */
+    .start-imagining-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      justify-content: center;
+      background: #1a1a1a;
+      color: white;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .start-imagining-button::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 167, 38, 0.8) 70%, 
+        rgba(255, 235, 59, 0.8) 80%, 
+        rgba(76, 175, 80, 0.8) 90%, 
+        rgba(33, 150, 243, 0.8) 95%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .start-imagining-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .start-imagining-button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Search Bar Styles */
+    .search-bar-container {
+      display: inline-flex;
+      align-items: center;
+      background: #fff;
+      border: 2px solid #e5e7eb;
+      border-radius: 3rem;
+      padding: 0.5rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      width: 420px;
+      height: 48px;
+    }
+
+    .search-bar-container:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+    }
+
+    .search-icon {
+      width: 20px;
+      height: 20px;
+      color: #000;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .search-input-wrapper {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      font-weight: 600;
+      color: #374151;
+      overflow: hidden;
+    }
+
+    /* Typing Animation Styles */
+    #cursor {
+      animation: blink 1s infinite;
+      color: #3b82f6;
+      font-weight: 700;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .hero-section {
+      padding: 0;
+      text-align: center;
+      margin: auto 0;
+      background: transparent;
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      margin: 0 0 3rem 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 3rem 0;
+    }
+
+    .primary-button,
+    .secondary-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      min-width: 160px;
+      justify-content: center;
+    }
+
+    .primary-button {
+      background: #000;
+      color: white;
+    }
+
+    .primary-button:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+
+    .secondary-button {
+      background: #f0f8ff;
+      color: #000;
+      border: 1px solid #e6f3ff;
+    }
+
+    .secondary-button:hover {
+      background: #e6f3ff;
+      transform: translateY(-1px);
+    }
+
+    .cta-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      justify-content: center;
+    }
+
+    .cta-button.primary {
+      background: #000;
+      color: white;
+    }
+
+    .cta-button.primary:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+
+    .cta-button.secondary {
+      background: #f0f8ff;
+      color: #000;
+      border: 1px solid #e6f3ff;
+    }
+
+    .cta-button.secondary:hover {
+      background: #e6f3ff;
+      transform: translateY(-1px);
+    }
+
+    .button-icon {
+      font-size: 1.1rem;
+    }
+
+    .dashboard-grid {
+      padding: 4rem 0;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .bento-card {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+    }
+
+    .bento-card:hover {
+      border-color: #e6f3ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(230, 243, 255, 0.3);
+    }
+
+    .bento-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      color: #000;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .category-item {
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .category-item:hover {
+      background: #f0f8ff;
+      border-color: #e6f3ff;
+      transform: translateY(-1px);
+    }
+
+    .category-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: 8px;
+      margin: 0 auto 1rem auto;
+      box-shadow: 0 2px 8px rgba(230, 243, 255, 0.3);
+    }
+
+    .category-name {
+      font-weight: 600;
+      color: #000;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .category-desc {
+      font-size: 0.875rem;
+      color: #666;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: #f8f8f8;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .contact-item:hover {
+      background: #f0f8ff;
+    }
+
+    .contact-icon {
+      font-size: 1.25rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    .contact-content h4 {
+      margin: 0 0 0.25rem 0;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #666;
+    }
+
+    .contact-content a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-content a:hover {
+      text-decoration: underline;
+    }
+
+    .highlights-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      background: #f8f8f8;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .highlight-item:hover {
+      background: #f0f8ff;
+    }
+
+    .highlight-icon {
+      font-size: 1.25rem;
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+    }
+
+    .highlight-content h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .highlight-content p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+
+
+    .laptop-highlights-container {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      position: relative;
+    }
+
+    .laptop-emoji-container {
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .laptop-emoji {
+      font-size: 10rem;
+      color: #666;
+      animation: laptop-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes laptop-pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .floating-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      flex: 1;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .floating-highlight {
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      transition: none;
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .floating-highlight:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: transparent;
+    }
+
+    .floating-highlight .highlight-content h4 {
+      margin: 0 0 0.75rem 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #000;
+      text-transform: lowercase;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .floating-highlight .highlight-content p {
+      margin: 0;
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.6;
+      text-transform: lowercase;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .why-ctrl-cta {
+      margin-top: 2rem;
+      text-align: right;
+    }
+
+    /* Coffee & Connections Section */
+    .coffee-connections-container {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      position: relative;
+    }
+
+    .coffee-connections-content {
+      flex: 1;
+    }
+
+    .coffee-connections-content h2 {
+      font-family: 'Lucida Console';
+      text-transform: lowercase;
+      letter-spacing: -0.02em;
+    }
+
+    .coffee-connections-content p {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-transform: lowercase;
+    }
+
+    .coffee-cta-button {
+      display: inline-block;
+      background: #000;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-transform: lowercase;
+      transition: all 0.2s ease;
+    }
+
+    .coffee-cta-button:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+
+    .coffee-connections-images {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .coffee-cup {
+      animation: coffee-pulse 2.5s ease-in-out infinite;
+    }
+
+    .coffee-cup img {
+      width: 120px;
+      height: auto;
+    }
+
+    @keyframes coffee-pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+      .laptop-highlights-container {
+        flex-direction: column;
+        gap: 3rem;
+        text-align: center;
+      }
+      
+      .laptop-emoji {
+        font-size: 8rem;
+      }
+      
+      .floating-highlights {
+        gap: 2rem;
+      }
+
+      .coffee-connections-container {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .coffee-cup img {
+        width: 80px;
+      }
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: #f8f8f8;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .step-item:hover {
+      background: #f0f8ff;
+    }
+
+    .step-number {
+      background: #000;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .step-item p {
+      margin: 0;
+      font-weight: 500;
+      color: #000;
+    }
+
+    .highlight-step {
+      background: #f0f8ff;
+      border: 1px solid #e6f3ff;
+    }
+
+    .highlight-step:hover {
+      background: #e6f3ff;
+    }
+
+    .about-section {
+      padding: 4rem 0;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .main-footer {
+      background: #f8f8f8;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content p {
+      color: #666;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0 1rem;
+      }
+
+      .dashboard-container {
+        padding: 0 1rem;
+        min-height: 80vh;
+      }
+
+      .hero-section {
+        padding: 2rem 0;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .primary-button,
+      .secondary-button {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .bento-card {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .main-nav {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="dashboard">
+  <header class="main-header">
+    <div class="header-container">
+              <a href="index.html" class="logo">
+          <img src="favicon.png" alt="CTRL" style="width: 32px; height: 32px; margin-right: 12px; vertical-align: middle;">
+          CTRL
+        </a>
+      <nav class="main-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="network.html">Network</a>
+        <a href="idea-lab.html">Idea Lab</a>
+        <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/withctrl" target="_blank" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+    <section class="hero-section" style="background: transparent; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
+      <div class="content-wrapper" style="position: relative; z-index: 2;">
+        <div style="margin-bottom: 1.5rem;">
+          <div class="search-bar-container">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+              <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div class="search-input-wrapper">
+              <span id="changing-text">empowering small founders</span>
+              <span id="cursor">|</span>
+            </div>
+          </div>
+        </div>
+        <h1 style="font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; color: #000; font-family: 'Lucida Console';">
+          closing the digital<br><span>gap for starters who can't</span> clock out
+        </h1>
+        <p class="hero-subtitle" style="font-size: 1.25rem; color: #000; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+          ctrl digitalizes the grind so local businesses, startups, and community initiatives can thrive without guesswork.
+        </p>
+        <a href="network.html" class="start-imagining-button" style="font-size: 1.15rem; padding: 1.1rem 2.5rem; border-radius: 2rem;">start imagining</a>
+      </div>
+    </section>
+
+    <section class="dashboard-grid" style="margin-top: -3rem;">
+      <div class="content-wrapper" style="max-width: 900px; margin: 0 auto;">
+        <div class="bento-card" style="display: flex; justify-content: space-between; align-items: center; gap: 2rem; background: #fff; box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; padding: 2.5rem 2rem; margin-bottom: 2.5rem;">
+        
+          <div style="flex: 1; text-align: center;">
+            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">200+</div>
+            <div style="color: #000; font-size: 1rem;">users</div>
+          </div>
+          <div style="flex: 1; text-align: center;">
+            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">35k+</div>
+            <div style="color: #000; font-size: 1rem;">founders with ctrl</div>
+          </div>
+          <div style="flex: 1; text-align: center;">
+            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">10+</div>
+            <div style="color: #000; font-size: 1rem;">categories</div>
+          </div>
+        </div>
+        <!-- Coffee & Connections Section -->
+        <div class="bento-card coffee-connections-card" style="margin-bottom: 2.5rem;">
+          <div class="coffee-connections-container">
+            <div class="coffee-connections-content">
+              <h2 style="color: #000; font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; font-family: 'Lucida Console';">have conversations with collaborators over coffee + ctrl</h2>
+              <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6;">visit the network page to grow connections with other small starters who also emphasize creativity and niche thinking.</p>
+              <a href="network.html" class="coffee-cta-button">visit network →</a>
+            </div>
+            <div class="coffee-connections-images">
+              <div class="coffee-cup">
+                <img src="coffee-cup.png" alt="Iced coffee cup" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- What Makes CTRL Special Section -->
+        <div class="bento-card why-ctrl-card" style="margin-bottom: 2.5rem;">
+          <div class="laptop-highlights-container">
+            <div class="laptop-emoji-container">
+              <div class="laptop-emoji">💻</div>
+            </div>
+            <div class="floating-highlights">
+              <h2 style="color: #000; font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; font-family: 'Lucida Console'; text-transform: lowercase;">late-night lab</h2>
+              <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6;">discover your niche and figure out your unique strengths to build something truly yours. grow while afk as your work keeps moving even when you're offline.</p>
+              <a href="idea-lab.html" class="cta-button secondary">Find Your Niche →</a>
+            </div>
+          </div>
+        </div>
+        </div>
+
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>Powered by cold brew @ 2:00AM</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.metric-value');
+      
+      const animateCounter = (counter, target) => {
+        let current = 0;
+        const duration = 2000; // 2 seconds
+        const step = (target / duration) * 16; // 16ms is roughly one frame at 60fps
+        
+        counter.classList.add('animate-count');
+        
+        const updateCounter = () => {
+          current += step;
+          if (current < target) {
+            counter.textContent = Math.round(current);
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target;
+          }
+        };
+        
+        updateCounter();
+      };
+
+      const observerCallback = (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = parseInt(counter.dataset.target);
+            animateCounter(counter, target);
+            observer.unobserve(counter);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(observerCallback, {
+        threshold: 0.5
+      });
+
+      counters.forEach(counter => observer.observe(counter));
+
+      // Typing Animation
+      const changingText = document.getElementById('changing-text');
+      const phrases = [
+        'empowering small founders',
+        'scaling while afk',
+        'stirring ideas',
+        'dream chasers',
+        'late-night innovators',
+        'brewing growth'
+      ];
+      
+      let currentPhraseIndex = 0;
+      let currentCharIndex = 0;
+      let isDeleting = false;
+      let typingSpeed = 100;
+
+      function typeText() {
+        const currentPhrase = phrases[currentPhraseIndex];
+        
+        if (isDeleting) {
+          // Backspace effect - completely clear the text
+          changingText.textContent = currentPhrase.substring(0, currentCharIndex - 1);
+          currentCharIndex--;
+          typingSpeed = 50;
+        } else {
+          // Type effect
+          changingText.textContent = currentPhrase.substring(0, currentCharIndex + 1);
+          currentCharIndex++;
+          typingSpeed = 100;
+        }
+
+        // Handle transitions between phrases
+        if (!isDeleting && currentCharIndex === currentPhrase.length) {
+          // Finished typing, wait then start deleting
+          typingSpeed = 1500; // Wait 1.5 seconds
+          isDeleting = true;
+        } else if (isDeleting && currentCharIndex === 0) {
+          // Finished deleting, move to next phrase
+          isDeleting = false;
+          currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+          typingSpeed = 300; // Wait before starting next phrase
+        }
+
+        setTimeout(typeText, typingSpeed);
+      }
+
+      // Start the typing animation
+      setTimeout(typeText, 1000);
+    });
+  </script>
+</body>
+</html>
