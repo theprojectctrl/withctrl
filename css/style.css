@@ -3025,6 +3025,20 @@
     .social-nav-link:hover .nav-icon {
       filter: brightness(0) invert(1);
     }
+
+    /* Mobile styles for join-highlight */
+    .join-highlight {
+      background: linear-gradient(135deg, #a8d8ff, #b8e6ff) !important;
+      color: white !important;
+      border: none !important;
+      box-shadow: 0 4px 20px rgba(168, 216, 255, 0.4) !important;
+    }
+
+    .join-highlight:hover {
+      background: linear-gradient(135deg, #9ac8ff, #a8d8ff) !important;
+      transform: translateY(-3px) scale(1.05) !important;
+      box-shadow: 0 8px 25px rgba(168, 216, 255, 0.6) !important;
+    }
     
     .header-container {
       padding: 1rem 2rem;
