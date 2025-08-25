@@ -490,9 +490,9 @@
                 </div>
                 
                 <div class="form-group">
-                  <label for="description">Description * (70 word limit)</label>
-                  <textarea id="description" name="description" maxlength="350" required placeholder="Describe your venture in detail..."></textarea>
-                  <div class="word-count"><span id="word-count">0</span>/70 words</div>
+                  <label for="description">Description * (50 word limit)</label>
+                  <textarea id="description" name="description" maxlength="250" required placeholder="Provide a clear overview of your business/startup that will appeal to potential partners and inspire your audience. Focus on what makes your venture unique and valuable."></textarea>
+                  <div class="word-count"><span id="word-count">0</span>/50 words</div>
                 </div>
                 
                 <div class="form-group">
@@ -545,9 +545,9 @@
       // Remove existing classes
       wordCountSpan.parentElement.classList.remove('warning', 'error');
       
-      if (wordCount > 70) {
+      if (wordCount > 50) {
         wordCountSpan.parentElement.classList.add('error');
-      } else if (wordCount > 60) {
+      } else if (wordCount > 40) {
         wordCountSpan.parentElement.classList.add('warning');
       }
     });
@@ -651,9 +651,9 @@
       const description = document.getElementById('description').value;
       const descriptionWordCount = description.trim().split(/\s+/).filter(word => word.length > 0).length;
       
-      if (descriptionWordCount > 70) {
+      if (descriptionWordCount > 50) {
         e.preventDefault();
-        alert('Description must be 70 words or less.');
+        alert('Description must be 50 words or less.');
         return;
       }
       
