@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biz Enhancer - CTRL</title>
+  <title>CTRL Desks - CTRL</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-08H0KSCE2S"></script>
@@ -89,7 +92,7 @@
 
     .join-highlight {
       background: linear-gradient(135deg, #a8d8ff, #b8e6ff);
-      color: white !important;
+      color: #000 !important;
       padding: 0.75rem 1.5rem;
       border-radius: 1rem;
       font-weight: 600;
@@ -121,6 +124,11 @@
     .join-highlight:hover {
       background: linear-gradient(135deg, #9ac8ff, #a8d8ff);
       transform: scale(1.05);
+    }
+
+    /* Ensure plus icon is black to match the button text */
+    .join-highlight span {
+      color: #000 !important;
     }
 
     @keyframes join-glisten {
@@ -191,8 +199,8 @@
 
     /* Hero Section */
     .hero-section {
-      padding: 2rem 0;
-      margin: 2rem auto;
+      padding: 1rem 0;
+      margin: 1rem auto;
       max-width: 700px;
     }
 
@@ -327,7 +335,7 @@
       transform: translateY(-1px);
     }
 
-    /* Biz Enhancer Content */
+    /* CTRL Desks Content */
     .biz-enhancer-content {
       padding: 4rem 0;
     }
@@ -495,6 +503,164 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* CTRL Desks Form Styles */
+    .desk-form {
+      background: #f8f8f8;
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid #e6f3ff;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="file"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group input[type="file"]:focus {
+      outline: none;
+      border-color: #a8d8ff;
+      box-shadow: 0 0 0 3px rgba(168, 216, 255, 0.1);
+    }
+
+    .form-group small {
+      display: block;
+      margin-top: 0.25rem;
+      color: #666;
+      font-size: 0.875rem;
+    }
+
+    .checkbox-group {
+      margin-bottom: 2rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+      margin-top: 0.125rem;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 2rem;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      animation: modalSlideIn 0.3s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #000;
+      margin: 0;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+
+    .close-modal:hover {
+      background: #f0f0f0;
+      color: #000;
+    }
+
+    .modal-body {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .modal-footer {
+      text-align: center;
+    }
+
+    .modal-button {
+      background: #000;
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .modal-button:hover {
+      background: #333;
+    }
   </style>
 </head>
 <body class="biz-enhancer">
@@ -523,10 +689,10 @@
       
       <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="biz-enhancer.html" class="active">Biz Enhancer</a>
+        <a href="biz-enhancer.html" class="active">CTRL Desks</a>
         <a href="network.html">Network</a>
-        <a href="idea-lab.html">Idea Lab</a>
-        <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: white;">+</span></a>
+        <a href="niche-lab.html">The Lab</a>
+        <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
         <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
           <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -550,14 +716,14 @@
       <section class="hero-section bento-card">
         <div class="hero-layout">
           <div class="hero-left">
-            <div class="hero-boba">🎨</div>
+            <div class="hero-boba">🍵</div>
           </div>
           <div class="hero-right">
-            <h1>Business Enhancer</h1>
-            <p class="hero-subtitle">Boost your <span class="emphasis-blue">business</span> with <span class="emphasis-yellow">practical tools</span> and resources.</p>
+            <h1>CTRL Desks</h1>
+            <p class="hero-subtitle">CTRL Desks celebrates the messy, creative process behind every big idea. Share your setup to get featured on @withctrl and connect with a community of builders turning chaos into progress.</p>
             <div class="cta-buttons">
-              <a href="#enhancements" class="primary-button">
-                Explore Enhancements
+              <a href="#desk-submission" class="primary-button">
+                Submit Your Setup
                 <span class="button-icon">→</span>
               </a>
             </div>
@@ -566,36 +732,80 @@
       </section>
     </div>
 
-    <!-- Main Content -->
-    <section class="biz-enhancer-content">
+    <!-- CTRL Desks Section -->
+    <section class="biz-enhancer-content" style="padding-top: 1rem;">
       <div class="main-container">
-        <div class="enhancement-grid" id="enhancements">
-          <div class="enhancement-card">
-            <div class="enhancement-icon">📱</div>
-            <h3 class="enhancement-title">Social Media Guide</h3>
-            <p class="enhancement-description">Master social media marketing with proven strategies for engagement, content creation, and audience growth.</p>
-            <a href="social-media-guide.html" class="enhancement-cta">Learn More</a>
+        <div class="enhancement-grid" id="desk-submission">
+          <div class="enhancement-card" style="grid-column: 1 / -1; max-width: 900px; margin: 0 auto;">
+            <div class="hero-layout" style="flex-direction: column; gap: 1rem;">
+              <div class="hero-left">
+                <div class="hero-boba" style="font-size: 8rem; margin: 0 auto;">💻</div>
+              </div>
+              <div class="hero-right" style="text-align: center; padding-left: 0;">
+                <h2 class="enhancement-title" style="font-size: 2.5rem; margin-bottom: 1rem;">CTRL Desks</h2>
+                <p class="enhancement-description" style="font-size: 1.25rem; margin-bottom: 1.5rem;">
+                  Got a messy desk and big dreams?<br>
+                  CTRL Desks is where chaos meets creativity.<br>
+                  Submit your setup below and you might see it featured on our feed.
+                </p>
+                
+                <!-- CTRL Desks Form -->
+                <form id="ctrl-desks-form" class="desk-form" action="https://usebasin.com/f/d9b687404a2f" method="POST" enctype="multipart/form-data" style="text-align: left; max-width: 600px; margin: 0 auto;">
+                  <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="contact">Instagram Handle *</label>
+                    <input type="text" id="contact" name="contact" placeholder="@username" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="images">Upload Images (up to 3) *</label>
+                    <input type="file" id="images" name="images" multiple accept=".jpg,.jpeg,.png" required>
+                    <small>JPG or PNG files only</small>
+                  </div>
+                  
+                  <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox" id="permission" name="permission" required>
+                      <span class="checkmark"></span>
+                      I allow CTRL to repost these images and tag me on @withctrl. *
+                    </label>
+                  </div>
+                  
+                  <button type="submit" class="enhancement-cta" style="width: 100%; margin-top: 1rem;">
+                    Submit My Desk Setup
+                  </button>
+                </form>
+                
+                <div style="margin-top: 1.5rem; text-align: center;">
+                  <p style="color: #666; font-style: italic;">CTRL Desks coming soon - submit today!</p>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="enhancement-card">
-            <div class="enhancement-icon">💻</div>
-            <h3 class="enhancement-title">Digital Products</h3>
-            <p class="enhancement-description">Learn how to create, launch, and scale digital products that generate passive income streams.</p>
-            <a href="digital-products.html" class="enhancement-cta">Learn More</a>
-          </div>
-
-
         </div>
       </div>
     </section>
 
-    <!-- Coming Soon Section -->
-    <section class="features-section">
-      <div class="main-container">
-        <h2 class="section-title">Coming Soon: CTRL Creations Corner</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 3rem;">We're building a showcase of amazing business strategies and tools created by our community</p>
+    <!-- Modal Confirmation -->
+    <div id="submission-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Thanks for submitting!</h3>
+          <button class="close-modal" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          If your photos are selected, we'll feature them on @withctrl's Instagram and tag you to boost your visibility.
+        </div>
+        <div class="modal-footer">
+          <button class="modal-button" onclick="closeModal()">Got it!</button>
+        </div>
       </div>
-    </section>
+    </div>
+
   </main>
 
   <footer class="main-footer">
@@ -644,6 +854,68 @@
         }
       });
     });
+
+    // CTRL Desks Form Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const ctrlDesksForm = document.getElementById('ctrl-desks-form');
+      const submissionModal = document.getElementById('submission-modal');
+
+      if (ctrlDesksForm) {
+        ctrlDesksForm.addEventListener('submit', handleFormSubmission);
+      }
+
+      // Close modal when clicking outside
+      submissionModal.addEventListener('click', (e) => {
+        if (e.target === submissionModal) {
+          closeModal();
+        }
+      });
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && submissionModal.style.display === 'block') {
+          closeModal();
+        }
+      });
+    });
+
+    function handleFormSubmission(e) {
+      // Get form data for validation
+      const formData = new FormData(e.target);
+      const name = formData.get('name');
+      const contact = formData.get('contact');
+      const images = formData.get('images');
+      const permission = formData.get('permission');
+
+      // Basic validation
+      if (!name || !contact || !images || !permission) {
+        e.preventDefault();
+        alert('Please fill in all required fields and accept the permission checkbox.');
+        return;
+      }
+
+      // Log form data for debugging
+      console.log('Form submitted:', { name, contact, images: images.name, permission });
+      
+      // Show success modal after a brief delay to allow form submission
+      setTimeout(() => {
+        showModal();
+        // Reset form
+        e.target.reset();
+      }, 100);
+    }
+
+    function showModal() {
+      const modal = document.getElementById('submission-modal');
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('submission-modal');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
   </script>
 </body>
 </html>

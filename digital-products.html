@@ -6,6 +6,9 @@
   <title>Digital Products - CTRL</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-08H0KSCE2S"></script>
@@ -410,7 +413,7 @@
 
     .join-highlight {
       background: linear-gradient(135deg, #a8d8ff, #b8e6ff);
-      color: white !important;
+      color: #000 !important;
       padding: 0.75rem 1.5rem;
       border-radius: 1rem;
       font-weight: 600;
@@ -442,6 +445,11 @@
     .join-highlight:hover {
       background: linear-gradient(135deg, #9ac8ff, #a8d8ff);
       transform: scale(1.05);
+    }
+
+    /* Ensure plus icon is black to match the button text */
+    .join-highlight span {
+      color: #000 !important;
     }
 
     @keyframes join-glisten {
@@ -524,10 +532,10 @@
 
       <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="biz-enhancer.html">CTRL Desks</a>
         <a href="network.html">Network</a>
-        <a href="idea-lab.html">Idea Lab</a>
-        <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: white;">+</span></a>
+        <a href="niche-lab.html">The Lab</a>
+        <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
         <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
           <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

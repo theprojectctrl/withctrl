@@ -51,12 +51,13 @@
     }
 
     .main-header {
-      background: transparent;
-      border-bottom: none;
-      padding: 3.5rem 0;
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 1rem 0;
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .header-container {
@@ -112,7 +113,7 @@
 
     .join-highlight {
       background: linear-gradient(135deg, #a8d8ff, #b8e6ff);
-      color: white !important;
+      color: #000 !important;
       padding: 0.75rem 1.5rem;
       border-radius: 1rem;
       font-weight: 600;
@@ -144,6 +145,11 @@
     .join-highlight:hover {
       background: linear-gradient(135deg, #9ac8ff, #a8d8ff);
       transform: scale(1.05);
+    }
+
+    /* Ensure plus icon is black to match the button text */
+    .join-highlight span {
+      color: #000 !important;
     }
 
     @keyframes join-glisten {
@@ -238,6 +244,56 @@
 
     .start-imagining-button:hover {
       transform: scale(1.05);
+    }
+
+    /* Secondary CTA Button Styles */
+    .cta-button.secondary {
+      background: #f0f8ff;
+      color: #000;
+      border: 1px solid #e6f3ff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .cta-button.secondary:hover {
+      background: #e6f3ff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Glowing shine effect for secondary button */
+    .cta-button.secondary {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button.secondary::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.8) 25%, 
+        rgba(255, 255, 255, 1) 50%, 
+        rgba(255, 255, 255, 0.8) 75%, 
+        transparent 100%);
+      border-radius: 50px;
+      z-index: -1;
+      animation: shineGlow 3s linear infinite;
+      filter: blur(1px);
+    }
+
+    @keyframes shineGlow {
+      0% {
+        transform: translateX(-100%) rotate(0deg);
+      }
+      100% {
+        transform: translateX(100%) rotate(360deg);
+      }
     }
 
     /* Search Bar Styles */
@@ -866,10 +922,10 @@
       
       <nav class="main-nav">
         <a href="index.html" class="active">Home</a>
-        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="biz-enhancer.html">CTRL Desks</a>
         <a href="network.html">Network</a>
-        <a href="idea-lab.html">Idea Lab</a>
-        <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: white;">+</span></a>
+        <a href="niche-lab.html">The Lab</a>
+        <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
         <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
           <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -909,6 +965,16 @@
           ctrl digitalizes the grind so local businesses, startups, and community initiatives can thrive without guesswork.
         </p>
         <a href="network.html" class="start-imagining-button" style="font-size: 1.15rem; padding: 1.1rem 2.5rem; border-radius: 2rem;">start imagining</a>
+        <a href="biz-enhancer.html" class="cta-button secondary" style="font-size: 1.15rem; padding: 1.1rem 1.5rem; border-radius: 50px; margin-left: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+          <div style="position: relative; display: inline-flex; align-items: center; justify-content: center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23 19C23 19.5304 22.7893 20.0391 22.4142 20.4142C22.0391 20.7893 21.5304 21 21 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8C1 7.46957 1.21071 6.96086 1.58579 6.58579C1.96086 6.21071 2.46957 6 3 6H7L9 3H15L17 6H21C21.5304 6 22.0391 6.21071 22.4142 6.58579C22.7893 6.96086 23 7.46957 23 8V19Z" fill="black"/>
+            </svg>
+            <svg width="8" height="8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 8px; left: 8px;">
+              <path d="M12 2C13.1 2 14 2.9 14 4V10H20C21.1 10 22 10.9 22 12C22 13.1 21.1 14 20 14H14V20C14 21.1 13.1 22 12 22C10.9 22 10 21.1 10 20V14H4C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10H10V4C10 2.9 10.9 2 12 2Z" fill="white"/>
+            </svg>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -917,8 +983,8 @@
         <div class="bento-card" style="display: flex; justify-content: space-between; align-items: center; gap: 2rem; background: #fff; box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; padding: 2.5rem 2rem; margin-bottom: 2.5rem;">
         
           <div style="flex: 1; text-align: center;">
-            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">220+</div>
-            <div style="color: #000; font-size: 1rem;">founders with ctrl</div>
+            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">250+</div>
+            <div style="color: #000; font-size: 1rem;">ctrl'ers</div>
           </div>
           <div style="flex: 1; text-align: center;">
             <div style="font-size: 2.2rem; font-weight: 800; color: #000;">40k+</div>
@@ -954,7 +1020,7 @@
             <div class="floating-highlights">
               <h2 style="color: #000; font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; font-family: 'Lucida Console'; text-transform: lowercase;">late-night lab</h2>
               <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6;">discover your niche and figure out your unique strengths to build something truly yours. grow while afk as your work keeps moving even when you're offline.</p>
-              <a href="idea-lab.html" class="cta-button secondary">Find Your Niche →</a>
+              <a href="niche-lab.html" class="cta-button secondary">Find Your Niche →</a>
             </div>
           </div>
         </div>

@@ -6,6 +6,9 @@
   <title>Join Community - CTRL</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-08H0KSCE2S"></script>
@@ -115,7 +118,7 @@
 
     .join-highlight {
       background: linear-gradient(135deg, #a8d8ff, #b8e6ff);
-      color: white !important;
+      color: #000 !important;
       padding: 0.75rem 1.5rem;
       border-radius: 1rem;
       font-weight: 600;
@@ -423,6 +426,65 @@
       margin: 0;
     }
 
+    /* Emoji Picker Styles */
+    .emoji-picker {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 1rem;
+      background: #fafafa;
+    }
+
+    .emoji-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .emoji-option {
+      display: inline-block;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: white;
+      border: 2px solid transparent;
+    }
+
+    .emoji-option:hover {
+      background: #f0f0f0;
+      transform: scale(1.1);
+    }
+
+    .emoji-option.selected {
+      background: #e3f2fd;
+      border-color: #2196f3;
+      transform: scale(1.1);
+    }
+
+    .selected-emoji {
+      padding: 0.75rem;
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      text-align: center;
+      color: #666;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .selected-emoji:hover {
+      border-color: #000;
+      background: #f8f8f8;
+    }
+
+    .selected-emoji.has-emoji {
+      color: #000;
+      font-size: 1.2rem;
+    }
+
 
 
     /* Responsive adjustments */
@@ -466,10 +528,10 @@
 
       <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="biz-enhancer.html">CTRL Desks</a>
         <a href="network.html">Network</a>
-        <a href="idea-lab.html">Idea Lab</a>
-        <a href="join-community.html" class="active join-highlight">Join <span style="font-size: 0.9em; color: white;">+</span></a>
+        <a href="niche-lab.html">The Lab</a>
+        <a href="join-community.html" class="active join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
         <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
           <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -492,7 +554,7 @@
     <section class="join-form-section">
       <div class="main-container">
         <h1 style="text-align: center; margin-bottom: 1rem;">Join Our Community</h1>
-        <p style="text-align: center; margin-bottom: 3rem; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">This goes into our weekly IG CTRL user roundups to boost your visibility. You can find inspiration from others who found their niche with our Idea Lab, and you can build partnerships — find the right partners and gain visibility that stays on our website & feeds. Your venture will be featured on our network page alongside other CTRL users.</p>
+        <p style="text-align: center; margin-bottom: 3rem; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">This goes into our weekly IG CTRL user roundups to boost your visibility. You can find inspiration from others who found their niche with our The Lab, and you can build partnerships — find the right partners and gain visibility that stays on our website & feeds. Your venture will be featured on our network page alongside other CTRL users.</p>
         <div class="form-container">
           <h2 class="form-title">Community Application</h2>
           <form id="join-community-form" action="https://usebasin.com/f/264e81003939" method="POST">
@@ -553,7 +615,7 @@
                 
                 <div class="form-group">
                   <label for="niche">Your Niche * (12 word limit)</label>
-                  <textarea id="niche" name="niche" maxlength="200" required placeholder="What makes your venture special? What's your unique hook? (You can use our Idea Lab to craft this or describe it here)"></textarea>
+                  <textarea id="niche" name="niche" maxlength="200" required placeholder="What makes your venture special? What's your unique hook? (You can use our niche tool to craft this or describe it here)"></textarea>
                   <div class="word-count"><span id="niche-word-count">0</span>/12 words</div>
                 </div>
                 
@@ -566,6 +628,32 @@
                   </div>
                   <div class="selected-files" id="selected-files"></div>
                 </div>
+                
+                <div class="form-group">
+                  <label for="emoji">Emoji for tile (Optional)</label>
+                  <div class="emoji-picker">
+                    <input type="hidden" id="emoji" name="emoji" value="">
+                    <div class="emoji-options">
+                      <span class="emoji-option" data-emoji="💻">💻</span>
+                      <span class="emoji-option" data-emoji="📱">📱</span>
+                      <span class="emoji-option" data-emoji="☁️">☁️</span>
+                      <span class="emoji-option" data-emoji="🫧">🫧</span>
+                      <span class="emoji-option" data-emoji="☕️">☕️</span>
+                      <span class="emoji-option" data-emoji="📦">📦</span>
+                      <span class="emoji-option" data-emoji="🧋">🧋</span>
+                      <span class="emoji-option" data-emoji="🪄">🪄</span>
+                      <span class="emoji-option" data-emoji="🍵">🍵</span>
+                      <span class="emoji-option" data-emoji="🎀">🎀</span>
+                      <span class="emoji-option" data-emoji="👾">👾</span>
+                    </div>
+                    <div class="selected-emoji" id="selected-emoji">Click to select an emoji</div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Submission Note -->
+              <div style="text-align: center; margin: 2rem 0; padding: 1.5rem; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #79b7ff; color: #666; font-size: 0.9rem; line-height: 1.5;">
+                <strong>Note:</strong> By default, only your <strong>niche and name</strong> will be shown on the CTRL Network page. To <strong>unlock</strong> your full description and links, tag <strong>@withctrl</strong> on Instagram in one of your posts.
               </div>
             
             <button type="submit" class="submit-button">Submit</button>
@@ -577,7 +665,7 @@
 
   <footer class="main-footer">
     <div class="footer-content">
-      <p>CTRL | Built by and for the people without a roadmap</p>
+      <p>Powered by cold brew @ 2:00AM</p>
     </div>
   </footer>
 
@@ -675,6 +763,42 @@
       selectedFiles.forEach(file => dt.items.add(file));
       input.files = dt.files;
     }
+
+    // Emoji picker functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const emojiOptions = document.querySelectorAll('.emoji-option');
+      const selectedEmojiDiv = document.getElementById('selected-emoji');
+      const emojiInput = document.getElementById('emoji');
+      
+      emojiOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          const emoji = this.getAttribute('data-emoji');
+          
+          // Remove selected class from all options
+          emojiOptions.forEach(opt => opt.classList.remove('selected'));
+          
+          // Add selected class to clicked option
+          this.classList.add('selected');
+          
+          // Update the hidden input value
+          emojiInput.value = emoji;
+          
+          // Update the display
+          selectedEmojiDiv.textContent = emoji;
+          selectedEmojiDiv.classList.add('has-emoji');
+        });
+      });
+      
+      // Allow clicking on selected emoji to deselect
+      selectedEmojiDiv.addEventListener('click', function() {
+        if (emojiInput.value) {
+          emojiOptions.forEach(opt => opt.classList.remove('selected'));
+          emojiInput.value = '';
+          this.textContent = 'Click to select an emoji';
+          this.classList.remove('has-emoji');
+        }
+      });
+    });
 
     // Form submission
     document.getElementById('join-community-form').addEventListener('submit', function(e) {

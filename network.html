@@ -6,6 +6,9 @@
   <title>Network - CTRL</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-08H0KSCE2S"></script>
@@ -94,7 +97,7 @@
 
     .join-highlight {
       background: linear-gradient(135deg, #a8d8ff, #b8e6ff);
-      color: white !important;
+      color: #000 !important;
       padding: 0.75rem 1.5rem;
       border-radius: 1rem;
       font-weight: 600;
@@ -126,6 +129,11 @@
     .join-highlight:hover {
       background: linear-gradient(135deg, #9ac8ff, #a8d8ff);
       transform: scale(1.05);
+    }
+
+    /* Ensure plus icon is black to match the button text */
+    .join-highlight span {
+      color: #000 !important;
     }
 
     @keyframes join-glisten {
@@ -365,7 +373,8 @@
 
     /* Project Type Tag Styles */
     .project-type-tag {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       padding: 0.35rem 0.75rem;
       border-radius: 20px;
       font-size: 0.75rem;
@@ -373,47 +382,63 @@
       margin-bottom: 0.4rem;
       margin-right: 0.5rem;
       transition: all 0.2s ease;
+      line-height: 1;
+    }
+    
+    /* Make tags display side by side */
+    .project-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .project-type-tag,
+    .project-tags {
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
     }
 
     .project-type-tag:hover {
       transform: translateY(-2px);
     }
 
-    /* Different designs for each project type */
+    /* Different designs for each project type - Pastel filled style */
     .project-type-tag.non-profit {
-      background: #ffffff;
+      background: rgba(74, 144, 226, 0.15);
       color: #4a90e2;
-      border: 1px solid #4a90e2;
+      border: 1px solid rgba(74, 144, 226, 0.3);
     }
 
     .project-type-tag.community {
-      background: #ffffff;
-      color: #ffd700;
-      border: 1px solid #ffd700;
+      background: rgba(255, 215, 0, 0.15);
+      color: #d4af37;
+      border: 1px solid rgba(255, 215, 0, 0.3);
     }
 
     .project-type-tag.event {
-      background: rgba(255, 152, 0, 0.1);
+      background: rgba(255, 152, 0, 0.15);
       color: #ff9800;
-      border: 1px solid rgba(255, 152, 0, 0.2);
+      border: 1px solid rgba(255, 152, 0, 0.3);
     }
 
     .project-type-tag.startup {
-      background: rgba(103, 58, 183, 0.1);
+      background: rgba(103, 58, 183, 0.15);
       color: #673ab7;
-      border: 1px solid rgba(103, 58, 183, 0.2);
+      border: 1px solid rgba(103, 58, 183, 0.3);
     }
 
     .project-type-tag.business {
-      background: rgba(0, 200, 83, 0.1);
-      color: #00c853;
-      border: 1px solid rgba(0, 200, 83, 0.2);
+      background: rgba(255, 64, 129, 0.15);
+      color: #ff4081;
+      border: 1px solid rgba(255, 64, 129, 0.3);
     }
 
     .project-type-tag.organization {
-      background: rgba(156, 39, 176, 0.1);
+      background: rgba(156, 39, 176, 0.15);
       color: #9c27b0;
-      border: 1px solid rgba(156, 39, 176, 0.2);
+      border: 1px solid rgba(156, 39, 176, 0.3);
     }
 
     /* Connect Button Styling */
@@ -794,7 +819,13 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0;
+      align-items: center;
+    }
+    
+    .project-tags .project-type-tag {
+      margin-bottom: 0;
+      margin-right: 0;
     }
 
     .tag {
@@ -802,44 +833,49 @@
       border-radius: 50px;
       font-size: 0.75rem;
       font-weight: 500;
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.008) !important;
+      color: #d1d5db !important;
+      border: 1px solid rgba(0, 0, 0, 0.02) !important;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
     }
 
-    /* Category-specific tag colors */
+    /* Category-specific tag colors - Ultra Pastel */
     .projects-grid .project-card .tag.tag-category.Health {
-      background: #fecaca !important;
-      color: #991b1b !important;
-      border-color: #fca5a5 !important;
+      background: rgba(254, 202, 202, 0.15) !important;
+      color: #d97777 !important;
+      border-color: rgba(252, 165, 165, 0.3) !important;
     }
 
     .projects-grid .project-card .tag.tag-category.Technology {
-      background: #bfdbfe !important;
-      color: #1e40af !important;
-      border-color: #93c5fd !important;
+      background: rgba(191, 219, 254, 0.15) !important;
+      color: #7c8db8 !important;
+      border-color: rgba(147, 197, 253, 0.3) !important;
     }
 
     .projects-grid .project-card .tag.tag-category.Education {
-      background: #a7f3d0 !important;
-      color: #047857 !important;
-      border-color: #6ee7b7 !important;
+      background: rgba(167, 243, 208, 0.15) !important;
+      color: #6b9b8a !important;
+      border-color: rgba(110, 231, 183, 0.3) !important;
     }
 
     .projects-grid .project-card .tag.tag-category.Environment {
-      background: #bbf7d0 !important;
-      color: #15803d !important;
-      border-color: #86efac !important;
+      background: rgba(187, 247, 208, 0.15) !important;
+      color: #6b9b8a !important;
+      border-color: rgba(134, 239, 172, 0.3) !important;
     }
 
     .projects-grid .project-card .tag.tag-category.Social-Impact {
-      background: #ddd6fe !important;
-      color: #7c3aed !important;
-      border-color: #c4b5fd !important;
+      background: rgba(221, 214, 254, 0.15) !important;
+      color: #a394d9 !important;
+      border-color: rgba(196, 181, 253, 0.3) !important;
     }
 
     .projects-grid .project-card .tag.tag-category.Art---Design {
-      background: #fed7aa !important;
-      color: #c2410c !important;
-      border-color: #fdba74 !important;
+      background: rgba(254, 215, 170, 0.15) !important;
+      color: #d4a05a !important;
+      border-color: rgba(253, 186, 116, 0.3) !important;
     }
 
     /* Category-specific colored shadows for project cards */
@@ -1015,16 +1051,16 @@
       border-radius: 50px;
       font-size: 0.75rem;
       font-weight: 500;
-      background: #f8f8f8;
-      color: #000;
-      border: 1px solid #f0f0f0;
+      background: rgba(219, 234, 254, 0.03) !important;
+      color: #b8c5d9 !important;
+      border: 1px solid rgba(30, 64, 175, 0.02) !important;
       margin-top: 1rem;
     }
 
     .creative-media {
-      background: rgba(255, 193, 7, 0.1);
-      color: #ffc107;
-      border-color: rgba(255, 193, 7, 0.3);
+      background: rgba(255, 193, 7, 0.02);
+      color: #e2d4b0;
+      border-color: rgba(255, 193, 7, 0.05);
     }
 
     .tile-stickers {
@@ -1198,10 +1234,10 @@
       
       <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="biz-enhancer.html">CTRL Desks</a>
         <a href="network.html" class="active">Network</a>
-        <a href="idea-lab.html">Idea Lab</a>
-        <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: white;">+</span></a>
+        <a href="niche-lab.html">The Lab</a>
+        <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
         <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
           <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1287,6 +1323,12 @@
         <div class="projects-grid" id="projects-grid">
           <!-- Project cards will be injected here by JS -->
         </div>
+        
+        <!-- Submission Note -->
+        <div style="text-align: center; margin-top: 2rem; padding: 1rem; color: #666; font-style: italic; font-size: 0.9rem;">
+          Only your niche + name will appear by default.<br>
+          Want your full description + links featured? Tag <strong>@withctrl</strong> on Instagram in one of your posts.
+        </div>
       </div>
     </section>
 
@@ -1298,8 +1340,8 @@
             <h3 class="project-title"></h3>
           </div>
           <div class="bookmark-icon">💻</div>
-          <div class="project-type-tag"></div>
           <div class="project-tags">
+            <div class="project-type-tag"></div>
             <span class="tag tag-category"></span>
           </div>
         </div>

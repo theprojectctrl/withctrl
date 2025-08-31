@@ -63,6 +63,63 @@ input, textarea, button, code, pre, .code-block {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
+/* Join Highlight Styles */
+.join-highlight {
+  background: linear-gradient(135deg, #a8d8ff, #b8e6ff);
+  color: #000 !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(168, 216, 255, 0.4);
+  animation: join-glisten 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.join-highlight::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shimmer 2s linear infinite;
+  transform: rotate(45deg);
+}
+
+.join-highlight:hover {
+  transform: scale(1.05);
+}
+
+/* Ensure plus icon is black to match the button text */
+.join-highlight span {
+  color: #000 !important;
+}
+
+@keyframes join-glisten {
+  0%, 100% { 
+    box-shadow: 0 4px 20px rgba(168, 216, 255, 0.4);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 6px 25px rgba(168, 216, 255, 0.7);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
 .cta-buttons {
   display: flex;
   gap: 1.5rem;
@@ -276,17 +333,44 @@ input, textarea, button, code, pre, .code-block {
   font-weight: 600;
   margin-bottom: 1rem;
   text-align: center;
-  border: 2px solid #000;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .project-type-tag.startup {
-  background: #000;
-  color: white;
+  background: rgba(103, 58, 183, 0.15);
+  color: #673ab7;
+  border: 1px solid rgba(103, 58, 183, 0.3);
 }
 
 .project-type-tag.business {
-  background: white;
-  color: #000;
+  background: rgba(255, 64, 129, 0.15);
+  color: #ff4081;
+  border: 1px solid rgba(255, 64, 129, 0.3);
+}
+
+/* Additional project type styles for consistency */
+.project-type-tag.non-profit {
+  background: rgba(74, 144, 226, 0.15);
+  color: #4a90e2;
+  border: 1px solid rgba(74, 144, 226, 0.3);
+}
+
+.project-type-tag.community {
+  background: rgba(255, 215, 0, 0.15);
+  color: #d4af37;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.project-type-tag.event {
+  background: rgba(255, 152, 0, 0.15);
+  color: #ff9800;
+  border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.project-type-tag.organization {
+  background: rgba(156, 39, 176, 0.15);
+  color: #9c27b0;
+  border: 1px solid rgba(156, 39, 176, 0.3);
 }
 
 .project-tags {
@@ -301,11 +385,15 @@ input, textarea, button, code, pre, .code-block {
   border-radius: 100px;
   font-size: 0.7rem;
   font-weight: 500;
+  background: rgba(0, 0, 0, 0.008);
+  color: #d1d5db;
+  border: 1px solid rgba(0, 0, 0, 0.02);
 }
 
 .tag-category {
-  background: #dbeafe;
-  color: #1e40af;
+  background: rgba(219, 234, 254, 0.03) !important;
+  color: #b8c5d9 !important;
+  border: 1px solid rgba(30, 64, 175, 0.02) !important;
 }
 
 .project-description {
@@ -1172,7 +1260,7 @@ section h1, section h2, section h3, section h4, section h5, section h6,
 div h1, div h2, div h3, div h4, div h5, div h6,
 [class*=""] h1, [class*=""] h2, [class*=""] h3, [class*=""] h4, [class*=""] h5, [class*=""] h6,
 .section-title, .enhancement-title, .network-title, .idea-title,
-.be-hero h1, .biz-enhancer-content h1, .network-content h1, .idea-lab-content h1,
+.be-hero h1, .biz-enhancer-content h1, .network-content h1, .niche-lab-content h1,
 .submission-section h1, .submission-section h2, .submission-section h3, .submission-section h4, .submission-section h5, .submission-section h6,
 .hero-section h1, .hero-section h2, .hero-section h3,
 .content-section h1, .content-section h2, .content-section h3, .content-section h4, .content-section h5, .content-section h6,

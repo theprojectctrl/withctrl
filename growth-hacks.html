@@ -3,8 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Growth Hacks - Biz Enhancer</title>
+  <title>Growth Hacks - CTRL Desks</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-08H0KSCE2S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-08H0KSCE2S');
+  </script>
+  
   <style>
     .be-back-link { display: inline-block; margin: 2rem 0 1rem 0; color: #79b7ff; text-decoration: none; font-weight: 600; }
     .be-back-link:hover { text-decoration: underline; }
@@ -16,7 +30,7 @@
   </style>
 </head>
 <body>
-  <a href="biz-enhancer.html" class="be-back-link">← Back to Biz Enhancer</a>
+  <a href="biz-enhancer.html" class="be-back-link">← Back to CTRL Desks</a>
   <section class="be-hero">
     <h1>Growth Hacks</h1>
     <p>Discover quick wins and proven tactics to accelerate your business growth without massive budgets.</p>
@@ -24,5 +38,48 @@
   <div class="be-content">
     <div class="be-placeholder">[Downloadable guide and resources coming soon!]</div>
   </div>
+
+  <script>
+    // Mobile menu functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+      const mainNav = document.querySelector('.main-nav');
+      
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileMenuToggle.classList.toggle('active');
+        mainNav.classList.toggle('active');
+        document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+      });
+      
+      // Close mobile menu when clicking on a link
+      const navLinks = document.querySelectorAll('.main-nav a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenuToggle.classList.remove('active');
+          mainNav.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+      
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenuToggle.contains(e.target) && !mainNav.contains(e.target)) {
+          mobileMenuToggle.classList.remove('active');
+          mainNav.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Close mobile menu on window resize if screen becomes larger
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          mobileMenuToggle.classList.remove('active');
+          mainNav.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>

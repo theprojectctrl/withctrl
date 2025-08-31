@@ -623,22 +623,25 @@ document.addEventListener('DOMContentLoaded', () => {
         // Title
         card.querySelector('.project-title').textContent = project.title;
         
-        // Project type tag (Youth-led Project, Startup, Business, etc.)
-        const typeTag = card.querySelector('.project-type-tag');
-        if (typeTag) {
-          typeTag.textContent = project.type === 'startup' ? 'Youth-led Project' : project.type.charAt(0).toUpperCase() + project.type.slice(1);
-          const typeClass = project.type.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-');
-          typeTag.className = `project-type-tag ${typeClass}`;
-        }
-        
-        // Category tags
+        // Project type tag and category tags
         const tags = card.querySelector('.project-tags');
         tags.innerHTML = '';
+        
+        // Add project type tag first
+        if (project.type) {
+          const typeTag = document.createElement('div');
+          typeTag.className = `project-type-tag ${project.type.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-')}`;
+          typeTag.textContent = project.type === 'startup' ? 'Youth-led Project' : project.type.charAt(0).toUpperCase() + project.type.slice(1);
+          tags.appendChild(typeTag);
+        }
+        
+        // Add category tag
         if (project.category) {
           const categoryClass = project.category.replace(/\s+/g, '-').replace(/\//g, '-');
-          tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${project.category}</span>`;
-          
-
+          const categoryTag = document.createElement('span');
+          categoryTag.className = `tag tag-category ${categoryClass}`;
+          categoryTag.textContent = project.category;
+          tags.appendChild(categoryTag);
         }
         
 

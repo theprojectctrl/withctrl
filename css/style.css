@@ -86,25 +86,191 @@
   }
   
   .main-header {
-    background: transparent;
-    padding: 0.5rem 0;
-    position: fixed;
+    background: #fff !important;
+    padding: 1rem 0 !important;
+    position: sticky !important;
     width: 100%;
     top: 0;
     z-index: 1000;
+    border-bottom: 1px solid #e5e5e5 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Ensure generic navigation styling overrides inline styles */
+  header.main-header {
+    background: #fff !important;
+    padding: 1rem 0 !important;
+    border-bottom: 1px solid #e5e5e5 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
   }
   
   .header-container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--card-background);
-    border-radius: 50px;
-    padding: 1rem 3rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 0 2rem;
     position: relative;
+  }
+  
+  /* Ensure header container styling overrides inline styles */
+  .main-header .header-container {
+    max-width: 1200px !important;
+    padding: 0 2rem !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  
+  /* Additional generic navigation styling */
+  .main-header {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .main-nav a {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Remove the underline animation - keep original hover styling */
+  
+  /* Ensure join-highlight button styling is preserved and works with generic navigation */
+  .join-highlight {
+    background: linear-gradient(135deg, #f0f8ff, #e6f3ff) !important;
+    color: #000 !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 1rem !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 20px rgba(240, 248, 255, 0.4) !important;
+    animation: join-glisten 3s ease-in-out infinite !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border: none !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+  }
+  
+  .join-highlight::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    animation: shimmer 2s linear infinite;
+    transform: rotate(45deg);
+  }
+  
+  .join-highlight:hover {
+    background: linear-gradient(135deg, #e6f3ff, #d9ecff) !important;
+    transform: scale(1.05) !important;
+  }
+  
+  /* Ensure plus icon is black to match the button text */
+  .join-highlight span {
+    color: #000 !important;
+  }
+  
+  @keyframes join-glisten {
+    0%, 100% { 
+      box-shadow: 0 4px 20px rgba(240, 248, 255, 0.4);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 6px 25px rgba(240, 248, 255, 0.7);
+      transform: scale(1.02);
+    }
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+  
+  /* Ensure social navigation links work well with generic navigation */
+  .social-nav-link {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.5rem !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+    background: transparent !important;
+    border: none !important;
+  }
+  
+  .social-nav-link:hover {
+    background: rgba(0, 0, 0, 0.05) !important;
+    transform: scale(1.1) !important;
+  }
+  
+  .nav-icon {
+    width: 20px !important;
+    height: 20px !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  /* Ensure dropdown functionality works well with generic navigation */
+  .dropdown {
+    position: relative !important;
+    display: inline-block !important;
+    height: 100% !important;
+  }
+  
+  .dropdown-trigger {
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+  }
+  
+  .dropdown-content {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background-color: #fff !important;
+    min-width: 200px !important;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+    z-index: 1000 !important;
+    border-radius: 8px !important;
+    margin-top: 0.5rem !important;
+    padding: 0.5rem 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid #e5e5e5 !important;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .dropdown-content a {
+    color: #666 !important;
+    padding: 12px 24px !important;
+    text-decoration: none !important;
+    display: block !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    white-space: nowrap !important;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: rgba(121, 183, 255, 0.1) !important;
+    color: var(--accent-color) !important;
   }
   
   .logo {
@@ -137,7 +303,15 @@
   .main-nav a:hover,
   .main-nav a.active,
   .main-nav .dropdown-trigger:hover {
-    color: var(--accent-color);
+    color: #000 !important;
+    font-weight: 700 !important;
+  }
+  
+  /* Ensure join-highlight button doesn't get affected by general navigation hover styles */
+  .join-highlight:hover,
+  .join-highlight.active {
+    color: white !important;
+    font-weight: 600 !important;
   }
   
   .dropdown {
@@ -530,12 +704,17 @@
     
     /* Mobile navigation adjustments */
     .header-container {
-      max-width: 95%;
-      padding: 0.75rem 1.5rem;
+      max-width: 95% !important;
+      padding: 0.75rem 1.5rem !important;
     }
     
     .main-nav {
       gap: 1.5rem;
+    }
+    
+    /* Ensure mobile header maintains generic styling */
+    .main-header {
+      padding: 0.75rem 0 !important;
     }
   }
   
@@ -1140,6 +1319,9 @@
     font-size: 0.75rem;
     font-weight: 500;
     transition: var(--transition);
+    background: rgba(0, 0, 0, 0.008) !important;
+    color: #d1d5db !important;
+    border: 1px solid rgba(0, 0, 0, 0.02) !important;
   }
   
   .tag:hover {
@@ -1148,8 +1330,16 @@
   
   /* Category tag colors */
   .tag-category {
-    background: rgba(121, 183, 255, 0.1);
-    color: var(--accent-color);
+    background: rgba(219, 234, 254, 0.02) !important;
+    color: #c7d1e0 !important;
+    border: 1px solid rgba(30, 64, 175, 0.01) !important;
+  }
+  
+  /* Also target tags with both classes */
+  .tag.tag-category {
+    background: rgba(219, 234, 254, 0.02) !important;
+    color: #c7d1e0 !important;
+    border: 1px solid rgba(30, 64, 175, 0.01) !important;
   }
   
   /* Specific category colors */
@@ -1169,8 +1359,8 @@
   }
   
   .tag-category.environment {
-    background: rgba(0, 200, 83, 0.1);
-    color: #00c853;
+    background: rgba(156, 39, 176, 0.1);
+    color: #9c27b0;
   }
   
   .tag-category.social-impact {
@@ -1195,8 +1385,8 @@
   
   /* Rotating colors for other tags */
   .tag-color-1 {
-    background: rgba(0, 200, 83, 0.1);
-    color: var(--success-color);
+    background: rgba(103, 58, 183, 0.1);
+    color: #673ab7;
   }
   
   .tag-color-2 {
@@ -2592,7 +2782,6 @@
   
   .image-upload-box:hover {
     border-color: var(--accent-color);
-    background: rgba(121, 183, 255, 0.05);
   }
   
   .image-upload-box input[type="file"] {
@@ -2618,11 +2807,13 @@
     padding: 1rem;
     text-align: center;
     cursor: pointer;
+    background: white !important;
+    border: 1px solid #ffffff;
   }
   
   .upload-icon {
     font-size: 2rem;
-    color: var(--accent-color);
+    color: white;
   }
   
   .upload-text {
@@ -2710,7 +2901,7 @@
   div h1, div h2, div h3, div h4, div h5, div h6,
   [class*=""] h1, [class*=""] h2, [class*=""] h3, [class*=""] h4, [class*=""] h5, [class*=""] h6,
   .section-title, .enhancement-title, .network-title, .idea-title,
-  .be-hero h1, .biz-enhancer-content h1, .network-content h1, .idea-lab-content h1,
+  .be-hero h1, .biz-enhancer-content h1, .network-content h1, .niche-lab-content h1,
   .submission-section h1, .submission-section h2, .submission-section h3, .submission-section h4, .submission-section h5, .submission-section h6,
   .hero-section h1, .hero-section h2, .hero-section h3,
   .content-section h1, .content-section h2, .content-section h3, .content-section h4, .content-section h5, .content-section h6,
@@ -2970,6 +3161,8 @@
     .main-nav.active a:nth-child(3) { animation-delay: 0.3s; }
     .main-nav.active a:nth-child(4) { animation-delay: 0.4s; }
     .main-nav.active a:nth-child(5) { animation-delay: 0.5s; }
+    .main-nav.active a:nth-child(6) { animation-delay: 0.6s; }
+    .main-nav.active a:nth-child(7) { animation-delay: 0.7s; }
     
     @keyframes slideInFromRight {
       to {
@@ -2985,6 +3178,21 @@
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 8px 25px rgba(237, 244, 255, 0.4);
       border-color: #edf4ff;
+    }
+    
+    /* Ensure join button doesn't get affected by general mobile nav hover styles */
+    .main-nav .join-highlight:hover,
+    .main-nav .join-highlight.active {
+      background: linear-gradient(135deg, #e6f3ff, #d9ecff) !important;
+      color: #000 !important;
+      transform: translateY(-3px) scale(1.05) !important;
+      box-shadow: 0 8px 25px rgba(240, 248, 255, 0.6) !important;
+      border-color: transparent !important;
+    }
+    
+    /* Ensure plus icon is black in mobile navigation too */
+    .main-nav .join-highlight span {
+      color: #000 !important;
     }
     
     .main-nav a.active {
@@ -3028,16 +3236,41 @@
 
     /* Mobile styles for join-highlight */
     .join-highlight {
-      background: linear-gradient(135deg, #a8d8ff, #b8e6ff) !important;
-      color: white !important;
+      background: linear-gradient(135deg, #f0f8ff, #e6f3ff) !important;
+      color: #000 !important;
       border: none !important;
-      box-shadow: 0 4px 20px rgba(168, 216, 255, 0.4) !important;
+      box-shadow: 0 4px 20px rgba(240, 248, 255, 0.4) !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
     }
 
     .join-highlight:hover {
-      background: linear-gradient(135deg, #9ac8ff, #a8d8ff) !important;
+      background: linear-gradient(135deg, #e6f3ff, #d9ecff) !important;
       transform: translateY(-3px) scale(1.05) !important;
-      box-shadow: 0 8px 25px rgba(168, 216, 255, 0.6) !important;
+      box-shadow: 0 8px 25px rgba(240, 248, 255, 0.6) !important;
+    }
+    
+    /* Ensure join button is visible in mobile navigation */
+    .main-nav .join-highlight {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background: linear-gradient(135deg, #f0f8ff, #e6f3ff) !important;
+      color: #000 !important;
+      border: none !important;
+      box-shadow: 0 4px 20px rgba(240, 248, 255, 0.4) !important;
+    }
+    
+    .main-nav .join-highlight:hover {
+      background: linear-gradient(135deg, #e6f3ff, #d9ecff) !important;
+      transform: translateY(-3px) scale(1.05) !important;
+      box-shadow: 0 8px 25px rgba(240, 248, 255, 0.6) !important;
+    }
+    
+    /* Ensure plus icon is black in mobile navigation */
+    .main-nav .join-highlight span {
+      color: #000 !important;
     }
     
     .header-container {
