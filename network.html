@@ -205,7 +205,7 @@
     /* Hero Section */
     .hero-section {
       padding: 2rem 0;
-      margin: 2rem auto;
+      margin: 1rem auto;
       max-width: 700px;
     }
 
@@ -718,6 +718,7 @@
       line-height: 1.1;
       margin: 0 0 1.5rem 0;
       letter-spacing: -0.03em;
+      font-family: 'Lucida Console', monospace !important;
     }
 
     .hero-subtitle {
@@ -835,7 +836,7 @@
 
     /* Network Content */
     .network-content {
-      padding: 4rem 0;
+      padding: 2rem 0;
     }
 
     .section-title {
@@ -847,74 +848,127 @@
       font-family: 'Lucida Console' !important;
     }
 
-    .network-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
+    /* Message Bubbles */
+    .network-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem auto;
+      max-width: 600px;
+      align-items: center;
     }
 
-    .network-card {
-      background: #fff;
-      border: 1px solid #f0f0f0;
-      border-radius: 16px;
-      padding: 2rem;
+    .message-bubble {
+      background: #f0f0f0;
+      border-radius: 18px 18px 18px 4px;
+      padding: 1rem 1.25rem;
+      max-width: 85%;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       transition: all 0.2s ease;
-      text-align: center;
     }
 
-    .network-card:hover {
-      border-color: #e6f3ff;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(230, 243, 255, 0.3);
+    /* Speech bubble tail for first message (left side) */
+    .message-bubble:first-child::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      bottom: 8px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 12px 12px 12px 0;
+      border-color: transparent #f0f0f0 transparent transparent;
     }
 
-    .network-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 1.5rem auto;
+    .message-bubble:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .message-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .message-avatar {
+      width: 32px;
+      height: 32px;
+      background: #e0e0e0;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f8f8f8;
-      border-radius: 16px;
-      font-size: 2rem;
+      font-size: 1rem;
+      flex-shrink: 0;
     }
 
-    .network-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 0 0 1rem 0;
-      color: #000;
-      font-family: 'Lucida Console' !important;
+    .message-info {
+      flex: 1;
+      min-width: 0;
     }
 
-    .network-description {
+    .message-sender {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #333;
+      margin-bottom: 0.1rem;
+      font-family: 'Lucida Console', monospace !important;
+      text-transform: lowercase !important;
+    }
+
+    .message-time {
+      font-size: 0.75rem;
       color: #666;
-      line-height: 1.6;
-      margin: 0 0 1.5rem 0;
+      font-weight: 400;
     }
 
-    .network-cta {
-      background: #000;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s ease;
+    .message-content {
+      color: #333;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
     }
 
-    .network-cta:hover {
-      background: #333;
+    /* Second message bubble - slightly different styling */
+    .message-bubble:nth-child(2) {
+      background: #e3f2fd;
+      border-radius: 18px 18px 4px 18px;
+    }
+
+    .message-bubble:nth-child(2) .message-avatar {
+      background: #bbdefb;
+    }
+
+    /* Speech bubble tail for second message (right side) */
+    .message-bubble:nth-child(2)::after {
+      content: '';
+      position: absolute;
+      right: -12px;
+      bottom: 8px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 12px 0 12px 12px;
+      border-color: transparent transparent transparent #e3f2fd;
+    }
+
+    /* Force Lucida Console font for message senders */
+    .network-messages .message-sender,
+    .message-bubble .message-sender {
+      font-family: 'Lucida Console', monospace !important;
+      font-weight: 400 !important;
+      text-transform: lowercase !important;
     }
 
     /* Community Projects Section */
     .community-projects-section {
-      padding: 4rem 0;
+      padding: 2rem 0;
       background: #f8f8f8;
-      margin: 4rem 0;
+      margin: 1rem 0;
     }
 
     .section-header {
@@ -1609,17 +1663,31 @@
     <!-- Main Content -->
     <section class="network-content">
       <div class="main-container">
-        <div class="network-grid" id="networking">
-          <div class="network-card glassmorphism-card">
-            <div class="network-icon">📱</div>
-            <h3 class="network-title">Online Community</h3>
-            <p class="network-description">Join our digital community where you can ask questions, share updates, and connect with CTRL members worldwide.</p>
+        <div class="network-messages" id="networking">
+          <div class="message-bubble">
+            <div class="message-header">
+              <div class="message-avatar">📱</div>
+              <div class="message-info">
+                <div class="message-sender">ctrl community</div>
+                <div class="message-time">now</div>
+              </div>
+            </div>
+            <div class="message-content">
+              join our digital community where you can ask questions, share updates, and connect with ctrl members worldwide
+            </div>
           </div>
 
-          <div class="network-card glassmorphism-card">
-            <div class="network-icon">🔗</div>
-            <h3 class="network-title">Strategic Partnerships</h3>
-            <p class="network-description">Discover potential business partners and collaborators who can help you scale and reach new markets.</p>
+          <div class="message-bubble">
+            <div class="message-header">
+              <div class="message-avatar">🔗</div>
+              <div class="message-info">
+                <div class="message-sender">strategic partnerships</div>
+                <div class="message-time">now</div>
+              </div>
+            </div>
+            <div class="message-content">
+              discover potential business partners and collaborators who can help you scale and reach new markets
+            </div>
           </div>
         </div>
       </div>
