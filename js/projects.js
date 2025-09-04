@@ -605,7 +605,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Render projects
   async function renderProjects(projects) {
+    // Keep the add-your-own tile at the top
+    const addYourOwnTile = grid.querySelector('.add-your-own-tile');
     grid.innerHTML = '';
+    
+    // Re-add the placeholder tile first
+    if (addYourOwnTile) {
+      grid.appendChild(addYourOwnTile);
+    }
     
     // Separate events, products and regular projects
     const events = projects.filter(p => p.isEvent);
@@ -701,6 +708,20 @@ document.addEventListener('DOMContentLoaded', () => {
         card.dataset.niche = project.niche || '';
         card.dataset.connectionLink = project.connectionLink || '';
 
+        // Assign masonry height class based on content length
+        const descriptionLength = project.description ? project.description.length : 0;
+        const nicheLength = project.niche ? project.niche.length : 0;
+        const totalContentLength = descriptionLength + nicheLength;
+        
+        if (totalContentLength > 200) {
+          card.classList.add('extra-tall');
+        } else if (totalContentLength > 120) {
+          card.classList.add('tall');
+        } else if (totalContentLength > 60) {
+          card.classList.add('medium');
+        } else {
+          card.classList.add('short');
+        }
 
         card.addEventListener('click', () => projectsPage.handleCardClick(card));
         grid.appendChild(card);
@@ -725,6 +746,17 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="button-icon">→</span>
           </a>
         `;
+        
+        // Assign masonry height class for product cards
+        const productContentLength = product.description ? product.description.length : 0;
+        if (productContentLength > 150) {
+          card.classList.add('tall');
+        } else if (productContentLength > 80) {
+          card.classList.add('medium');
+        } else {
+          card.classList.add('short');
+        }
+        
         grid.appendChild(card);
       }
       if (i < events.length) {
@@ -741,6 +773,17 @@ document.addEventListener('DOMContentLoaded', () => {
         tile.style.background = event.color || '#f6f8fc';
         tile.style.color = event.textColor || '#333';
         tile.style.cursor = 'pointer';
+        
+        // Assign masonry height class for event tiles
+        const eventContentLength = event.description ? event.description.length : 0;
+        if (eventContentLength > 120) {
+          tile.classList.add('tall');
+        } else if (eventContentLength > 60) {
+          tile.classList.add('medium');
+        } else {
+          tile.classList.add('short');
+        }
+        
         if (event.link) {
           tile.onclick = () => window.open(event.link, '_blank');
         }
