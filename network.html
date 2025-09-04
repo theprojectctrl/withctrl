@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ctrl</title>
+  <title>Network - CTRL</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   
@@ -322,6 +323,206 @@
     @keyframes blink {
       0%, 50% { opacity: 1; }
       51%, 100% { opacity: 0; }
+    }
+
+    /* Keyboard Callout Styles */
+    .keyboard-callout {
+      background: #e3f2fd;
+      border: 2px solid #bbdefb;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin: 1rem auto;
+      max-width: 600px;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+      font-family: 'Courier New', 'Monaco', monospace;
+    }
+
+    .keyboard-callout::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid #bbdefb;
+    }
+
+    .keyboard-callout::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 22px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid #e3f2fd;
+    }
+
+    .keyboard-text {
+      color: #000;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0;
+      text-shadow: none;
+    }
+
+    .keyboard-callout .projects-title {
+      color: #000;
+      font-family: 'Courier New', 'Monaco', monospace;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0;
+      text-shadow: none;
+    }
+
+    .keyboard-callout #cursor {
+      color: #000;
+      text-shadow: none;
+    }
+
+    /* Add Your Own Placeholder Tile */
+    .add-your-own-tile {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border: 2px dashed #dee2e6;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: visible;
+      margin-bottom: 1rem;
+    }
+
+
+    .add-your-own-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .add-your-own-tile::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      animation: shimmer 3s linear infinite;
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .add-your-own-tile:hover::before {
+      opacity: 1;
+    }
+
+    .add-your-own-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .add-your-own-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #000;
+      margin: 0 0 0.5rem 0;
+      font-family: 'Lucida Console', monospace;
+    }
+
+    .add-your-own-subtitle {
+      color: #666;
+      margin: 0 0 1.5rem 0;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .add-your-own-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      min-width: 160px;
+      justify-content: center;
+      background: #1a1a1a;
+      color: white;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .add-your-own-button::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 167, 38, 0.8) 70%, 
+        rgba(255, 235, 59, 0.8) 80%, 
+        rgba(76, 175, 80, 0.8) 90%, 
+        rgba(33, 150, 243, 0.8) 95%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .add-your-own-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .add-your-own-button:hover {
+      transform: scale(1.05);
+      text-decoration: none;
+      color: white;
+    }
+
+    .add-your-own-button .arrow {
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .add-your-own-button:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
     /* Project Card Styles */
@@ -760,9 +961,48 @@
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 2rem;
       margin-top: 2rem;
+      grid-auto-rows: masonry;
+      align-items: start;
+      justify-items: stretch;
+    }
+
+    /* Fallback for browsers that don't support masonry */
+    @supports not (grid-template-rows: masonry) {
+      .projects-grid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        align-content: flex-start;
+        gap: 2rem;
+      }
+      
+      .projects-grid > * {
+        flex: 0 0 auto;
+        width: calc(33.333% - 1.33rem);
+        margin: 0;
+        align-self: flex-start;
+      }
+      
+      @media (max-width: 1024px) {
+        .projects-grid > * {
+          width: calc(50% - 1rem);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .projects-grid > * {
+          width: calc(50% - 1rem);
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .projects-grid > * {
+          width: 100%;
+        }
+      }
     }
 
     .project-card {
@@ -774,6 +1014,76 @@
       position: relative;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
       outline: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    /* Masonry card height variations */
+    .project-card.tall {
+      min-height: 400px;
+    }
+
+    .project-card.medium {
+      min-height: 320px;
+    }
+
+    .project-card.short {
+      min-height: 280px;
+    }
+
+    .project-card.extra-tall {
+      min-height: 480px;
+    }
+
+    /* Add your own tile specific styling for masonry */
+    .add-your-own-tile {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    /* Event tiles masonry styling */
+    .event-tile {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .event-tile.tall {
+      min-height: 400px;
+    }
+
+    .event-tile.medium {
+      min-height: 320px;
+    }
+
+    .event-tile.short {
+      min-height: 280px;
+    }
+
+    /* Product cards masonry styling */
+    .product-card {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .project-card:hover {
@@ -877,54 +1187,6 @@
       border-color: rgba(253, 186, 116, 0.3) !important;
     }
 
-    /* Category-specific colored shadows for project cards */
-    .projects-grid .project-card[data-category="Health"] {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(254, 202, 202, 0.3);
-    }
-
-    .projects-grid .project-card[data-category="Health"]:hover {
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(254, 202, 202, 0.4);
-    }
-
-    .projects-grid .project-card[data-category="Technology"] {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(191, 219, 254, 0.3);
-    }
-
-    .projects-grid .project-card[data-category="Technology"]:hover {
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(191, 219, 254, 0.4);
-    }
-
-    .projects-grid .project-card[data-category="Education"] {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(167, 243, 208, 0.3);
-    }
-
-    .projects-grid .project-card[data-category="Education"]:hover {
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(167, 243, 208, 0.4);
-    }
-
-    .projects-grid .project-card[data-category="Environment"] {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(187, 247, 208, 0.3);
-    }
-
-    .projects-grid .project-card[data-category="Environment"]:hover {
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(187, 247, 208, 0.4);
-    }
-
-    .projects-grid .project-card[data-category="Social-Impact"] {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(221, 214, 254, 0.3);
-    }
-
-    .projects-grid .project-card[data-category="Social-Impact"]:hover {
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(221, 214, 254, 0.4);
-    }
-
-    .projects-grid .project-card[data-category="Art---Design"] {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(254, 215, 170, 0.3);
-    }
-
-    .projects-grid .project-card[data-category="Art---Design"]:hover {
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(254, 215, 170, 0.4);
-    }
 
 
 
@@ -1203,6 +1465,71 @@
 
       .projects-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      /* Adjust masonry heights for mobile */
+      .project-card.tall,
+      .event-tile.tall {
+        min-height: 350px;
+      }
+
+      .project-card.medium,
+      .event-tile.medium {
+        min-height: 300px;
+      }
+
+      .project-card.short,
+      .event-tile.short {
+        min-height: 250px;
+      }
+
+      .project-card.extra-tall {
+        min-height: 400px;
+      }
+
+      /* Keyboard callout responsive adjustments */
+      .keyboard-callout {
+        margin: 1rem 0.5rem;
+        padding: 0.75rem 1rem;
+        max-width: calc(100% - 1rem);
+      }
+
+      .keyboard-callout .projects-title {
+        font-size: 1rem;
+      }
+
+      .keyboard-callout::before {
+        left: 15px;
+      }
+
+      .keyboard-callout::after {
+        left: 17px;
+      }
+
+      /* Add Your Own Tile responsive adjustments */
+      .add-your-own-tile {
+        padding: 1.5rem 1rem;
+        margin: 0.5rem 0;
+      }
+
+      .add-your-own-icon {
+        font-size: 2.5rem;
+      }
+
+      .add-your-own-title {
+        font-size: 1.25rem;
+      }
+
+      .add-your-own-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .add-your-own-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        min-width: 140px;
       }
     }
   </style>
@@ -1302,9 +1629,11 @@
     <section class="community-projects-section">
       <div class="main-container">
         <div class="projects-header">
-          <h2 class="projects-title">
-            see who's <span id="changing-title">expanding while afk</span><span id="cursor">|</span>
-          </h2>
+          <div class="keyboard-callout">
+            <h2 class="projects-title">
+              see who's <span id="changing-title">expanding while afk</span><span id="cursor">|</span>
+            </h2>
+          </div>
           <p class="projects-subtitle">ctrl shows you who's digitalizing their small biz/startup, expanding while afk, and making their ideas real. explore, get inspired, and connect.</p>
         </div>
         
@@ -1320,13 +1649,26 @@
         </div>
         
         <div class="projects-grid" id="projects-grid">
+          <!-- Add Your Own Placeholder Tile -->
+          <div class="add-your-own-tile" onclick="window.location.href='join-community.html'">
+            <span class="add-your-own-icon">˚୨୧⋆.˚</span>
+            <h3 class="add-your-own-title">add your own</h3>
+            <p class="add-your-own-subtitle">join ctrl and showcase your niche & venture to the community</p>
+            <a href="join-community.html" class="add-your-own-button">
+              + join ctrl
+              <span class="arrow">→</span>
+            </a>
+          </div>
           <!-- Project cards will be injected here by JS -->
         </div>
         
-        <!-- Submission Note -->
-        <div style="text-align: center; margin-top: 2rem; padding: 1rem; color: #666; font-style: italic; font-size: 0.9rem;">
-          Only your niche + name will appear by default.<br>
-          Want your full description + links featured? Tag <strong>@withctrl</strong> on Instagram in one of your posts.
+        <!-- CTRL Approach Note -->
+        <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 16px; border: 1px solid #e6f3ff;">
+          <h3 style="margin: 0 0 1rem 0; color: #000; font-size: 1.25rem; font-weight: 600; font-family: 'Lucida Console', monospace;">ctrl's unique approach</h3>
+          <p style="margin: 0; color: #666; font-size: 1rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+            We believe in cementing your niche early on. While others chase trends, we help you build something that's authentically yours. 
+            <strong>Join CTRL</strong> and showcase how you're turning your unique perspective into something real.
+          </p>
         </div>
       </div>
     </section>
@@ -1437,6 +1779,11 @@
         const searchLower = searchTerm.toLowerCase();
         
         allProjects.forEach(project => {
+          // Skip the add-your-own tile in search
+          if (project.classList.contains('add-your-own-tile')) {
+            return;
+          }
+          
           const title = project.querySelector('.project-title')?.textContent?.toLowerCase() || '';
           const description = project.querySelector('.project-description')?.textContent?.toLowerCase() || '';
           const category = project.querySelector('.tag-category')?.textContent?.toLowerCase() || '';
@@ -1453,7 +1800,7 @@
       
       // Wait for projects to be loaded by projects.js
       function initializeSearch() {
-        const projects = projectsGrid.querySelectorAll('.project-card');
+        const projects = projectsGrid.querySelectorAll('.project-card, .add-your-own-tile');
         if (projects.length > 0) {
           allProjects = Array.from(projects);
           
@@ -1480,6 +1827,77 @@
       
       // Initialize search after a short delay to ensure projects are loaded
       setTimeout(initializeSearch, 1000);
+      
+      // Initialize masonry layout for browsers that don't support CSS Grid masonry
+      if (!CSS.supports('grid-template-rows', 'masonry')) {
+        setTimeout(() => {
+          initializeMasonryFallback();
+        }, 1500);
+      }
+    });
+
+    // Fallback masonry implementation for browsers without CSS Grid masonry support
+    function initializeMasonryFallback() {
+      const grid = document.getElementById('projects-grid');
+      if (!grid) return;
+      
+      const items = Array.from(grid.children);
+      if (items.length === 0) return;
+      
+      // Reset positioning and ensure items are visible for measurement
+      items.forEach(item => {
+        item.style.position = 'static';
+        item.style.transform = 'none';
+        item.style.opacity = '0';
+        item.style.margin = '0';
+        item.style.width = 'auto';
+      });
+      
+      // Force a reflow to ensure measurements are accurate
+      grid.offsetHeight;
+      
+      // Calculate column count based on available width
+      const containerWidth = grid.offsetWidth;
+      const itemWidth = 300; // minmax width
+      const gap = 32; // 2rem in pixels
+      const columns = Math.max(1, Math.floor((containerWidth + gap) / (itemWidth + gap)));
+      
+      // Initialize column heights array
+      const columnHeights = new Array(columns).fill(0);
+      const columnWidth = (containerWidth - (gap * (columns - 1))) / columns;
+      
+      // Position each item in the shortest column
+      items.forEach((item, index) => {
+        // Find the shortest column
+        const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
+        
+        // Calculate position with proper gap spacing
+        const x = shortestColumn * (columnWidth + gap);
+        const y = columnHeights[shortestColumn];
+        
+        // Position the item
+        item.style.position = 'absolute';
+        item.style.left = `${x}px`;
+        item.style.top = `${y}px`;
+        item.style.width = `${columnWidth}px`;
+        item.style.transform = 'none';
+        item.style.opacity = '1';
+        item.style.margin = '0';
+        
+        // Update column height with gap
+        columnHeights[shortestColumn] += item.offsetHeight + gap;
+      });
+      
+      // Set container height and positioning
+      grid.style.height = `${Math.max(...columnHeights)}px`;
+      grid.style.position = 'relative';
+    }
+    
+    // Re-run masonry on window resize
+    window.addEventListener('resize', () => {
+      if (!CSS.supports('grid-template-rows', 'masonry')) {
+        setTimeout(initializeMasonryFallback, 100);
+      }
     });
 
     // Typing Animation for Projects Title
@@ -1573,3 +1991,4 @@
   </script>
 </body>
 </html>
+
