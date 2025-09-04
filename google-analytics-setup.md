@@ -27,7 +27,7 @@ The following pages now have Google Analytics tracking:
 - ✅ `submit-work.html` - Submit Work form
 - ✅ `digital-products.html` - Digital Products
 - ✅ `network.html` - Network page
-- ✅ `idea-lab.html` - Idea Lab
+- ✅ `niche-lab.html` - The Lab
 - ✅ `biz-enhancer.html` - Business Enhancer
 - ✅ `niche-builder.html` - Niche Builder
 - ✅ `qrcodekit.html` - QR Code Kit

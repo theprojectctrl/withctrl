@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Niche Builder - CTRL</title>
+  <title>Niche Finder - CTRL</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
@@ -20,62 +20,11 @@
   </script>
   
   <style>
-    /* Niche Builder specific styles */
-    :root {
-      --accent-blue: #000000;
-      --accent-yellow: #000000;
-    }
-
-    .emphasis-blue {
-      color: var(--accent-blue);
-      font-weight: 600;
-    }
-
-    .emphasis-yellow {
-      color: var(--accent-yellow);
-      font-weight: 600;
-    }
-
-    .main-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* Hero boba emoji styling */
-    .hero-boba {
-      font-size: 16rem;
-      margin: 0;
-      transform: rotate(-15deg);
-      display: block;
-      animation: boba-pulse 3s ease-in-out infinite;
-    }
-
-    @keyframes boba-pulse {
-      0%, 100% {
-        transform: rotate(-15deg) scale(1);
-      }
-      50% {
-        transform: rotate(-15deg) scale(1.05);
-      }
-    }
-
-    /* Ensure cards are above the emoji */
-    .card {
-      position: relative;
-      z-index: 10;
-    }
-
-    .card-input {
-      position: relative;
-      z-index: 15;
-    }
-
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
       color: #000;
-      background: #fff;
+      background: #f8f9fa;
       margin: 0;
       padding: 0;
     }
@@ -83,7 +32,7 @@
     .main-header {
       background: transparent;
       border-bottom: none;
-      padding: 3.5rem 0;
+      padding: 2rem 0;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -102,17 +51,6 @@
     .logo {
       position: absolute;
       left: 2rem;
-    }
-
-    .main-nav {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      justify-content: center;
-      flex: 1;
-    }
-
-    .logo {
       font-size: 1.5rem;
       font-weight: 700;
       color: #000;
@@ -124,10 +62,12 @@
       display: flex;
       gap: 2rem;
       align-items: center;
+      justify-content: center;
+      flex: 1;
     }
 
     .main-nav a {
-      color: #000;
+      color: #666;
       text-decoration: none;
       font-weight: 500;
       transition: color 0.2s ease;
@@ -137,7 +77,6 @@
     .main-nav a.active {
       color: #000;
       font-weight: 700;
-      transition: all 0.2s ease;
     }
 
     .join-highlight {
@@ -147,506 +86,416 @@
       border-radius: 1rem;
       font-weight: 600;
       box-shadow: 0 4px 20px rgba(168, 216, 255, 0.4);
-      animation: join-glisten 3s ease-in-out infinite;
+    }
+
+    .quiz-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .quiz-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      padding: 3rem;
+      margin-bottom: 2rem;
       position: relative;
       overflow: hidden;
     }
 
-    .join-highlight::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-      );
-      animation: shimmer 2s linear infinite;
-      transform: rotate(45deg);
-    }
-
-    .join-highlight:hover {
-      background: linear-gradient(135deg, #9ac8ff, #a8d8ff);
-      transform: scale(1.05);
-    }
-
-    /* Ensure plus icon is black to match the button text */
-    .join-highlight span {
-      color: #000 !important;
-    }
-
-    @keyframes join-glisten {
-      0%, 100% { 
-        box-shadow: 0 4px 20px rgba(168, 216, 255, 0.4);
-        transform: scale(1);
-      }
-      50% { 
-        box-shadow: 0 6px 25px rgba(168, 216, 255, 0.7);
-        transform: scale(1.02);
-      }
-    }
-
-    @keyframes shimmer {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
-
-    .hero-section {
-      padding: 2rem 0;
-      margin: 2rem auto;
-      max-width: 700px;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero-layout {
+    .progress-bar {
       display: flex;
-      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
       gap: 0.5rem;
     }
 
-    .hero-left {
-      flex: 0 0 auto;
+    .progress-step {
+      width: 40px;
+      height: 8px;
+      border-radius: 4px;
+      background: #e5e7eb;
+      transition: all 0.3s ease;
     }
 
-    .hero-right {
-      flex: 1;
-      text-align: center;
-      padding-left: 2rem;
+    .progress-step.active {
+      background: #3b82f6;
     }
 
-    .hero-section h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+    .progress-step.completed {
+      background: #10b981;
+    }
+
+    .quiz-title {
+      font-size: 2rem;
       font-weight: 700;
-      line-height: 1.1;
-      margin: 0 0 1.5rem 0;
-      letter-spacing: -0.03em;
-      text-transform: lowercase;
-    }
-
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: #000;
-      margin: 0 0 3rem 0;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
-    }
-
-    .bento-card {
-      background: #fff;
-      border-radius: 1.5em;
-      box-shadow: 0 2px 16px 0 rgba(60, 60, 60, 0.06);
-      padding: 2rem;
-      margin: 2rem auto;
-      border: 2px solid rgba(58, 120, 255, 0.18);
-      transition: box-shadow 0.2s, border-color 0.2s;
-      max-width: 700px;
-      width: 100%;
-    }
-
-    .bento-card:hover {
-      box-shadow: 0 4px 24px 0 rgba(60, 60, 60, 0.10);
-      border-color: rgba(58, 120, 255, 0.28);
-    }
-
-    @media (max-width: 800px) {
-      .bento-card {
-        max-width: 98vw;
-        padding: 1.2rem;
-      }
-    }
-
-    .cards-container {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 4rem 0;
-      flex-wrap: wrap;
-    }
-
-    /* Override any rainbow bars that might be coming from external CSS */
-    .card::before,
-    .card::after,
-    .card-inner::before,
-    .card-inner::after,
-    .card-front::before,
-    .card-front::after {
-      display: none !important;
-      content: none !important;
-    }
-
-    .card {
-      width: 280px;
-      height: 320px;
-      perspective: 1000px;
-      cursor: pointer;
-      position: relative;
-      z-index: 10;
-    }
-
-    .card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
       text-align: center;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .card.flipped .card-inner {
-      transform: rotateY(180deg);
-    }
-
-    .card-front,
-    .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-      box-sizing: border-box;
-    }
-
-    .card-front {
-      background: #edf4ff;
+      margin-bottom: 0.5rem;
       color: #000;
     }
 
-    .card-back {
+    .quiz-subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .option-card {
       background: white;
-      color: #000;
-      transform: rotateY(180deg);
-      border: 2px solid #e2e8f0;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
     }
 
+    .option-card:hover {
+      border-color: #3b82f6;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+    }
 
+    .option-card.selected {
+      border-color: #3b82f6;
+      background: #eff6ff;
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+    }
 
-    .card-title {
-      font-size: 1.25rem;
+    .option-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #3b82f6;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .option-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .option-title {
       font-weight: 600;
+      color: #000;
       margin-bottom: 0.5rem;
     }
 
-    .card-description {
+    .option-description {
       font-size: 0.9rem;
+      color: #666;
       line-height: 1.4;
-      margin-bottom: 1rem;
     }
 
-    .card-example {
-      font-size: 0.8rem;
-      color: #000;
-      font-style: italic;
-      line-height: 1.3;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      background: rgba(255, 255, 255, 0.3);
+    .quiz-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 0.75rem 2rem;
       border-radius: 8px;
-    }
-
-    .card-input {
-      width: 100%;
-      padding: 1rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-family: inherit;
-      text-align: center;
-      margin-top: 1rem;
-      transition: border-color 0.2s ease;
-      position: relative;
-      z-index: 15;
-      background: white;
-      cursor: text;
-    }
-
-    .card-input:focus {
-      outline: none;
-      border-color: #60a5fa;
-      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
-    }
-
-    .card-input::placeholder {
-      color: #000;
-    }
-
-    .word-limit {
-      font-size: 0.8rem;
-      color: #000;
-      margin-top: 0.5rem;
-    }
-
-    .synthesize-section {
-      text-align: center;
-      margin: 4rem 0;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
-    }
-
-    .synthesize-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .synthesize-btn {
-      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
       font-weight: 600;
-      border-radius: 12px;
       cursor: pointer;
       transition: all 0.2s ease;
-      font-family: inherit;
+      border: none;
+      font-size: 1rem;
     }
 
-    .synthesize-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(96, 165, 250, 0.3);
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
     }
 
-    .synthesize-btn:disabled {
-      opacity: 0.6;
+    .btn-secondary:hover {
+      background: #e5e7eb;
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:disabled {
+      background: #9ca3af;
       cursor: not-allowed;
       transform: none;
     }
 
-    .result-section {
+    .results-section {
       text-align: center;
-      margin: 3rem 0;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
+      padding: 3rem;
     }
 
-    .result-section.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .results-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #000;
     }
 
-    .generated-sentence {
-      background: white;
-      border: 2px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 2rem;
-      margin: 2rem 0;
+    .results-subtitle {
       font-size: 1.2rem;
-      color: #000;
-      line-height: 1.6;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      color: #666;
+      margin-bottom: 3rem;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    .form-group textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-
-
-    /* Share Your Niche Button - Styled like network connect buttons */
-    .submit-section {
-      text-align: center;
-      margin: 2rem 0;
-      width: 100%;
-      clear: both;
-    }
-
-    .share-niche-btn {
-      background: #1a1a1a;
-      color: white !important;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: inherit;
-      min-width: 200px;
-      justify-content: center;
-      position: relative;
-      overflow: visible;
-      z-index: 1;
-    }
-
-    .share-niche-btn::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -4px;
-      background: linear-gradient(180deg, 
-        transparent 0%, 
-        transparent 40%, 
-        rgba(255, 107, 107, 0.8) 60%, 
-        rgba(255, 167, 38, 0.8) 70%, 
-        rgba(255, 235, 59, 0.8) 80%, 
-        rgba(76, 175, 80, 0.8) 90%, 
-        rgba(33, 150, 243, 0.8) 95%, 
-        rgba(156, 39, 176, 0.8) 100%);
-      border-radius: 50px;
-      z-index: -2;
-      filter: blur(2px);
-    }
-
-    .share-niche-btn::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #1a1a1a;
-      border-radius: 50px;
-      z-index: -1;
-    }
-
-    .share-niche-btn:hover {
-      transform: scale(1.05);
-    }
-
-    .disclaimer {
-      font-size: 0.9rem;
-      color: #000;
-      text-align: center;
-      margin-top: 1rem;
-      line-height: 1.5;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .main-footer {
-      background: #f8f8f8;
-      padding: 1rem 0;
-      text-align: center;
-      border-top: 1px solid #f0f0f0;
-      margin-top: 1rem;
-      width: 100%;
-      position: relative;
-      left: 0;
-      right: 0;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .footer-content p {
-      color: #000;
-      margin: 0;
-    }
-
-    .share-niche-btn svg {
-      transition: transform 0.2s ease;
-    }
-
-    .share-niche-btn:hover svg {
-      transform: translateX(4px);
-    }
-
-    .error-message {
-      background: #fee2e2;
-      color: #991b1b;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      margin-top: 1rem;
-      font-weight: 500;
-      text-align: center;
-    }
-
-    .success-message {
-      background: #10b981;
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      margin-top: 2rem;
-      font-weight: 500;
-      text-align: center;
-    }
-
-    .instructions {
+    .niche-result {
       background: white;
-      border: 1px solid #e2e8f0;
       border-radius: 16px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      border: 2px solid #e5e7eb;
+    }
+
+    .niche-statement {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.6;
+      color: #000;
+      margin-bottom: 2rem;
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, #a8d8ff 0%, #b8e6ff 100%);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .breakdown {
+      text-align: left;
+      background: #f8f9fa;
+      border-radius: 12px;
       padding: 2rem;
-      margin: 0.5rem auto;
-      max-width: 600px;
+      margin-top: 2rem;
+    }
+
+    .breakdown-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #000;
+    }
+
+    .breakdown-item {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid #3b82f6;
+    }
+
+    .breakdown-label {
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+
+    .breakdown-value {
+      color: #666;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #3b82f6;
+      border: 2px solid #3b82f6;
+    }
+
+    .btn-outline:hover {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Idea formatting styles */
+    .idea-content {
       text-align: left;
     }
 
-    .instructions h3 {
+    .idea-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .medium-badge {
+      background: #3b82f6;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .philosophy {
+      background: #f3f4f6;
+      color: #374151;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    .idea-description {
+      margin: 0 0 1rem 0;
+      color: #374151;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .idea-tagline {
+      background: #f8f9fa;
+      color: #6b7280;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      border-left: 3px solid #3b82f6;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    .help-text {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .niche-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .niche-tag {
+      background: #3b82f6;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .niche-tag.secondary {
+      background: #6b7280;
+    }
+
+    .niche-statement-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 1rem 0;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      border: 2px solid #e5e7eb;
+      text-align: center;
+    }
+
+    .niche-statement-text {
+      font-size: 1.3rem;
+      font-weight: 600;
+      line-height: 1.6;
       color: #000;
       margin-bottom: 1rem;
     }
 
-    .instructions ol {
-      color: #000;
-      line-height: 1.8;
+    .niche-statement-highlight {
+      background: linear-gradient(120deg, #a8d8ff 0%, #b8e6ff 100%);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-weight: 700;
     }
 
     @media (max-width: 768px) {
-      .cards-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .card {
-        width: 100%;
-        max-width: 320px;
-      }
-      
-      .hero-title {
-        font-size: 2.5rem;
+      .quiz-container {
+        padding: 0 1rem;
       }
 
-      .hero-layout {
+      .quiz-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quiz-navigation {
         flex-direction: column;
-        gap: 2rem;
-        text-align: center;
+        gap: 1rem;
       }
       
-      .hero-right {
-        text-align: center;
-        padding-left: 0;
+      .btn {
+        width: 100%;
+      }
+
+      .action-buttons {
+        flex-direction: column;
       }
     }
   </style>
@@ -655,14 +504,6 @@
   <header class="main-header">
     <div class="header-container">
       <a href="index.html" class="logo">CTRL</a>
-
-      <!-- Mobile menu button -->
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      
 
       <nav class="main-nav">
         <a href="index.html">Home</a>
@@ -687,275 +528,1071 @@
     </div>
   </header>
 
-  <div style="padding: 0 2rem;">
-    <section class="hero-section bento-card">
-      <div class="hero-layout">
-        <div class="hero-left">
-          <div class="hero-boba">👾</div>
+  <div class="quiz-container">
+    <!-- Step 1: Venture Type -->
+    <div class="quiz-card" id="step-1">
+      <div class="progress-bar">
+        <div class="progress-step active"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
         </div>
-        <div class="hero-right">
-          <h1>niche builder</h1>
-          <p class="hero-subtitle">Discover your unique business niche by exploring your <span class="emphasis-blue">talents</span>, <span class="emphasis-yellow">struggles</span>, and <span class="emphasis-blue">x-factors</span>. Flip the cards below to start building your personalized niche statement.</p>
+      
+      <h2 class="quiz-title">What is your venture type?</h2>
+      <p class="quiz-subtitle">Choose the type that best describes your business or initiative</p>
+      
+      <div class="options-grid">
+        <div class="option-card" data-value="small-biz">
+          <span class="option-icon">🏪</span>
+          <div class="option-title">Small Business</div>
+          <div class="option-description">Local service or retail business serving your community</div>
         </div>
+        <div class="option-card" data-value="startup">
+          <span class="option-icon">🚀</span>
+          <div class="option-title">Startup</div>
+          <div class="option-description">Innovative company with growth potential and scalability</div>
       </div>
-    </section>
+        <div class="option-card" data-value="online-community">
+          <span class="option-icon">🌐</span>
+          <div class="option-title">Online/Community Initiative</div>
+          <div class="option-description">Digital platform, community, or online service</div>
+        </div>
   </div>
 
-  <div class="instructions">
-    <h3>How to use this tool:</h3>
-    <ol>
-      <li><strong>Flip each card</strong> by clicking on it</li>
-      <li><strong>Enter up to 3 words</strong> for each category (not characters)</li>
-      <li><strong>Click "Share Your Niche"</strong> to submit your results</li>
-    </ol>
+      <div class="quiz-navigation">
+        <div></div>
+        <button class="btn btn-primary" id="next-1" disabled>Next</button>
+      </div>
   </div>
 
-  <form id="niche-form" action="https://usebasin.com/f/6b8c21ecaf01" method="POST">
-    <div class="cards-container">
-    <div class="card" data-card="1">
-      <div class="card-inner">
-        <div class="card-front">
-          <div class="card-title">Your Talent/Approach</div>
-          <div class="card-description">What unique skills or methods do you bring?</div>
-          <div class="card-example">Example: "Data Analysis"</div>
-          <div class="flip-hint">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Click to flip</span>
+    <!-- Step 2: Venture Category -->
+    <div class="quiz-card hidden" id="step-2">
+      <div class="progress-bar">
+        <div class="progress-step completed"></div>
+        <div class="progress-step active"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
           </div>
+      
+      <h2 class="quiz-title">What is your venture category?</h2>
+      <p class="quiz-subtitle">Select the industry or field that best fits your venture</p>
+      
+      <div class="options-grid" id="category-options">
+        <!-- Categories will be populated by JavaScript -->
         </div>
-        <div class="card-back">
-          <div class="card-title">Your Talent/Approach</div>
-          <input type="text" class="card-input" placeholder="Enter up to 3 words" maxlength="50">
-          <div class="word-limit">Max 3 words</div>
+      
+      <div class="quiz-navigation">
+        <button class="btn btn-secondary" id="back-2">Back</button>
+        <button class="btn btn-primary" id="next-2" disabled>Next</button>
         </div>
       </div>
+
+    <!-- Step 3: Talent/Approach -->
+    <div class="quiz-card hidden" id="step-3">
+      <div class="progress-bar">
+        <div class="progress-step completed"></div>
+        <div class="progress-step completed"></div>
+        <div class="progress-step active"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
     </div>
 
-    <div class="card" data-card="2">
-      <div class="card-inner">
-        <div class="card-front">
-          <div class="card-title">Your Struggle/Ethos</div>
-          <div class="card-description">What problem do you solve or belief drives you?</div>
-          <div class="card-example">Example: "Small Business Growth"</div>
-          <div class="flip-hint">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Click to flip</span>
+      <h2 class="quiz-title">What is your talent/approach?</h2>
+      <p class="quiz-subtitle">What unique skills or methods do you bring to your field?</p>
+      
+      <div class="options-grid" id="talent-options">
+        <!-- Options will be populated by JavaScript based on previous selections -->
           </div>
+      
+      <div class="quiz-navigation">
+        <button class="btn btn-secondary" id="back-3">Back</button>
+        <button class="btn btn-primary" id="next-3" disabled>Next</button>
         </div>
-        <div class="card-back">
-          <div class="card-title">Your Struggle/Ethos</div>
-          <input type="text" class="card-input" placeholder="Enter up to 3 words" maxlength="50">
-          <div class="word-limit">Max 3 words</div>
         </div>
+
+    <!-- Step 4: Struggle/Ethos -->
+    <div class="quiz-card hidden" id="step-4">
+      <div class="progress-bar">
+        <div class="progress-step completed"></div>
+        <div class="progress-step completed"></div>
+        <div class="progress-step completed"></div>
+        <div class="progress-step active"></div>
+        <div class="progress-step"></div>
       </div>
+      
+      <h2 class="quiz-title">What is your goal/vision?</h2>
+      <p class="quiz-subtitle">What do you want to achieve? What change do you want to make in your field?</p>
+      
+      <div class="options-grid" id="struggle-options">
+        <!-- Options will be populated by JavaScript based on previous selections -->
     </div>
 
-    <div class="card" data-card="3">
-      <div class="card-inner">
-        <div class="card-front">
-          <div class="card-title">Your X-Factor</div>
-          <div class="card-description">What makes you truly unique or different?</div>
-          <div class="card-example">Example: "Military Background"</div>
-          <div class="flip-hint">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7 17L17 7M17 7V17" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Click to flip</span>
+      <div class="quiz-navigation">
+        <button class="btn btn-secondary" id="back-4">Back</button>
+        <button class="btn btn-primary" id="next-4" disabled>Next</button>
           </div>
         </div>
-        <div class="card-back">
-          <div class="card-title">Your X-Factor</div>
-          <input type="text" class="card-input" placeholder="Enter up to 3 words" maxlength="50">
-          <div class="word-limit">Max 3 words</div>
+
+    <!-- Step 5: X-Factor -->
+    <div class="quiz-card hidden" id="step-5">
+      <div class="progress-bar">
+        <div class="progress-step completed"></div>
+        <div class="progress-step completed"></div>
+        <div class="progress-step completed"></div>
+        <div class="progress-step completed"></div>
+        <div class="progress-step active"></div>
+        <div class="progress-step"></div>
+        </div>
+      
+      <h2 class="quiz-title">Your Signature Element</h2>
+      <p class="quiz-subtitle">What's your signature tool, object, design, or approach? Choose what makes your work distinctive.</p>
+      
+      <div class="options-grid">
+        <div class="option-card" data-value="metaphorical-object">
+          <span class="option-icon">☕</span>
+          <div class="option-title">Metaphorical Object</div>
+          <div class="option-description">Use a symbolic object as your signature (like CTRL's coffee metaphor)</div>
+        </div>
+        <div class="option-card" data-value="signature-tool">
+          <span class="option-icon">🔧</span>
+          <div class="option-title">Signature Tool</div>
+          <div class="option-description">A specific method, format, or tool you're known for (like CTRL's quiz format)</div>
+        </div>
+        <div class="option-card" data-value="specialized-service">
+          <span class="option-icon">🎯</span>
+          <div class="option-title">Specialized Service</div>
+          <div class="option-description">A specific skill or service you excel at and want to highlight</div>
+        </div>
+        <div class="option-card" data-value="branding-pattern">
+          <span class="option-icon">🎨</span>
+          <div class="option-title">Branding Pattern</div>
+          <div class="option-description">A color, symbol, or visual element that defines your brand (like CTRL's blue and quotes)</div>
+        </div>
+        <div class="option-card" data-value="interpersonal-magnetism">
+          <span class="option-icon">🧲</span>
+          <div class="option-title">Interpersonal Magnetism</div>
+          <div class="option-description">Your natural ability to connect with and inspire people</div>
+        </div>
+        <div class="option-card" data-value="cultural-anchor">
+          <span class="option-icon">🏛️</span>
+          <div class="option-title">Cultural Anchor</div>
+          <div class="option-description">Your authentic connection to heritage, community, or lived experience</div>
         </div>
       </div>
     </div>
     
-    <div class="submit-section">
-      <button type="submit" class="share-niche-btn">
-        <span>Share Your Niche</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <p class="disclaimer">By submitting, you agree that we may use your anonymous niche statement to ornate our website or share on social media as an example (completely anonymous).</p>
+      <div class="quiz-navigation">
+        <button class="btn btn-secondary" id="back-5">Back</button>
+        <button class="btn btn-primary" id="next-5" disabled>Next</button>
     </div>
-  </form>
-
-
-  </main>
-
-  <footer class="main-footer">
-    <div class="footer-content">
-      <p>Powered by cold brew @ 2:00AM</p>
     </div>
-  </footer>
+
+    <div class="quiz-card hidden" id="step-6">
+      <div class="progress-bar">
+        <div class="progress-step completed"></div>
+        <div class="progress-step completed"></div>
+        <div class="progress-step completed"></div>
+        <div class="progress-step completed"></div>
+        <div class="progress-step completed"></div>
+        <div class="progress-step active"></div>
+        </div>
+      
+      <h2 class="quiz-title">Your Target Community</h2>
+      <p class="quiz-subtitle">Who specifically do you want to serve? Be as specific as possible (optional but recommended).</p>
+      
+      <div class="form-group">
+        <input type="text" id="target-community" placeholder="e.g., medical nonprofits aiding children with rare diseases, rural small business owners, first-generation college students, local artists in underserved neighborhoods..." maxlength="100">
+        <div class="help-text">The more specific, the better your niche will be!</div>
+      </div>
+
+      <div class="quiz-navigation">
+        <button class="btn btn-secondary" id="back-6">Back</button>
+        <button class="btn btn-primary" id="next-6">Generate My Niche</button>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div class="quiz-card hidden" id="results">
+      <div class="results-section">
+        <h2 class="results-title">Your Niche Discovery</h2>
+        <p class="results-subtitle">Based on your answers, here's your personalized niche recommendation</p>
+        
+        <div class="niche-tags" id="niche-tags">
+          <!-- Generated tags will appear here -->
+        </div>
+        
+        <div class="niche-statement-card" id="niche-statement-card">
+          <div class="niche-statement-text" id="niche-statement">
+            <!-- Generated 12-word niche statement will appear here -->
+          </div>
+        </div>
+        
+        <div class="action-buttons">
+          <button class="btn btn-outline" id="restart-quiz">Start Over</button>
+          <button class="btn btn-outline" id="regenerate-ideas">Regenerate Ideas</button>
+          <button class="btn btn-primary" id="share-niche">Share My Niche</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
-    class NicheBuilder {
+    class NicheFinder {
       constructor() {
-        this.cards = document.querySelectorAll('.card');
-        this.nicheForm = document.getElementById('niche-form');
-        
+        this.currentStep = 1;
         this.responses = {
+          ventureType: '',
+          category: '',
           talent: '',
-          struggle: '',
-          xfactor: ''
+          goal: '',
+          xfactor: '',
+          targetCommunity: ''
+        };
+        
+        this.categories = {
+          'beauty': 'Beauty',
+          'crafts-handmade': 'Crafts + Handmade Goods',
+          'data': 'Data',
+          'event-planning': 'Event Planning',
+          'film': 'Film',
+          'food-drink': 'Food + Drink',
+          'food-trucks': 'Food Trucks',
+          'graphic-design': 'Graphic Design',
+          'hairstyling-barber': 'Hairstyling + Barber',
+          'health': 'Health',
+          'landscaping': 'Landscaping',
+          'performing-arts': 'Performing Arts',
+          'photography': 'Photography',
+          'restaurants': 'Restaurants',
+          'technology': 'Technology',
+          'tutoring-education': 'Tutoring + Education',
+          'writing': 'Writing'
+        };
+        
+        this.talentOptions = {
+          'beauty': [
+            { value: 'personal-consultation', title: 'Personal Consultation', description: 'One-on-one beauty advice and custom solutions', icon: '💄' },
+            { value: 'artistic-technique', title: 'Artistic Technique', description: 'Creative and innovative application methods', icon: '🎨' },
+            { value: 'holistic-approach', title: 'Holistic Approach', description: 'Beauty that considers overall wellness', icon: '🧘' },
+            { value: 'client-relationship', title: 'Client Relationship', description: 'Building lasting connections with clients', icon: '🤝' },
+            { value: 'custom-solutions', title: 'Custom Solutions', description: 'Tailored beauty treatments for individual needs', icon: '✨' },
+            { value: 'education-mentoring', title: 'Education & Mentoring', description: 'Teaching others beauty techniques and skills', icon: '📚' }
+          ],
+          'hairstyling-barber': [
+            { value: 'personal-consultation', title: 'Personal Consultation', description: 'One-on-one styling advice and custom cuts', icon: '✂️' },
+            { value: 'artistic-technique', title: 'Artistic Technique', description: 'Creative cutting and styling methods', icon: '🎨' },
+            { value: 'client-relationship', title: 'Client Relationship', description: 'Building lasting connections with clients', icon: '🤝' },
+            { value: 'custom-solutions', title: 'Custom Solutions', description: 'Tailored styling for individual needs', icon: '✨' },
+            { value: 'education-mentoring', title: 'Education & Mentoring', description: 'Teaching others styling techniques', icon: '📚' },
+            { value: 'trend-innovation', title: 'Trend Innovation', description: 'Creating and setting new style trends', icon: '🌟' }
+          ],
+          'technology': [
+            { value: 'user-experience', title: 'User Experience', description: 'Creating intuitive and engaging digital experiences', icon: '👤' },
+            { value: 'data-analytics', title: 'Data Analytics', description: 'Turning data into actionable business insights', icon: '📊' },
+            { value: 'automation', title: 'Automation', description: 'Streamlining processes through smart technology', icon: '🤖' },
+            { value: 'mobile-development', title: 'Mobile Development', description: 'Building apps and mobile-first solutions', icon: '📱' },
+            { value: 'cloud-solutions', title: 'Cloud Solutions', description: 'Scalable and secure cloud-based systems', icon: '☁️' },
+            { value: 'ai-integration', title: 'AI Integration', description: 'Implementing artificial intelligence solutions', icon: '🧠' }
+          ],
+          'data': [
+            { value: 'data-analytics', title: 'Data Analytics', description: 'Turning data into actionable business insights', icon: '📊' },
+            { value: 'automation', title: 'Automation', description: 'Streamlining processes through smart technology', icon: '🤖' },
+            { value: 'visualization', title: 'Data Visualization', description: 'Making complex data understandable and actionable', icon: '📈' },
+            { value: 'machine-learning', title: 'Machine Learning', description: 'Building predictive models and AI systems', icon: '🧠' },
+            { value: 'cloud-solutions', title: 'Cloud Solutions', description: 'Scalable and secure cloud-based systems', icon: '☁️' },
+            { value: 'integration', title: 'System Integration', description: 'Connecting different data sources and systems', icon: '🔗' }
+          ],
+          'graphic-design': [
+            { value: 'brand-identity', title: 'Brand Identity', description: 'Creating cohesive visual brand experiences', icon: '🎨' },
+            { value: 'user-interface', title: 'User Interface', description: 'Designing intuitive digital interfaces', icon: '🖥️' },
+            { value: 'content-creation', title: 'Content Creation', description: 'Visual storytelling and marketing materials', icon: '📝' },
+            { value: 'print-design', title: 'Print Design', description: 'Traditional print and physical media design', icon: '📄' },
+            { value: 'motion-graphics', title: 'Motion Graphics', description: 'Animated and video-based visual content', icon: '🎬' },
+            { value: 'web-design', title: 'Web Design', description: 'Creating engaging and functional websites', icon: '🌐' }
+          ],
+          'photography': [
+            { value: 'portrait-photography', title: 'Portrait Photography', description: 'Capturing personality and emotion in people', icon: '📸' },
+            { value: 'event-photography', title: 'Event Photography', description: 'Documenting special moments and celebrations', icon: '🎉' },
+            { value: 'commercial-photography', title: 'Commercial Photography', description: 'Product and business photography', icon: '💼' },
+            { value: 'lifestyle-photography', title: 'Lifestyle Photography', description: 'Authentic, candid moments and stories', icon: '🌟' },
+            { value: 'wedding-photography', title: 'Wedding Photography', description: 'Capturing love stories and special days', icon: '💒' },
+            { value: 'fine-art-photography', title: 'Fine Art Photography', description: 'Creative and artistic visual expression', icon: '🎨' }
+          ],
+          'writing': [
+            { value: 'content-creation', title: 'Content Creation', description: 'Engaging written content for digital platforms', icon: '📝' },
+            { value: 'copywriting', title: 'Copywriting', description: 'Persuasive writing that drives action', icon: '✍️' },
+            { value: 'technical-writing', title: 'Technical Writing', description: 'Clear documentation and instructions', icon: '📋' },
+            { value: 'storytelling', title: 'Storytelling', description: 'Narrative writing that connects with audiences', icon: '📖' },
+            { value: 'ghostwriting', title: 'Ghostwriting', description: 'Writing on behalf of others', icon: '👻' },
+            { value: 'editing', title: 'Editing', description: 'Refining and improving written content', icon: '✏️' }
+          ],
+          'health': [
+            { value: 'preventive-care', title: 'Preventive Care', description: 'Focus on preventing health issues before they occur', icon: '🛡️' },
+            { value: 'mental-health', title: 'Mental Health', description: 'Supporting emotional and psychological wellbeing', icon: '🧠' },
+            { value: 'holistic-healing', title: 'Holistic Healing', description: 'Treating the whole person, not just symptoms', icon: '🌿' },
+            { value: 'community-health', title: 'Community Health', description: 'Improving health outcomes for entire communities', icon: '🏘️' },
+            { value: 'patient-advocacy', title: 'Patient Advocacy', description: 'Helping patients navigate healthcare systems', icon: '🤝' },
+            { value: 'health-education', title: 'Health Education', description: 'Teaching people how to take control of their health', icon: '📚' }
+          ],
+          'food-drink': [
+            { value: 'culinary-innovation', title: 'Culinary Innovation', description: 'Creating new flavors and cooking techniques', icon: '👨‍🍳' },
+            { value: 'sustainable-cooking', title: 'Sustainable Cooking', description: 'Eco-friendly and ethical food practices', icon: '🌱' },
+            { value: 'nutrition-education', title: 'Nutrition Education', description: 'Teaching healthy eating and cooking skills', icon: '📚' },
+            { value: 'event-catering', title: 'Event Catering', description: 'Providing memorable food experiences', icon: '🎉' },
+            { value: 'local-sourcing', title: 'Local Sourcing', description: 'Supporting local farmers and producers', icon: '🏡' },
+            { value: 'cultural-cuisine', title: 'Cultural Cuisine', description: 'Preserving and sharing traditional recipes', icon: '🌍' }
+          ],
+          'restaurants': [
+            { value: 'culinary-innovation', title: 'Culinary Innovation', description: 'Creating new flavors and cooking techniques', icon: '👨‍🍳' },
+            { value: 'sustainable-cooking', title: 'Sustainable Cooking', description: 'Eco-friendly and ethical food practices', icon: '🌱' },
+            { value: 'customer-experience', title: 'Customer Experience', description: 'Creating memorable dining experiences', icon: '🌟' },
+            { value: 'local-sourcing', title: 'Local Sourcing', description: 'Supporting local farmers and producers', icon: '🏡' },
+            { value: 'cultural-cuisine', title: 'Cultural Cuisine', description: 'Preserving and sharing traditional recipes', icon: '🌍' },
+            { value: 'community-building', title: 'Community Building', description: 'Creating spaces for people to connect', icon: '🤝' }
+          ],
+          'default': [
+            { value: 'personal-consultation', title: 'Personal Consultation', description: 'One-on-one service and custom solutions', icon: '💬' },
+            { value: 'creative-approach', title: 'Creative Approach', description: 'Innovative and artistic methods', icon: '🎨' },
+            { value: 'client-relationship', title: 'Client Relationship', description: 'Building lasting connections', icon: '🤝' },
+            { value: 'custom-solutions', title: 'Custom Solutions', description: 'Tailored services for individual needs', icon: '✨' },
+            { value: 'education-mentoring', title: 'Education & Mentoring', description: 'Teaching others your skills', icon: '📚' },
+            { value: 'community-building', title: 'Community Building', description: 'Creating spaces for people to connect', icon: '🏘️' }
+          ]
+        };
+        
+        this.goalOptions = {
+          'beauty': [
+            { value: 'empower-self-expression', title: 'Empower Self-Expression', description: 'Help people feel confident and express their unique beauty', icon: '✨' },
+            { value: 'eco-friendly-sustainable', title: 'Eco-Friendly & Sustainable', description: 'Develop an eco-friendly or sustainable beauty line', icon: '🌱' },
+            { value: 'affordable-accessible', title: 'Affordable & Accessible', description: 'Provide affordable, accessible beauty services for everyone', icon: '💰' },
+            { value: 'distinctive-brand', title: 'Distinctive Brand Identity', description: 'Build a unique and recognizable brand identity', icon: '🎨' },
+            { value: 'share-knowledge', title: 'Share Knowledge', description: 'Teach others through tutorials, workshops, and education', icon: '📚' },
+            { value: 'immersive-experiences', title: 'Immersive Experiences', description: 'Create memorable salon/spa experiences that transform', icon: '🌟' }
+          ],
+          'crafts-handmade': [
+            { value: 'preserve-traditions', title: 'Preserve Traditional Skills', description: 'Keep traditional craft skills alive and relevant', icon: '🏛️' },
+            { value: 'build-loyal-market', title: 'Build Loyal Market', description: 'Create a dedicated following for handmade goods', icon: '👥' },
+            { value: 'scale-authentically', title: 'Scale Authentically', description: 'Grow production while maintaining handmade authenticity', icon: '📈' },
+            { value: 'sustainable-local', title: 'Sustainable & Local', description: 'Promote sustainable, locally-made practices', icon: '🌱' },
+            { value: 'teach-crafting', title: 'Teach Crafting', description: 'Share the joy of crafting with others', icon: '📚' },
+            { value: 'consistent-income', title: 'Consistent Income', description: 'Turn creativity into a reliable income stream', icon: '💼' }
+          ],
+          'data': [
+            { value: 'smarter-decisions', title: 'Smarter Decisions', description: 'Drive better business decisions through analytics', icon: '📊' },
+            { value: 'ethical-transparent', title: 'Ethical & Transparent', description: 'Build trustworthy AI and data systems', icon: '🔒' },
+            { value: 'democratize-insights', title: 'Democratize Insights', description: 'Make data insights accessible to everyone', icon: '🌍' },
+            { value: 'automate-optimize', title: 'Automate & Optimize', description: 'Streamline workflows through smart automation', icon: '🤖' },
+            { value: 'solve-social-problems', title: 'Solve Social Problems', description: 'Use data to address health, social, and environmental issues', icon: '🔧' },
+            { value: 'teach-data-literacy', title: 'Teach Data Literacy', description: 'Help communities understand and use data', icon: '📚' }
+          ],
+          'event-planning': [
+            { value: 'memorable-experiences', title: 'Memorable Experiences', description: 'Create unique, unforgettable event experiences', icon: '🎉' },
+            { value: 'affordable-inclusive', title: 'Affordable & Inclusive', description: 'Make events accessible to diverse communities', icon: '🤝' },
+            { value: 'build-niche', title: 'Build Strong Niche', description: 'Specialize in weddings, corporate, or cultural events', icon: '🎯' },
+            { value: 'tech-innovation', title: 'Tech Innovation', description: 'Innovate with hybrid and tech-enhanced events', icon: '💻' },
+            { value: 'sustainable-events', title: 'Sustainable Events', description: 'Promote eco-friendly event practices', icon: '🌱' },
+            { value: 'teach-planning', title: 'Teach Event Planning', description: 'Educate others in planning and execution', icon: '📚' }
+          ],
+          'film': [
+            { value: 'underrepresented-stories', title: 'Underrepresented Stories', description: 'Tell stories that are often overlooked or ignored', icon: '🎬' },
+            { value: 'innovate-techniques', title: 'Innovate Techniques', description: 'Push boundaries with new film techniques and genres', icon: '🎨' },
+            { value: 'sustainable-production', title: 'Sustainable Production', description: 'Build a viable indie production model', icon: '💼' },
+            { value: 'educate-filmmaking', title: 'Educate Filmmaking', description: 'Teach others the art and craft of filmmaking', icon: '📚' },
+            { value: 'bridge-cultures', title: 'Bridge Cultures', description: 'Connect people through visual storytelling', icon: '🌉' },
+            { value: 'entertain-educate', title: 'Entertain & Educate', description: 'Entertain while raising awareness of important issues', icon: '🎭' }
+          ],
+          'food-drink': [
+            { value: 'unique-flavors', title: 'Unique Flavors', description: 'Create innovative flavor combinations and fusions', icon: '🍽️' },
+            { value: 'healthy-affordable', title: 'Healthy & Affordable', description: 'Make nutritious food accessible to everyone', icon: '🥗' },
+            { value: 'cultural-heritage', title: 'Cultural Heritage', description: 'Showcase traditions through authentic cuisine', icon: '🌍' },
+            { value: 'zero-waste', title: 'Zero-Waste Innovation', description: 'Lead sustainable and zero-waste food practices', icon: '♻️' },
+            { value: 'community-brand', title: 'Community Brand', description: 'Build a brand that feels like family', icon: '🏠' },
+            { value: 'teach-cooking', title: 'Teach Cooking', description: 'Share cooking, nutrition, and food skills', icon: '📚' }
+          ],
+          'food-trucks': [
+            { value: 'serve-underserved', title: 'Serve Underserved', description: 'Bring quality cuisine to underserved areas', icon: '🚚' },
+            { value: 'test-concept', title: 'Test Restaurant Concept', description: 'Validate ideas before opening a full restaurant', icon: '🧪' },
+            { value: 'affordable-quality', title: 'Affordable Quality', description: 'Offer great food without sacrificing quality', icon: '💰' },
+            { value: 'mobile-community', title: 'Mobile Community Hub', description: 'Create a traveling cultural gathering spot', icon: '🤝' },
+            { value: 'unique-mashups', title: 'Unique Mashups', description: 'Innovate with creative food combinations', icon: '🍕' },
+            { value: 'scale-expansion', title: 'Scale & Expand', description: 'Grow into multiple trucks or future restaurant', icon: '📈' }
+          ],
+          'graphic-design': [
+            { value: 'help-small-business', title: 'Help Small Business', description: 'Help small businesses and individuals stand out', icon: '🏪' },
+            { value: 'distinctive-style', title: 'Distinctive Style', description: 'Develop a unique design voice and aesthetic', icon: '🎨' },
+            { value: 'scalable-systems', title: 'Scalable Systems', description: 'Build design systems that grow with businesses', icon: '🏗️' },
+            { value: 'social-impact', title: 'Social Impact', description: 'Use design to support causes and campaigns', icon: '🌍' },
+            { value: 'teach-design', title: 'Teach Design', description: 'Share design skills and creative principles', icon: '📚' },
+            { value: 'experimental-design', title: 'Experimental Design', description: 'Push creative boundaries with innovative design', icon: '🚀' }
+          ],
+          'hairstyling-barber': [
+            { value: 'empower-confidence', title: 'Empower Confidence', description: 'Help people feel confident through personal style', icon: '✨' },
+            { value: 'unique-trends', title: 'Unique Trends', description: 'Build a brand around distinctive cuts and styles', icon: '💇' },
+            { value: 'affordable-grooming', title: 'Affordable Grooming', description: 'Provide quality services for underserved groups', icon: '💰' },
+            { value: 'share-knowledge', title: 'Share Knowledge', description: 'Educate clients about hair care and styling', icon: '📚' },
+            { value: 'eco-inclusive', title: 'Eco & Inclusive', description: 'Lead with sustainable and inclusive practices', icon: '🌱' },
+            { value: 'welcoming-space', title: 'Welcoming Space', description: 'Create a community gathering place in your shop', icon: '🏠' }
+          ],
+          'health': [
+            { value: 'prevent-illness', title: 'Prevent Illness', description: 'Focus on prevention through education and lifestyle', icon: '🛡️' },
+            { value: 'improve-experience', title: 'Improve Experience', description: 'Enhance patient care and accessibility', icon: '❤️' },
+            { value: 'tech-solutions', title: 'Tech Solutions', description: 'Innovate with technology-enabled health solutions', icon: '💻' },
+            { value: 'advocate-underserved', title: 'Advocate for Underserved', description: 'Champion health equity for marginalized communities', icon: '🤝' },
+            { value: 'supportive-networks', title: 'Supportive Networks', description: 'Build communities around health journeys', icon: '👥' },
+            { value: 'translate-medical', title: 'Translate Medical', description: 'Make medical knowledge practical and accessible', icon: '📖' }
+          ],
+          'landscaping': [
+            { value: 'enhance-life', title: 'Enhance Life', description: 'Improve quality of life through beautiful outdoor spaces', icon: '🌿' },
+            { value: 'sustainable-practices', title: 'Sustainable Practices', description: 'Lead with eco-friendly landscaping methods', icon: '🌱' },
+            { value: 'specialize-niche', title: 'Specialize in Niche', description: 'Focus on edible gardens, xeriscaping, or unique styles', icon: '🎯' },
+            { value: 'community-spaces', title: 'Community Spaces', description: 'Create lasting neighborhood green spaces', icon: '🏘️' },
+            { value: 'accessible-landscaping', title: 'Accessible Landscaping', description: 'Make beautiful outdoor spaces affordable for all', icon: '💰' },
+            { value: 'teach-design', title: 'Teach Design', description: 'Educate people about yard design and care', icon: '📚' }
+          ],
+          'performing-arts': [
+            { value: 'inspire-entertain', title: 'Inspire & Entertain', description: 'Create performances that move and delight audiences', icon: '🎭' },
+            { value: 'give-voice', title: 'Give Voice', description: 'Amplify underrepresented groups and stories', icon: '📢' },
+            { value: 'innovate-performance', title: 'Innovate Performance', description: 'Develop new forms and styles of performance', icon: '🚀' },
+            { value: 'community-productions', title: 'Community Productions', description: 'Build local arts communities through performance', icon: '🏘️' },
+            { value: 'accessible-arts', title: 'Accessible Arts', description: 'Make performing arts affordable and inclusive', icon: '🤝' },
+            { value: 'teach-performance', title: 'Teach Performance', description: 'Mentor the next generation of performers', icon: '📚' }
+          ],
+          'photography': [
+            { value: 'unique-perspectives', title: 'Unique Perspectives', description: 'Capture overlooked or distinctive viewpoints', icon: '📸' },
+            { value: 'artistic-brand', title: 'Artistic Brand', description: 'Build a recognizable personal photography style', icon: '🎨' },
+            { value: 'affordable-services', title: 'Affordable Services', description: 'Provide quality photography for all communities', icon: '💰' },
+            { value: 'innovate-technique', title: 'Innovate Technique', description: 'Push boundaries with editing and shooting methods', icon: '⚡' },
+            { value: 'preserve-histories', title: 'Preserve Histories', description: 'Document cultural and personal stories', icon: '📚' },
+            { value: 'teach-photography', title: 'Teach Photography', description: 'Share photography skills and visual storytelling', icon: '🎓' }
+          ],
+          'restaurants': [
+            { value: 'community-gathering', title: 'Community Gathering', description: 'Create a welcoming space for people to connect', icon: '🏠' },
+            { value: 'unique-experience', title: 'Unique Experience', description: 'Offer distinctive cuisine and dining atmosphere', icon: '🍽️' },
+            { value: 'healthy-affordable', title: 'Healthy & Affordable', description: 'Make nutritious food accessible to everyone', icon: '🥗' },
+            { value: 'zero-waste-operations', title: 'Zero-Waste Operations', description: 'Lead sustainable restaurant practices', icon: '♻️' },
+            { value: 'cultural-heritage', title: 'Cultural Heritage', description: 'Celebrate traditions through authentic cuisine', icon: '🌍' },
+            { value: 'teach-food-skills', title: 'Teach Food Skills', description: 'Share cooking knowledge through classes and events', icon: '📚' }
+          ],
+          'technology': [
+            { value: 'solve-problems', title: 'Solve Problems', description: 'Build solutions for everyday challenges', icon: '🔧' },
+            { value: 'ethical-transparent', title: 'Ethical & Transparent', description: 'Advance trustworthy and responsible technology', icon: '🔒' },
+            { value: 'global-impact', title: 'Global Impact', description: 'Scale innovations to help people worldwide', icon: '🌍' },
+            { value: 'accessible-tech', title: 'Accessible Tech', description: 'Make technology usable for everyone', icon: '♿' },
+            { value: 'digital-literacy', title: 'Digital Literacy', description: 'Teach communities essential digital skills', icon: '📚' },
+            { value: 'bleeding-edge', title: 'Bleeding Edge', description: 'Push boundaries with experimental technology', icon: '🚀' }
+          ],
+          'tutoring-education': [
+            { value: 'accessible-learning', title: 'Accessible Learning', description: 'Make education affordable and available to all', icon: '💰' },
+            { value: 'inspire-curiosity', title: 'Inspire Curiosity', description: 'Spark creativity and love of learning in students', icon: '✨' },
+            { value: 'scalable-models', title: 'Scalable Models', description: 'Build education systems that can grow and adapt', icon: '📈' },
+            { value: 'support-underserved', title: 'Support Underserved', description: 'Help underrepresented learners succeed', icon: '🤝' },
+            { value: 'innovate-teaching', title: 'Innovate Teaching', description: 'Use technology and creativity to improve learning', icon: '💻' },
+            { value: 'lifelong-learning', title: 'Lifelong Learning', description: 'Create communities of continuous learners', icon: '👥' }
+          ],
+          'writing': [
+            { value: 'underrepresented-stories', title: 'Underrepresented Stories', description: 'Tell stories that are often overlooked', icon: '📖' },
+            { value: 'sustainable-career', title: 'Sustainable Career', description: 'Build a lasting career as an author', icon: '💼' },
+            { value: 'inspire-educate', title: 'Inspire & Educate', description: 'Use writing to motivate and teach others', icon: '✨' },
+            { value: 'innovate-formats', title: 'Innovate Formats', description: 'Explore interactive, digital, and hybrid writing', icon: '🚀' },
+            { value: 'preserve-histories', title: 'Preserve Histories', description: 'Document cultural and personal stories', icon: '📚' },
+            { value: 'build-community', title: 'Build Community', description: 'Create communities around shared ideas and words', icon: '🤝' }
+          ],
+          'default': [
+            { value: 'build-client-base', title: 'Build Client Base', description: 'Growing a loyal following through quality service', icon: '👥' },
+            { value: 'change-industry', title: 'Change Industry', description: 'Transforming how your field operates', icon: '⚡' },
+            { value: 'create-digital-products', title: 'Create Digital Products', description: 'Expanding online with courses and content', icon: '💻' },
+            { value: 'build-community', title: 'Build Community', description: 'Creating spaces for people to connect', icon: '🤝' },
+            { value: 'educate-others', title: 'Educate Others', description: 'Teaching skills and sharing knowledge', icon: '📚' },
+            { value: 'solve-problems', title: 'Solve Problems', description: 'Addressing real-world challenges', icon: '🔧' }
+          ]
         };
         
         this.init();
       }
       
       init() {
-        this.setupCardListeners();
-        this.setupFormListener();
-        this.setupInputListeners();
+        this.setupEventListeners();
+        this.populateCategories();
       }
       
-      setupCardListeners() {
-        this.cards.forEach(card => {
-          card.addEventListener('click', (e) => {
-            // Don't flip if clicking on input fields
-            if (e.target.classList.contains('card-input') || e.target.closest('.card-input')) {
-              return;
-            }
-            card.classList.toggle('flipped');
+      setupEventListeners() {
+        // Step navigation
+        document.getElementById('next-1').addEventListener('click', () => this.nextStep());
+        document.getElementById('next-2').addEventListener('click', () => this.nextStep());
+        document.getElementById('next-3').addEventListener('click', () => this.nextStep());
+        document.getElementById('next-4').addEventListener('click', () => this.nextStep());
+        document.getElementById('next-5').addEventListener('click', () => this.nextStep());
+        document.getElementById('next-6').addEventListener('click', () => this.generateResults());
+        
+        document.getElementById('back-2').addEventListener('click', () => this.prevStep());
+        document.getElementById('back-3').addEventListener('click', () => this.prevStep());
+        document.getElementById('back-4').addEventListener('click', () => this.prevStep());
+        document.getElementById('back-5').addEventListener('click', () => this.prevStep());
+        document.getElementById('back-6').addEventListener('click', () => this.prevStep());
+        
+        document.getElementById('restart-quiz').addEventListener('click', () => this.restartQuiz());
+        document.getElementById('regenerate-ideas').addEventListener('click', () => this.regenerateIdeas());
+        document.getElementById('share-niche').addEventListener('click', () => this.shareNiche());
+        
+        // Option selection
+        this.setupOptionListeners();
+      }
+      
+      setupOptionListeners() {
+        // Step 1: Venture Type
+        document.querySelectorAll('#step-1 .option-card').forEach(card => {
+          card.addEventListener('click', () => {
+            this.selectOption('step-1', card);
+            this.responses.ventureType = card.dataset.value;
+            document.getElementById('next-1').disabled = false;
           });
+        });
+        
+        // Step 2: Category
+        document.addEventListener('click', (e) => {
+          if (e.target.closest('#step-2 .option-card')) {
+            const card = e.target.closest('.option-card');
+            this.selectOption('step-2', card);
+            this.responses.category = card.dataset.value;
+            this.populateTalentOptions();
+            document.getElementById('next-2').disabled = false;
+          }
+        });
+        
+        // Step 3: Talent
+        document.addEventListener('click', (e) => {
+          if (e.target.closest('#step-3 .option-card')) {
+            const card = e.target.closest('.option-card');
+            this.selectOption('step-3', card);
+            this.responses.talent = card.dataset.value;
+            this.populateGoalOptions();
+            document.getElementById('next-3').disabled = false;
+          }
+        });
+        
+        // Step 4: Goal
+        document.addEventListener('click', (e) => {
+          if (e.target.closest('#step-4 .option-card')) {
+            const card = e.target.closest('.option-card');
+            this.selectOption('step-4', card);
+            this.responses.goal = card.dataset.value;
+            document.getElementById('next-4').disabled = false;
+          }
+        });
+        
+        // Step 5: Signature Element
+        document.querySelectorAll('#step-5 .option-card').forEach(card => {
+          card.addEventListener('click', () => {
+            this.selectOption('step-5', card);
+            this.responses.xfactor = card.dataset.value;
+            document.getElementById('next-5').disabled = false;
+          });
+        });
+
+        // Step 6: Target Community
+        document.getElementById('target-community').addEventListener('input', (e) => {
+          this.responses.targetCommunity = e.target.value;
         });
       }
       
-      setupInputListeners() {
-        const inputs = document.querySelectorAll('.card-input');
-        inputs.forEach((input, index) => {
-          input.addEventListener('input', (e) => {
-            const words = e.target.value.trim().split(/\s+/).filter(word => word.length > 0);
-            
-            if (words.length > 3) {
-              e.target.value = words.slice(0, 3).join(' ');
-            }
-            
-            // Store response based on card number
-            const cardNumber = index + 1;
-            if (cardNumber === 1) this.responses.talent = e.target.value;
-            else if (cardNumber === 2) this.responses.struggle = e.target.value;
-            else if (cardNumber === 3) this.responses.xfactor = e.target.value;
-            
-            this.checkAllFilled();
-          });
+      selectOption(stepId, selectedCard) {
+        // Remove previous selection
+        document.querySelectorAll(`#${stepId} .option-card`).forEach(card => {
+          card.classList.remove('selected');
+        });
+        
+        // Add selection to clicked card
+        selectedCard.classList.add('selected');
+      }
+      
+      populateCategories() {
+        const container = document.getElementById('category-options');
+        container.innerHTML = '';
+        
+        Object.entries(this.categories).forEach(([key, value]) => {
+          const card = document.createElement('div');
+          card.className = 'option-card';
+          card.dataset.value = key;
+          card.innerHTML = `
+            <div class="option-title">${value}</div>
+          `;
+          container.appendChild(card);
         });
       }
       
-      checkAllFilled() {
-        // This method can be used to enable/disable submit button if needed
-        const allFilled = this.responses.talent && this.responses.struggle && this.responses.xfactor;
-        return allFilled;
+      populateTalentOptions() {
+        const container = document.getElementById('talent-options');
+        container.innerHTML = '';
+        
+        const options = this.talentOptions[this.responses.category] || this.talentOptions['default'];
+        
+        options.forEach(option => {
+          const card = document.createElement('div');
+          card.className = 'option-card';
+          card.dataset.value = option.value;
+          card.innerHTML = `
+            <span class="option-icon">${option.icon}</span>
+            <div class="option-title">${option.title}</div>
+            <div class="option-description">${option.description}</div>
+          `;
+          container.appendChild(card);
+        });
+      }
+      
+      populateGoalOptions() {
+        const container = document.getElementById('struggle-options');
+        container.innerHTML = '';
+        
+        const options = this.goalOptions[this.responses.category] || this.goalOptions['default'];
+        
+        options.forEach(option => {
+          const card = document.createElement('div');
+          card.className = 'option-card';
+          card.dataset.value = option.value;
+          card.innerHTML = `
+            <span class="option-icon">${option.icon}</span>
+            <div class="option-title">${option.title}</div>
+            <div class="option-description">${option.description}</div>
+          `;
+          container.appendChild(card);
+        });
+      }
+      
+      nextStep() {
+        document.getElementById(`step-${this.currentStep}`).classList.add('hidden');
+        this.currentStep++;
+        document.getElementById(`step-${this.currentStep}`).classList.remove('hidden');
+      }
+      
+      prevStep() {
+        document.getElementById(`step-${this.currentStep}`).classList.add('hidden');
+        this.currentStep--;
+        document.getElementById(`step-${this.currentStep}`).classList.remove('hidden');
+      }
+      
+      generateResults() {
+        // Hide current step
+        document.getElementById(`step-${this.currentStep}`).classList.add('hidden');
+        
+        // Show results
+        document.getElementById('results').classList.remove('hidden');
+        
+        // Generate niche statement
+        this.generateNicheStatement();
+      }
+      
+      generateNicheStatement() {
+        const ventureType = this.getVentureTypeLabel(this.responses.ventureType);
+        const category = this.categories[this.responses.category];
+        const talent = this.getTalentLabel(this.responses.talent);
+        const goal = this.getGoalLabel(this.responses.goal);
+        const xfactor = this.getXFactorLabel(this.responses.xfactor);
+        const targetCommunity = this.responses.targetCommunity || 'your target audience';
+        
+        // Generate tags
+        const tags = this.generateTags(ventureType, category, talent, goal, xfactor);
+        
+        // Generate 12-word niche statement
+        const nicheStatement = this.generate12WordNiche(ventureType, category, talent, goal, xfactor, targetCommunity);
+        
+        // Display tags
+        document.getElementById('niche-tags').innerHTML = tags;
+        
+        // Display niche statement
+        document.getElementById('niche-statement').innerHTML = nicheStatement;
       }
 
-      
-      setupFormListener() {
-        this.nicheForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          this.submitFormResults();
-        });
+      generateTags(ventureType, category, talent, goal, xfactor) {
+        const modality = this.getModality(category);
+        const philosophy = this.getPhilosophy(goal);
+        const signature = this.getSignatureElement(xfactor);
+        
+        return `
+          <div class="niche-tag">${modality}</div>
+          <div class="niche-tag secondary">${category}</div>
+          <div class="niche-tag">${talent}</div>
+          <div class="niche-tag secondary">${philosophy}</div>
+          <div class="niche-tag">${signature}</div>
+        `;
+      }
+
+      generate12WordNiche(ventureType, category, talent, goal, xfactor, targetCommunity) {
+        const modality = this.getModality(category);
+        const philosophy = this.getPhilosophy(goal);
+        const signature = this.getSignatureElement(xfactor);
+        
+        // Generate 3 different 12-word niche statements
+        const statements = [
+          `${modality} for ${targetCommunity} using ${talent} to ${philosophy} with ${signature}`,
+          `${talent}-focused ${modality} helping ${targetCommunity} achieve ${philosophy} through ${signature}`,
+          `${philosophy}-driven ${modality} serving ${targetCommunity} via ${talent} and ${signature}`
+        ];
+        
+        // Pick one randomly
+        const selectedStatement = statements[Math.floor(Math.random() * statements.length)];
+        
+        return `<span class="niche-statement-highlight">${selectedStatement}</span>`;
+      }
+
+      getModality(category) {
+        const modalities = {
+          'technology': 'Digital Platform',
+          'photography': 'Visual Media',
+          'hairstyling': 'Beauty Services',
+          'crafts': 'Handmade Products',
+          'restaurants': 'Culinary Experience',
+          'health': 'Wellness Program',
+          'performing-arts': 'Creative Performance',
+          'graphic-design': 'Design Studio',
+          'writing': 'Content Creation',
+          'tutoring': 'Educational Service',
+          'landscaping': 'Outdoor Design',
+          'event-planning': 'Event Experience',
+          'food-trucks': 'Mobile Cuisine',
+          'data': 'Analytics Service',
+          'film': 'Visual Storytelling'
+        };
+        return modalities[category] || 'Creative Service';
+      }
+
+      getPhilosophy(goal) {
+        const philosophies = {
+          'accessibility': 'democratize access',
+          'empowerment': 'build confidence',
+          'innovation': 'push boundaries',
+          'community': 'foster connection',
+          'sustainability': 'create impact',
+          'education': 'share knowledge',
+          'expression': 'celebrate creativity',
+          'optimization': 'streamline processes',
+          'inclusivity': 'embrace diversity',
+          'transformation': 'drive change'
+        };
+        return philosophies[goal] || 'create value';
+      }
+
+      getSignatureElement(xfactor) {
+        const signatures = {
+          'metaphorical-object': 'symbolic metaphors',
+          'signature-tool': 'unique methodology',
+          'specialized-service': 'expert craftsmanship',
+          'branding-pattern': 'distinctive style',
+          'interpersonal-magnetism': 'personal connection',
+          'cultural-anchor': 'authentic roots'
+        };
+        return signatures[xfactor] || 'unique approach';
       }
       
-      async submitFormResults() {
-        // Create form data with the card responses
-        const formData = new FormData();
-        formData.append('talent', this.responses.talent);
-        formData.append('struggle', this.responses.struggle);
-        formData.append('xfactor', this.responses.xfactor);
+      generateConcreteIdeas() {
+        const ventureType = this.responses.ventureType;
+        const category = this.responses.category;
+        const talent = this.responses.talent;
+        const goal = this.responses.goal;
+        const xfactor = this.responses.xfactor;
         
-        // Generate the sentence
-        const sentence = `I help ${this.responses.struggle} by ${this.responses.talent}, with a unique edge in ${this.responses.xfactor}.`;
-        formData.append('sentence', sentence);
-        formData.append('timestamp', new Date().toISOString());
+        // Define mediums based on venture type + category
+        const mediums = this.getMediums(ventureType, category);
         
-        try {
-          // Submit to Basin endpoint
-          const response = await fetch('https://usebasin.com/f/6b8c21ecaf01', {
-            method: 'POST',
-            body: formData
-          });
-          
-          if (response.ok) {
-            this.showSuccessMessage();
-          } else {
-            throw new Error('Submission failed');
+        // Define formats based on talent/approach
+        const formats = this.getFormats(talent);
+        
+        // Generate 3 concrete ideas
+        const ideas = [];
+        
+        // Idea 1: Primary combination
+        ideas.push(this.generateIdea(ventureType, category, talent, goal, xfactor, mediums[0], formats[0], 1));
+        
+        // Idea 2: Alternative medium/format
+        ideas.push(this.generateIdea(ventureType, category, talent, goal, xfactor, mediums[1] || mediums[0], formats[1] || formats[0], 2));
+        
+        // Idea 3: Creative twist
+        ideas.push(this.generateIdea(ventureType, category, talent, goal, xfactor, mediums[2] || mediums[0], formats[2] || formats[0], 3));
+        
+        return ideas;
+      }
+      
+      getMediums(ventureType, category) {
+        const mediumMap = {
+          'technology': ['apps', 'websites', 'platforms', 'tools'],
+          'photography': ['media pages', 'campaigns', 'exhibits', 'galleries'],
+          'hairstyling-barber': ['products', 'salons', 'tutorial channels', 'workshops'],
+          'crafts-handmade': ['handmade marketplaces', 'workshops', 'donation drives', 'pop-ups'],
+          'food-drink': ['pop-ups', 'community hubs', 'menus', 'products'],
+          'restaurants': ['pop-ups', 'community hubs', 'menus', 'products'],
+          'health': ['tools', 'programs', 'accessible education', 'communities'],
+          'performing-arts': ['shows', 'hybrid performances', 'community spaces', 'workshops'],
+          'graphic-design': ['brand systems', 'templates', 'campaigns', 'workshops'],
+          'writing': ['publications', 'courses', 'communities', 'platforms'],
+          'data': ['dashboards', 'tools', 'reports', 'platforms'],
+          'event-planning': ['events', 'workshops', 'communities', 'platforms'],
+          'film': ['productions', 'platforms', 'workshops', 'festivals'],
+          'landscaping': ['projects', 'workshops', 'communities', 'products'],
+          'tutoring-education': ['courses', 'programs', 'communities', 'platforms'],
+          'beauty': ['services', 'products', 'tutorials', 'workshops']
+        };
+        
+        return mediumMap[category] || ['services', 'products', 'communities'];
+      }
+      
+      getFormats(talent) {
+        const formatMap = {
+          'personal-consultation': ['one-on-one sessions', 'custom solutions', 'personalized experiences'],
+          'artistic-technique': ['creative projects', 'artistic expressions', 'innovative approaches'],
+          'holistic-approach': ['comprehensive programs', 'integrated solutions', 'whole-person focus'],
+          'client-relationship': ['community building', 'networks', 'relationship-focused services'],
+          'custom-solutions': ['tailored offerings', 'bespoke services', 'personalized products'],
+          'education-mentoring': ['courses', 'tutorials', 'mentorship programs'],
+          'user-experience': ['intuitive interfaces', 'user-centered design', 'experience optimization'],
+          'data-analytics': ['insights', 'reports', 'data-driven solutions'],
+          'automation': ['streamlined processes', 'efficient systems', 'automated solutions'],
+          'mobile-development': ['mobile apps', 'responsive platforms', 'mobile-first solutions'],
+          'cloud-solutions': ['scalable platforms', 'cloud-based tools', 'distributed systems'],
+          'ai-integration': ['smart solutions', 'AI-powered tools', 'intelligent systems']
+        };
+        
+        return formatMap[talent] || ['services', 'products', 'solutions'];
+      }
+      
+      generateIdea(ventureType, category, talent, goal, xfactor, medium, format, ideaNumber) {
+        // Generate specific, natural ideas based on combinations
+        return this.generateSpecificIdea(ventureType, category, talent, goal, xfactor, medium, format, ideaNumber);
+      }
+      
+      generateSpecificIdea(ventureType, category, talent, goal, xfactor, medium, format, ideaNumber) {
+        const goalName = this.getGoalLabel(goal);
+        const talentName = this.getTalentLabel(talent);
+        const xfactorName = this.getXFactorLabel(xfactor);
+        
+        // Signature elements based on X-factor
+        const signatureElements = {
+          'interpersonal-magnetism': {
+            philosophy: ['"Connection First"', '"People Over Product"', '"Authentic Relationships"'],
+            object: ['a warm handshake emoji', 'a community circle', 'a heart symbol'],
+            tagline: ['"Where People Come First"', '"Building Real Connections"', '"Your Community Awaits"']
+          },
+          'technical-edge': {
+            philosophy: ['"Precision Matters"', '"Technical Excellence"', '"Innovation Through Skill"'],
+            object: ['a precision tool', 'a circuit board', 'a code symbol'],
+            tagline: ['"Built to Last"', '"Technical Mastery"', '"Excellence in Execution"']
+          },
+          'operational-grit': {
+            philosophy: ['"Consistency Wins"', '"Reliable Results"', '"Sustainable Success"'],
+            object: ['a gear icon', 'a clock symbol', 'a foundation stone'],
+            tagline: ['"Dependably Different"', '"Steady & Strong"', '"Built to Endure"']
+          },
+          'creative-signature': {
+            philosophy: ['"Art in Everything"', '"Creative Expression"', '"Unique Vision"'],
+            object: ['a paintbrush', 'a signature stamp', 'a creative spark'],
+            tagline: ['"Uniquely Yours"', '"Creative Excellence"', '"Signature Style"']
+          },
+          'cultural-anchor': {
+            philosophy: ['"Rooted in Heritage"', '"Authentic Stories"', '"Cultural Pride"'],
+            object: ['a cultural symbol', 'a family tree', 'a heritage marker'],
+            tagline: ['"Authentically Yours"', '"Rooted & Real"', '"Cultural Connection"']
+          },
+          'storytelling-presence': {
+            philosophy: ['"Stories Matter"', '"Narrative Power"', '"Compelling Tales"'],
+            object: ['a storybook', 'a microphone', 'a narrative thread'],
+            tagline: ['"Stories That Stick"', '"Narrative Excellence"', '"Tales Worth Telling"']
           }
-        } catch (error) {
-          console.error('Submission error:', error);
-          // Show error message
-          this.showErrorMessage();
-        }
-      }
-      
-      showErrorMessage() {
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.textContent = 'There was an error submitting your niche. Please try again.';
+        };
         
-        const submitSection = document.querySelector('.submit-section');
-        submitSection.appendChild(errorDiv);
+        const signature = signatureElements[xfactor] || signatureElements['creative-signature'];
+        const philosophy = signature.philosophy[ideaNumber - 1] || signature.philosophy[0];
+        const object = signature.object[ideaNumber - 1] || signature.object[0];
+        const tagline = signature.tagline[ideaNumber - 1] || signature.tagline[0];
+        
+        // Generate category-specific ideas
+        if (category === 'technology') {
+          if (goal === 'accessible-tech') {
+            return this.generateTechAccessibilityIdea(medium, format, xfactor, philosophy, object, tagline, ideaNumber);
+          } else if (goal === 'solve-problems') {
+            return this.generateTechProblemSolvingIdea(medium, format, xfactor, philosophy, object, tagline, ideaNumber);
+          }
+        } else if (category === 'beauty') {
+          if (goal === 'empower-self-expression') {
+            return this.generateBeautyExpressionIdea(medium, format, xfactor, philosophy, object, tagline, ideaNumber);
+          }
+        } else if (category === 'food-drink') {
+          if (goal === 'cultural-heritage') {
+            return this.generateFoodHeritageIdea(medium, format, xfactor, philosophy, object, tagline, ideaNumber);
+          }
+        } else if (category === 'photography') {
+          if (goal === 'unique-perspectives') {
+            return this.generatePhotographyPerspectiveIdea(medium, format, xfactor, philosophy, object, tagline, ideaNumber);
+          }
+        } else if (category === 'health') {
+          if (goal === 'prevent-illness') {
+            return this.generateHealthPreventionIdea(medium, format, xfactor, philosophy, object, tagline, ideaNumber);
+          }
+        } else if (category === 'writing') {
+          if (goal === 'underrepresented-stories') {
+            return this.generateWritingStoriesIdea(medium, format, xfactor, philosophy, object, tagline, ideaNumber);
+          }
+        }
+        
+        // Default fallback
+        return this.generateGenericIdea(category, goal, medium, format, xfactor, philosophy, object, tagline, ideaNumber);
       }
       
-      showSuccessMessage() {
-        // Redirect to The Lab after successful submission
-                  window.location.href = 'niche-lab.html';
+      generateTechAccessibilityIdea(medium, format, xfactor, philosophy, object, tagline, ideaNumber) {
+        const ideas = [
+          `<div class="idea-content">
+            <div class="idea-header">
+              <span class="medium-badge">${medium}</span>
+              <span class="philosophy">${philosophy}</span>
+            </div>
+            <p class="idea-description">Create a user-friendly ${medium} that breaks down complex tech concepts into simple, everyday language. Help people build confidence with technology by making it feel approachable and fun, using ${object} as your signature element.</p>
+            <div class="idea-tagline">${tagline}</div>
+          </div>`,
+          `<div class="idea-content">
+            <div class="idea-header">
+              <span class="medium-badge">${medium}</span>
+              <span class="philosophy">${philosophy}</span>
+            </div>
+            <p class="idea-description">Build an interactive learning experience that transforms intimidating tech jargon into relatable analogies. Think of it as a bridge between complex concepts and everyday understanding, where ${object} represents the connection.</p>
+            <div class="idea-tagline">${tagline}</div>
+          </div>`,
+          `<div class="idea-content">
+            <div class="idea-header">
+              <span class="medium-badge">${medium}</span>
+              <span class="philosophy">${philosophy}</span>
+            </div>
+            <p class="idea-description">Develop a community where tech-savvy mentors guide newcomers through their first digital projects. Create safe spaces for learning and celebrate every small victory in the tech journey, with ${object} as your community symbol.</p>
+            <div class="idea-tagline">${tagline}</div>
+          </div>`
+        ];
+        return ideas[ideaNumber - 1] || ideas[0];
+      }
+      
+      generateBeautyExpressionIdea(medium, format, xfactor, philosophy, object, tagline, ideaNumber) {
+        const ideas = [
+          `<div class="idea-content">
+            <div class="idea-header">
+              <span class="medium-badge">${medium}</span>
+              <span class="philosophy">${philosophy}</span>
+            </div>
+            <p class="idea-description">Create a personalized beauty discovery experience that helps people find their unique style. Celebrate individual beauty and encourage self-expression, using ${object} as your signature inspiration element.</p>
+            <div class="idea-tagline">${tagline}</div>
+          </div>`,
+          `<div class="idea-content">
+            <div class="idea-header">
+              <span class="medium-badge">${medium}</span>
+              <span class="philosophy">${philosophy}</span>
+            </div>
+            <p class="idea-description">Build an inclusive beauty community that showcases diverse styles and techniques. Empower people to express their authentic selves while challenging traditional beauty standards, with ${object} representing your inclusive approach.</p>
+            <div class="idea-tagline">${tagline}</div>
+          </div>`,
+          `<div class="idea-content">
+            <div class="idea-header">
+              <span class="medium-badge">${medium}</span>
+              <span class="philosophy">${philosophy}</span>
+            </div>
+            <p class="idea-description">Design creative beauty workshops that combine art and self-care. Teach people to use beauty as a form of creative expression and personal storytelling, where ${object} becomes your signature creative element.</p>
+            <div class="idea-tagline">${tagline}</div>
+          </div>`
+        ];
+        return ideas[ideaNumber - 1] || ideas[0];
+      }
+      
+      generateGenericIdea(category, goal, medium, format, xfactor, philosophy, object, tagline, ideaNumber) {
+        const goalName = this.getGoalLabel(goal);
+        const categoryName = this.categories[category];
+        
+        return `<div class="idea-content">
+          <div class="idea-header">
+            <span class="medium-badge">${medium}</span>
+            <span class="philosophy">${philosophy}</span>
+          </div>
+          <p class="idea-description">Create a ${medium} that ${goalName.toLowerCase()} by focusing on what makes you uniquely qualified to serve your community. Use ${object} as your signature element to build something meaningful in ${categoryName.toLowerCase()}.</p>
+          <div class="idea-tagline">${tagline}</div>
+        </div>`;
+      }
+      
+      
+      getVentureTypeLabel(type) {
+        const labels = {
+          'small-biz': 'Small Business',
+          'startup': 'Startup',
+          'local-business': 'Local Business',
+          'online-community': 'Online/Community Initiative'
+        };
+        return labels[type] || type;
+      }
+      
+      getTalentLabel(talent) {
+        const allTalents = Object.values(this.talentOptions).flat();
+        const found = allTalents.find(t => t.value === talent);
+        return found ? found.title : talent;
+      }
+      
+      getGoalLabel(goal) {
+        const allGoals = Object.values(this.goalOptions).flat();
+        const found = allGoals.find(g => g.value === goal);
+        return found ? found.title : goal;
+      }
+      
+      getXFactorLabel(xfactor) {
+        const labels = {
+          'metaphorical-object': 'Metaphorical Object',
+          'signature-tool': 'Signature Tool',
+          'specialized-service': 'Specialized Service',
+          'branding-pattern': 'Branding Pattern',
+          'interpersonal-magnetism': 'Interpersonal Magnetism',
+          'cultural-anchor': 'Cultural Anchor'
+        };
+        return labels[xfactor] || xfactor;
+      }
+      
+      restartQuiz() {
+        // Reset responses
+        this.responses = {
+          ventureType: '',
+          category: '',
+          talent: '',
+          goal: '',
+          xfactor: '',
+          targetCommunity: ''
+        };
+        
+        // Reset UI
+        document.querySelectorAll('.option-card').forEach(card => {
+          card.classList.remove('selected');
+        });
+        
+        document.querySelectorAll('.btn-primary').forEach(btn => {
+          btn.disabled = true;
+        });
+        
+        // Hide all steps and show first step
+        document.querySelectorAll('.quiz-card').forEach(card => {
+          card.classList.add('hidden');
+        });
+        
+        this.currentStep = 1;
+        document.getElementById('step-1').classList.remove('hidden');
+      }
+      
+      regenerateIdeas() {
+        // Generate new ideas with the same inputs
+        this.generateNicheStatement();
+      }
+      
+      shareNiche() {
+        // For now, just show an alert. In a real implementation, this would:
+        // 1. Copy the niche to clipboard
+        // 2. Open a share dialog
+        // 3. Submit to a backend for community sharing
+        alert('Niche copied to clipboard! Share it on social media or use it in your business planning.');
       }
     }
     
-    // Initialize the niche builder when page loads
+    // Initialize the quiz when page loads
     document.addEventListener('DOMContentLoaded', () => {
-      new NicheBuilder();
+      new NicheFinder();
     });
   </script>
-
-  <script>
-    // Mobile menu functionality
-    document.addEventListener('DOMContentLoaded', () => {
-      const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-      const mainNav = document.querySelector('.main-nav');
-      
-      mobileMenuToggle.addEventListener('click', () => {
-        mobileMenuToggle.classList.toggle('active');
-        mainNav.classList.toggle('active');
-        document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
-      });
-      
-      // Close mobile menu when clicking on a link
-      const navLinks = document.querySelectorAll('.main-nav a');
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenuToggle.classList.remove('active');
-          mainNav.classList.remove('active');
-          document.body.style.overflow = '';
-        });
-      });
-      
-      // Close mobile menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!mobileMenuToggle.contains(e.target) && !mainNav.contains(e.target)) {
-          mobileMenuToggle.classList.remove('active');
-          mainNav.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
-      
-      // Close mobile menu on window resize if screen becomes larger
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-          mobileMenuToggle.classList.remove('active');
-          mainNav.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
-    });
-  </script>
-
 </body>
 </html>

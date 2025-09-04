@@ -770,6 +770,40 @@
       }
     }
 
+    @keyframes venture-pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    /* Quad Bento Grid Styles */
+    .outcomes-quad-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .outcome-card {
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .outcome-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .outcome-card h3 {
+      transition: color 0.2s ease;
+    }
+
+    .outcome-card:hover h3 {
+      color: #3b82f6;
+    }
+
     /* Responsive design for smaller screens */
     @media (max-width: 768px) {
       .laptop-highlights-container {
@@ -805,6 +839,25 @@
       .founder-card .bento-card > div {
         flex-direction: column;
         text-align: center;
+      }
+
+      .venture-support-card > div {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .outcomes-quad-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .outcome-card {
+        padding: 1.5rem;
+      }
+
+      .outcome-card > div:first-child {
+        font-size: 2.5rem;
       }
     }
 
@@ -923,6 +976,7 @@
         gap: 1rem;
       }
     }
+
   </style>
 </head>
 <body class="dashboard">
@@ -984,30 +1038,22 @@
         <p class="hero-subtitle" style="font-size: 1.25rem; color: #000; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
           ctrl connects niches into a creative network; digitalizing passion, inspiring ideas, and helping small businesses, startups, and community initiatives grow.
         </p>
-        <a href="network.html" class="start-imagining-button" style="font-size: 1.15rem; padding: 1.1rem 2.5rem; border-radius: 2rem;">start imagining</a>
-        <a href="biz-enhancer.html" class="cta-button secondary" style="font-size: 1.15rem; padding: 1.1rem 1.5rem; border-radius: 50px; margin-left: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;">
-          <div style="position: relative; display: inline-flex; align-items: center; justify-content: center;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M23 19C23 19.5304 22.7893 20.0391 22.4142 20.4142C22.0391 20.7893 21.5304 21 21 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8C1 7.46957 1.21071 6.96086 1.58579 6.58579C1.96086 6.21071 2.46957 6 3 6H7L9 3H15L17 6H21C21.5304 6 22.0391 6.21071 22.4142 6.58579C22.7893 6.96086 23 7.46957 23 8V19Z" fill="black"/>
-            </svg>
-            <svg width="8" height="8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 8px; left: 8px;">
-              <path d="M12 2C13.1 2 14 2.9 14 4V10H20C21.1 10 22 10.9 22 12C22 13.1 21.1 14 20 14H14V20C14 21.1 13.1 22 12 22C10.9 22 10 21.1 10 20V14H4C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10H10V4C10 2.9 10.9 2 12 2Z" fill="white"/>
-            </svg>
-          </div>
-        </a>
+        <div style="text-align: center;">
+          <a href="network.html" class="start-imagining-button" style="font-size: 1.15rem; padding: 1.1rem 2.5rem; border-radius: 2rem;">start imagining</a>
+        </div>
       </div>
     </section>
 
-    <section class="dashboard-grid" style="margin-top: -3rem;">
+    <section class="dashboard-grid" style="margin-top: -1rem;">
       <div class="content-wrapper" style="max-width: 900px; margin: 0 auto;">
         <div class="bento-card" style="display: flex; justify-content: space-between; align-items: center; gap: 2rem; background: #fff; box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; padding: 2.5rem 2rem; margin-bottom: 2.5rem;">
         
           <div style="flex: 1; text-align: center;">
-            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">300+</div>
+            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">280+</div>
             <div style="color: #000; font-size: 1rem;">ctrl'ers</div>
           </div>
           <div style="flex: 1; text-align: center;">
-            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">50k+</div>
+            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">46k+</div>
             <div style="color: #000; font-size: 1rem;">inspired</div>
           </div>
           <div style="flex: 1; text-align: center;">
@@ -1015,6 +1061,7 @@
             <div style="color: #000; font-size: 1rem;">sectors</div>
           </div>
         </div>
+        
         <!-- Coffee & Connections Section -->
         <div class="bento-card coffee-connections-card" style="margin-bottom: 2.5rem;">
           <div class="coffee-connections-container">
@@ -1044,6 +1091,33 @@
             </div>
           </div>
         </div>
+        </div>
+
+        <!-- CTRL User Outcomes Quad Bento -->
+        <div class="outcomes-quad-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2.5rem;">
+          <div class="bento-card outcome-card" style="padding: 2rem; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🫧</div>
+            <h3 style="color: #000; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; font-family: 'Lucida Console'; text-transform: lowercase;">find a signature</h3>
+            <p style="color: #666; font-size: 0.95rem; line-height: 1.5; margin: 0;">discover your unique niche and what makes your work special</p>
+          </div>
+          
+          <div class="bento-card outcome-card" style="padding: 2rem; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">˙ᵕ˙</div>
+            <h3 style="color: #000; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; font-family: 'Lucida Console'; text-transform: lowercase;">connect with other small starters</h3>
+            <p style="color: #666; font-size: 0.95rem; line-height: 1.5; margin: 0;">build relationships with like-minded creators and collaborators</p>
+          </div>
+          
+          <div class="bento-card outcome-card" style="padding: 2rem; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">⊹ ࣪ ˖</div>
+            <h3 style="color: #000; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; font-family: 'Lucida Console'; text-transform: lowercase;">digitalize your work</h3>
+            <p style="color: #666; font-size: 0.95rem; line-height: 1.5; margin: 0;">turn your passion into digital products and online presence</p>
+          </div>
+          
+          <div class="bento-card outcome-card" style="padding: 2rem; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🍵</div>
+            <h3 style="color: #000; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; font-family: 'Lucida Console'; text-transform: lowercase;">grow even when you're not working</h3>
+            <p style="color: #666; font-size: 0.95rem; line-height: 1.5; margin: 0;">scale your impact while you're offline through digital systems</p>
+          </div>
         </div>
 
         <!-- About the Founder Section -->
