@@ -6,6 +6,7 @@
   <title>Join Community - CTRL</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   
@@ -484,7 +485,27 @@
       font-size: 1.2rem;
     }
 
+    /* Checkbox Styles */
+    .checkbox-container {
+      transition: all 0.2s ease;
+    }
 
+    .checkbox-container:hover {
+      color: #333;
+    }
+
+    .checkbox-container input[type="checkbox"] {
+      transition: all 0.2s ease;
+    }
+
+    .checkbox-container input[type="checkbox"]:checked {
+      transform: scale(1.1);
+    }
+
+    .checkbox-container input[type="checkbox"]:focus {
+      outline: 2px solid #000;
+      outline-offset: 2px;
+    }
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
@@ -651,6 +672,23 @@
                     <div class="selected-emoji" id="selected-emoji">Click to select an emoji</div>
                   </div>
                 </div>
+                
+                <!-- Permission Checkboxes -->
+                <div class="form-group">
+                  <label style="margin-bottom: 1rem; font-weight: 600; color: #000;">Permissions</label>
+                  
+                  <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <label class="checkbox-container" style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; font-weight: 500; color: #000; line-height: 1.4;">
+                      <input type="checkbox" id="permission-ig" name="permission-ig" style="margin: 0; width: 18px; height: 18px; accent-color: #000; flex-shrink: 0; margin-top: 2px;">
+                      <span>I give permission for CTRL to share my venture on Instagram and other social media platforms to promote community visibility</span>
+                    </label>
+                    
+                    <label class="checkbox-container" style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; font-weight: 500; color: #000; line-height: 1.4;">
+                      <input type="checkbox" id="permission-partnerships" name="permission-partnerships" style="margin: 0; width: 18px; height: 18px; accent-color: #000; flex-shrink: 0; margin-top: 2px;">
+                      <span>I'm open to partnerships and want to be tagged as "open to partnerships" in the community</span>
+                    </label>
+                  </div>
+                </div>
               </div>
               
           
@@ -814,6 +852,8 @@
           field.style.borderColor = '#e0e0e0';
         }
       });
+      
+      // Note: Permission checkboxes are optional, so no validation needed
       
       if (!isValid) {
         e.preventDefault();
