@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Network - CTRL</title>
+  <title>ctrl</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   
@@ -17,6 +18,12 @@
     gtag('js', new Date());
     gtag('config', 'G-08H0KSCE2S');
   </script>
+  
+  <!-- Supabase -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  
+  <!-- Auth CSS -->
+  <link rel="stylesheet" href="css/auth.css" />
   
   <style>
     /* Updated minimal theme */
@@ -249,6 +256,7 @@
       transition: all 0.3s ease;
       width: 420px;
       height: 48px;
+      position: relative;
     }
 
     .search-bar-container:hover {
@@ -283,6 +291,144 @@
     .search-input::placeholder {
       color: #9ca3af;
       font-weight: 400;
+    }
+
+    /* Filter Toggle Button */
+    .filter-toggle-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      margin-left: 0.5rem;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+    }
+
+    .filter-toggle-btn:hover {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .filter-toggle-btn.active {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .filter-icon {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    .filter-toggle-btn.active .filter-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Filter Section Styles */
+    .filter-section {
+      text-align: center;
+      margin: 2rem 0 3rem 0;
+    }
+
+    .filter-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 2rem;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-label {
+      font-weight: 600;
+      color: #000;
+      font-size: 0.9rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      white-space: nowrap;
+    }
+
+    .filter-select {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      background: #fff;
+      color: #000;
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+      min-width: 140px;
+    }
+
+    .filter-select:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .filter-select:hover {
+      border-color: #9ca3af;
+    }
+
+    .clear-filters-btn {
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .clear-filters-btn:hover {
+      background: #e5e7eb;
+      border-color: #9ca3af;
+    }
+
+    .clear-filters-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Responsive filter styles */
+    @media (max-width: 768px) {
+      .filter-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .filter-group {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .filter-select {
+        min-width: 120px;
+        flex: 1;
+      }
+
+      .clear-filters-btn {
+        width: 100%;
+      }
     }
 
     /* Projects Header Styles */
@@ -395,6 +541,33 @@
       position: relative;
       overflow: visible;
       margin-bottom: 1rem;
+    }
+
+
+    /* Sample Personal Profile Tile */
+    .person-card.sample-profile {
+      position: relative;
+      border: 2px solid #e0e0e0;
+      background: #fff;
+    }
+
+    .person-card.sample-profile::after {
+      content: 'Sample';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(33, 150, 243, 0.1);
+      color: #1976d2;
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      border: 1px solid rgba(33, 150, 243, 0.2);
+    }
+
+    .person-card.sample-profile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
     }
 
 
@@ -524,6 +697,50 @@
       50% { transform: scale(1.05); }
     }
 
+    /* Person Card Styles */
+    .person-card {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      outline: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .person-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+
+
+
+    /* Masonry styling for person cards */
+    .person-card.tall {
+      min-height: 400px;
+    }
+
+    .person-card.medium {
+      min-height: 320px;
+    }
+
+    .person-card.short {
+      min-height: 280px;
+    }
+
+    .person-card.extra-tall {
+      min-height: 480px;
+    }
+
     /* Project Card Styles */
     .project-header {
       position: relative;
@@ -603,7 +820,7 @@
       transform: translateY(-2px);
     }
 
-    /* Different designs for each project type - Pastel filled style */
+    /* Different designs for each project type - Updated styling */
     .project-type-tag.non-profit {
       background: rgba(74, 144, 226, 0.15);
       color: #4a90e2;
@@ -623,21 +840,36 @@
     }
 
     .project-type-tag.startup {
-      background: rgba(103, 58, 183, 0.15);
-      color: #673ab7;
-      border: 1px solid rgba(103, 58, 183, 0.3);
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 1px solid #000000 !important;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .project-type-tag.small-biz {
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 1px solid #000000 !important;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
     }
 
     .project-type-tag.business {
-      background: rgba(255, 64, 129, 0.15);
-      color: #ff4081;
-      border: 1px solid rgba(255, 64, 129, 0.3);
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 1px solid #000000 !important;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
     }
 
     .project-type-tag.organization {
       background: rgba(156, 39, 176, 0.15);
       color: #9c27b0;
       border: 1px solid rgba(156, 39, 176, 0.3);
+    }
+
+    .project-type-tag.Personal-Profile {
+      background: #000000 !important;
+      color: #ffffff !important;
+      border: 1px solid #000000 !important;
     }
 
     /* Connect Button Styling */
@@ -1171,6 +1403,79 @@
       color: #000;
     }
 
+    /* Personal profile titles should use Lucida Console */
+    .person-card .project-title {
+      font-family: 'Lucida Console', monospace !important;
+    }
+
+    /* Skills tags styling for personal profiles */
+    .person-card .project-tags .tag:not(.tag-category):not(.project-type-tag) {
+      background: rgba(135, 206, 250, 0.2) !important;
+      color: #4682b4 !important;
+      border: 1px solid rgba(135, 206, 250, 0.4) !important;
+    }
+
+    /* Category colors for person cards - First Third: Light Blue with Blue Text */
+    .person-card .tag.tag-category.Art,
+    .person-card .tag.tag-category.Beauty,
+    .person-card .tag.tag-category.Business,
+    .person-card .tag.tag-category.Computer-Science,
+    .person-card .tag.tag-category.Consulting,
+    .person-card .tag.tag-category.Crafts---Handmade-Goods,
+    .person-card .tag.tag-category.Data,
+    .person-card .tag.tag-category.Design,
+    .person-card .tag.tag-category.Engineering,
+    .person-card .tag.tag-category.Entrepreneurship,
+    .person-card .tag.tag-category.Environment,
+    .person-card .tag.tag-category.Graphic-Design {
+      background: rgba(173, 216, 230, 0.15) !important;
+      color: #4682b4 !important;
+      border-color: rgba(173, 216, 230, 0.3) !important;
+    }
+
+    /* Category colors for person cards - Second Third: Light Pink with Black Text */
+    .person-card .tag.tag-category.Event-Planning,
+    .person-card .tag.tag-category.Finance,
+    .person-card .tag.tag-category.Film,
+    .person-card .tag.tag-category.Food---Drink,
+    .person-card .tag.tag-category.Hairstyling---Barber,
+    .person-card .tag.tag-category.Health,
+    .person-card .tag.tag-category.Human-Resources,
+    .person-card .tag.tag-category.Landscaping,
+    .person-card .tag.tag-category.Law,
+    .person-card .tag.tag-category.Literature,
+    .person-card .tag.tag-category.Marketing {
+      background: rgba(255, 192, 203, 0.4) !important;
+      color: #000000 !important;
+      border-color: rgba(255, 105, 180, 0.5) !important;
+    }
+
+    /* Category colors for person cards - Third Third: Light Yellow with Black Text */
+    .person-card .tag.tag-category.Operations,
+    .person-card .tag.tag-category.Performing-Arts,
+    .person-card .tag.tag-category.Photography,
+    .person-card .tag.tag-category.Political-Science,
+    .person-card .tag.tag-category.Product-Design,
+    .person-card .tag.tag-category.Psychology,
+    .person-card .tag.tag-category.Sales,
+    .person-card .tag.tag-category.STEM,
+    .person-card .tag.tag-category.Technology,
+    .person-card .tag.tag-category.Tutoring-+-Education,
+    .person-card .tag.tag-category.Tutoring-Education,
+    .person-card .tag.tag-category.Writing {
+      background: rgba(255, 255, 153, 0.4) !important;
+      color: #000000 !important;
+      border-color: rgba(255, 193, 7, 0.6) !important;
+    }
+
+    /* Additional fallback for person cards - Technology and Tutoring + Education */
+    .person-card .tag.tag-category[class*="Technology"],
+    .person-card .tag.tag-category[class*="Tutoring"] {
+      background: rgba(255, 255, 153, 0.4) !important;
+      color: #000000 !important;
+      border-color: rgba(255, 193, 7, 0.6) !important;
+    }
+
     .project-type-subtitle {
       font-size: 0.95em;
       color: #888;
@@ -1203,42 +1508,84 @@
       line-height: 1;
     }
 
-    /* Category-specific tag colors - Ultra Pastel */
-    .projects-grid .project-card .tag.tag-category.Health {
-      background: rgba(254, 202, 202, 0.15) !important;
-      color: #d97777 !important;
-      border-color: rgba(252, 165, 165, 0.3) !important;
-    }
-
-    .projects-grid .project-card .tag.tag-category.Technology {
-      background: rgba(191, 219, 254, 0.15) !important;
-      color: #7c8db8 !important;
-      border-color: rgba(147, 197, 253, 0.3) !important;
-    }
-
-    .projects-grid .project-card .tag.tag-category.Education {
-      background: rgba(167, 243, 208, 0.15) !important;
-      color: #6b9b8a !important;
-      border-color: rgba(110, 231, 183, 0.3) !important;
-    }
-
+    /* Category-specific tag colors - Three Color Groups */
+    
+    /* First Third: Light Blue with Blue Text */
+    .projects-grid .project-card .tag.tag-category.Art,
+    .projects-grid .project-card .tag.tag-category.Beauty,
+    .projects-grid .project-card .tag.tag-category.Business,
+    .projects-grid .project-card .tag.tag-category.Computer-Science,
+    .projects-grid .project-card .tag.tag-category.Consulting,
+    .projects-grid .project-card .tag.tag-category.Crafts---Handmade-Goods,
+    .projects-grid .project-card .tag.tag-category.Data,
+    .projects-grid .project-card .tag.tag-category.Design,
+    .projects-grid .project-card .tag.tag-category.Engineering,
+    .projects-grid .project-card .tag.tag-category.Entrepreneurship,
     .projects-grid .project-card .tag.tag-category.Environment {
-      background: rgba(187, 247, 208, 0.15) !important;
-      color: #6b9b8a !important;
-      border-color: rgba(134, 239, 172, 0.3) !important;
+      background: rgba(173, 216, 230, 0.15) !important;
+      color: #4682b4 !important;
+      border-color: rgba(173, 216, 230, 0.3) !important;
     }
 
-    .projects-grid .project-card .tag.tag-category.Social-Impact {
-      background: rgba(221, 214, 254, 0.15) !important;
-      color: #a394d9 !important;
-      border-color: rgba(196, 181, 253, 0.3) !important;
+    /* Additional categories from projects.json - Light Blue with Blue Text */
+    .projects-grid .project-card .tag.tag-category.Graphic-Design {
+      background: rgba(173, 216, 230, 0.15) !important;
+      color: #4682b4 !important;
+      border-color: rgba(173, 216, 230, 0.3) !important;
     }
 
-    .projects-grid .project-card .tag.tag-category.Art---Design {
-      background: rgba(254, 215, 170, 0.15) !important;
-      color: #d4a05a !important;
-      border-color: rgba(253, 186, 116, 0.3) !important;
+    /* Second Third: Light Pink with Black Text */
+    .projects-grid .project-card .tag.tag-category.Event-Planning,
+    .projects-grid .project-card .tag.tag-category.Finance,
+    .projects-grid .project-card .tag.tag-category.Film,
+    .projects-grid .project-card .tag.tag-category.Food---Drink,
+    .projects-grid .project-card .tag.tag-category.Hairstyling---Barber,
+    .projects-grid .project-card .tag.tag-category.Health,
+    .projects-grid .project-card .tag.tag-category.Human-Resources,
+    .projects-grid .project-card .tag.tag-category.Landscaping,
+    .projects-grid .project-card .tag.tag-category.Law,
+    .projects-grid .project-card .tag.tag-category.Literature,
+    .projects-grid .project-card .tag.tag-category.Marketing {
+      background: rgba(255, 192, 203, 0.4) !important;
+      color: #000000 !important;
+      border-color: rgba(255, 105, 180, 0.5) !important;
     }
+
+    /* Third Third: Light Yellow with Black Text */
+    .projects-grid .project-card .tag.tag-category.Operations,
+    .projects-grid .project-card .tag.tag-category.Performing-Arts,
+    .projects-grid .project-card .tag.tag-category.Photography,
+    .projects-grid .project-card .tag.tag-category.Political-Science,
+    .projects-grid .project-card .tag.tag-category.Product-Design,
+    .projects-grid .project-card .tag.tag-category.Psychology,
+    .projects-grid .project-card .tag.tag-category.Sales,
+    .projects-grid .project-card .tag.tag-category.STEM,
+    .projects-grid .project-card .tag.tag-category.Technology,
+    .projects-grid .project-card .tag.tag-category.Tutoring-+-Education,
+    .projects-grid .project-card .tag.tag-category.Tutoring-Education,
+    .projects-grid .project-card .tag.tag-category.Writing {
+      background: rgba(255, 255, 153, 0.4) !important;
+      color: #000000 !important;
+      border-color: rgba(255, 193, 7, 0.6) !important;
+    }
+
+    /* Additional fallback for Technology and Tutoring + Education - using more specific selectors */
+    .projects-grid .project-card .tag.tag-category[class*="Technology"],
+    .projects-grid .project-card .tag.tag-category[class*="Tutoring"] {
+      background: rgba(255, 255, 153, 0.4) !important;
+      color: #000000 !important;
+      border-color: rgba(255, 193, 7, 0.6) !important;
+    }
+
+    /* Partnership tag styling */
+    .projects-grid .project-card .tag.tag-partnership {
+      background: rgba(147, 197, 253, 0.2) !important;
+      color: #3b82f6 !important;
+      border-color: rgba(147, 197, 253, 0.4) !important;
+      font-weight: 400;
+      box-shadow: 0 1px 3px rgba(147, 197, 253, 0.3);
+    }
+
 
 
 
@@ -1613,10 +1960,28 @@
       
       <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="biz-enhancer.html">CTRL Desks</a>
+        <a href="biz-enhancer.html">Partner</a>
         <a href="network.html" class="active">Network</a>
         <a href="niche-lab.html">The Lab</a>
         <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
+        
+        <!-- Auth Buttons (shown when not logged in) -->
+        <button class="auth-button" onclick="authManager.showAuthModal('login')" style="display: none;">
+          Sign In
+        </button>
+        
+        <!-- User Menu (shown when logged in) -->
+        <div class="user-menu" style="display: none;">
+          <button class="user-menu-toggle" onclick="toggleUserMenu()">
+            <div class="user-avatar"></div>
+            <span class="user-name"></span>
+          </button>
+          <div class="user-dropdown">
+            <a href="dashboard.html" class="user-dropdown-item">Dashboard</a>
+            <a href="#" class="user-dropdown-item" onclick="authManager.signOut()">Sign Out</a>
+          </div>
+        </div>
+        
         <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
           <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1712,6 +2077,32 @@
               <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
             <input type="text" id="project-search" class="search-input" placeholder="who's building rn?" />
+            <button id="filter-toggle-btn" class="filter-toggle-btn" title="Toggle Filters">
+              <svg class="filter-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 4h18M3 8h12M3 12h6M3 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Filter Section -->
+        <div class="filter-section" id="filter-section" style="display: none;">
+          <div class="filter-container">
+            <div class="filter-group">
+              <label for="type-filter" class="filter-label">Type:</label>
+              <select id="type-filter" class="filter-select">
+                <option value="">All Types</option>
+                <!-- Type options will be populated dynamically -->
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="category-filter" class="filter-label">Category:</label>
+              <select id="category-filter" class="filter-select">
+                <option value="">All Categories</option>
+                <!-- Category options will be populated dynamically -->
+              </select>
+            </div>
+            <button id="clear-filters" class="clear-filters-btn">clear filters</button>
           </div>
         </div>
         
@@ -1725,6 +2116,32 @@
               + join ctrl
               <span class="arrow">→</span>
             </a>
+          </div>
+          
+          
+          <!-- Sample Personal Profile Tile -->
+          <div class="person-card sample-profile">
+            <div class="project-header">
+              <h3 class="project-title">john doe</h3>
+              <div class="project-tags">
+                <div class="project-type-tag">Personal Profile</div>
+                <span class="tag tag-category Technology">Technology</span>
+              </div>
+            </div>
+            <p class="project-description">Full-stack developer passionate about building sustainable tech solutions that make a positive impact on communities.</p>
+            <div class="our-niche-tile">
+              <div class="niche-header">
+                <span class="niche-icon">☕️</span>
+                <span class="niche-title">Their Niche</span>
+              </div>
+              <div class="niche-content">Building tech solutions for social impact and environmental sustainability</div>
+            </div>
+            <div class="project-actions">
+              <a href="#" class="action-button apply-button">
+                <span>Connect</span>
+                <span class="arrow">→</span>
+              </a>
+            </div>
           </div>
           <!-- Project cards will be injected here by JS -->
         </div>
@@ -1772,6 +2189,33 @@
           </a>
         </div>
 
+      </div>
+    </template>
+
+    <!-- Person Card Template -->
+    <template id="person-card-template">
+      <div class="person-card" loading="lazy">
+        <div class="project-header">
+          <h3 class="project-title"></h3>
+          <div class="project-tags">
+            <div class="project-type-tag">Personal Profile</div>
+            <span class="tag tag-category"></span>
+          </div>
+        </div>
+        <p class="project-description"></p>
+        <div class="our-niche-tile">
+          <div class="niche-header">
+            <span class="niche-icon">☕️</span>
+            <span class="niche-title">Their Niche</span>
+          </div>
+          <div class="niche-content"></div>
+        </div>
+        <div class="project-actions">
+          <a href="#" class="action-button apply-button">
+            <span>Connect</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
       </div>
     </template>
 
@@ -1826,54 +2270,276 @@
 
   <script src="js/projects.js"></script>
   
+  <!-- Auth Script -->
+  <script src="js/auth.js"></script>
+  
   <script>
-    // Project Search Functionality
+    // Toggle user menu
+    function toggleUserMenu() {
+      const dropdown = document.querySelector('.user-dropdown');
+      dropdown.classList.toggle('show');
+    }
+
+    // Close user menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const userMenu = document.querySelector('.user-menu');
+      const dropdown = document.querySelector('.user-dropdown');
+      
+      if (userMenu && !userMenu.contains(e.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
+    // Project Search and Filter Functionality
     document.addEventListener('DOMContentLoaded', function() {
       const searchInput = document.getElementById('project-search');
       const projectsGrid = document.getElementById('projects-grid');
+      const typeFilter = document.getElementById('type-filter');
+      const categoryFilter = document.getElementById('category-filter');
+      const clearFiltersBtn = document.getElementById('clear-filters');
+      const filterToggleBtn = document.getElementById('filter-toggle-btn');
+      const filterSection = document.getElementById('filter-section');
       let allProjects = [];
+      let allProjectsData = [];
       
-      // Function to search through projects
-      function searchProjects(searchTerm) {
-        if (!searchTerm.trim()) {
-          // Show all projects if search is empty
-          allProjects.forEach(project => {
-            project.style.display = 'block';
-          });
+      // Function to apply filters and search
+      function applyFilters() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedType = typeFilter.value;
+        const selectedCategory = categoryFilter.value;
+        
+        // Get projects data from projects.js
+        if (!window.projectsPage || !window.projectsPage.allProjects) {
           return;
         }
         
-        const searchLower = searchTerm.toLowerCase();
+        const projectsData = window.projectsPage.allProjects;
         
-        allProjects.forEach(project => {
-          // Skip the add-your-own tile in search
-          if (project.classList.contains('add-your-own-tile')) {
-            return;
+        // If no filters are applied, show all projects
+        if (!searchTerm && !selectedType && !selectedCategory) {
+          if (window.renderProjects) {
+            window.renderProjects(projectsData, true);
+            // Reinitialize masonry layout after rendering
+            setTimeout(() => {
+              if (!CSS.supports('grid-template-rows', 'masonry')) {
+                initializeMasonryFallback();
+              }
+            }, 100);
+          }
+          return;
+        }
+        
+        // Filter projects based on search and filters
+        const filteredProjects = projectsData.filter(project => {
+          let matches = true;
+          
+          // Apply search filter
+          if (searchTerm) {
+            let searchMatches = false;
+            
+            // Check if it's a person profile
+            if (project.ventureType === 'person') {
+              const name = (project.personName || project.title || '').toLowerCase();
+              const description = (project.personDescription || project.description || '').toLowerCase();
+              const skills = (project.personSkills || '').toLowerCase();
+              const niche = (project.personNiche || project.niche || '').toLowerCase();
+              const category = (project.category || '').toLowerCase();
+              
+              searchMatches = name.includes(searchTerm) || 
+                             description.includes(searchTerm) || 
+                             skills.includes(searchTerm) || 
+                             niche.includes(searchTerm) || 
+                             category.includes(searchTerm);
+            } else {
+              // Regular project
+              const title = (project.title || '').toLowerCase();
+              const description = (project.description || '').toLowerCase();
+              const category = (project.category || '').toLowerCase();
+              const niche = (project.niche || '').toLowerCase();
+              
+              searchMatches = title.includes(searchTerm) || 
+                             description.includes(searchTerm) || 
+                             category.includes(searchTerm) || 
+                             niche.includes(searchTerm);
+            }
+            
+            matches = matches && searchMatches;
           }
           
-          const title = project.querySelector('.project-title')?.textContent?.toLowerCase() || '';
-          const description = project.querySelector('.project-description')?.textContent?.toLowerCase() || '';
-          const category = project.querySelector('.tag-category')?.textContent?.toLowerCase() || '';
-          const niche = project.querySelector('.niche-content')?.textContent?.toLowerCase() || '';
+          // Apply type filter
+          if (selectedType) {
+            let typeMatches = false;
+            
+            if (selectedType === 'personal-profile') {
+              typeMatches = project.ventureType === 'person';
+            } else if (project.type) {
+              // Normalize the project type for comparison
+              const normalizedProjectType = project.type.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-');
+              typeMatches = normalizedProjectType === selectedType;
+            }
+            
+            matches = matches && typeMatches;
+          }
           
-          const matches = title.includes(searchLower) || 
-                         description.includes(searchLower) || 
-                         category.includes(searchLower) || 
-                         niche.includes(searchLower);
+          // Apply category filter
+          if (selectedCategory) {
+            let categoryMatches = false;
+            
+            // Check both single category and categories array
+            if (project.categories && project.categories.length > 0) {
+              // Check if any category in the array matches the selected filter
+              categoryMatches = project.categories.some(category => {
+                const normalizedCategory = category.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-').replace(/\+/g, '-');
+                return normalizedCategory === selectedCategory;
+              });
+            } else if (project.category) {
+              // Check single category
+              const normalizedCategory = project.category.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-').replace(/\+/g, '-');
+              categoryMatches = normalizedCategory === selectedCategory;
+            }
+            
+            matches = matches && categoryMatches;
+          }
           
-          project.style.display = matches ? 'block' : 'none';
+          return matches;
         });
+        
+        // Call the renderProjects function with filtered data
+        // Don't show placeholder tiles when filters are applied
+        if (window.renderProjects) {
+          window.renderProjects(filteredProjects, false);
+          // Reinitialize masonry layout after rendering
+          setTimeout(() => {
+            if (!CSS.supports('grid-template-rows', 'masonry')) {
+              initializeMasonryFallback();
+            }
+          }, 100);
+        }
       }
       
+      // Function to search through projects (legacy function for compatibility)
+      function searchProjects(searchTerm) {
+        applyFilters();
+      }
+      
+      // Function to populate filter options dynamically
+      function populateFilterOptions(projects) {
+        const typeFilter = document.getElementById('type-filter');
+        const categoryFilter = document.getElementById('category-filter');
+        
+        // Clear existing options (except "All" options)
+        typeFilter.innerHTML = '<option value="">All Types</option>';
+        categoryFilter.innerHTML = '<option value="">All Categories</option>';
+        
+        // Comprehensive list of all possible project types
+        const allTypeOptions = [
+          { value: 'personal-profile', label: 'Personal Profiles' },
+          { value: 'startup', label: 'Startups' },
+          { value: 'small-biz', label: 'Small Business' },
+          { value: 'business', label: 'Business' },
+          { value: 'organization', label: 'Organization' },
+          { value: 'non-profit', label: 'Non-Profit' },
+          { value: 'community', label: 'Community' },
+          { value: 'event', label: 'Event' }
+        ];
+        
+        // Comprehensive list of all possible categories
+        const allCategoryOptions = [
+          { value: 'art', label: 'Art' },
+          { value: 'beauty', label: 'Beauty' },
+          { value: 'business', label: 'Business' },
+          { value: 'computer-science', label: 'Computer Science' },
+          { value: 'consulting', label: 'Consulting' },
+          { value: 'crafts---handmade-goods', label: 'Crafts/Handmade' },
+          { value: 'crafts-handmade', label: 'Crafts/Handmade' },
+          { value: 'data', label: 'Data' },
+          { value: 'design', label: 'Design' },
+          { value: 'engineering', label: 'Engineering' },
+          { value: 'entrepreneurship', label: 'Entrepreneurship' },
+          { value: 'environment', label: 'Environment' },
+          { value: 'event-planning', label: 'Event Planning' },
+          { value: 'finance', label: 'Finance' },
+          { value: 'film', label: 'Film' },
+          { value: 'food---drink', label: 'Food + Drink' },
+          { value: 'food-drink', label: 'Food + Drink' },
+          { value: 'graphic-design', label: 'Graphic Design' },
+          { value: 'hairstyling---barber', label: 'Hairstyling + Barber' },
+          { value: 'hairstyling-barber', label: 'Hairstyling + Barber' },
+          { value: 'health', label: 'Health' },
+          { value: 'human-resources', label: 'Human Resources' },
+          { value: 'landscaping', label: 'Landscaping' },
+          { value: 'law', label: 'Law' },
+          { value: 'literature', label: 'Literature' },
+          { value: 'marketing', label: 'Marketing' },
+          { value: 'operations', label: 'Operations' },
+          { value: 'performing-arts', label: 'Performing Arts' },
+          { value: 'photography', label: 'Photography' },
+          { value: 'political-science', label: 'Political Science' },
+          { value: 'product-design', label: 'Product Design' },
+          { value: 'psychology', label: 'Psychology' },
+          { value: 'sales', label: 'Sales' },
+          { value: 'stem', label: 'STEM' },
+          { value: 'technology', label: 'Technology' },
+          { value: 'tutoring---education', label: 'Tutoring + Education' },
+          { value: 'writing', label: 'Writing' }
+        ];
+        
+        // Add all type options
+        allTypeOptions.forEach(type => {
+          const option = document.createElement('option');
+          option.value = type.value;
+          option.textContent = type.label;
+          typeFilter.appendChild(option);
+        });
+        
+        // Add all category options
+        allCategoryOptions.forEach(category => {
+          const option = document.createElement('option');
+          option.value = category.value;
+          option.textContent = category.label;
+          categoryFilter.appendChild(option);
+        });
+      }
+
       // Wait for projects to be loaded by projects.js
       function initializeSearch() {
-        const projects = projectsGrid.querySelectorAll('.project-card, .add-your-own-tile');
-        if (projects.length > 0) {
-          allProjects = Array.from(projects);
+        // Check if projectsPage is available and has data
+        if (window.projectsPage && window.projectsPage.allProjects && window.projectsPage.allProjects.length > 0) {
+          
+          // Populate filter options with current project data
+          populateFilterOptions(window.projectsPage.allProjects);
           
           // Add search event listener
           searchInput.addEventListener('input', function(e) {
-            searchProjects(e.target.value);
+            applyFilters();
+          });
+          
+          // Add filter event listeners
+          typeFilter.addEventListener('change', function(e) {
+            applyFilters();
+          });
+          
+          categoryFilter.addEventListener('change', function(e) {
+            applyFilters();
+          });
+          
+          // Add clear filters event listener
+          if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              searchInput.value = '';
+              typeFilter.value = '';
+              categoryFilter.value = '';
+              // Call applyFilters to properly reset the view
+              applyFilters();
+            });
+          }
+          
+          // Add filter toggle event listener
+          filterToggleBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isHidden = filterSection.style.display === 'none';
+            filterSection.style.display = isHidden ? 'block' : 'none';
+            filterToggleBtn.classList.toggle('active', isHidden);
           });
           
           // Add keyboard shortcuts (Ctrl+F equivalent)
@@ -1885,7 +2551,6 @@
             }
           });
           
-          console.log('Search functionality initialized with', allProjects.length, 'projects');
         } else {
           // If projects aren't loaded yet, try again in a bit
           setTimeout(initializeSearch, 500);
@@ -2058,4 +2723,6 @@
   </script>
 </body>
 </html>
+
+
 

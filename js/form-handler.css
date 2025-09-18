@@ -2278,11 +2278,12 @@
     padding: 1rem;
     text-align: center;
     cursor: pointer;
+    background: white !important;
   }
   
   .upload-icon {
     font-size: 2rem;
-    color: var(--accent-color);
+    color: #000;
   }
   
   .upload-text {
