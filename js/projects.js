@@ -548,7 +548,11 @@ class ProjectsPage {
           <h3 class="project-title">${project.title}</h3>
           <div class="project-tags">
             <span class="tag tag-type">${project.type || ''}</span>
-            <span class="tag tag-category">${project.category || ''}</span>
+            ${project.categories && project.categories.length > 0 ? 
+              project.categories.map(cat => `<span class="tag tag-category ${cat.replace(/\s+/g, '-').replace(/\//g, '-')}">${cat}</span>`).join('') :
+              (project.category ? `<span class="tag tag-category">${project.category}</span>` : '')
+            }
+            ${project.openToPartnerships ? '<span class="tag tag-partnership">Open to Partnerships</span>' : ''}
           </div>
         </div>
         <p class="project-description">${limitTo70Words(project.description)}</p>
@@ -604,24 +608,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Render projects
-  async function renderProjects(projects) {
-    // Keep the add-your-own tile at the top
+  async function renderProjects(projects, showPlaceholders = true) {
+    // Keep the placeholder tiles at the top - store references before clearing
     const addYourOwnTile = grid.querySelector('.add-your-own-tile');
+    const sampleProfileTile = grid.querySelector('.sample-profile');
+    
+    // Clear the grid
     grid.innerHTML = '';
     
-    // Re-add the placeholder tile first
-    if (addYourOwnTile) {
-      grid.appendChild(addYourOwnTile);
+    // Re-add the placeholder tiles first (only if showPlaceholders is true)
+    if (showPlaceholders) {
+      if (addYourOwnTile) {
+        grid.appendChild(addYourOwnTile);
+      } else {
+        // Recreate add-your-own tile if it doesn't exist
+        const addYourOwnHTML = `
+          <div class="add-your-own-tile" onclick="window.location.href='join-community.html'">
+            <span class="add-your-own-icon">˚୨୧⋆.˚</span>
+            <h3 class="add-your-own-title">add your own</h3>
+            <p class="add-your-own-subtitle">join ctrl and showcase your niche & venture to the community</p>
+            <a href="join-community.html" class="add-your-own-button">
+              + join ctrl
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        `;
+        grid.insertAdjacentHTML('beforeend', addYourOwnHTML);
+      }
+      
+      if (sampleProfileTile) {
+        grid.appendChild(sampleProfileTile);
+      } else {
+        // Recreate sample profile tile if it doesn't exist
+        const sampleProfileHTML = `
+          <div class="person-card sample-profile">
+            <div class="project-header">
+              <h3 class="project-title">john doe</h3>
+              <div class="project-tags">
+                <div class="project-type-tag">Personal Profile</div>
+                <span class="tag tag-category">Technology</span>
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">Python</span>
+                <span class="tag">AWS</span>
+              </div>
+            </div>
+            <p class="project-description">Full-stack developer passionate about building sustainable tech solutions that make a positive impact on communities.</p>
+            <div class="our-niche-tile">
+              <div class="niche-header">
+                <span class="niche-icon">☕️</span>
+                <span class="niche-title">Their Niche</span>
+              </div>
+              <div class="niche-content">Building tech solutions for social impact and environmental sustainability</div>
+            </div>
+            <div class="project-actions">
+              <a href="mailto:alex@example.com" class="action-button apply-button">
+                <span>Connect</span>
+                <span class="arrow">→</span>
+              </a>
+            </div>
+          </div>
+        `;
+        grid.insertAdjacentHTML('beforeend', sampleProfileHTML);
+      }
     }
     
-    // Separate events, products and regular projects
+    // Separate events, products, persons and regular projects
     const events = projects.filter(p => p.isEvent);
     const products = projects.filter(p => p.isProduct);
-    const regularProjects = projects.filter(p => !p.isEvent && !p.isProduct);
+    const persons = projects.filter(p => p.ventureType === 'person');
+    const regularProjects = projects.filter(p => !p.isEvent && !p.isProduct && p.ventureType !== 'person');
     
-    // Interleave events, products and projects
-    const maxLen = Math.max(events.length, products.length, regularProjects.length);
+    // Interleave events, products, persons and projects
+    const maxLen = Math.max(events.length, products.length, persons.length, regularProjects.length);
     const eventTemplate = document.getElementById('event-tile-template');
+    const personTemplate = document.getElementById('person-card-template');
     for (let i = 0; i < maxLen; i++) {
       if (i < regularProjects.length) {
         const project = regularProjects[i];
@@ -638,17 +699,32 @@ document.addEventListener('DOMContentLoaded', () => {
         if (project.type) {
           const typeTag = document.createElement('div');
           typeTag.className = `project-type-tag ${project.type.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-')}`;
-          typeTag.textContent = project.type === 'startup' ? 'Youth-led Project' : project.type.charAt(0).toUpperCase() + project.type.slice(1);
+          typeTag.textContent = project.type.charAt(0).toUpperCase() + project.type.slice(1);
           tags.appendChild(typeTag);
         }
         
-        // Add category tag
-        if (project.category) {
-          const categoryClass = project.category.replace(/\s+/g, '-').replace(/\//g, '-');
+        // Update the bookmark icon with project emoji
+        const bookmarkIcon = card.querySelector('.bookmark-icon');
+        if (bookmarkIcon && project.emoji) {
+          bookmarkIcon.textContent = project.emoji;
+        }
+        
+        // Add category tags - use categories array if available, otherwise fall back to single category
+        const categoriesToShow = project.categories && project.categories.length > 0 ? project.categories : (project.category ? [project.category] : []);
+        categoriesToShow.forEach(category => {
+          const categoryClass = category.replace(/\s+/g, '-').replace(/\//g, '-');
           const categoryTag = document.createElement('span');
           categoryTag.className = `tag tag-category ${categoryClass}`;
-          categoryTag.textContent = project.category;
+          categoryTag.textContent = category;
           tags.appendChild(categoryTag);
+        });
+        
+        // Add partnership tag if open to partnerships
+        if (project.openToPartnerships) {
+          const partnershipTag = document.createElement('span');
+          partnershipTag.className = 'tag tag-partnership';
+          partnershipTag.textContent = 'Open to Partnerships';
+          tags.appendChild(partnershipTag);
         }
         
 
@@ -712,6 +788,84 @@ document.addEventListener('DOMContentLoaded', () => {
         const descriptionLength = project.description ? project.description.length : 0;
         const nicheLength = project.niche ? project.niche.length : 0;
         const totalContentLength = descriptionLength + nicheLength;
+        
+        if (totalContentLength > 200) {
+          card.classList.add('extra-tall');
+        } else if (totalContentLength > 120) {
+          card.classList.add('tall');
+        } else if (totalContentLength > 60) {
+          card.classList.add('medium');
+        } else {
+          card.classList.add('short');
+        }
+
+        card.addEventListener('click', () => projectsPage.handleCardClick(card));
+        grid.appendChild(card);
+      }
+      if (i < persons.length) {
+        const person = persons[i];
+        const card = personTemplate.content.cloneNode(true).querySelector('.person-card');
+
+        // Person name
+        card.querySelector('.project-title').textContent = person.personName || person.title || 'Anonymous';
+        
+        // Person description
+        card.querySelector('.project-description').textContent = person.personDescription || person.description || 'Professional with diverse interests';
+        
+        // Update the bookmark icon with person emoji
+        const bookmarkIcon = card.querySelector('.bookmark-icon');
+        if (bookmarkIcon && person.emoji) {
+          bookmarkIcon.textContent = person.emoji;
+        }
+        
+        // Person tags
+        const tags = card.querySelector('.project-tags');
+        tags.innerHTML = '';
+        
+        // Add person type tag
+        const typeTag = document.createElement('div');
+        typeTag.className = 'project-type-tag';
+        typeTag.textContent = 'Personal Profile';
+        tags.appendChild(typeTag);
+        
+        // Add category tags - use categories array if available, otherwise fall back to single category
+        const categoriesToShow = person.categories && person.categories.length > 0 ? person.categories : (person.category ? [person.category] : []);
+        categoriesToShow.forEach(category => {
+          const categoryClass = category.replace(/\s+/g, '-').replace(/\//g, '-');
+          const categoryTag = document.createElement('span');
+          categoryTag.className = `tag tag-category ${categoryClass}`;
+          categoryTag.textContent = category;
+          tags.appendChild(categoryTag);
+        });
+        
+        // Add skills as individual tags (max 4)
+        if (person.personSkills) {
+          const skills = person.personSkills.split(',').map(skill => skill.trim()).filter(skill => skill.length > 0).slice(0, 4);
+          skills.forEach(skill => {
+            const skillTag = document.createElement('span');
+            skillTag.className = 'tag';
+            skillTag.textContent = skill;
+            tags.appendChild(skillTag);
+          });
+        }
+        
+        // Niche section
+        const nicheContent = card.querySelector('.niche-content');
+        if (nicheContent) {
+          nicheContent.textContent = person.personNiche || person.niche || 'Building the future';
+        }
+        
+        // Action buttons
+        const connectBtn = card.querySelector('.apply-button');
+        if (connectBtn) {
+          connectBtn.href = person.connectionLink || person.link || '#';
+          connectBtn.target = '_blank';
+        }
+        
+        // Assign masonry height class based on content length
+        const nicheLength = person.personNiche ? person.personNiche.length : 0;
+        const descriptionLength = person.personDescription ? person.personDescription.length : 0;
+        const totalContentLength = nicheLength + descriptionLength;
         
         if (totalContentLength > 200) {
           card.classList.add('extra-tall');
@@ -790,10 +944,10 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.appendChild(tile);
       }
     }
-    // If no projects, products or events at all
+    // If no results at all
     if (events.length === 0 && products.length === 0 && regularProjects.length === 0) {
       const msg = document.createElement('div');
-      msg.textContent = 'No projects, products or events found.';
+      msg.textContent = 'no results :( add your own!';
       msg.style.color = '#888';
       msg.style.margin = '2rem 0';
       grid.appendChild(msg);
@@ -811,7 +965,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const tags = popup.querySelector('.project-tags');
     tags.innerHTML = '';
     if (project.type) tags.innerHTML += `<span class="tag tag-type">${project.type}</span>`;
-    if (project.category) tags.innerHTML += `<span class="tag tag-category">${project.category}</span>`;
+    
+    // Add category tags - use categories array if available, otherwise fall back to single category
+    const categoriesToShow = project.categories && project.categories.length > 0 ? project.categories : (project.category ? [project.category] : []);
+    categoriesToShow.forEach(category => {
+      const categoryClass = category.replace(/\s+/g, '-').replace(/\//g, '-');
+      tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${category}</span>`;
+    });
+    
+    if (project.openToPartnerships) tags.innerHTML += `<span class="tag tag-partnership">Open to Partnerships</span>`;
     
     // Add connection link button if present
     if (project.connectionLink) {
@@ -866,4 +1028,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.showPopup = showPopup;
   window.projectsPage = projectsPage;
+  window.renderProjects = renderProjects;
 }); 

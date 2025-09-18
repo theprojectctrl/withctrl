@@ -390,6 +390,61 @@ input, textarea, button, code, pre, .code-block {
   border: 1px solid rgba(0, 0, 0, 0.02);
 }
 
+/* Category tag colors - Three Color Groups */
+
+/* First Third: Light Blue with Blue Text */
+.tag-category.Art,
+.tag-category.Beauty,
+.tag-category.Business,
+.tag-category.Computer-Science,
+.tag-category.Consulting,
+.tag-category.Crafts---Handmade-Goods,
+.tag-category.Data,
+.tag-category.Design,
+.tag-category.Engineering,
+.tag-category.Entrepreneurship,
+.tag-category.Environment,
+.tag-category.Graphic-Design {
+  background: rgba(173, 216, 230, 0.15) !important;
+  color: #4682b4 !important;
+  border-color: rgba(173, 216, 230, 0.3) !important;
+}
+
+/* Second Third: Light Pink with Black Text */
+.tag-category.Event-Planning,
+.tag-category.Finance,
+.tag-category.Film,
+.tag-category.Food---Drink,
+.tag-category.Hairstyling---Barber,
+.tag-category.Health,
+.tag-category.Human-Resources,
+.tag-category.Landscaping,
+.tag-category.Law,
+.tag-category.Literature,
+.tag-category.Marketing {
+  background: rgba(255, 192, 203, 0.4) !important;
+  color: #000000 !important;
+  border-color: rgba(255, 105, 180, 0.5) !important;
+}
+
+/* Third Third: Light Yellow with Black Text */
+.tag-category.Operations,
+.tag-category.Performing-Arts,
+.tag-category.Photography,
+.tag-category.Political-Science,
+.tag-category.Product-Design,
+.tag-category.Psychology,
+.tag-category.Sales,
+.tag-category.STEM,
+.tag-category.Technology,
+.tag-category.Tutoring-+-Education,
+.tag-category.Writing {
+  background: rgba(255, 255, 153, 0.4) !important;
+  color: #000000 !important;
+  border-color: rgba(255, 193, 7, 0.6) !important;
+}
+
+/* Default fallback for any unlisted categories */
 .tag-category {
   background: rgba(219, 234, 254, 0.03) !important;
   color: #b8c5d9 !important;

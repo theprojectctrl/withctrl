@@ -1328,11 +1328,58 @@
     transform: translateY(-2px);
   }
   
-  /* Category tag colors */
-  .tag-category {
-    background: rgba(219, 234, 254, 0.02) !important;
-    color: #c7d1e0 !important;
-    border: 1px solid rgba(30, 64, 175, 0.01) !important;
+  /* Category tag colors - Three Color Groups */
+  
+  /* First Third: Light Blue with Blue Text */
+  .tag-category.Art,
+  .tag-category.Beauty,
+  .tag-category.Business,
+  .tag-category.Computer-Science,
+  .tag-category.Consulting,
+  .tag-category.Crafts---Handmade-Goods,
+  .tag-category.Data,
+  .tag-category.Design,
+  .tag-category.Engineering,
+  .tag-category.Entrepreneurship,
+  .tag-category.Environment,
+  .tag-category.Graphic-Design {
+    background: rgba(173, 216, 230, 0.15) !important;
+    color: #4682b4 !important;
+    border-color: rgba(173, 216, 230, 0.3) !important;
+  }
+
+  /* Second Third: Light Pink with Black Text */
+  .tag-category.Event-Planning,
+  .tag-category.Finance,
+  .tag-category.Film,
+  .tag-category.Food---Drink,
+  .tag-category.Hairstyling---Barber,
+  .tag-category.Health,
+  .tag-category.Human-Resources,
+  .tag-category.Landscaping,
+  .tag-category.Law,
+  .tag-category.Literature,
+  .tag-category.Marketing {
+    background: rgba(255, 192, 203, 0.4) !important;
+    color: #000000 !important;
+    border-color: rgba(255, 105, 180, 0.5) !important;
+  }
+
+  /* Third Third: Light Yellow with Black Text */
+  .tag-category.Operations,
+  .tag-category.Performing-Arts,
+  .tag-category.Photography,
+  .tag-category.Political-Science,
+  .tag-category.Product-Design,
+  .tag-category.Psychology,
+  .tag-category.Sales,
+  .tag-category.STEM,
+  .tag-category.Technology,
+  .tag-category.Tutoring-+-Education,
+  .tag-category.Writing {
+    background: rgba(255, 255, 153, 0.4) !important;
+    color: #000000 !important;
+    border-color: rgba(255, 193, 7, 0.6) !important;
   }
   
   /* Also target tags with both classes */
@@ -1340,47 +1387,6 @@
     background: rgba(219, 234, 254, 0.02) !important;
     color: #c7d1e0 !important;
     border: 1px solid rgba(30, 64, 175, 0.01) !important;
-  }
-  
-  /* Specific category colors */
-  .tag-category.technology {
-    background: rgba(103, 58, 183, 0.1);
-    color: #673ab7;
-  }
-  
-  .tag-category.education {
-    background: rgba(0, 150, 136, 0.1);
-    color: #009688;
-  }
-  
-  .tag-category.health {
-    background: rgba(233, 30, 99, 0.1);
-    color: #e91e63;
-  }
-  
-  .tag-category.environment {
-    background: rgba(156, 39, 176, 0.1);
-    color: #9c27b0;
-  }
-  
-  .tag-category.social-impact {
-    background: rgba(255, 152, 0, 0.1);
-    color: #ff9800;
-  }
-  
-  .tag-category.art-design {
-    background: rgba(156, 39, 176, 0.1);
-    color: #9c27b0;
-  }
-  
-  .tag-category.food-culture {
-    background: rgba(255, 87, 34, 0.1);
-    color: #ff5722;
-  }
-  
-  .tag-category.wellness-beauty {
-    background: rgba(255, 64, 129, 0.1);
-    color: #ff4081;
   }
   
   /* Rotating colors for other tags */

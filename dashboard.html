@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ctrl</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-08H0KSCE2S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-08H0KSCE2S');
+  </script>
+  
+  <!-- Supabase -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  
+  <style>
+    /* Dashboard specific styles */
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    .dashboard-header {
+      margin-bottom: 3rem;
+    }
+
+    .dashboard-title {
+      font-family: 'Lucida Console', monospace;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin: 0 0 1rem 0;
+      color: #000;
+    }
+
+    .dashboard-subtitle {
+      color: #666;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .dashboard-card {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+      font-family: 'Lucida Console', monospace;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 1rem 0;
+      color: #000;
+    }
+
+    .card-content {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1a1a1a;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .card-action:hover {
+      background: #333;
+      transform: translateY(-1px);
+      text-decoration: none;
+      color: white;
+    }
+
+    .card-action.secondary {
+      background: #f0f8ff;
+      color: #000;
+      border: 1px solid #e6f3ff;
+    }
+
+    .card-action.secondary:hover {
+      background: #e6f3ff;
+      color: #000;
+    }
+
+    .profile-section {
+      background: #f8f8f8;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      background: #000;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .profile-info h2 {
+      font-family: 'Lucida Console', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+      color: #000;
+    }
+
+    .profile-info p {
+      color: #666;
+      margin: 0;
+    }
+
+    .profile-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 500;
+      color: #000;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #000;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #000;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+    }
+
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      border: 1px solid #f5c6cb;
+    }
+
+    .success {
+      background: #d4edda;
+      color: #155724;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      border: 1px solid #c3e6cb;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-container {
+        padding: 1rem;
+      }
+      
+      .dashboard-title {
+        font-size: 2rem;
+      }
+      
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .profile-form {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="favicon.png" alt="CTRL" style="width: 32px; height: 32px; margin-right: 12px; vertical-align: middle;">
+        CTRL
+      </a>
+      
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="biz-enhancer.html">Partner</a>
+        <a href="network.html">Network</a>
+        <a href="niche-lab.html">The Lab</a>
+        <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
+        
+        <!-- Auth Buttons (shown when not logged in) -->
+        <button class="auth-button" onclick="authManager.showAuthModal('login')" style="display: none;">
+          Sign In
+        </button>
+        
+        <!-- User Menu (shown when logged in) -->
+        <div class="user-menu" style="display: none;">
+          <button class="user-menu-toggle" onclick="toggleUserMenu()">
+            <div class="user-avatar"></div>
+            <span class="user-name"></span>
+          </button>
+          <div class="user-dropdown">
+            <a href="dashboard.html" class="user-dropdown-item">Dashboard</a>
+            <a href="#" class="user-dropdown-item" onclick="authManager.signOut()">Sign Out</a>
+          </div>
+        </div>
+        
+        <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/withctrl" target="_blank" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <h1 class="dashboard-title">Your Dashboard</h1>
+        <p class="dashboard-subtitle">Manage your profile, track your progress, and connect with the CTRL community</p>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loading" class="loading">
+        <p>Loading your dashboard...</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="error" class="error" style="display: none;">
+        <p>There was an error loading your dashboard. Please try refreshing the page.</p>
+      </div>
+
+      <!-- Dashboard Content -->
+      <div id="dashboard-content" style="display: none;">
+        <!-- Profile Section -->
+        <div class="profile-section">
+          <div class="profile-header">
+            <div class="profile-avatar" id="profile-avatar"></div>
+            <div class="profile-info">
+              <h2 id="profile-name">Loading...</h2>
+              <p id="profile-email">Loading...</p>
+            </div>
+          </div>
+          
+          <form id="profile-form" class="profile-form">
+            <div class="form-group">
+              <label for="full-name">Full Name</label>
+              <input type="text" id="full-name" name="full_name">
+            </div>
+            <div class="form-group">
+              <label for="venture-name">Venture Name</label>
+              <input type="text" id="venture-name" name="venture_name">
+            </div>
+            <div class="form-group">
+              <label for="bio">Bio</label>
+              <textarea id="bio" name="bio" placeholder="Tell us about yourself and your venture..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="website">Website</label>
+              <input type="url" id="website" name="website" placeholder="https://yourwebsite.com">
+            </div>
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select id="category" name="category">
+                <option value="">Select category...</option>
+                <option value="beauty">Beauty</option>
+                <option value="crafts-handmade">Crafts + Handmade Goods</option>
+                <option value="data">Data</option>
+                <option value="event-planning">Event Planning</option>
+                <option value="film">Film</option>
+                <option value="food-drink">Food + Drink</option>
+                <option value="food-trucks">Food Trucks</option>
+                <option value="graphic-design">Graphic Design</option>
+                <option value="hairstyling-barber">Hairstyling + Barber</option>
+                <option value="health">Health</option>
+                <option value="landscaping">Landscaping</option>
+                <option value="performing-arts">Performing Arts</option>
+                <option value="photography">Photography</option>
+                <option value="restaurants">Restaurants</option>
+                <option value="technology">Technology</option>
+                <option value="tutoring-education">Tutoring + Education</option>
+                <option value="writing">Writing</option>
+              </select>
+            </div>
+            <button type="submit" class="card-action">Save Profile</button>
+          </form>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" id="connections-count">0</div>
+            <div class="stat-label">Connections</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="projects-count">0</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="community-views">0</div>
+            <div class="stat-label">Profile Views</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="partnerships">0</div>
+            <div class="stat-label">Partnerships</div>
+          </div>
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <h3 class="card-title">Your Profile</h3>
+            <p class="card-content">Complete your profile to increase visibility in the CTRL community and attract potential partners.</p>
+            <a href="#profile" class="card-action">Edit Profile</a>
+          </div>
+
+          <div class="dashboard-card">
+            <h3 class="card-title">Network</h3>
+            <p class="card-content">Connect with other CTRL members, discover collaboration opportunities, and grow your network.</p>
+            <a href="network.html" class="card-action">Explore Network</a>
+          </div>
+
+          <div class="dashboard-card">
+            <h3 class="card-title">The Lab</h3>
+            <p class="card-content">Find your niche and develop your unique strengths to build something truly yours.</p>
+            <a href="niche-lab.html" class="card-action">Visit The Lab</a>
+          </div>
+
+          <div class="dashboard-card">
+            <h3 class="card-title">Community</h3>
+            <p class="card-content">Join our community discussions, share updates, and get feedback from fellow creators.</p>
+            <a href="join-community.html" class="card-action secondary">Join Community</a>
+          </div>
+
+          <div class="dashboard-card">
+            <h3 class="card-title">Grow</h3>
+            <p class="card-content">Collaborate on Instagram content to boost your reach or find co-founders to build something meaningful together.</p>
+            <a href="biz-enhancer.html" class="card-action">Start Growing</a>
+          </div>
+
+          <div class="dashboard-card">
+            <h3 class="card-title">Settings</h3>
+            <p class="card-content">Manage your account settings, privacy preferences, and notification preferences.</p>
+            <button class="card-action" onclick="showSettings()">Open Settings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>Powered by cold brew @ 2:00AM</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/auth.js"></script>
+  <script>
+    // Dashboard functionality
+    let userProfile = null;
+
+    // Initialize dashboard
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Check if user is authenticated
+      if (!authManager.isAuthenticated()) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      await loadDashboard();
+    });
+
+    // Load dashboard data
+    async function loadDashboard() {
+      try {
+        const user = authManager.getCurrentUser();
+        if (!user) {
+          throw new Error('No user found');
+        }
+
+        // Update profile info
+        updateProfileInfo(user);
+        
+        // Load user profile data
+        await loadUserProfile(user);
+        
+        // Show dashboard content
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('dashboard-content').style.display = 'block';
+        
+      } catch (error) {
+        console.error('Error loading dashboard:', error);
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error').style.display = 'block';
+      }
+    }
+
+    // Update profile info in header
+    function updateProfileInfo(user) {
+      const profileName = document.getElementById('profile-name');
+      const profileEmail = document.getElementById('profile-email');
+      const profileAvatar = document.getElementById('profile-avatar');
+      const userName = document.querySelector('.user-name');
+      const userAvatar = document.querySelector('.user-avatar');
+
+      const displayName = user.user_metadata?.full_name || user.email;
+      const firstLetter = displayName.charAt(0).toUpperCase();
+
+      if (profileName) profileName.textContent = displayName;
+      if (profileEmail) profileEmail.textContent = user.email;
+      if (profileAvatar) profileAvatar.textContent = firstLetter;
+      if (userName) userName.textContent = displayName;
+      if (userAvatar) userAvatar.textContent = firstLetter;
+    }
+
+    // Load user profile data
+    async function loadUserProfile(user) {
+      try {
+        // This would typically fetch from your Supabase database
+        // For now, we'll use the user metadata
+        userProfile = {
+          full_name: user.user_metadata?.full_name || '',
+          venture_name: user.user_metadata?.venture_name || '',
+          bio: user.user_metadata?.bio || '',
+          website: user.user_metadata?.website || '',
+          category: user.user_metadata?.category || ''
+        };
+
+        // Populate form
+        document.getElementById('full-name').value = userProfile.full_name;
+        document.getElementById('venture-name').value = userProfile.venture_name;
+        document.getElementById('bio').value = userProfile.bio;
+        document.getElementById('website').value = userProfile.website;
+        document.getElementById('category').value = userProfile.category;
+
+        // Update stats (mock data for now)
+        updateStats();
+
+      } catch (error) {
+        console.error('Error loading user profile:', error);
+      }
+    }
+
+    // Update stats
+    function updateStats() {
+      // Mock data - in a real app, this would come from your database
+      document.getElementById('connections-count').textContent = '12';
+      document.getElementById('projects-count').textContent = '3';
+      document.getElementById('community-views').textContent = '47';
+      document.getElementById('partnerships').textContent = '2';
+    }
+
+    // Handle profile form submission
+    document.getElementById('profile-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const profileData = Object.fromEntries(formData.entries());
+      
+      try {
+        // Update user metadata
+        const { error } = await authManager.supabase.auth.updateUser({
+          data: profileData
+        });
+        
+        if (error) throw error;
+        
+        // Show success message
+        showMessage('Profile updated successfully!', 'success');
+        
+        // Reload profile info
+        const user = authManager.getCurrentUser();
+        updateProfileInfo(user);
+        
+      } catch (error) {
+        console.error('Error updating profile:', error);
+        showMessage('Error updating profile. Please try again.', 'error');
+      }
+    });
+
+    // Show message
+    function showMessage(message, type) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${type}`;
+      messageDiv.textContent = message;
+      
+      const container = document.querySelector('.dashboard-container');
+      container.insertBefore(messageDiv, container.firstChild);
+      
+      // Auto remove after 5 seconds
+      setTimeout(() => {
+        if (messageDiv.parentNode) {
+          messageDiv.remove();
+        }
+      }, 5000);
+    }
+
+    // Toggle user menu
+    function toggleUserMenu() {
+      const dropdown = document.querySelector('.user-dropdown');
+      dropdown.classList.toggle('show');
+    }
+
+    // Close user menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const userMenu = document.querySelector('.user-menu');
+      const dropdown = document.querySelector('.user-dropdown');
+      
+      if (userMenu && !userMenu.contains(e.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
+
+    // Show settings (placeholder)
+    function showSettings() {
+      alert('Settings functionality coming soon!');
+    }
+  </script>
+</body>
+</html>

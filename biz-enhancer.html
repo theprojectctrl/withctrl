@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CTRL Desks - CTRL</title>
+  <title>ctrl</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
@@ -524,20 +524,32 @@
     }
 
     .form-group input[type="text"],
-    .form-group input[type="file"] {
+    .form-group input[type="email"],
+    .form-group input[type="file"],
+    .form-group select,
+    .form-group textarea {
       width: 100%;
       padding: 0.75rem;
       border: 1px solid #e0e0e0;
       border-radius: 8px;
       font-size: 1rem;
       transition: border-color 0.2s ease;
+      font-family: inherit;
     }
 
     .form-group input[type="text"]:focus,
-    .form-group input[type="file"]:focus {
+    .form-group input[type="email"]:focus,
+    .form-group input[type="file"]:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
       outline: none;
       border-color: #a8d8ff;
       box-shadow: 0 0 0 3px rgba(168, 216, 255, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
     }
 
     .form-group small {
@@ -689,7 +701,7 @@
       
       <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="biz-enhancer.html" class="active">CTRL Desks</a>
+        <a href="biz-enhancer.html" class="active">partner</a>
         <a href="network.html">Network</a>
         <a href="niche-lab.html">The Lab</a>
         <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
@@ -716,14 +728,18 @@
       <section class="hero-section bento-card">
         <div class="hero-layout">
           <div class="hero-left">
-            <div class="hero-boba">🍵</div>
+            <div class="hero-boba">👽</div>
           </div>
           <div class="hero-right">
-            <h1>CTRL Desks</h1>
-            <p class="hero-subtitle">CTRL Desks celebrates the messy, creative process behind every big idea. Share your setup to get featured on @withctrl and connect with a community of builders turning chaos into progress.</p>
+            <h1>Grow</h1>
+            <p class="hero-subtitle">Two ways to accelerate your growth: collaborate on Instagram content to boost your reach, or find co-founders to build something meaningful together. Choose your path to scale.</p>
             <div class="cta-buttons">
-              <a href="#desk-submission" class="primary-button">
-                Submit Your Setup
+              <a href="#instagram-collab" class="primary-button">
+                Instagram Collab
+                <span class="button-icon">→</span>
+              </a>
+              <a href="#co-founder-collab" class="secondary-button">
+                Find Co-Founder
                 <span class="button-icon">→</span>
               </a>
             </div>
@@ -732,57 +748,105 @@
       </section>
     </div>
 
-    <!-- CTRL Desks Section -->
-    <section class="biz-enhancer-content" style="padding-top: 1rem;">
+    <!-- Instagram Collaboration Section -->
+    <section class="biz-enhancer-content" id="instagram-collab" style="padding-top: 1rem;">
       <div class="main-container">
-        <div class="enhancement-grid" id="desk-submission">
+        <div class="enhancement-grid">
           <div class="enhancement-card" style="grid-column: 1 / -1; max-width: 900px; margin: 0 auto;">
             <div class="hero-layout" style="flex-direction: column; gap: 1rem;">
               <div class="hero-left">
-                <div class="hero-boba" style="font-size: 8rem; margin: 0 auto;">💻</div>
+                <div class="hero-boba" style="font-size: 8rem; margin: 0 auto; transform: none !important; animation: none !important;">⊹₊⟡⋆</div>
               </div>
               <div class="hero-right" style="text-align: center; padding-left: 0;">
-                <h2 class="enhancement-title" style="font-size: 2.5rem; margin-bottom: 1rem;">CTRL Desks</h2>
+                <h2 class="enhancement-title" style="font-size: 2.5rem; margin-bottom: 1rem;">Instagram Collaboration</h2>
                 <p class="enhancement-description" style="font-size: 1.25rem; margin-bottom: 1.5rem;">
-                  Got a messy desk and big dreams?<br>
-                  CTRL Desks is where chaos meets creativity.<br>
-                  Submit your setup below and you might see it featured on our feed.
+                  Join my weekly content calendar and boost your reach.<br>
+                  Pick a post that aligns with your brand and get featured on @withctrl.<br>
+                  Share my metrics to grow your own following.
                 </p>
                 
-                <!-- CTRL Desks Form -->
-                <form id="ctrl-desks-form" class="desk-form" action="https://usebasin.com/f/d9b687404a2f" method="POST" enctype="multipart/form-data" style="text-align: left; max-width: 600px; margin: 0 auto;">
-                  <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" id="name" name="name" required>
+                <!-- Weekly Post List -->
+                <div class="weekly-posts" style="background: #f8f8f8; padding: 2rem; border-radius: 16px; margin: 2rem 0; text-align: left;">
+                  <h3 style="text-align: center; margin-bottom: 1.5rem; color: #000;">This Week's Posts</h3>
+                  <div class="post-list">
+                    <div class="post-item" style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #e0e0e0;">
+                      <h4 style="margin: 0 0 0.5rem 0; color: #000;">Monday: Startup Struggles</h4>
+                      <p style="margin: 0 0 0.5rem 0; color: #666;">Real talk about the challenges of building something from scratch</p>
+                      <span class="post-tag" style="background: #e6f3ff; color: #0066cc; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.875rem;">Entrepreneurship</span>
+                    </div>
+                    <div class="post-item" style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #e0e0e0;">
+                      <h4 style="margin: 0 0 0.5rem 0; color: #000;">Wednesday: Tech Trends</h4>
+                      <p style="margin: 0 0 0.5rem 0; color: #666;">Breaking down the latest in AI, web3, and emerging tech</p>
+                      <span class="post-tag" style="background: #e6f3ff; color: #0066cc; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.875rem;">Technology</span>
+                    </div>
+                    <div class="post-item" style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #e0e0e0;">
+                      <h4 style="margin: 0 0 0.5rem 0; color: #000;">Friday: Founder Spotlight</h4>
+                      <p style="margin: 0 0 0.5rem 0; color: #666;">Featuring inspiring stories from our community</p>
+                      <span class="post-tag" style="background: #e6f3ff; color: #0066cc; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.875rem;">Community</span>
+                    </div>
                   </div>
-                  
-                  <div class="form-group">
-                    <label for="contact">Instagram Handle *</label>
-                    <input type="text" id="contact" name="contact" placeholder="@username" required>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="images">Upload Images (up to 3) *</label>
-                    <input type="file" id="images" name="images" multiple accept=".jpg,.jpeg,.png" required>
-                    <small>JPG or PNG files only</small>
-                  </div>
-                  
-                  <div class="form-group checkbox-group">
-                    <label class="checkbox-label">
-                      <input type="checkbox" id="permission" name="permission" required>
-                      <span class="checkmark"></span>
-                      I allow CTRL to repost these images and tag me on @withctrl. *
-                    </label>
-                  </div>
-                  
-                  <button type="submit" class="enhancement-cta" style="width: 100%; margin-top: 1rem;">
-                    Submit My Desk Setup
-                  </button>
-                </form>
-                
-                <div style="margin-top: 1.5rem; text-align: center;">
-                  <p style="color: #666; font-style: italic;">CTRL Desks coming soon - submit today!</p>
                 </div>
+                
+                <!-- Instagram Collab Button -->
+                <div style="text-align: center; margin: 2rem 0;">
+                  <a href="https://forms.gle/Hd77UuFf8jw7YarX9" target="_blank" class="secondary-button" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                    Join Instagram Collab Waitlist
+                    <span class="button-icon">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Co-Founder Collaboration Section -->
+    <section class="biz-enhancer-content" id="co-founder-collab" style="padding-top: 1rem; background: #f8f8f8;">
+      <div class="main-container">
+        <div class="enhancement-grid">
+          <div class="enhancement-card" style="grid-column: 1 / -1; max-width: 900px; margin: 0 auto;">
+            <div class="hero-layout" style="flex-direction: column; gap: 1rem;">
+              <div class="hero-left">
+                <div class="hero-boba" style="font-size: 8rem; margin: 0 auto;">💿</div>
+              </div>
+              <div class="hero-right" style="text-align: center; padding-left: 0;">
+                <h2 class="enhancement-title" style="font-size: 2.5rem; margin-bottom: 1rem;">Find Your Co-Founder</h2>
+                <p class="enhancement-description" style="font-size: 1.25rem; margin-bottom: 1.5rem;">
+                  Ready to build something bigger together?<br>
+                  Connect with potential co-founders from our network.<br>
+                  Share your vision and find the perfect partner to make it happen.
+                </p>
+                
+                <!-- Collaboration Ideas -->
+                <div class="collab-ideas" style="background: white; padding: 2rem; border-radius: 16px; margin: 2rem 0; text-align: left;">
+                  <h3 style="text-align: center; margin-bottom: 1.5rem; color: #000;">Collaboration Ideas</h3>
+                  <div class="ideas-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                    <div class="idea-item" style="background: #f8f8f8; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                      <h4 style="margin: 0 0 0.5rem 0; color: #000;">Find a Fundraising Team</h4>
+                      <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.9rem;">Build a project team to launch campaigns, events, or initiatives that need funding and execution.</p>
+                      <a href="network.html" style="color: #0066cc; text-decoration: none; font-size: 0.875rem; font-weight: 600;">Find Project Team →</a>
+                    </div>
+                    <div class="idea-item" style="background: #f8f8f8; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                      <h4 style="margin: 0 0 0.5rem 0; color: #000;">Find a Co-Founder</h4>
+                      <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.9rem;">Start a nonprofit, startup, small business, or foundation with the right co-founder by your side.</p>
+                      <a href="network.html" style="color: #0066cc; text-decoration: none; font-size: 0.875rem; font-weight: 600;">Find Co-Founder →</a>
+                    </div>
+                    <div class="idea-item" style="background: #f8f8f8; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                      <h4 style="margin: 0 0 0.5rem 0; color: #000;">Host Something meaningful</h4>
+                      <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.9rem;">Organize a competition, challenge, or webinar to bring people together.</p>
+                      <a href="network.html" style="color: #0066cc; text-decoration: none; font-size: 0.875rem; font-weight: 600;">Find an Event Partner →</a>
+                    </div>
+                    <div class="idea-item" style="background: #f8f8f8; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                      <h4 style="margin: 0 0 0.5rem 0; color: #000;">Start Small, Grow Big</h4>
+                      <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.9rem;">Pilot a club, campaign, or pop-up project that could expand into more.</p>
+                      <a href="network.html" style="color: #0066cc; text-decoration: none; font-size: 0.875rem; font-weight: 600;">Find a Growth Partner →</a>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Co-Founder Search Form -->
+                
               </div>
             </div>
           </div>
@@ -797,8 +861,8 @@
           <h3 class="modal-title">Thanks for submitting!</h3>
           <button class="close-modal" onclick="closeModal()">&times;</button>
         </div>
-        <div class="modal-body">
-          If your photos are selected, we'll feature them on @withctrl's Instagram and tag you to boost your visibility.
+        <div class="modal-body" id="modal-body">
+          <!-- Dynamic content will be inserted here -->
         </div>
         <div class="modal-footer">
           <button class="modal-button" onclick="closeModal()">Got it!</button>
@@ -855,13 +919,13 @@
       });
     });
 
-    // CTRL Desks Form Functionality
+    // Form Functionality
     document.addEventListener('DOMContentLoaded', () => {
-      const ctrlDesksForm = document.getElementById('ctrl-desks-form');
+      const coFounderForm = document.getElementById('co-founder-form');
       const submissionModal = document.getElementById('submission-modal');
 
-      if (ctrlDesksForm) {
-        ctrlDesksForm.addEventListener('submit', handleFormSubmission);
+      if (coFounderForm) {
+        coFounderForm.addEventListener('submit', (e) => handleFormSubmission(e, 'co-founder'));
       }
 
       // Close modal when clicking outside
@@ -879,34 +943,44 @@
       });
     });
 
-    function handleFormSubmission(e) {
+    function handleFormSubmission(e, formType) {
+      e.preventDefault();
+      
       // Get form data for validation
       const formData = new FormData(e.target);
       const name = formData.get('name');
-      const contact = formData.get('contact');
-      const images = formData.get('images');
+      const email = formData.get('email');
       const permission = formData.get('permission');
 
       // Basic validation
-      if (!name || !contact || !images || !permission) {
-        e.preventDefault();
+      if (!name || !email || !permission) {
         alert('Please fill in all required fields and accept the permission checkbox.');
         return;
       }
 
       // Log form data for debugging
-      console.log('Form submitted:', { name, contact, images: images.name, permission });
+      console.log('Form submitted:', { formType, name, email });
       
-      // Show success modal after a brief delay to allow form submission
-      setTimeout(() => {
-        showModal();
-        // Reset form
-        e.target.reset();
-      }, 100);
+      // Show success modal with appropriate message
+      showModal(formType);
+      
+      // Reset form
+      e.target.reset();
     }
 
-    function showModal() {
+    function showModal(formType) {
       const modal = document.getElementById('submission-modal');
+      const modalBody = document.getElementById('modal-body');
+      
+      // Set appropriate message based on form type
+      if (formType === 'instagram') {
+        modalBody.innerHTML = 'Thanks for joining our Instagram collaboration! We\'ll review your application and get back to you within 24 hours. If selected, you\'ll be tagged in the post and can share the metrics to boost your own reach.';
+      } else if (formType === 'co-founder') {
+        modalBody.innerHTML = 'Thanks for submitting your co-founder search! We\'ll review your profile and connect you with potential matches from our network. You should hear back within 48 hours.';
+      } else {
+        modalBody.innerHTML = 'Thanks for your submission! We\'ll get back to you soon.';
+      }
+      
       modal.style.display = 'block';
       document.body.style.overflow = 'hidden';
     }

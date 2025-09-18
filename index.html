@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CTRL</title>
+  <title>ctrl</title>
   
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,6 +20,12 @@
   
   <!-- Enhanced Analytics Tracking -->
   <script src="js/analytics-enhanced.js"></script>
+  
+  <!-- Supabase -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  
+  <!-- Auth CSS -->
+  <link rel="stylesheet" href="css/auth.css" />
   <style>
     /* minimal design */
     :root {
@@ -179,7 +185,7 @@
     }
 
     .dashboard-container {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 0 2rem;
       min-height: 100vh;
@@ -996,10 +1002,28 @@
       
       <nav class="main-nav">
         <a href="index.html" class="active">Home</a>
-        <a href="biz-enhancer.html">CTRL Desks</a>
+        <a href="biz-enhancer.html">Partner</a>
         <a href="network.html">Network</a>
         <a href="niche-lab.html">The Lab</a>
         <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
+        
+        <!-- Auth Buttons (shown when not logged in) -->
+        <button class="auth-button" onclick="authManager.showAuthModal('login')" style="display: none;">
+          Sign In
+        </button>
+        
+        <!-- User Menu (shown when logged in) -->
+        <div class="user-menu" style="display: none;">
+          <button class="user-menu-toggle" onclick="toggleUserMenu()">
+            <div class="user-avatar"></div>
+            <span class="user-name"></span>
+          </button>
+          <div class="user-dropdown">
+            <a href="dashboard.html" class="user-dropdown-item">Dashboard</a>
+            <a href="#" class="user-dropdown-item" onclick="authManager.signOut()">Sign Out</a>
+          </div>
+        </div>
+        
         <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
           <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1045,7 +1069,7 @@
     </section>
 
     <section class="dashboard-grid" style="margin-top: -1rem;">
-      <div class="content-wrapper" style="max-width: 900px; margin: 0 auto;">
+      <div class="content-wrapper" style="max-width: 1100px; margin: 0 auto;">
         <div class="bento-card" style="display: flex; justify-content: space-between; align-items: center; gap: 2rem; background: #fff; box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; padding: 2.5rem 2rem; margin-bottom: 2.5rem;">
         
           <div style="flex: 1; text-align: center;">
@@ -1151,7 +1175,26 @@
     </div>
   </footer>
 
+  <!-- Auth Script -->
+  <script src="js/auth.js"></script>
+  
   <script>
+    // Toggle user menu
+    function toggleUserMenu() {
+      const dropdown = document.querySelector('.user-dropdown');
+      dropdown.classList.toggle('show');
+    }
+
+    // Close user menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const userMenu = document.querySelector('.user-menu');
+      const dropdown = document.querySelector('.user-dropdown');
+      
+      if (userMenu && !userMenu.contains(e.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
       // Mobile menu functionality
       const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
