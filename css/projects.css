@@ -337,15 +337,22 @@ input, textarea, button, code, pre, .code-block {
 }
 
 .project-type-tag.startup {
-  background: rgba(103, 58, 183, 0.15);
-  color: #673ab7;
-  border: 1px solid rgba(103, 58, 183, 0.3);
+  background: transparent;
+  color: #000;
+  border: 1px solid #000;
 }
 
 .project-type-tag.business {
   background: rgba(255, 64, 129, 0.15);
   color: #ff4081;
   border: 1px solid rgba(255, 64, 129, 0.3);
+}
+
+.project-type-tag.small-business,
+.project-type-tag.small-biz {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
 }
 
 /* Additional project type styles for consistency */
