@@ -575,6 +575,101 @@
       outline-offset: 2px;
     }
 
+    /* Color Selection Styles */
+    .color-selection {
+      margin-top: 0.5rem;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .color-option {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #fff;
+    }
+
+    .color-option:hover {
+      border-color: #000;
+      background: #f8f8f8;
+    }
+
+    .color-option input[type="checkbox"] {
+      margin: 0;
+      margin-right: 0.5rem;
+      width: 16px;
+      height: 16px;
+      accent-color: #000;
+    }
+
+    .color-option input[type="checkbox"]:checked + .color-label {
+      font-weight: 600;
+      color: #000;
+    }
+
+    .color-option:has(input[type="checkbox"]:checked) {
+      border-color: #000;
+      background: #f0f8ff;
+    }
+
+    .color-label {
+      font-size: 0.9rem;
+      color: #666;
+      transition: all 0.2s ease;
+    }
+
+    /* Link Input Styles */
+    .link-input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      align-items: center;
+    }
+
+    .link-input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+      font-family: inherit;
+    }
+
+    .link-input:focus {
+      outline: none;
+      border-color: #000;
+    }
+
+    .remove-link-btn {
+      background: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.2s ease;
+    }
+
+    .remove-link-btn:hover {
+      background: #ff3333;
+    }
+
+    #add-link-btn:hover {
+      background: #f0f0f0;
+      border-color: #000;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .header-container,
@@ -817,8 +912,14 @@
                 </div>
                 
                 <div class="form-group">
-                  <label for="link">Link *</label>
-                  <input type="url" id="link" name="link" required placeholder="https://yourwebsite.com or social media link">
+                  <label>Links * (Add up to 3 links)</label>
+                  <div id="links-container">
+                    <div class="link-input-group">
+                      <input type="url" name="links[]" required placeholder="https://yourwebsite.com or social media link" class="link-input">
+                      <button type="button" class="remove-link-btn" onclick="removeLink(this)" style="display: none;">Remove</button>
+                    </div>
+                  </div>
+                  <button type="button" id="add-link-btn" onclick="addLink()" style="margin-top: 0.5rem; padding: 0.5rem 1rem; background: #f8f8f8; border: 1px solid #e0e0e0; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">+ Add Another Link</button>
                 </div>
                 
                 <div class="form-group">
@@ -830,22 +931,32 @@
                   <div class="word-count"><span id="niche-word-count">0</span>/12 words</div>
                 </div>
                 
-                <div class="form-group">
-                  <label>Images (Optional)</label>
-                  <div class="file-upload" onclick="document.getElementById('image-upload').click()">
-                    <input type="file" id="image-upload" name="images[]" multiple accept=".jpg,.jpeg,.png,.gif,.svg" onchange="handleFileSelect(this)">
-                    <div class="upload-text">Click to upload images</div>
-                    <div class="upload-hint">Up to 3 images, max 5MB each (JPG, PNG, GIF, SVG)</div>
-                  </div>
-                  <div class="selected-files" id="selected-files"></div>
-                </div>
                 
+                <!-- Optional Enhancements Section -->
                 <div class="form-group">
-                  <label for="emoji">Emoji for tile (Optional)</label>
-                  <div class="emoji-picker">
-                    <input type="hidden" id="emoji" name="emoji" value="">
-                    <div class="emoji-options">
-                      <span class="emoji-option" data-emoji="💻">💻</span>
+                  <label class="checkbox-container" style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; font-weight: 600; color: #000; margin-bottom: 1rem; padding: 1rem; background: #f8f8f8; border-radius: 8px; border: 1px solid #e0e0e0;">
+                    <input type="checkbox" id="enable-enhancements" name="enable-enhancements" style="margin: 0; width: 18px; height: 18px; accent-color: #000;">
+                    <span>Add Optional Enhancements (for better visibility and customization)</span>
+                  </label>
+                  
+                  <div id="enhancements-section" style="display: none; margin-top: 1rem; padding: 1.5rem; background: #fafafa; border-radius: 8px; border: 1px solid #e0e0e0;">
+                    <div class="form-grid">
+                      <div class="form-group">
+                        <label for="enhancement-images">Additional Images (Optional)</label>
+                        <div class="file-upload" onclick="document.getElementById('enhancement-image-upload').click()">
+                          <input type="file" id="enhancement-image-upload" name="enhancement-images[]" multiple accept=".jpg,.jpeg,.png,.gif,.svg" onchange="handleEnhancementFileSelect(this)">
+                          <div class="upload-text">Click to upload additional images</div>
+                          <div class="upload-hint">Up to 3 images, max 5MB each (JPG, PNG, GIF, SVG)</div>
+                        </div>
+                        <div class="selected-files" id="enhancement-selected-files"></div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="enhancement-emoji">Additional Emoji for Tile (Optional)</label>
+                        <div class="emoji-picker">
+                          <input type="hidden" id="enhancement-emoji" name="enhancement-emoji" value="">
+                          <div class="emoji-options">
+                            <span class="emoji-option" data-emoji="💻">💻</span>
                       <span class="emoji-option" data-emoji="📱">📱</span>
                       <span class="emoji-option" data-emoji="☁️">☁️</span>
                       <span class="emoji-option" data-emoji="🫧">🫧</span>
@@ -856,8 +967,73 @@
                       <span class="emoji-option" data-emoji="🍵">🍵</span>
                       <span class="emoji-option" data-emoji="🎀">🎀</span>
                       <span class="emoji-option" data-emoji="👾">👾</span>
+                          </div>
+                          <div class="selected-emoji" id="enhancement-selected-emoji">Click to select an additional emoji</div>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="color-preference">Color Code Preference for Instagram promotion Post (Multiple Choice)</label>
+                        <div class="color-selection">
+                          <div class="color-grid">
+                            <label class="color-option">
+                              <input type="checkbox" name="color-preference[]" value="white">
+                              <span class="color-label">White</span>
+                            </label>
+                            <label class="color-option">
+                              <input type="checkbox" name="color-preference[]" value="black">
+                              <span class="color-label">Black</span>
+                            </label>
+                            <label class="color-option">
+                              <input type="checkbox" name="color-preference[]" value="red">
+                              <span class="color-label">Red</span>
+                            </label>
+                            <label class="color-option">
+                              <input type="checkbox" name="color-preference[]" value="orange">
+                              <span class="color-label">Orange</span>
+                            </label>
+                            <label class="color-option">
+                              <input type="checkbox" name="color-preference[]" value="yellow">
+                              <span class="color-label">Yellow</span>
+                            </label>
+                            <label class="color-option">
+                              <input type="checkbox" name="color-preference[]" value="green">
+                              <span class="color-label">Green</span>
+                            </label>
+                            <label class="color-option">
+                              <input type="checkbox" name="color-preference[]" value="blue">
+                              <span class="color-label">Blue</span>
+                            </label>
+                            <label class="color-option">
+                              <input type="checkbox" name="color-preference[]" value="purple">
+                              <span class="color-label">Purple</span>
+                            </label>
+                            <label class="color-option">
+                              <input type="checkbox" name="color-preference[]" value="pink">
+                              <span class="color-label">Pink</span>
+                            </label>
+                            <label class="color-option">
+                              <input type="checkbox" name="color-preference[]" value="pastels">
+                              <span class="color-label">Pastels</span>
+                            </label>
+                            <label class="color-option">
+                              <input type="checkbox" name="color-preference[]" value="vibrant">
+                              <span class="color-label">Vibrant</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="metrics-evidence">Metrics/Evidence of Reach (Optional)</label>
+                        <textarea id="metrics-evidence" name="metrics-evidence" placeholder="Share any metrics that demonstrate your reach or impact (e.g., follower count, monthly visitors, sales numbers, etc.)"></textarea>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="location">Location (Optional - for location-specific businesses)</label>
+                        <input type="text" id="location" name="location" placeholder="City, State, Country (e.g., Austin, TX or London, UK)">
+                      </div>
                     </div>
-                    <div class="selected-emoji" id="selected-emoji">Click to select an emoji</div>
                   </div>
                 </div>
                 
@@ -936,15 +1112,15 @@
       }
     });
 
-    // File upload handling
-    let selectedFiles = [];
+    // File upload handling for enhancement images
+    let enhancementFiles = [];
     
-    function handleFileSelect(input) {
+    function handleEnhancementFileSelect(input) {
       const files = Array.from(input.files);
       
       // Validate file count
-      if (selectedFiles.length + files.length > 3) {
-        alert('Maximum 3 images allowed');
+      if (enhancementFiles.length + files.length > 3) {
+        alert('Maximum 3 additional images allowed');
         return;
       }
       
@@ -964,68 +1140,137 @@
         return true;
       });
       
-      selectedFiles = [...selectedFiles, ...validFiles];
-      displaySelectedFiles();
+      enhancementFiles = [...enhancementFiles, ...validFiles];
+      displayEnhancementFiles();
     }
     
-    function displaySelectedFiles() {
-      const container = document.getElementById('selected-files');
+    function displayEnhancementFiles() {
+      const container = document.getElementById('enhancement-selected-files');
       container.innerHTML = '';
       
-      selectedFiles.forEach((file, index) => {
+      enhancementFiles.forEach((file, index) => {
         const fileItem = document.createElement('div');
         fileItem.className = 'file-item';
         fileItem.innerHTML = `
           <span class="file-name">${file.name}</span>
-          <button type="button" class="remove-file" onclick="removeFile(${index})">Remove</button>
+          <button type="button" class="remove-file" onclick="removeEnhancementFile(${index})">Remove</button>
         `;
         container.appendChild(fileItem);
       });
     }
     
-    function removeFile(index) {
-      selectedFiles.splice(index, 1);
-      displaySelectedFiles();
+    function removeEnhancementFile(index) {
+      enhancementFiles.splice(index, 1);
+      displayEnhancementFiles();
       
       // Update the file input
-      const input = document.getElementById('image-upload');
+      const input = document.getElementById('enhancement-image-upload');
       const dt = new DataTransfer();
-      selectedFiles.forEach(file => dt.items.add(file));
+      enhancementFiles.forEach(file => dt.items.add(file));
       input.files = dt.files;
     }
 
-    // Emoji picker functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const emojiOptions = document.querySelectorAll('.emoji-option');
-      const selectedEmojiDiv = document.getElementById('selected-emoji');
-      const emojiInput = document.getElementById('emoji');
+    // Link management functionality
+    function addLink() {
+      const container = document.getElementById('links-container');
+      const linkGroups = container.querySelectorAll('.link-input-group');
       
-      emojiOptions.forEach(option => {
+      if (linkGroups.length >= 3) {
+        alert('Maximum 3 links allowed');
+        return;
+      }
+      
+      const newLinkGroup = document.createElement('div');
+      newLinkGroup.className = 'link-input-group';
+      newLinkGroup.innerHTML = `
+        <input type="url" name="links[]" placeholder="https://yourwebsite.com or social media link" class="link-input">
+        <button type="button" class="remove-link-btn" onclick="removeLink(this)">Remove</button>
+      `;
+      
+      container.appendChild(newLinkGroup);
+      
+      // Show remove buttons for all links when we have more than 1
+      if (linkGroups.length >= 1) {
+        container.querySelectorAll('.remove-link-btn').forEach(btn => {
+          btn.style.display = 'block';
+        });
+      }
+      
+      // Hide add button when we reach max
+      if (linkGroups.length >= 2) {
+        document.getElementById('add-link-btn').style.display = 'none';
+      }
+    }
+    
+    function removeLink(button) {
+      const linkGroup = button.closest('.link-input-group');
+      const container = document.getElementById('links-container');
+      const linkGroups = container.querySelectorAll('.link-input-group');
+      
+      // Don't allow removing the last link
+      if (linkGroups.length <= 1) {
+        return;
+      }
+      
+      linkGroup.remove();
+      
+      // Show add button again
+      document.getElementById('add-link-btn').style.display = 'block';
+      
+      // Hide remove buttons if we only have 1 link left
+      const remainingGroups = container.querySelectorAll('.link-input-group');
+      if (remainingGroups.length <= 1) {
+        container.querySelectorAll('.remove-link-btn').forEach(btn => {
+          btn.style.display = 'none';
+        });
+      }
+    }
+
+    // Enhancement functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Enhancement emoji picker functionality
+      const enhancementEmojiOptions = document.querySelectorAll('#enhancements-section .emoji-option');
+      const enhancementSelectedEmojiDiv = document.getElementById('enhancement-selected-emoji');
+      const enhancementEmojiInput = document.getElementById('enhancement-emoji');
+      
+      enhancementEmojiOptions.forEach(option => {
         option.addEventListener('click', function() {
           const emoji = this.getAttribute('data-emoji');
           
-          // Remove selected class from all options
-          emojiOptions.forEach(opt => opt.classList.remove('selected'));
+          // Remove selected class from all enhancement options
+          enhancementEmojiOptions.forEach(opt => opt.classList.remove('selected'));
           
           // Add selected class to clicked option
           this.classList.add('selected');
           
           // Update the hidden input value
-          emojiInput.value = emoji;
+          enhancementEmojiInput.value = emoji;
           
           // Update the display
-          selectedEmojiDiv.textContent = emoji;
-          selectedEmojiDiv.classList.add('has-emoji');
+          enhancementSelectedEmojiDiv.textContent = emoji;
+          enhancementSelectedEmojiDiv.classList.add('has-emoji');
         });
       });
       
-      // Allow clicking on selected emoji to deselect
-      selectedEmojiDiv.addEventListener('click', function() {
-        if (emojiInput.value) {
-          emojiOptions.forEach(opt => opt.classList.remove('selected'));
-          emojiInput.value = '';
-          this.textContent = 'Click to select an emoji';
+      // Allow clicking on selected enhancement emoji to deselect
+      enhancementSelectedEmojiDiv.addEventListener('click', function() {
+        if (enhancementEmojiInput.value) {
+          enhancementEmojiOptions.forEach(opt => opt.classList.remove('selected'));
+          enhancementEmojiInput.value = '';
+          this.textContent = 'Click to select an additional emoji';
           this.classList.remove('has-emoji');
+        }
+      });
+      
+      // Optional enhancements toggle functionality
+      const enableEnhancementsCheckbox = document.getElementById('enable-enhancements');
+      const enhancementsSection = document.getElementById('enhancements-section');
+      
+      enableEnhancementsCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          enhancementsSection.style.display = 'block';
+        } else {
+          enhancementsSection.style.display = 'none';
         }
       });
     });
@@ -1087,7 +1332,7 @@
     // Form submission
     document.getElementById('join-community-form').addEventListener('submit', function(e) {
       // Basic validation
-      const requiredFields = ['email', 'venture-type', 'venture-name', 'category', 'description', 'link', 'niche'];
+      const requiredFields = ['email', 'venture-type', 'venture-name', 'description', 'niche'];
       let isValid = true;
       
       requiredFields.forEach(fieldName => {
@@ -1099,6 +1344,30 @@
           field.style.borderColor = '#e0e0e0';
         }
       });
+      
+      // Check if at least one category is selected
+      const selectedCategories = document.querySelectorAll('input[name="categories[]"]:checked');
+      if (selectedCategories.length === 0) {
+        isValid = false;
+        alert('Please select at least one category.');
+      }
+      
+      // Check if at least one link is provided
+      const linkInputs = document.querySelectorAll('input[name="links[]"]');
+      let hasValidLink = false;
+      linkInputs.forEach(input => {
+        if (input.value.trim()) {
+          hasValidLink = true;
+          input.style.borderColor = '#e0e0e0';
+        } else {
+          input.style.borderColor = '#ff4444';
+        }
+      });
+      
+      if (!hasValidLink) {
+        isValid = false;
+        alert('Please provide at least one link.');
+      }
       
       // Note: Permission checkboxes are optional, so no validation needed
       
