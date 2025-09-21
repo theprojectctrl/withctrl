@@ -1,7 +1,8 @@
 [
    {
     "title": "Lavender Liberty",
-    "category": ["Environment", "Law", "Political-Science"],
+    "category": "Environment",
+    "categories": ["Environment", "Law", "Political-Science"],
     "type": "Startup",
     "description": "Lavender Liberty is a grassroots organization built by youth, for youth - creating spaces where young voices aren't just heard, but centered in the fight for liberation and justice by amplifying the voice of youth through literary media and platforms.",
     "niche": "Revolutionary media amplifying marginalized voices through collaborative zines and authentic storytelling.",
@@ -10,18 +11,19 @@
     "emoji": "☕️"
   },
 
-  {
-    "title": "Mic to Millions",
-    "category": "Tutoring + Education",
-    "type": "small biz",
-    "description": "Beth is a media expert and creator of the Mic to Millions system. We help entrepreneurs, authors, coaches, and experts who are tired of chasing visibility finally get recognized, remembered, and hired, so their name opens doors before they even walk.",
-    "niche": "business education, business programs and workshops, professional development",
-    "connectionLink": "https://bethnydick.com/services/mic-to-millions/",
-    "emoji": "💻"
-  },
+ {
+   "title": "Mic to Millions",
+   "category": "Tutoring + Education",
+   "type": "small biz",
+   "description": "Beth is a media expert and creator of the Mic to Millions system. We help entrepreneurs, authors, coaches, and experts who are tired of chasing visibility finally get recognized, remembered, and hired, so their name opens doors before they even walk.",
+   "niche": "business education, business programs and workshops, professional development",
+   "connectionLink": "https://bethnydick.com/services/mic-to-millions/",
+   "emoji": "💻"
+ },
   {
     "title": "Bizn Bite",
-    "category": ["Business", "Entrepreneurship", "Tutoring + Education"],
+    "category": "Business",
+    "categories": ["Business", "Entrepreneurship", "Tutoring + Education"],
     "type": "small biz",
     "description": "Bizn Bite is an initiative that aims to make business knowledge fun, digestible, and accessible for the youth.",
     "niche": "business education, business programs and workshops, professional development",
@@ -221,13 +223,5 @@
     "niche": "Free STEM Education for Underserved Communities",
     "connectionLink": "https://www.instagram.com/stembystep/",
     "emoji": "💻"
-  },
-  {
-    "title": "Alex Chen",
-    "category": "Technology",
-    "ventureType": "person",
-    "description": "Passionate full-stack developer with 3 years of experience building web applications. Currently exploring AI/ML and interested in sustainable tech solutions. Looking to connect with like-minded developers and entrepreneurs.",
-    "niche": "AI/ML Developer Passionate About Sustainable Tech",
-    "connectionLink": "#"
   }
 ] 
