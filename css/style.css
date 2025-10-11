@@ -3104,8 +3104,8 @@
     .main-nav {
       position: fixed;
       top: 0;
-      right: -100%;
-      width: 100%;
+      right: -100vw;
+      width: 100vw;
       height: 100vh;
       background: linear-gradient(135deg, var(--card-background) 0%, rgba(248, 249, 250, 0.95) 100%);
       flex-direction: column;
@@ -3118,10 +3118,16 @@
       border-left: 1px solid rgba(237, 244, 255, 0.3);
       overflow-x: hidden;
       box-sizing: border-box;
+      transform: translateX(100vw);
+      visibility: hidden;
+      opacity: 0;
     }
     
     .main-nav.active {
       right: 0;
+      transform: translateX(0);
+      visibility: visible;
+      opacity: 1;
       box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
     }
     
