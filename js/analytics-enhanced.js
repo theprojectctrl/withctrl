@@ -1,6 +1,6 @@
 /**
  * Enhanced Google Analytics Tracking for CTRL Website
- * Measurement ID: G-08H0KSCE2S
+ * Measurement ID: G-REKT5H0GXW
  */
 
 // Enhanced Analytics Functions
