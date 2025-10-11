@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bobigos</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-REKT5H0GXW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-REKT5H0GXW');
+  </script>
+  
+  <!-- Supabase -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  
+  <!-- Auth CSS -->
+  <link rel="stylesheet" href="../css/auth.css" />
+  
+  <style>
+    /* Updated minimal theme */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Remove all focus outlines */
+    *:focus {
+      outline: none !important;
+    }
+
+    .main-header {
+      background: transparent;
+      border-bottom: none;
+      padding: 3.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      left: 2rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Category Header */
+    .category-header {
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .category-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 1rem 0;
+      letter-spacing: -0.03em;
+      font-family: 'Lucida Console', monospace !important;
+    }
+
+    .category-subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      margin: 0 0 2rem 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+      grid-auto-rows: masonry;
+      align-items: start;
+      justify-items: stretch;
+    }
+
+    /* Fallback for browsers that don't support masonry */
+    @supports not (grid-template-rows: masonry) {
+      .projects-grid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        align-content: flex-start;
+        gap: 2rem;
+      }
+      
+      .projects-grid > * {
+        flex: 0 0 auto;
+        width: calc(33.333% - 1.33rem);
+        margin: 0;
+        align-self: flex-start;
+      }
+      
+      @media (max-width: 1024px) {
+        .projects-grid > * {
+          width: calc(50% - 1rem);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .projects-grid > * {
+          width: calc(50% - 1rem);
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .projects-grid > * {
+          width: 100%;
+        }
+      }
+    }
+
+    .project-card {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      outline: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .project-header {
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem 0;
+      color: #000;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .project-type-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+
+    .social-handle-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: #e3f2fd;
+      color: #1976d2;
+      border: 1px solid #bbdefb;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+
+    .project-type-tag:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Project type tag styles */
+    .project-type-tag.startup {
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 1px solid #000000 !important;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .project-type-tag.small-biz {
+      background: #000000 !important;
+      color: #ffffff !important;
+      border: 1px solid #000000 !important;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .project-type-tag.business {
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 1px solid #000000 !important;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .project-type-tag.organization {
+      background: rgba(156, 39, 176, 0.15);
+      color: #9c27b0;
+      border: 1px solid rgba(156, 39, 176, 0.3);
+    }
+
+    .project-type-tag.non-profit {
+      background: rgba(74, 144, 226, 0.15);
+      color: #4a90e2;
+      border: 1px solid rgba(74, 144, 226, 0.3);
+    }
+
+    .project-type-tag.community {
+      background: rgba(255, 215, 0, 0.15);
+      color: #d4af37;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .project-description {
+      color: #666;
+      line-height: 1.6;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .our-niche-tile {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #f0f0f0;
+    }
+
+    .niche-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #666;
+    }
+
+    .niche-content {
+      font-size: 0.85rem;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .project-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .apply-button {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 20px;
+      padding: 0.6rem 2rem;
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      min-width: 120px;
+      justify-content: center;
+    }
+
+    .apply-button:hover {
+      background: #e9ecef;
+      border-color: #dee2e6;
+      transform: translateY(-1px);
+      text-decoration: none;
+      color: #000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .apply-button .arrow {
+      color: #000;
+      font-size: 1.1rem;
+      margin-left: 0.25rem;
+    }
+
+    /* Back button - styled like start imagining button with rainbow gradient */
+    .back-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      justify-content: center;
+      background: #1a1a1a;
+      color: white;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+      margin: 2rem auto;
+      display: block;
+      text-align: center;
+      max-width: 200px;
+    }
+
+    .back-button::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 167, 38, 0.8) 70%, 
+        rgba(255, 235, 59, 0.8) 80%, 
+        rgba(76, 175, 80, 0.8) 90%, 
+        rgba(33, 150, 243, 0.8) 95%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .back-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .header-container,
+      .main-container {
+        padding: 0 1rem;
+      }
+
+      .category-header {
+        margin: 2rem 0;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="category-page" id="top">
+  <header class="main-header">
+    <div class="header-container">
+      <a href="../index.html" class="logo">
+        <img src="../favicon.png" alt="bobigos" style="width: 32px; height: 32px; margin-right: 12px; vertical-align: middle;">
+        bobigos
+      </a>
+      
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <a href="../network.html" class="active">Find Partners</a>
+        <a href="../niche-lab.html">Niche Tool</a>
+        <a href="../join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="main-container">
+      <div class="category-header">
+        <h1 class="category-title" id="category-title">Category Projects</h1>
+        <p class="category-subtitle" id="category-subtitle">Explore projects in this category</p>
+      </div>
+      
+      <a href="../network.html" class="back-button">
+        <span>Go Back</span>
+        <span>→</span>
+      </a>
+      
+      <div class="projects-grid" id="projects-grid">
+        <!-- Projects will be loaded here by JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Get category from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category');
+    
+    if (category) {
+      // Update page title and header
+      document.getElementById('category-title').textContent = category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      document.getElementById('category-subtitle').textContent = `Explore ${category.replace(/-/g, ' ')} projects and connect with like-minded entrepreneurs`;
+      
+      // Load projects for this category
+      loadCategoryProjects(category);
+    }
+
+    async function loadCategoryProjects(category) {
+      try {
+        const response = await fetch(`categories/${category}.json`);
+        const projects = await response.json();
+        
+        const projectsGrid = document.getElementById('projects-grid');
+        
+        projects.forEach(project => {
+          const projectCard = createProjectCard(project);
+          projectsGrid.appendChild(projectCard);
+        });
+        
+        // Initialize masonry layout for browsers that don't support CSS Grid masonry
+        if (!CSS.supports('grid-template-rows', 'masonry')) {
+          setTimeout(() => {
+            initializeMasonryFallback();
+          }, 100);
+        }
+      } catch (error) {
+        console.error('Error loading category projects:', error);
+        document.getElementById('projects-grid').innerHTML = '<p>No projects found for this category.</p>';
+      }
+    }
+
+    function createProjectCard(project) {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      
+      card.innerHTML = `
+        <div class="project-header">
+          <h3 class="project-title">${project.title}</h3>
+          <div class="project-tags">
+            <div class="project-type-tag ${project.type.toLowerCase().replace(/\s+/g, '-')}">${project.type}</div>
+            ${project.socialHandle ? `<div class="social-handle-tag">@${project.socialHandle}</div>` : ''}
+          </div>
+        </div>
+        <p class="project-description">${project.description}</p>
+        <div class="our-niche-tile">
+          <div class="niche-header">
+            <span class="niche-icon">☕️</span>
+            <span class="niche-title">Our Niche</span>
+          </div>
+          <div class="niche-content">${project.niche}</div>
+        </div>
+        <div class="project-actions">
+          <a href="${project.connectionLink}" class="apply-button" target="_blank">
+            <span>Connect</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      `;
+      
+      return card;
+    }
+
+    // Fallback masonry implementation for browsers without CSS Grid masonry support
+    function initializeMasonryFallback() {
+      const grid = document.getElementById('projects-grid');
+      if (!grid) return;
+      
+      const items = Array.from(grid.children);
+      if (items.length === 0) return;
+      
+      // Reset positioning and ensure items are visible for measurement
+      items.forEach(item => {
+        item.style.position = 'static';
+        item.style.transform = 'none';
+        item.style.opacity = '0';
+        item.style.margin = '0';
+        item.style.width = 'auto';
+      });
+      
+      // Force a reflow to ensure measurements are accurate
+      grid.offsetHeight;
+      
+      // Calculate column count based on available width
+      const containerWidth = grid.offsetWidth;
+      const itemWidth = 300; // minmax width
+      const gap = 32; // 2rem in pixels
+      const columns = Math.max(1, Math.floor((containerWidth + gap) / (itemWidth + gap)));
+      
+      // Initialize column heights array
+      const columnHeights = new Array(columns).fill(0);
+      const columnWidth = (containerWidth - (gap * (columns - 1))) / columns;
+      
+      // Position each item in the shortest column
+      items.forEach((item, index) => {
+        // Find the shortest column
+        const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
+        
+        // Calculate position with proper gap spacing
+        const x = shortestColumn * (columnWidth + gap);
+        const y = columnHeights[shortestColumn];
+        
+        // Position the item
+        item.style.position = 'absolute';
+        item.style.left = `${x}px`;
+        item.style.top = `${y}px`;
+        item.style.width = `${columnWidth}px`;
+        item.style.transform = 'none';
+        item.style.opacity = '1';
+        item.style.margin = '0';
+        
+        // Update column height with gap
+        columnHeights[shortestColumn] += item.offsetHeight + gap;
+      });
+      
+      // Set container height and positioning
+      grid.style.height = `${Math.max(...columnHeights)}px`;
+      grid.style.position = 'relative';
+    }
+    
+    // Re-run masonry on window resize
+    window.addEventListener('resize', () => {
+      if (!CSS.supports('grid-template-rows', 'masonry')) {
+        setTimeout(initializeMasonryFallback, 100);
+      }
+    });
+  </script>
+</body>
+</html>
