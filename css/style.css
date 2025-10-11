@@ -3116,6 +3116,8 @@
       padding: 3rem 2rem;
       backdrop-filter: blur(20px);
       border-left: 1px solid rgba(237, 244, 255, 0.3);
+      overflow-x: hidden;
+      box-sizing: border-box;
     }
     
     .main-nav.active {

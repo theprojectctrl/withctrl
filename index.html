@@ -836,6 +836,19 @@
         width: 80px;
       }
 
+      /* Fix free advertising section mobile layout */
+      .free-advertising-section {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 1.5rem !important;
+      }
+
+      .free-advertising-section img {
+        width: 150px !important;
+        height: auto !important;
+        margin: 0 auto !important;
+      }
+
       .founder-card .bento-card {
         flex-direction: column;
         text-align: center;
@@ -864,6 +877,33 @@
 
       .outcome-card > div:first-child {
         font-size: 2.5rem;
+      }
+
+      /* Fix metrics bento overflow on mobile */
+      .dashboard-grid .content-wrapper {
+        max-width: 100% !important;
+        padding: 0 1rem !important;
+      }
+
+      .dashboard-grid .bento-card {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 1.5rem !important;
+        overflow-x: hidden !important;
+      }
+
+      /* Ensure metrics don't overflow */
+      .dashboard-grid .bento-card > div {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+        text-align: center !important;
+      }
+
+      .dashboard-grid .bento-card > div > div {
+        flex: none !important;
+        width: 100% !important;
+        margin-bottom: 1rem !important;
       }
     }
 
@@ -1101,7 +1141,7 @@
           </div>
           
           <!-- Sample Submission Section -->
-          <div style="display: flex; align-items: center; gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #f0f0f0;">
+          <div class="free-advertising-section" style="display: flex; align-items: center; gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #f0f0f0;">
             <div style="flex-shrink: 0;">
               <img src="sample-submission.png" alt="Sample Instagram post submission" style="width: 200px; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
             </div>
