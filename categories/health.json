@@ -1,0 +1,64 @@
+[
+  {
+    "title": "Hearts of Tomorrow",
+    "category": "Health",
+    "categories": ["Health", "Event Planning", "Entrepreneurship"],
+    "type": "startup",
+    "description": "Striving to prevent CVD & accommodate those afflicted with practical, affordable technologies and approaches. We offer tools, projects, and programs to aid those in need. Chapter applications on the way & we are currently recruiting team members, view on IG if interested!",
+    "niche": "Cardiovascular Health Technology & Prevention",
+    "connectionLink": "https://www.instagram.com/heartsoftmrw/",
+    "socialHandle": "heartsoftmrw",
+    "openToPartnerships": true,
+    "emoji": "💻"
+  },
+ 
+ {
+    "title": "Nurses of the Future",
+    "category": "Health",
+    "type": "startup",
+    "description": "Nurses of the Future is a nonprofit 501(c)(3) organization that inspires future medical professionals. We currently opened our craft program where any volunteer at any age can send us crafts for hospital staff and patient. These crafts will be given to hospitals in the Antelope and San Fernando Valley. In addition to our craft program, we offer online volunteer opportunities in teams such as: • Resources • Research • Blog writing • Media/Digital Design • Fundraising | Those who are unsure can become regular volunteers to test our various teams. We have reached over 10,000 social media accounts with our posts, have 50 volunteers, and donated more than 100 toys to CHLA. We hope you can help us make an impact!",
+    "niche": "Medical Education & Hospital Support Programs",
+    "connectionLink": "https://www.instagram.com/nurses.of.the.future/",
+    "socialHandle": "nurses.of.the.future",
+    "emoji": "💻"
+  },
+ 
+  {
+    "title": "The Warm Words project",
+    "category": "Health",
+    "type": "startup",
+    "description": "The Warm Words Project shares daily comics of Mira & Luma to comfort emotionally struggling teens, especially those who grow up without their parents. Rooted in empathy, our goal is to create a safe, gentle space through storytelling. In our early phase, we focus on publishing daily comics, animations, launching a small merch line, and forming a volunteer team. Future plans include starting school-based chapters, donating to SOS Children's Villages, partnering with youth-focused NGOs, and publishing a print comic anthology. We grow slowly but meaningfully, prioritizing emotional depth and real connection. One warm word at a time, we hope to bring light, healing, and hope to young hearts who need it most.",
+    "niche": "Teen Mental Health Comics & Storytelling",
+    "connectionLink": "https://www.instagram.com/warmwords.prj/",
+    "emoji": "💻"
+  },
+ 
+  {
+    "title": "Synaptic Shift",
+    "category": "Health",
+    "type": "startup",
+    "description": "Synaptic Shift is a neuroscience-driven initiative committed to reshaping how young people engage with brain science, mental health, and policy. Through digital storytelling, interactive content, and accessible resources, we aim to empower underrepresented youth to explore neuroscience, advocate for mental health equity, and become leaders in global health. Our platform bridges research, lived experience, and community action—encouraging the next generation to step into spaces where science meets social impact.",
+    "niche": "Youth Neuroscience & Mental Health Policy",
+    "connectionLink": "https://www.instagram.com/synapticshiftorg/",
+    "emoji": "💻"
+  },
+ 
+ {
+    "title": "Med Teen Talk",
+    "category": "Health",
+    "type": "startup",
+    "description": "Med Teen Talk is a teen-led initiative dedicated to educating and empowering youth through accessible content on medicine, mental health, and healthcare careers. We create weekly posts, interviews with professionals, and spotlight opportunities for teens interested in the medical field. Our mission is to make medical knowledge more relatable and build a strong, supportive community of future healthcare leaders.",
+    "niche": "Teen Medical Education & Career Guidance",
+    "connectionLink": "#",
+    "emoji": "💻"
+  },
+  {
+    "title": "Health Youth Unity",
+    "category": "Health",
+    "type": "startup",
+    "description": "Every child deserves a chance to smile, to play, and to dream –– even in the face of cancer. This non-profit aims to raise funds to support pediatric cancer patients and their families through care packages, hospital visits, emotional support programs, and financial assistance.",
+    "niche": "Pediatric Cancer Support & Family Care",
+    "connectionLink": "https://www.instagram.com/healthyouthunity/",
+    "emoji": "💻"
+  }
+]

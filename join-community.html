@@ -357,51 +357,68 @@
       margin-top: 0.5rem;
     }
 
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-    }
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .category-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .category-grid {
+          grid-template-columns: 1fr;
+        }
+      }
 
     .category-option {
       display: flex;
       align-items: center;
+      justify-content: center;
       padding: 0.75rem;
-      border: 1px solid #e0e0e0;
+      border: 2px solid #e0e0e0;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.2s ease;
       background: #fff;
+      text-align: center;
     }
 
     .category-option:hover {
-      border-color: #000;
-      background: #f8f8f8;
+      border-color: #3b82f6;
+      background: #f8f9fa;
+    }
+
+    .category-option.selected {
+      border-color: #3b82f6;
+      background: #eff6ff;
     }
 
     .category-option input[type="checkbox"] {
-      margin: 0;
-      margin-right: 0.5rem;
-      width: 16px;
-      height: 16px;
-      accent-color: #000;
-    }
-
-    .category-option input[type="checkbox"]:checked + .category-label {
-      font-weight: 600;
-      color: #000;
-    }
-
-    .category-option:has(input[type="checkbox"]:checked) {
-      border-color: #000;
-      background: #f0f8ff;
+      display: none;
     }
 
     .category-label {
       font-size: 0.9rem;
-      color: #666;
+      color: #333;
       transition: all 0.2s ease;
+      font-weight: 500;
+    }
+
+    .category-option.selected .category-label {
+      color: #3b82f6;
+      font-weight: 600;
+    }
+
+    .category-option.selected .category-label::after {
+      content: " ✓";
+      color: #3b82f6;
+      font-weight: bold;
     }
 
     .category-counter {
@@ -752,22 +769,26 @@
                 </div>
                 
                 <div class="form-group">
+                  <label for="social-handle">Social Media Handle (Optional)</label>
+                  <input type="text" id="social-handle" name="social-handle" placeholder="@yourhandle (Instagram, Twitter, etc.)">
+                </div>
+                
+                <div class="form-group">
                   <label for="venture-type">Submission Type *</label>
                   <select id="venture-type" name="venture-type" required>
                     <option value="">Select type...</option>
                     <option value="small-biz">Small Business</option>
                     <option value="startup">Startup</option>
-                    <option value="personal-profile">Personal Profile</option>
                   </select>
                 </div>
                 
                 <div class="form-group">
-                  <label for="categories">Categories * (Select up to 3)</label>
+                  <label for="categories">Category * (Select up to 3)</label>
                   <div class="category-selection">
                     <div class="category-grid">
                       <label class="category-option">
                         <input type="checkbox" name="categories[]" value="art">
-                        <span class="category-label">Art</span>
+                        <span class="category-label">Art/Design/Crafts</span>
                       </label>
                       <label class="category-option">
                         <input type="checkbox" name="categories[]" value="beauty">
@@ -775,43 +796,19 @@
                       </label>
                       <label class="category-option">
                         <input type="checkbox" name="categories[]" value="business">
-                        <span class="category-label">Business</span>
+                        <span class="category-label">Business/Entrepreneurship</span>
                       </label>
                       <label class="category-option">
                         <input type="checkbox" name="categories[]" value="computer-science">
                         <span class="category-label">Computer Science</span>
                       </label>
                       <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="consulting">
-                        <span class="category-label">Consulting</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="crafts-handmade">
-                        <span class="category-label">Crafts/Handmade</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="data">
-                        <span class="category-label">Data</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="design">
-                        <span class="category-label">Design</span>
-                      </label>
-                      <label class="category-option">
                         <input type="checkbox" name="categories[]" value="engineering">
                         <span class="category-label">Engineering</span>
                       </label>
                       <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="entrepreneurship">
-                        <span class="category-label">Entrepreneurship</span>
-                      </label>
-                      <label class="category-option">
                         <input type="checkbox" name="categories[]" value="environment">
-                        <span class="category-label">Environment</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="event-planning">
-                        <span class="category-label">Event Planning</span>
+                        <span class="category-label">Environmental</span>
                       </label>
                       <label class="category-option">
                         <input type="checkbox" name="categories[]" value="finance">
@@ -819,83 +816,35 @@
                       </label>
                       <label class="category-option">
                         <input type="checkbox" name="categories[]" value="film">
-                        <span class="category-label">Film</span>
+                        <span class="category-label">Film/Performing Arts</span>
                       </label>
                       <label class="category-option">
                         <input type="checkbox" name="categories[]" value="food-drink">
-                        <span class="category-label">Food + Drink</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="hairstyling-barber">
-                        <span class="category-label">Hairstyling + Barber</span>
+                        <span class="category-label">Food/Drink</span>
                       </label>
                       <label class="category-option">
                         <input type="checkbox" name="categories[]" value="health">
-                        <span class="category-label">Health</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="human-resources">
-                        <span class="category-label">Human Resources</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="landscaping">
-                        <span class="category-label">Landscaping</span>
+                        <span class="category-label">Health/Medicine</span>
                       </label>
                       <label class="category-option">
                         <input type="checkbox" name="categories[]" value="law">
-                        <span class="category-label">Law</span>
+                        <span class="category-label">Law/Political Science</span>
                       </label>
                       <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="literature">
-                        <span class="category-label">Literature</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="marketing">
-                        <span class="category-label">Marketing</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="operations">
-                        <span class="category-label">Operations</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="performing-arts">
-                        <span class="category-label">Performing Arts</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="photography">
-                        <span class="category-label">Photography</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="political-science">
-                        <span class="category-label">Political Science</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="product-design">
-                        <span class="category-label">Product Design</span>
+                        <input type="checkbox" name="categories[]" value="writing">
+                        <span class="category-label">Literature/Writing</span>
                       </label>
                       <label class="category-option">
                         <input type="checkbox" name="categories[]" value="psychology">
                         <span class="category-label">Psychology</span>
                       </label>
                       <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="sales">
-                        <span class="category-label">Sales</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="stem">
-                        <span class="category-label">STEM</span>
-                      </label>
-                      <label class="category-option">
                         <input type="checkbox" name="categories[]" value="technology">
                         <span class="category-label">Technology</span>
                       </label>
                       <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="tutoring-education">
-                        <span class="category-label">Tutoring + Education</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="writing">
-                        <span class="category-label">Writing</span>
+                        <input type="checkbox" name="categories[]" value="education">
+                        <span class="category-label">Tutoring/Education</span>
                       </label>
                     </div>
                     <div class="category-counter">
@@ -940,37 +889,6 @@
                   
                   <div id="enhancements-section" style="display: none; margin-top: 1rem; padding: 1.5rem; background: #fafafa; border-radius: 8px; border: 1px solid #e0e0e0;">
                     <div class="form-grid">
-                      <div class="form-group">
-                        <label for="enhancement-images">Additional Images (Optional)</label>
-                        <div class="file-upload" onclick="document.getElementById('enhancement-image-upload').click()">
-                          <input type="file" id="enhancement-image-upload" name="enhancement-images[]" multiple accept=".jpg,.jpeg,.png,.gif,.svg" onchange="handleEnhancementFileSelect(this)">
-                          <div class="upload-text">Click to upload additional images</div>
-                          <div class="upload-hint">Up to 3 images, max 5MB each (JPG, PNG, GIF, SVG)</div>
-                        </div>
-                        <div class="selected-files" id="enhancement-selected-files"></div>
-                      </div>
-                      
-                      <div class="form-group">
-                        <label for="enhancement-emoji">Additional Emoji for Tile (Optional)</label>
-                        <div class="emoji-picker">
-                          <input type="hidden" id="enhancement-emoji" name="enhancement-emoji" value="">
-                          <div class="emoji-options">
-                            <span class="emoji-option" data-emoji="💻">💻</span>
-                      <span class="emoji-option" data-emoji="📱">📱</span>
-                      <span class="emoji-option" data-emoji="☁️">☁️</span>
-                      <span class="emoji-option" data-emoji="🫧">🫧</span>
-                      <span class="emoji-option" data-emoji="☕️">☕️</span>
-                      <span class="emoji-option" data-emoji="📦">📦</span>
-                      <span class="emoji-option" data-emoji="🧋">🧋</span>
-                      <span class="emoji-option" data-emoji="🪄">🪄</span>
-                      <span class="emoji-option" data-emoji="🍵">🍵</span>
-                      <span class="emoji-option" data-emoji="🎀">🎀</span>
-                      <span class="emoji-option" data-emoji="👾">👾</span>
-                          </div>
-                          <div class="selected-emoji" id="enhancement-selected-emoji">Click to select an additional emoji</div>
-                        </div>
-                      </div>
-                      
                       <div class="form-group">
                         <label for="color-preference">Color Code Preference for Instagram promotion Post (Multiple Choice)</label>
                         <div class="color-selection">
@@ -1114,60 +1032,6 @@
     // File upload handling for enhancement images
     let enhancementFiles = [];
     
-    function handleEnhancementFileSelect(input) {
-      const files = Array.from(input.files);
-      
-      // Validate file count
-      if (enhancementFiles.length + files.length > 3) {
-        alert('Maximum 3 additional images allowed');
-        return;
-      }
-      
-      // Validate file sizes and types
-      const validFiles = files.filter(file => {
-        if (file.size > 5 * 1024 * 1024) { // 5MB
-          alert(`File ${file.name} is too large. Maximum size is 5MB.`);
-          return false;
-        }
-        
-        const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/svg+xml'];
-        if (!validTypes.includes(file.type)) {
-          alert(`File ${file.name} is not a valid image type.`);
-          return false;
-        }
-        
-        return true;
-      });
-      
-      enhancementFiles = [...enhancementFiles, ...validFiles];
-      displayEnhancementFiles();
-    }
-    
-    function displayEnhancementFiles() {
-      const container = document.getElementById('enhancement-selected-files');
-      container.innerHTML = '';
-      
-      enhancementFiles.forEach((file, index) => {
-        const fileItem = document.createElement('div');
-        fileItem.className = 'file-item';
-        fileItem.innerHTML = `
-          <span class="file-name">${file.name}</span>
-          <button type="button" class="remove-file" onclick="removeEnhancementFile(${index})">Remove</button>
-        `;
-        container.appendChild(fileItem);
-      });
-    }
-    
-    function removeEnhancementFile(index) {
-      enhancementFiles.splice(index, 1);
-      displayEnhancementFiles();
-      
-      // Update the file input
-      const input = document.getElementById('enhancement-image-upload');
-      const dt = new DataTransfer();
-      enhancementFiles.forEach(file => dt.items.add(file));
-      input.files = dt.files;
-    }
 
     // Link management functionality
     function addLink() {
@@ -1227,39 +1091,54 @@
 
     // Enhancement functionality
     document.addEventListener('DOMContentLoaded', function() {
-      // Enhancement emoji picker functionality
-      const enhancementEmojiOptions = document.querySelectorAll('#enhancements-section .emoji-option');
-      const enhancementSelectedEmojiDiv = document.getElementById('enhancement-selected-emoji');
-      const enhancementEmojiInput = document.getElementById('enhancement-emoji');
       
-      enhancementEmojiOptions.forEach(option => {
-        option.addEventListener('click', function() {
-          const emoji = this.getAttribute('data-emoji');
+      // Category selection functionality (without checkboxes)
+      const categoryOptions = document.querySelectorAll('.category-option');
+      const categoryCounter = document.querySelector('.category-counter');
+      let selectedCategories = [];
+      const maxCategories = 3;
+
+      categoryOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+          e.preventDefault(); // Prevent default label behavior
           
-          // Remove selected class from all enhancement options
-          enhancementEmojiOptions.forEach(opt => opt.classList.remove('selected'));
+          const checkbox = this.querySelector('input[type="checkbox"]');
+          const isSelected = this.classList.contains('selected');
           
-          // Add selected class to clicked option
-          this.classList.add('selected');
+          if (isSelected) {
+            // Deselect
+            this.classList.remove('selected');
+            checkbox.checked = false;
+            selectedCategories = selectedCategories.filter(cat => cat !== checkbox.value);
+          } else {
+            // Check if we can select more
+            if (selectedCategories.length < maxCategories) {
+              this.classList.add('selected');
+              checkbox.checked = true;
+              selectedCategories.push(checkbox.value);
+            } else {
+              alert(`You can only select up to ${maxCategories} categories.`);
+              return;
+            }
+          }
           
-          // Update the hidden input value
-          enhancementEmojiInput.value = emoji;
-          
-          // Update the display
-          enhancementSelectedEmojiDiv.textContent = emoji;
-          enhancementSelectedEmojiDiv.classList.add('has-emoji');
+          updateCategoryCounter();
         });
       });
-      
-      // Allow clicking on selected enhancement emoji to deselect
-      enhancementSelectedEmojiDiv.addEventListener('click', function() {
-        if (enhancementEmojiInput.value) {
-          enhancementEmojiOptions.forEach(opt => opt.classList.remove('selected'));
-          enhancementEmojiInput.value = '';
-          this.textContent = 'Click to select an additional emoji';
-          this.classList.remove('has-emoji');
+
+      function updateCategoryCounter() {
+        const remaining = maxCategories - selectedCategories.length;
+        categoryCounter.textContent = `${selectedCategories.length}/${maxCategories} selected`;
+        
+        if (remaining === 0) {
+          categoryCounter.classList.add('warning');
+        } else {
+          categoryCounter.classList.remove('warning');
         }
-      });
+      }
+
+      // Initialize counter
+      updateCategoryCounter();
       
       // Optional enhancements toggle functionality
       const enableEnhancementsCheckbox = document.getElementById('enable-enhancements');
@@ -1290,18 +1169,7 @@
       const permissionIgText = document.getElementById('permission-ig-text');
       const permissionPartnershipsText = document.getElementById('permission-partnerships-text');
       
-      if (ventureType === 'personal-profile') {
-        // Personal profile placeholders
-        descriptionTextarea.placeholder = "Help potential co-founders or partners understand who you are, your skills, and unique valuable assets. What makes you stand out as a person to work with?";
-        linkInput.placeholder = "https://linkedin.com/in/yourname or personal portfolio/social media";
-        nicheTextarea.placeholder = "What's your standout trait or specialty? (Example: UX researcher passionate about accessibility, or data scientist with expertise in healthcare analytics)";
-        
-        // Personal profile permissions
-        permissionIgContainer.style.display = 'none';
-        permissionPartnershipsContainer.style.display = 'flex';
-        permissionPersonalContainer.style.display = 'flex';
-        
-      } else if (ventureType === 'small-biz' || ventureType === 'startup') {
+      if (ventureType === 'small-biz' || ventureType === 'startup') {
         // Business/startup placeholders
         descriptionTextarea.placeholder = "Give an overview of what your business/startup does and what makes your work special. Focus on what makes you stand out as a unique venture.";
         linkInput.placeholder = "https://yourwebsite.com or main business social media";

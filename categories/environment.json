@@ -1,0 +1,31 @@
+[
+  {
+    "title": "The Seed Project",
+    "category": "Environment",
+    "type": "startup",
+    "description": "The Seed Project is an initiative from Van Mohatsav which India celebrates from 1-7 July. This first week of July, we plant trees and care for them. The Environmental Club has started this event where we plant beneficial trees to the ecosystem. The winners will be decided on who plants the most beneficial trees, they will get a free digital certificate and volunteer hours.This event will go on from 6 July to 26 July. For more info, visit our Instagram page!",
+    "niche": "Tree Planting & Environmental Education",
+    "connectionLink": "#",
+    "emoji": "💻"
+  },
+ 
+  {
+    "title": "The Environmental Club",
+    "category": "Environment",
+    "type": "startup",
+    "description": "The Environment Club is a youth-led organization founded by enthusiastic young people who have an immense concern for the environment. It all comes down to preserving our home's distinctive landscapes, incredible wildlife, and inherent strength. Our goal is to bring about tangible change, raise awareness, and construct a more sustainable, compassionate, and vibrant future.",
+    "niche": "Youth Environmental Conservation",
+    "connectionLink": "#",
+    "emoji": "💻"
+  },
+ 
+  {
+    "title": "One Leaf Time",
+    "category": "Environment",
+    "type": "startup",
+    "description": "One Leaf Time is dedicated to spreading awareness against the many environmental factors that harms our planet, the Earth. We strive to advocate for our planet, as we only have one home. We must take action.",
+    "niche": "Environmental Awareness & Advocacy",
+    "connectionLink": "https://www.instagram.com/oneleaftime/",
+    "emoji": "💻"
+  }
+]
