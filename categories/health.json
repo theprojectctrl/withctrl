@@ -60,5 +60,15 @@
     "niche": "Pediatric Cancer Support & Family Care",
     "connectionLink": "https://www.instagram.com/healthyouthunity/",
     "emoji": "💻"
+  },
+  {
+    "title": "Young Heart Innovators Coalition",
+    "category": "Health",
+    "type": "startup",
+    "description": "Global youth-led network supporting pediatric patients with congenital heart conditions. It connects students and organizations to raise awareness and funds. Its mission is to empower the next generation of leaders in health, STEM, and community service through resources, mentorship, and project opportunities, enabling members to make a tangible impact.",
+    "niche": "Connecting global youth STEM innovators to empower pediatric heart health and leadership.",
+    "socialHandle": "yhi.coalition",
+    "connectionLink": "https://www.instagram.com/yhi.coalition/",
+    "emoji": "💻"
   }
 ]

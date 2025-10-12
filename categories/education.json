@@ -50,5 +50,17 @@
      "connectionLink": "https://www.instagram.com/rosine.initiative?igsh=MXc5NXVmeXpsMnBjNQ%3D%3D&utm_source=qr",
     "openToPartnerships": true,
     "emoji": "🎀"
-   }
+   },
+
+    {
+    "title": "Bizn Bite",
+    "category": "Business",
+    "categories": ["Business", "Entrepreneurship", "Tutoring + Education"],
+    "type": "small biz",
+    "description": "Bizn Bite is an initiative that aims to make business knowledge fun, digestible, and accessible for the youth.",
+    "niche": "business education, business programs and workshops, professional development",
+    "connectionLink": "https://www.instagram.com/bizn.bite?igsh=MThmbTRzaTB6YWpvZQ%3D%3D&utm_source=qr",
+    "openToPartnerships": true,
+    "emoji": "☕️"
+  }
 ]

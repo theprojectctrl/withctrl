@@ -27,5 +27,17 @@
     "niche": "Environmental Awareness & Advocacy",
     "connectionLink": "https://www.instagram.com/oneleaftime/",
     "emoji": "💻"
+  },
+
+  {
+    "title": "Lavender Liberty",
+    "category": "Environment",
+    "categories": ["Environment", "Law", "Political-Science"],
+    "type": "Startup",
+    "description": "Lavender Liberty is a grassroots organization built by youth, for youth - creating spaces where young voices aren't just heard, but centered in the fight for liberation and justice by amplifying the voice of youth through literary media and platforms.",
+    "niche": "Revolutionary media amplifying marginalized voices through collaborative zines and authentic storytelling.",
+    "connectionLink": "https://sindarose.wixsite.com/lavender-liberty",
+    "openToPartnerships": true,
+    "emoji": "☕️"
   }
 ]
