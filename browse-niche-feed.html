@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Niche Feed - bobigos</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-REKT5H0GXW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-REKT5H0GXW');
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-header {
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back-button {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 0.75rem 1.5rem;
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-button:hover {
+      background: #f8f8f8;
+      border-color: #ccc;
+      transform: translateY(-1px);
+    }
+
+    .feed-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      min-height: calc(100vh - 120px);
+      position: relative;
+    }
+
+    .feed-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .feed-title {
+      font-size: 2.5rem;
+      font-weight: 400;
+      margin: 0 0 1rem 0;
+      color: #000;
+      font-family: 'Lucida Console', monospace;
+    }
+
+    .feed-subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      margin: 0;
+    }
+
+    .feed-content {
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      border: 1px solid #f0f0f0;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    }
+
+
+
+    .project-category {
+      background: #f0f8ff;
+      color: #1976d2;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 400;
+      border: 1px solid #e3f2fd;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .niche-statement {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #333;
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+    }
+
+
+    .no-cards-message {
+      text-align: center;
+      padding: 3rem;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e0e0e0;
+    }
+
+    .no-cards-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      color: #000;
+      font-family: 'Lucida Console', monospace;
+    }
+
+    .no-cards-text {
+      font-size: 1rem;
+      color: #666;
+      margin: 0 0 2rem 0;
+    }
+
+    .reset-button {
+      background: #000;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .reset-button:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+
+    .main-footer {
+      background: #f8f8f8;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content p {
+      color: #666;
+      margin: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0 1rem;
+      }
+
+      .feed-container {
+        padding: 1rem;
+      }
+
+      .card-stack {
+        max-width: 100%;
+        height: 500px;
+      }
+
+      .project-card {
+        padding: 1.5rem;
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+      }
+
+      .niche-statement {
+        font-size: 1rem;
+      }
+
+      .action-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+
+      .connect-button {
+        width: 100px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="favicon.png" alt="bobigos" style="width: 32px; height: 32px;">
+        bobigos
+      </a>
+      <a href="niche-lab.html" class="back-button">
+        <span>←</span>
+        <span>Back to Lab</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="feed-container">
+    <div class="feed-header">
+      <h1 class="feed-title">Browse Niche Feed</h1>
+      <p class="feed-subtitle">Scroll through user uploads and discover your next inspiration</p>
+    </div>
+
+    <div class="feed-content" id="feedContent">
+      <!-- Project cards will be dynamically inserted here -->
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>powered by cold brew @ 2:00AM</p>
+    </div>
+  </footer>
+
+  <script>
+    class NicheFeed {
+      constructor() {
+        this.projects = [];
+        this.feedContent = document.getElementById('feedContent');
+        this.loadProjects();
+      }
+
+      async loadProjects() {
+        try {
+          // Try different possible paths for the JSON file
+          const possiblePaths = [
+            'categories/all-posts.json',
+            './categories/all-posts.json',
+            '/categories/all-posts.json',
+            '../categories/all-posts.json'
+          ];
+          
+          let response;
+          let lastError;
+          
+          for (const path of possiblePaths) {
+            try {
+              console.log('Trying to fetch from:', path);
+              response = await fetch(path);
+              if (response.ok) {
+                console.log('Successfully loaded from:', path);
+                break;
+              }
+            } catch (err) {
+              lastError = err;
+              console.log('Failed to load from:', path, err);
+            }
+          }
+          
+          if (!response || !response.ok) {
+            throw lastError || new Error('Could not load from any path');
+          }
+          
+          this.projects = await response.json();
+          console.log('Loaded projects:', this.projects.length);
+          this.initializeFeed();
+        } catch (error) {
+          console.error('Error loading projects:', error);
+          this.showError();
+        }
+      }
+
+      initializeFeed() {
+        this.feedContent.innerHTML = '';
+        
+        this.projects.forEach(project => {
+          this.createCard(project);
+        });
+      }
+
+      createCard(project) {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        
+        // Generate 12-word niche if not provided
+        const nicheStatement = this.generate12WordNiche(project);
+        
+        card.innerHTML = `
+          <div class="project-category">${project.category}</div>
+          <div class="niche-statement">${nicheStatement}</div>
+        `;
+
+        this.feedContent.appendChild(card);
+      }
+
+      generate12WordNiche(project) {
+        // If niche already exists and is descriptive, use it
+        if (project.niche && project.niche.split(' ').length >= 8) {
+          return project.niche;
+        }
+
+        // Generate a 12-word niche based on project data
+        const modality = this.getModality(project.category);
+        const philosophy = this.getPhilosophy(project.type);
+        const signature = this.getSignatureElement(project.category);
+        const targetCommunity = this.getTargetCommunity(project.category);
+        const approach = this.getApproach(project.type);
+
+        const statements = [
+          `${modality} for ${targetCommunity} using ${approach} to ${philosophy} with ${signature}`,
+          `${approach}-focused ${modality} helping ${targetCommunity} achieve ${philosophy} through ${signature}`,
+          `${philosophy}-driven ${modality} serving ${targetCommunity} via ${approach} and ${signature}`
+        ];
+        
+        return statements[Math.floor(Math.random() * statements.length)];
+      }
+
+      getModality(category) {
+        const modalities = {
+          'Technology': 'Digital Platform',
+          'Graphic Design': 'Design Studio',
+          'Marketing': 'Content Creation',
+          'Tutoring + Education': 'Educational Service',
+          'Environment': 'Wellness Program',
+          'Health': 'Health Initiative',
+          'Finance': 'Financial Service',
+          'Performing Arts': 'Creative Performance',
+          'Writing': 'Literary Platform',
+          'Business': 'Business Service'
+        };
+        return modalities[category] || 'Creative Service';
+      }
+
+      getPhilosophy(type) {
+        const philosophies = {
+          'startup': 'build community',
+          'small biz': 'create impact',
+          'Startup': 'foster innovation'
+        };
+        return philosophies[type] || 'make a difference';
+      }
+
+      getSignatureElement(category) {
+        const signatures = {
+          'Technology': 'innovative solutions',
+          'Graphic Design': 'visual storytelling',
+          'Marketing': 'authentic content',
+          'Tutoring + Education': 'accessible learning',
+          'Environment': 'sustainable practices',
+          'Health': 'compassionate care',
+          'Finance': 'smart strategies',
+          'Performing Arts': 'creative expression',
+          'Writing': 'powerful narratives',
+          'Business': 'strategic growth'
+        };
+        return signatures[category] || 'unique approaches';
+      }
+
+      getTargetCommunity(category) {
+        const communities = {
+          'Technology': 'youth in tech',
+          'Graphic Design': 'emerging creators',
+          'Marketing': 'Gen Z audiences',
+          'Tutoring + Education': 'young learners',
+          'Environment': 'eco-conscious youth',
+          'Health': 'health-focused teens',
+          'Finance': 'future investors',
+          'Performing Arts': 'creative youth',
+          'Writing': 'aspiring writers',
+          'Business': 'young entrepreneurs'
+        };
+        return communities[category] || 'young people';
+      }
+
+      getApproach(type) {
+        const approaches = {
+          'startup': 'collaborative methods',
+          'small biz': 'personalized service',
+          'Startup': 'innovative approaches'
+        };
+        return approaches[type] || 'creative methods';
+      }
+
+      showError() {
+        // Fallback to sample data if JSON can't be loaded
+        console.log('Using fallback sample data');
+        this.projects = [
+          {
+            title: "cherielle",
+            category: "Technology",
+            description: "A 501(c)(3) youth-led nonprofit that bridges the gender gap and empowers girls in computer science through tutoring, resources, and community building.",
+            niche: "Digital Platform for girls in computer science using mentorship to build confidence through community support",
+            emoji: "💻",
+            connectionLink: "https://www.instagram.com/cherielle.code/"
+          },
+          {
+            title: "Gradient Colours",
+            category: "Graphic Design",
+            description: "Collaborates with individuals, startups, and nonprofits to provide professional marketing and design services at no cost while offering hands-on experience.",
+            niche: "Design Studio for startups and nonprofits using free services to build portfolios through real-world projects",
+            emoji: "🎨",
+            connectionLink: "https://www.instagram.com/gradientcolours_/"
+          },
+          {
+            title: "C'est un Mood",
+            category: "Marketing",
+            description: "A youth-led digital community creating a safe, expressive space for teenagers navigating growing up through aesthetic visuals and relatable storytelling.",
+            niche: "Content Creation for Gen Z teens using authentic storytelling to build community through mental wellness support",
+            emoji: "💭",
+            connectionLink: "https://www.instagram.com/cest.un.mood/"
+          }
+        ];
+        this.initializeFeed();
+        
+        // Show a notice about using sample data
+        const notice = document.createElement('div');
+        notice.style.cssText = 'background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 1rem; margin-bottom: 2rem; border-radius: 8px; text-align: center;';
+        notice.innerHTML = '<strong>Note:</strong> Showing sample data. Check console for JSON loading details.';
+        this.feedContent.insertBefore(notice, this.feedContent.firstChild);
+      }
+    }
+
+    // Initialize feed when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      new NicheFeed();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Mode - bobigos</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-REKT5H0GXW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-REKT5H0GXW');
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-header {
+      background: transparent;
+      border-bottom: none;
+      padding: 2rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back-button {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 0.75rem 1.5rem;
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-button:hover {
+      background: #f8f8f8;
+      border-color: #ccc;
+      transform: translateY(-1px);
+    }
+
+    .clock-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .clock-symbols {
+      position: absolute;
+      font-size: 4rem;
+      color: #999;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.8;
+    }
+
+    .clock-symbols.top-left {
+      top: 10%;
+      left: 10%;
+    }
+
+    .clock-symbols.top-right {
+      top: 10%;
+      right: 10%;
+    }
+
+    .clock-symbols.bottom-left {
+      bottom: 10%;
+      left: 10%;
+    }
+
+    .clock-symbols.bottom-right {
+      bottom: 10%;
+      right: 10%;
+    }
+
+    .clock-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .clock-time {
+      font-size: 20rem;
+      font-weight: 700;
+      color: #000;
+      font-family: 'Lucida Console', monospace;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .clock-period {
+      font-size: 8rem;
+      font-weight: 600;
+      color: #666;
+      margin-left: 2rem;
+      vertical-align: top;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0 1rem;
+      }
+
+      .clock-symbols {
+        font-size: 2.5rem;
+      }
+
+      .clock-time {
+        font-size: 12rem;
+      }
+      
+      .clock-period {
+        font-size: 5rem;
+        margin-left: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .clock-symbols {
+        font-size: 2rem;
+      }
+
+      .clock-time {
+        font-size: 8rem;
+      }
+      
+      .clock-period {
+        font-size: 3rem;
+        margin-left: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="favicon.png" alt="bobigos" style="width: 32px; height: 32px;">
+        bobigos
+      </a>
+      <a href="niche-lab.html" class="back-button">
+        <span>←</span>
+        <span>Back to Lab</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="clock-container">
+    <div class="clock-symbols top-left">𐙚</div>
+    <div class="clock-symbols top-right">⋆.˚</div>
+    <div class="clock-symbols bottom-left">⋆౨ৎ˚</div>
+    <div class="clock-symbols bottom-right">⟡˖ ࣪</div>
+    
+    <div class="clock-content">
+      <div class="clock-time" id="clockTime">6:10</div>
+      <div class="clock-period" id="clockPeriod">PM</div>
+    </div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const period = hours >= 12 ? 'PM' : 'AM';
+      
+      if (hours > 12) hours -= 12;
+      if (hours === 0) hours = 12;
+
+      const timeString = `${hours}:${minutes.toString().padStart(2, '0')}`;
+      
+      document.getElementById('clockTime').textContent = timeString;
+      document.getElementById('clockPeriod').textContent = period;
+
+      // Update every second
+      setTimeout(updateClock, 1000);
+    }
+
+    // Initialize clock when page loads
+    document.addEventListener('DOMContentLoaded', updateClock);
+  </script>
+</body>
+</html>

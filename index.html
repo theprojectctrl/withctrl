@@ -42,6 +42,10 @@
       padding: 0;
       text-transform: lowercase;
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
     
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Lucida Console' !important;
@@ -961,6 +965,37 @@
       border-top: 1px solid #f0f0f0;
     }
 
+    /* Bobigos Dropdown Styles */
+    .bobigos-dropdown-toggle:hover {
+      background: #f0f8ff !important;
+      border-color: #e6f3ff !important;
+    }
+
+    .bobigos-dropdown-content {
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* About Button Styles (matching network page connect buttons) */
+    .about-button:hover {
+      background: #e9ecef !important;
+      border-color: #dee2e6 !important;
+      transform: translateY(-1px) !important;
+      text-decoration: none !important;
+      color: #000 !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    }
+
     .main-footer {
       background: #f8f8f8;
       padding: 2rem 0;
@@ -1002,6 +1037,19 @@
       .secondary-button {
         width: 100%;
         max-width: 300px;
+      }
+
+      /* Hero section button container responsive */
+      .hero-section div[style*="display: flex"] {
+        flex-direction: column !important;
+        gap: 1rem !important;
+      }
+
+      .hero-section .start-imagining-button,
+      .hero-section .cta-button.secondary,
+      .hero-section .about-button {
+        width: 100% !important;
+        max-width: 300px !important;
       }
 
       .categories-grid {
@@ -1101,8 +1149,12 @@
         <p class="hero-subtitle" style="font-size: 1.25rem; color: #000; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
           bobigos connects niches into a creative network; helping small businesses and startups grow and collaborate
         </p>
-        <div style="text-align: center;">
+        <div style="text-align: center; display: flex; gap: 1rem; justify-content: center; align-items: center;">
           <a href="network.html" class="start-imagining-button" style="font-size: 1.15rem; padding: 1.1rem 2.5rem; border-radius: 2rem;">browse ideas</a>
+          <a href="#about-bobigos" class="about-button" style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 20px; padding: 0.6rem 2rem; text-decoration: none; color: #000; font-weight: 500; font-size: 1rem; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; min-width: 120px; justify-content: center; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
+            <span>about</span>
+            <span class="arrow" style="color: #000; font-size: 1.1rem; margin-left: 0.25rem;">→</span>
+          </a>
         </div>
       </div>
     </section>
@@ -1112,7 +1164,7 @@
         <div class="bento-card" style="display: flex; justify-content: space-between; align-items: center; gap: 2rem; background: #fff; box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; padding: 2.5rem 2rem; margin-bottom: 2.5rem;">
         
           <div style="flex: 1; text-align: center;">
-            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">400+</div>
+            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">600++</div>
             <div style="color: #000; font-size: 1rem;">builders</div>
           </div>
           <div style="flex: 1; text-align: center;">
@@ -1143,7 +1195,7 @@
           <!-- Sample Submission Section -->
           <div class="free-advertising-section" style="display: flex; align-items: center; gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #f0f0f0;">
             <div style="flex-shrink: 0;">
-              <img src="sample-bobigos-post.png" alt="Sample Instagram post submission" style="width: 200px; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
+              <img src="sample-sub.png" alt="Sample Instagram post submission" style="width: 200px; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
             </div>
             <div style="flex: 1;">
               <h2 style="color: #000; font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; font-family: 'Lucida Console'; text-transform: lowercase;">free advertising</h2>
@@ -1195,22 +1247,58 @@
           </div>
         </div>
 
-        <!-- About the Founder Section -->
-        <div class="bento-card founder-card" style="margin-bottom: 2.5rem;">
-          <div style="display: flex; align-items: center; gap: 2rem;">
+        <!-- About Bobigos Section -->
+        <div id="about-bobigos" class="bento-card bobigos-card" style="margin-bottom: 2.5rem;">
+          <div style="display: flex; align-items: flex-start; gap: 2rem;">
             <div style="flex: 1;">
-              <h2 style="color: #000; font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; font-family: 'Lucida Console'; text-transform: lowercase;">about the founder</h2>
-              <p style="color: #666; font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.6;">passionate about creative collaboration and discovering new mediums for communication—which is why bobigos exists. contact for collaborations or proposals!</p>
-              <a href="https://www.linkedin.com/in/genavive-ramirez" target="_blank" class="cta-button secondary" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+              <h2 style="color: #000; font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; font-family: 'Lucida Console'; text-transform: lowercase;">about bobigos</h2>
+              
+              <!-- Dropdown 1: What is Bobigos? -->
+              <div class="bobigos-dropdown" style="margin-bottom: 1rem;">
+                <button class="bobigos-dropdown-toggle" onclick="toggleBobigosDropdown('what-is')" style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f8f8f8; border: 1px solid #e5e5e5; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; text-align: left;">
+                  <h3 style="color: #000; font-size: 1.2rem; font-weight: 700; margin: 0; font-family: 'Lucida Console'; text-transform: lowercase;">what is bobigos?</h3>
+                  <span class="dropdown-arrow" style="font-size: 1.2rem; transition: transform 0.2s ease;">+</span>
+                </button>
+                <div class="bobigos-dropdown-content" id="what-is" style="display: none; padding: 1rem; background: #fff; border: 1px solid #e5e5e5; border-top: none; border-radius: 0 0 8px 8px;">
+                  <p style="color: #666; font-size: 1rem; margin: 0; line-height: 1.6;">bobigos is a free network that connects small and first-time founders to build ventures that stand out. we believe in the power of collaboration and helping small businesses grow through meaningful partnerships and going digital, allowing our 600+ users to grow 24/7 and bring PTO vibes to entrepreneurship.</p>
+                </div>
+              </div>
+
+              <!-- Dropdown 2: Behind the Name -->
+              <div class="bobigos-dropdown" style="margin-bottom: 1rem;">
+                <button class="bobigos-dropdown-toggle" onclick="toggleBobigosDropdown('behind-name')" style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f8f8f8; border: 1px solid #e5e5e5; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; text-align: left;">
+                  <h3 style="color: #000; font-size: 1.2rem; font-weight: 700; margin: 0; font-family: 'Lucida Console'; text-transform: lowercase;">behind the name</h3>
+                  <span class="dropdown-arrow" style="font-size: 1.2rem; transition: transform 0.2s ease;">+</span>
+                </button>
+                <div class="bobigos-dropdown-content" id="behind-name" style="display: none; padding: 1rem; background: #fff; border: 1px solid #e5e5e5; border-top: none; border-radius: 0 0 8px 8px;">
+                  <p style="color: #666; font-size: 1rem; margin: 0; line-height: 1.6;">"bobigos" combines "boba" with "amigos" (spanish for friends). it's about building friendships and partnerships while enhancing or starting your business/startup — like enjoying boba tea with friends while brainstorming!</p>
+                </div>
+              </div>
+
+              <!-- Dropdown 3: What We Provide -->
+              <div class="bobigos-dropdown" style="margin-bottom: 1.5rem;">
+                <button class="bobigos-dropdown-toggle" onclick="toggleBobigosDropdown('what-provide')" style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f8f8f8; border: 1px solid #e5e5e5; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; text-align: left;">
+                  <h3 style="color: #000; font-size: 1.2rem; font-weight: 700; margin: 0; font-family: 'Lucida Console'; text-transform: lowercase;">what we provide</h3>
+                  <span class="dropdown-arrow" style="font-size: 1.2rem; transition: transform 0.2s ease;">+</span>
+                </button>
+                <div class="bobigos-dropdown-content" id="what-provide" style="display: none; padding: 1rem; background: #fff; border: 1px solid #e5e5e5; border-top: none; border-radius: 0 0 8px 8px;">
+                  <p style="color: #666; font-size: 1rem; margin: 0; line-height: 1.6;">we offer a library full of potential partners and niche startup ideas that have worked for our users, and a supportive community where small founders can grow their ventures while staying true to their unique creative vision. we also post startup/business ideas daily on our instagram (@withctrl), as well as featuring users who join the community for free on our website and on our social media pages.</p>
+                </div>
+              </div>
+
+              <a href="join-community.html" class="cta-button secondary" style="display: inline-flex; align-items: center; gap: 0.5rem;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.188 11.846 12.905 13.291 12.905 14.785V20.452H9.351V9H12.765V10.561H12.811C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.368C3.274 4.23 4.194 3.305 5.337 3.305C6.477 3.305 7.401 4.229 7.401 5.368C7.401 6.507 6.476 7.433 5.337 7.433ZM7.119 20.452H3.555V9H7.119V20.452ZM22.225 0H1.771C0.792 0 0 0.774 0 1.729V22.271C0 23.227 0.792 24 1.771 24H22.222C23.2 24 24 23.227 24 22.271V1.729C24 0.774 23.2 0 22.222 0H22.225Z" fill="currentColor"/>
+                  <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                  <path d="M23 21V19C23 18.1645 22.7155 17.3541 22.2094 16.7006C21.7033 16.047 20.9999 15.5867 20.2 15.39" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89317 18.7122 8.75608 18.1676 9.45768C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                connect on linkedin
+                join our community
               </a>
             </div>
             <div style="flex-shrink: 0; text-align: center;">
-              <div style="font-size: 4rem; animation: wand-pulse 2s ease-in-out infinite; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2) rotate(15deg)'" onmouseout="this.style.transform='scale(1)'">
-                🪄
+              <div style="font-size: 4rem; animation: venture-pulse 2s ease-in-out infinite; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2) rotate(15deg)'" onmouseout="this.style.transform='scale(1)'">
+                
               </div>
             </div>
           </div>
@@ -1234,6 +1322,22 @@
     function toggleUserMenu() {
       const dropdown = document.querySelector('.user-dropdown');
       dropdown.classList.toggle('show');
+    }
+
+    // Toggle Bobigos dropdowns
+    function toggleBobigosDropdown(id) {
+      const content = document.getElementById(id);
+      const arrow = content.previousElementSibling.querySelector('.dropdown-arrow');
+      
+      if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        arrow.textContent = '−';
+        arrow.style.transform = 'rotate(0deg)';
+      } else {
+        content.style.display = 'none';
+        arrow.textContent = '+';
+        arrow.style.transform = 'rotate(0deg)';
+      }
     }
 
     // Close user menu when clicking outside

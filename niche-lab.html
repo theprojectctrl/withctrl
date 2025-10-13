@@ -798,551 +798,6 @@
       margin: 0.5rem 0;
     }
 
-    /* Template Types Section */
-    .template-types-section {
-      margin: 3rem 0;
-      padding: 0 2rem;
-    }
-
-    /* Template Carousel Styles */
-    .template-carousel-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      margin: 3rem 0;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .carousel-arrow {
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 1.2rem;
-      color: #666;
-      flex-shrink: 0;
-    }
-
-    .carousel-arrow:hover {
-      background: #a8d8ff;
-      border-color: #a8d8ff;
-      color: #000;
-      transform: scale(1.1);
-    }
-
-    .carousel-arrow:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .template-carousel {
-      flex: 1;
-      max-width: 600px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .template-slides {
-      position: relative;
-      width: 100%;
-      height: 400px;
-    }
-
-
-    .carousel-indicators {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 2rem;
-    }
-
-    .indicator {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #e0e0e0;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .indicator.active {
-      background: #a8d8ff;
-      transform: scale(1.2);
-    }
-
-    .indicator:hover {
-      background: #a8d8ff;
-    }
-
-    .template-types-grid {
-      display: block;
-      margin: 0;
-    }
-
-    .template-type-tile {
-      background: #fff;
-      border: none;
-      border-radius: 12px;
-      padding: 2rem;
-      transition: all 0.4s ease;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      opacity: 0;
-      transform: translateX(30px);
-      pointer-events: none;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
-      outline: none;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .template-type-tile.active {
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: auto;
-    }
-
-    .template-type-tile.active:hover {
-      transform: translateX(0) translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
-    }
-
-    .template-header {
-      position: relative;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .template-label {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #1976d2;
-      background: #e3f2fd;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid #bbdefb;
-      flex-shrink: 0;
-      position: relative;
-    }
-
-    .template-label::before {
-      content: '˙ᵕ˙';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.2rem;
-    }
-
-    .template-a .template-label {
-      background: #e3f2fd;
-      color: #1976d2;
-      border-color: #bbdefb;
-    }
-
-    .template-b .template-label {
-      background: #fff9c4;
-      color: #f57f17;
-      border-color: #ffeb3b;
-    }
-
-    .template-c .template-label {
-      background: #ffebee;
-      color: #d32f2f;
-      border-color: #ffcdd2;
-    }
-
-    .template-content {
-      flex: 1;
-    }
-
-    .template-content h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin: 0 0 0.75rem 0;
-      color: #000;
-    }
-
-    .template-formula {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #666;
-      margin: 0 0 1rem 0;
-      background: #f8f9fa;
-      padding: 0.75rem;
-      border-radius: 6px;
-      border-left: 3px solid #e0e0e0;
-      font-family: 'Lucida Console', monospace;
-    }
-
-    .template-examples {
-      margin-top: 1rem;
-    }
-
-    .template-examples p {
-      margin: 0 0 0.5rem 0;
-      font-weight: 600;
-      color: #000;
-      font-size: 0.9rem;
-    }
-
-    .template-examples ul {
-      margin: 0;
-      padding-left: 1rem;
-    }
-
-    .template-examples li {
-      margin: 0.25rem 0;
-      color: #666;
-      font-size: 0.85rem;
-      line-height: 1.4;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .template-types-section {
-        padding: 0 1rem;
-      }
-
-      .template-carousel-container {
-        flex-direction: column;
-        gap: 1rem;
-        max-width: 100%;
-      }
-
-      .carousel-arrow {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-      }
-
-      .template-carousel {
-        max-width: 100%;
-      }
-
-      .template-type-tile {
-        padding: 1.5rem;
-      }
-
-      .template-label {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-      }
-
-      .template-content h3 {
-        font-size: 1.1rem;
-      }
-
-      .template-formula {
-        font-size: 0.8rem;
-      }
-
-      .template-examples li {
-        font-size: 0.8rem;
-      }
-    }
-
-    /* Step Guide Section */
-    .step-guide-section {
-      margin: 4rem 0;
-      padding: 3rem 2rem;
-      background: #f8f9fa;
-      border-radius: 16px;
-    }
-
-    .step-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 2rem 0 3rem 0;
-      flex-wrap: wrap;
-    }
-
-    .step-button {
-      background: #fff;
-      border: 2px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 1rem 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #666;
-      min-width: 200px;
-      justify-content: center;
-    }
-
-    .step-button:hover {
-      background: #000;
-      border-color: #000;
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .step-button.active {
-      background: #000;
-      border-color: #000;
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Step-specific glows when active */
-    .step-button[data-step="1"].active {
-      box-shadow: 0 4px 20px rgba(33, 150, 243, 0.6), 0 0 0 1px rgba(33, 150, 243, 0.3);
-    }
-
-    .step-button[data-step="2"].active {
-      box-shadow: 0 4px 20px rgba(156, 39, 176, 0.6), 0 0 0 1px rgba(156, 39, 176, 0.3);
-    }
-
-    .step-button[data-step="3"].active {
-      box-shadow: 0 4px 20px rgba(255, 235, 59, 0.6), 0 0 0 1px rgba(255, 235, 59, 0.3);
-    }
-
-    .step-number {
-      background: #f0f0f0;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: #666;
-      border: 2px solid #e0e0e0;
-    }
-
-    .step-button:hover .step-number {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.4);
-      color: #fff;
-    }
-
-    .step-button.active .step-number {
-      background: rgba(255, 255, 255, 0.3);
-      border-color: rgba(255, 255, 255, 0.5);
-      color: #fff;
-    }
-
-    .step-emoji {
-      font-size: 1.2rem;
-      margin: 0 0.5rem;
-    }
-
-    .step-title {
-      flex: 1;
-      text-align: left;
-    }
-
-    .step-content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .step-panel {
-      display: none;
-      background: #fff;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e0e0e0;
-    }
-
-    .step-panel.active {
-      display: block;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .step-panel h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #000;
-      margin: 0 0 1rem 0;
-    }
-
-    .step-panel p {
-      font-size: 1.1rem;
-      color: #666;
-      margin: 0 0 1.5rem 0;
-      line-height: 1.6;
-    }
-
-    .step-question {
-      background: #e3f2fd;
-      border-left: 4px solid #2196f3;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      margin: 1.5rem 0;
-      font-size: 1rem;
-      color: #1976d2;
-    }
-
-    .step-examples {
-      margin-top: 1.5rem;
-    }
-
-    .step-examples h4 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #000;
-      margin: 0 0 1rem 0;
-    }
-
-    .step-examples ul {
-      margin: 0;
-      padding-left: 1.5rem;
-    }
-
-    .step-examples li {
-      margin: 0.5rem 0;
-      color: #666;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    .example-categories {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .example-category {
-      background: #f8f9fa;
-      padding: 1rem;
-      border-radius: 8px;
-      border: 1px solid #e0e0e0;
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
-
-    .example-category strong {
-      color: #000;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .approach-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-
-    .approach-tag {
-      background: #e3f2fd;
-      color: #1976d2;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border: 1px solid #bbdefb;
-    }
-
-    .step-cta {
-      margin-top: 2rem;
-      text-align: center;
-    }
-
-    .step-button-link {
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 0.75rem 1rem;
-      border-radius: 50px;
-      border: 1px solid #333;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      justify-content: center;
-      background: white;
-      color: #333 !important;
-      position: relative;
-      overflow: visible;
-      z-index: 1;
-    }
-
-
-    .step-button-link:hover {
-      transform: scale(1.05);
-      background: #f5f5f5;
-      border-color: #666;
-    }
-
-    .button-icon {
-      font-size: 1.1rem;
-      transition: transform 0.2s ease;
-    }
-
-    .step-button-link:hover .button-icon {
-      transform: translateX(3px);
-    }
-
-    /* Responsive adjustments for step guide */
-    @media (max-width: 768px) {
-      .step-guide-section {
-        padding: 2rem 1rem;
-      }
-
-      .step-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .step-button {
-        min-width: 280px;
-        padding: 0.75rem 1rem;
-      }
-
-      .step-content {
-        padding: 0 1rem;
-      }
-
-      .step-panel {
-        padding: 1.5rem;
-      }
-
-      .example-categories {
-        grid-template-columns: 1fr;
-      }
-
-      .approach-tags {
-        justify-content: center;
-      }
-    }
 
     .suggestions {
       display: flex;
@@ -1466,8 +921,152 @@
       margin: 0;
     }
 
+    /* Browse Section Styles */
+    .browse-section {
+      padding: 4rem 0;
+      margin: 4rem 0;
+    }
+
+    .browse-cards {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .browse-card {
+      flex: 1;
+      max-width: 350px;
+      height: 400px;
+      border-radius: 20px;
+      padding: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .browse-feed-card {
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('classic-boba.png');
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .focus-mode-card {
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('taro-boba.png');
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .browse-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+    }
+
+    .browse-feed-card:hover {
+      box-shadow: 0 16px 48px rgba(200, 230, 201, 0.5);
+    }
+
+    .focus-mode-card:hover {
+      box-shadow: 0 16px 48px rgba(225, 190, 231, 0.5);
+    }
+
+    .card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .feed-icon, .clock-icon {
+      font-size: 2.5rem;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    .browse-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .browse-card p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: white;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .browse-card:hover .card-arrow {
+      transform: translateX(4px);
+      background: rgba(255, 255, 255, 0.3);
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
+      .browse-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .browse-card {
+        max-width: 100%;
+        width: 100%;
+        height: 300px;
+      }
+
       .header-container,
       .main-container {
         padding: 0 1rem;
@@ -1580,26 +1179,6 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
-    <div style="padding: 0 2rem;">
-      <section class="hero-section bento-card">
-        <div class="hero-layout">
-          <div class="hero-left">
-            <div class="hero-boba">🫧</div>
-          </div>
-          <div class="hero-right">
-            <h1>The Lab</h1>
-            <p class="hero-subtitle">Master your niche with <span class="emphasis-blue">proven templates, digitalization guides, and a clear 3-step plan</span> to identify and craft your unique business identity. Turn your <span class="emphasis-yellow">talents into targeted taglines</span> that resonate with your ideal audience.</p>
-            <div class="cta-buttons">
-              <a href="#niche-feed" class="primary-button">
-                Explore Ideas
-                <span class="button-icon">→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
 
 
 
@@ -1608,188 +1187,44 @@
 
 
         
-        <!-- Template Types Section -->
-        <div class="template-types-section">
-          <h2 class="section-title">Choose Your Template</h2>
-          <p class="section-subtitle">Navigate through the templates to find the one that best fits your niche and style</p>
+
+        <!-- Browse Section -->
+        <div class="browse-section">
+          <h2 class="section-title">Browse</h2>
+          <p class="section-subtitle">Choose how you want to explore niches and projects</p>
           
-          <!-- Template Carousel -->
-          <div class="template-carousel-container">
-            <button class="carousel-arrow carousel-prev" id="prevTemplate">
-              <span>←</span>
-            </button>
-            
-            <div class="template-carousel">
-              <div class="template-slides">
-                <!-- Template A -->
-                <div class="template-type-tile template-a active" data-template="0">
-                  <div class="template-header">
-                    <h3>Template A: Impact Statement</h3>
-                    <div class="template-label"></div>
-                  </div>
-                  <div class="template-content">
-                    <p class="template-formula">[What you do / who you serve] + [Your approach or method] → [The impact you create]</p>
-                    <div class="template-examples">
-                      <p><strong>Examples:</strong></p>
-                      <ul>
-                        <li>Rural students learning to code + hands-on workshops → Building tomorrow's tech leaders</li>
-                        <li>Teen literary zines + mentoring and guidance → Nurturing young voices, one story at a time</li>
-                        <li>Sustainable skincare products + eco-conscious production → Caring for skin and the environment</li>
-                      </ul>
-                    </div>
-                  </div>
+          <div class="browse-cards">
+            <div class="browse-card browse-feed-card" onclick="window.location.href='browse-niche-feed.html'">
+              <div class="card-content">
+                <div class="card-icon">
+                  <div class="feed-icon">🪄</div>
                 </div>
-
-                <!-- Template B -->
-                <div class="template-type-tile template-b" data-template="1">
-                  <div class="template-header">
-                    <h3>Template B: Unique Brand Identity</h3>
-                    <div class="template-label"></div>
-                  </div>
-                  <div class="template-content">
-                    <p class="template-formula">[Category] + [Specific niche] + [Signature element / approach] → [How your brand stands out]</p>
-                    <div class="template-examples">
-                      <p><strong>Examples:</strong></p>
-                      <ul>
-                        <li>Technology + Coding education for rural students + Engaging platform → A hub for accessible tech learning</li>
-                        <li>Writing + Teen literature + Collaborative approach → Amplifying the voices of young writers</li>
-                        <li>Beauty + Skincare for sensitive skin + Eco-friendly methods → Gentle beauty, naturally</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Template C -->
-                <div class="template-type-tile template-c" data-template="2">
-                  <div class="template-header">
-                    <h3>Template C: Direct Tagline</h3>
-                    <div class="template-label"></div>
-                  </div>
-                  <div class="template-content">
-                    <p class="template-formula">[Your role / talent] + [Tool or service] + [Who you serve / niche] → [Your tagline statement]</p>
-                    <div class="template-examples">
-                      <p><strong>Examples:</strong></p>
-                      <ul>
-                        <li>Teacher + Coding workshops + Rural students → Teaching code, building futures</li>
-                        <li>Craftsperson + Weaving classes + Local homes → Bringing craftsmanship to everyday life</li>
-                        <li>Visionary + Sustainable beauty platform + Conscious practices → Rethinking beauty for a better world</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                <h3>Browse Niche Feed</h3>
+                <p>find ideas for your first venture with a scrollable feed!</p>
               </div>
+              <div class="card-arrow">→</div>
             </div>
             
-            <button class="carousel-arrow carousel-next" id="nextTemplate">
-              <span>→</span>
-            </button>
+            <div class="browse-card focus-mode-card" onclick="window.location.href='focus-mode.html'">
+              <div class="card-content">
+                <div class="card-icon">
+                  <div class="clock-icon">💿</div>
+                </div>
+                <h3>Focus Mode</h3>
+                <p>Concentrate on your work with a minimalist clock interface</p>
+              </div>
+              <div class="card-arrow">→</div>
+            </div>
           </div>
           
-          <!-- Carousel Indicators -->
-          <div class="carousel-indicators">
-            <span class="indicator active" data-slide="0"></span>
-            <span class="indicator" data-slide="1"></span>
-            <span class="indicator" data-slide="2"></span>
+          <div class="cta-buttons">
+            <a href="network.html" class="primary-button">
+              see more
+              <span class="button-icon">→</span>
+            </a>
           </div>
         </div>
 
-        <!-- 3-Step Guide Section -->
-        <div class="step-guide-section">
-          <h2 class="section-title">3-Step Guide for Crafting a Niche / Signature</h2>
-          <p class="section-subtitle">Click each step to unfold the process for creating your unique niche tagline</p>
-          
-          <div class="step-buttons">
-            <button class="step-button active" data-step="1">
-              <span class="step-number">1</span>
-              <span class="step-emoji">☁️</span>
-              <span class="step-title">Identify Your Hyperspecific Area</span>
-            </button>
-            <button class="step-button" data-step="2">
-              <span class="step-number">2</span>
-              <span class="step-emoji">📱</span>
-              <span class="step-title">Choose Your Signature Element</span>
-            </button>
-            <button class="step-button" data-step="3">
-              <span class="step-number">3</span>
-              <span class="step-emoji">🪄</span>
-              <span class="step-title">Define Your Approach / Talent</span>
-            </button>
-          </div>
-
-          <div class="step-content">
-            <div class="step-panel active" data-step="1">
-              <h3>Step 1: Identify Your Hyperspecific Area</h3>
-              <p>Focus on a narrow, well-defined part of your field.</p>
-              <div class="step-question">
-                <strong>Ask yourself:</strong> Who am I serving? What problem am I solving? What specific skill or topic am I focusing on?
-              </div>
-              <div class="step-examples">
-                <h4>Example prompts:</h4>
-                <ul>
-                  <li>"Rural students learning to code"</li>
-                  <li>"Teen literary zines"</li>
-                  <li>"Sustainable skincare products"</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="step-panel" data-step="2">
-              <h3>Step 2: Choose Your Signature Element</h3>
-              <p>Pick a defining object, tool, color, philosophy, or method that gives your venture a unique flavor.</p>
-              <div class="step-question">
-                <strong>This adds:</strong> Recognition, personality, and consistency.
-              </div>
-              <div class="step-examples">
-                <h4>Example prompts:</h4>
-                <div class="example-categories">
-                  <div class="example-category">
-                    <strong>Object / Tool</strong> → notebook, camera, brush
-                  </div>
-                  <div class="example-category">
-                    <strong>Color / Aesthetic</strong> → blue, earthy tones, bold accents
-                  </div>
-                  <div class="example-category">
-                    <strong>Philosophy</strong> → connection, sustainability, creativity
-                  </div>
-                  <div class="example-category">
-                    <strong>Method / Specialty</strong> → workshops, platform, subscription, mentorship
-                  </div>
-                </div>
-              </div>
-              <div class="step-cta">
-                <a href="digital-products.html" class="step-button-link">
-                  <span class="button-text">Learn About Digital Products</span>
-                  <span class="button-icon">→</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="step-panel" data-step="3">
-              <h3>Step 3: Define Your Approach / Talent</h3>
-              <p>Think about how you deliver your work or engage your audience.</p>
-              <div class="step-question">
-                <strong>This shapes:</strong> The tone, style, and impact of your niche tagline.
-              </div>
-              <div class="step-examples">
-                <h4>Example approaches:</h4>
-                <div class="approach-tags">
-                  <span class="approach-tag">Teacher</span>
-                  <span class="approach-tag">Connector</span>
-                  <span class="approach-tag">Innovator</span>
-                  <span class="approach-tag">Visionary</span>
-                  <span class="approach-tag">Craftsperson</span>
-                  <span class="approach-tag">Strategist</span>
-                </div>
-              </div>
-              <div class="step-cta">
-                <a href="social-media-guide.html" class="step-button-link">
-                  <span class="button-text">Social Media Guide</span>
-                  <span class="button-icon">→</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
         
        
 
@@ -1843,71 +1278,6 @@
     });
 
     // Bento Tile System JavaScript - Static Version
-    // Template Carousel Functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const prevBtn = document.getElementById('prevTemplate');
-      const nextBtn = document.getElementById('nextTemplate');
-      const templateTiles = document.querySelectorAll('.template-type-tile');
-      const indicators = document.querySelectorAll('.indicator');
-      let currentSlide = 0;
-      const totalSlides = templateTiles.length;
-
-      console.log('Carousel initialized with', totalSlides, 'slides');
-
-      function showSlide(slideIndex) {
-        console.log('Showing slide', slideIndex);
-        
-        // Remove active class from all tiles and indicators
-        templateTiles.forEach((tile, index) => {
-          tile.classList.remove('active');
-          console.log('Removed active from tile', index);
-        });
-        indicators.forEach(indicator => indicator.classList.remove('active'));
-        
-        // Add active class to current slide
-        if (templateTiles[slideIndex]) {
-          templateTiles[slideIndex].classList.add('active');
-          console.log('Added active to tile', slideIndex);
-        }
-        if (indicators[slideIndex]) {
-          indicators[slideIndex].classList.add('active');
-        }
-        
-        // Update button states
-        if (prevBtn) prevBtn.disabled = slideIndex === 0;
-        if (nextBtn) nextBtn.disabled = slideIndex === totalSlides - 1;
-      }
-
-      function nextSlide() {
-        if (currentSlide < totalSlides - 1) {
-          currentSlide++;
-          showSlide(currentSlide);
-        }
-      }
-
-      function prevSlide() {
-        if (currentSlide > 0) {
-          currentSlide--;
-          showSlide(currentSlide);
-        }
-      }
-
-      // Event listeners
-      if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-      if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-      
-      // Indicator clicks
-      indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-          currentSlide = index;
-          showSlide(currentSlide);
-        });
-      });
-
-      // Initialize
-      showSlide(0);
-    });
-
     document.addEventListener('DOMContentLoaded', function() {
       const bentoTiles = document.querySelectorAll('.bento-tile');
       
@@ -1922,27 +1292,6 @@
           
           // Toggle current tile
           tile.classList.toggle('expanded');
-        });
-      });
-
-      // Step Guide JavaScript
-      const stepButtons = document.querySelectorAll('.step-button');
-      const stepPanels = document.querySelectorAll('.step-panel');
-
-      stepButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const targetStep = this.getAttribute('data-step');
-          
-          // Remove active class from all buttons and panels
-          stepButtons.forEach(btn => btn.classList.remove('active'));
-          stepPanels.forEach(panel => panel.classList.remove('active'));
-          
-          // Add active class to clicked button and corresponding panel
-          this.classList.add('active');
-          const targetPanel = document.querySelector(`.step-panel[data-step="${targetStep}"]`);
-          if (targetPanel) {
-            targetPanel.classList.add('active');
-          }
         });
       });
     });
