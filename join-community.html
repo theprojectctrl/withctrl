@@ -687,6 +687,480 @@
       border-color: #000;
     }
 
+    /* Bento Form Styles */
+    .bento-form-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .bento-form-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid #f0f0f0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bento-form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #79b7ff, #a8d8ff, #79b7ff);
+    }
+
+    .bento-form-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .bento-form-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .bento-form-subtitle {
+      color: #666;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .bento-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .bento-section {
+      background: #f8f9fa;
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid #e9ecef;
+      transition: all 0.3s ease;
+    }
+
+    .bento-section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .bento-section.full-width {
+      grid-column: span 2;
+    }
+
+    .bento-field-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .bento-field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .bento-field-group.full-width {
+      grid-column: span 2;
+    }
+
+    .bento-field-label {
+      display: block;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .bento-field-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .bento-help-link {
+      background: #e3f2fd;
+      color: #1976d2;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+      border: 1px solid #bbdefb;
+    }
+
+    .bento-help-link:hover {
+      background: #bbdefb;
+      transform: translateY(-1px);
+    }
+
+    .bento-input,
+    .bento-select,
+    .bento-textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: #fff;
+    }
+
+    .bento-input:focus,
+    .bento-select:focus,
+    .bento-textarea:focus {
+      outline: none;
+      border-color: #79b7ff;
+      box-shadow: 0 0 0 3px rgba(121, 183, 255, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .bento-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .bento-word-count {
+      text-align: right;
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    .bento-word-count.warning {
+      color: #ff9800;
+    }
+
+    .bento-word-count.error {
+      color: #f44336;
+      font-weight: 600;
+    }
+
+    .bento-category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .bento-category-option {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: #fff;
+      text-align: center;
+    }
+
+    .bento-category-option:hover {
+      border-color: #79b7ff;
+      background: #f8f9ff;
+      transform: translateY(-2px);
+    }
+
+    .bento-category-option.selected {
+      border-color: #79b7ff;
+      background: #e3f2fd;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(121, 183, 255, 0.2);
+    }
+
+    .bento-category-option input[type="checkbox"] {
+      display: none;
+    }
+
+    .bento-category-label {
+      font-size: 0.9rem;
+      color: #333;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .bento-category-option.selected .bento-category-label {
+      color: #1976d2;
+      font-weight: 600;
+    }
+
+    .bento-category-option.selected .bento-category-label::after {
+      content: " ✓";
+      color: #1976d2;
+      font-weight: bold;
+    }
+
+    .bento-counter {
+      text-align: right;
+      font-size: 0.85rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .bento-counter.warning {
+      color: #ff9800;
+    }
+
+    .bento-counter.error {
+      color: #f44336;
+      font-weight: 600;
+    }
+
+    .bento-links-container {
+      margin-bottom: 1rem;
+    }
+
+    .bento-link-group {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      align-items: center;
+    }
+
+    .bento-link-group .bento-input {
+      flex: 1;
+    }
+
+    .bento-remove-link {
+      background: #f44336;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      min-width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bento-remove-link:hover {
+      background: #d32f2f;
+      transform: scale(1.05);
+    }
+
+    .bento-add-link {
+      background: #f8f9fa;
+      color: #666;
+      border: 2px dashed #dee2e6;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .bento-add-link:hover {
+      background: #e9ecef;
+      border-color: #79b7ff;
+      color: #1976d2;
+      transform: translateY(-1px);
+    }
+
+    .bento-toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: #1a1a1a;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border: 2px solid #e9ecef;
+      transition: all 0.3s ease;
+    }
+
+    .bento-toggle-container:hover {
+      background: #e9ecef;
+      border-color: #79b7ff;
+    }
+
+    .bento-toggle {
+      width: 20px;
+      height: 20px;
+      accent-color: #79b7ff;
+    }
+
+    .bento-enhancements-content {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e9ecef;
+    }
+
+    .bento-enhancements-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .bento-color-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+
+    .bento-color-option {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #fff;
+    }
+
+    .bento-color-option:hover {
+      border-color: #79b7ff;
+      background: #f8f9ff;
+    }
+
+    .bento-color-option input[type="checkbox"] {
+      margin: 0;
+      margin-right: 0.5rem;
+      width: 16px;
+      height: 16px;
+      accent-color: #79b7ff;
+    }
+
+    .bento-color-option input[type="checkbox"]:checked + .bento-color-label {
+      font-weight: 600;
+      color: #1976d2;
+    }
+
+    .bento-color-option:has(input[type="checkbox"]:checked) {
+      border-color: #79b7ff;
+      background: #e3f2fd;
+    }
+
+    .bento-color-label {
+      font-size: 0.9rem;
+      color: #666;
+      transition: all 0.2s ease;
+    }
+
+    .bento-permissions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .bento-permission-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #1a1a1a;
+      line-height: 1.4;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border: 1px solid #e9ecef;
+      transition: all 0.3s ease;
+    }
+
+    .bento-permission-item:hover {
+      background: #e9ecef;
+      border-color: #79b7ff;
+    }
+
+    .bento-checkbox {
+      width: 18px;
+      height: 18px;
+      accent-color: #79b7ff;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .bento-checkbox-label {
+      flex: 1;
+    }
+
+    .bento-submit-section {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .bento-submit-button {
+      background: linear-gradient(135deg, #79b7ff, #a8d8ff);
+      color: white;
+      padding: 1.25rem 3rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 4px 20px rgba(121, 183, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bento-submit-button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      animation: shimmer 2s linear infinite;
+      transform: rotate(45deg);
+    }
+
+    .bento-submit-button:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 30px rgba(121, 183, 255, 0.4);
+    }
+
+    .bento-submit-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .bento-submit-icon {
+      position: relative;
+      z-index: 1;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .bento-submit-button:hover .bento-submit-icon {
+      transform: translateX(4px);
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .header-container,
@@ -694,19 +1168,953 @@
         padding: 0 1rem;
       }
 
-      .form-container {
+      .bento-form-card {
         padding: 1.5rem;
       }
 
-      .form-grid {
+      .bento-form-grid {
         grid-template-columns: 1fr;
       }
 
-      .submit-button {
-        width: 100%;
+      .bento-section.full-width {
+        grid-column: span 1;
       }
 
+      .bento-category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
+      .bento-enhancements-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bento-color-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .bento-submit-button {
+        width: 100%;
+        padding: 1.5rem 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .bento-category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bento-color-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Project Card Form Styles - Exact match to network page */
+    .project-card {
+      background: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: 3rem;
+      transition: all 0.2s ease;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      outline: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+      min-height: 450px;
+      overflow: visible;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .project-header {
+      margin-bottom: 1.5rem;
+      overflow: visible;
+    }
+
+    .project-title-row {
+      margin-bottom: 1.25rem;
+    }
+
+    .project-title-input {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 0;
+      color: #000;
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-family: inherit;
+      padding: 0;
+      resize: none;
+      outline: none;
+    }
+
+    .project-title-input::placeholder {
+      color: #999;
+      font-weight: 400;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0.4rem;
+      margin-bottom: 0;
+      align-items: center;
+      overflow-x: auto;
+      overflow-y: visible;
+      padding-bottom: 0.2rem;
+    }
+
+    .project-type-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-bottom: 0;
+      margin-right: 0;
+      transition: all 0.2s ease;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .project-type-tag:not(.startup):not(.small-biz):not(.business):not(.organization):not(.non-profit):not(.community):not(.event):not(.person) {
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #000000;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-type-tag:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Project type tag colors - exact match to network page */
+    .project-type-tag.non-profit {
+      background: rgba(74, 144, 226, 0.15);
+      color: #4a90e2;
+      border: 1px solid rgba(74, 144, 226, 0.3);
+    }
+
+    .project-type-tag.community {
+      background: rgba(255, 215, 0, 0.15);
+      color: #d4af37;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .project-type-tag.event {
+      background: rgba(255, 152, 0, 0.15);
+      color: #ff9800;
+      border: 1px solid rgba(255, 152, 0, 0.3);
+    }
+
+    .project-type-tag.startup {
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 1px solid #000000 !important;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .project-type-tag.small-biz {
+      background: #000000 !important;
+      color: #ffffff !important;
+      border: 1px solid #000000 !important;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .project-type-tag.business {
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 1px solid #000000 !important;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .project-type-tag.organization {
+      background: rgba(156, 39, 176, 0.15);
+      color: #9c27b0;
+      border: 1px solid rgba(156, 39, 176, 0.3);
+    }
+
+    .project-type-tag.person {
+      background: #000000 !important;
+      color: #ffffff !important;
+      border: 1px solid #000000 !important;
+    }
+
+    .social-handle-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: rgba(135, 206, 250, 0.2);
+      color: #4682b4;
+      border: 1px solid rgba(135, 206, 250, 0.4);
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .social-handle-input-container {
+      display: inline-flex;
+      align-items: center;
+    }
+
+
+    .social-handle-input-field {
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #000000;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+      margin-right: 0.5rem;
+      margin-bottom: 0.4rem;
+      width: 120px;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .social-handle-input-field::placeholder {
+      color: #999;
+    }
+
+    .social-handle-input-field:focus {
+      border-color: #4682b4;
+      box-shadow: 0 0 0 1px rgba(70, 130, 180, 0.3);
+    }
+
+    .project-description-input {
+      color: #666;
+      line-height: 1.6;
+      margin: 0 0 2.5rem 0;
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-family: inherit;
+      padding: 0;
+      resize: none;
+      outline: none;
+      min-height: 120px;
+      font-size: 1.25rem;
+      overflow: hidden;
+      transition: height 0.1s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-description-input::placeholder {
+      color: #999;
+    }
+
+    .description-container {
+      position: relative;
+    }
+
+    .word-count {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      font-size: 0.75rem;
+      color: #999;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    .word-count.warning {
+      color: #ff9800;
+    }
+
+    .word-count.error {
+      color: #f44336;
+    }
+
+    .niche-input-container {
+      position: relative;
+    }
+
+    .niche-word-count {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.5rem;
+    }
+
+    .our-niche-tile {
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+    }
+
+    .niche-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .niche-icon {
+      font-size: 1rem;
+    }
+
+    .niche-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .niche-content-input {
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.4;
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-family: inherit;
+      padding: 0;
+      resize: none;
+      outline: none;
+      min-height: 70px;
+    }
+
+    .niche-content-input::placeholder {
+      color: #999;
+    }
+
+    .project-actions {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .apply-button {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 20px;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .apply-button:hover {
+      background: #e9ecef;
+      transform: translateY(-1px);
+    }
+
+    .apply-button .arrow {
+      font-size: 0.8rem;
+      transition: transform 0.2s ease;
+    }
+
+    .apply-button:hover .arrow {
+      transform: translateX(2px);
+    }
+
+    /* Connect Section Styling - Exact match to project tiles apply-button */
+    .connect-section {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .connect-link-input {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 25px;
+      padding: 1rem 3rem;
+      color: #000;
+      font-weight: 600;
+      font-size: 1.1rem;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s ease;
+      min-width: 180px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .connect-link-input:hover {
+      background: #e9ecef;
+      border-color: #dee2e6;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .connect-link-input:focus {
+      background: #e9ecef;
+      border-color: #dee2e6;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .connect-link-input::placeholder {
+      color: #666;
+      font-weight: 600;
+    }
+
+    /* Join Button Styling - Exact match to "start imagining" button */
+    .join-button-container {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .join-bobigos-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .join-bobigos-button::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 193, 7, 0.8) 70%, 
+        rgba(76, 175, 80, 0.8) 80%, 
+        rgba(33, 150, 243, 0.8) 90%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .join-bobigos-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .join-bobigos-button:hover {
+      transform: scale(1.05);
+    }
+
+    .button-arrow {
+      font-size: 1.1rem;
+      margin-left: 0.25rem;
+    }
+
+    /* Form Configuration Modal */
+    .form-config-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .form-config-content {
+      background: #fff;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-config-content h2 {
+      margin: 0 0 2rem 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .config-section {
+      margin-bottom: 2rem;
+    }
+
+    .config-section label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .config-section input[type="email"],
+    .config-section input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    .type-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .type-option {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .type-option:hover {
+      background: #f8f9fa;
+      border-color: #3b82f6;
+    }
+
+    .type-option input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+
+    .type-option input[type="radio"]:checked + .type-label {
+      font-weight: 600;
+    }
+
+    .category-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .category-option {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .category-option:hover {
+      background: #f8f9fa;
+      border-color: #3b82f6;
+    }
+
+    .category-option input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+
+    .category-option input[type="checkbox"]:checked + .category-label {
+      font-weight: 600;
+    }
+
+    .category-counter {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .link-input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .link-input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    .remove-link-btn {
+      padding: 0.75rem 1rem;
+      background: #f8f9fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .remove-link-btn:hover {
+      background: #e9ecef;
+    }
+
+    .add-link-btn {
+      padding: 0.75rem 1rem;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .add-link-btn:hover {
+      background: #2563eb;
+    }
+
+    .permission-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .permission-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .permission-option input[type="checkbox"] {
+      margin-top: 0.25rem;
+    }
+
+    .permission-label {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #666;
+    }
+
+    .config-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .config-cancel-btn {
+      padding: 0.75rem 1.5rem;
+      background: #f8f9fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .config-cancel-btn:hover {
+      background: #e9ecef;
+    }
+
+    .config-save-btn {
+      padding: 0.75rem 1.5rem;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .config-save-btn:hover {
+      background: #2563eb;
+    }
+
+    /* Additional Form Section */
+    .additional-form-section {
+      max-width: 600px;
+      margin: 3rem auto 0;
+      padding: 2rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+
+    .additional-form-section h3 {
+      margin: 0 0 2rem 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .form-field {
+      margin-bottom: 2rem;
+    }
+
+    .form-field label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .form-field input[type="email"],
+    .form-field input[type="text"],
+    .form-field input[type="url"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    /* Tag Input Container */
+    .tag-input-container {
+      position: relative;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .tag-input-container input {
+      flex: 1;
+    }
+
+    .add-tag-btn {
+      padding: 0.75rem 1rem;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .add-tag-btn:hover {
+      background: #2563eb;
+    }
+
+    /* Category Dropdown */
+    .category-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      max-height: 200px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .category-dropdown-item {
+      padding: 0.75rem;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .category-dropdown-item:hover {
+      background: #f8f9fa;
+    }
+
+    .category-dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    /* Tag Styles */
+    .remove-tag-btn {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      font-size: 1.2rem;
+      margin-left: 0.5rem;
+      padding: 0;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .remove-tag-btn:hover {
+      color: #000;
+    }
+
+    .category-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: rgba(0, 0, 0, 0.08);
+      color: #666;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+      transition: all 0.2s ease;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .category-tag:hover {
+      transform: translateY(-2px);
+    }
+
+    .category-tag .remove-tag-btn {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* Category color styling - exact match to network page */
+    .category-tag[data-category="Art/Design/Crafts"],
+    .category-tag[data-category="Beauty"],
+    .category-tag[data-category="Business"],
+    .category-tag[data-category="Computer Science"],
+    .category-tag[data-category="Engineering"],
+    .category-tag[data-category="Environment"] {
+      background: rgba(173, 216, 230, 0.15) !important;
+      color: #4682b4 !important;
+      border-color: rgba(173, 216, 230, 0.3) !important;
+    }
+
+    .category-tag[data-category="Finance"],
+    .category-tag[data-category="Film"],
+    .category-tag[data-category="Food/Drink"],
+    .category-tag[data-category="Health"],
+    .category-tag[data-category="Law"],
+    .category-tag[data-category="Marketing"] {
+      background: rgba(255, 192, 203, 0.4) !important;
+      color: #000000 !important;
+      border-color: rgba(255, 105, 180, 0.5) !important;
+    }
+
+    .category-tag[data-category="Psychology"],
+    .category-tag[data-category="Technology"],
+    .category-tag[data-category="Writing"] {
+      background: rgba(255, 255, 153, 0.4) !important;
+      color: #000000 !important;
+      border-color: rgba(255, 193, 7, 0.6) !important;
+    }
+
+    /* Project Type Selector Modal */
+    .type-selector-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .type-selector-content {
+      background: #fff;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 500px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .type-selector-content h3 {
+      margin: 0 0 2rem 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .type-selector-content .type-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .type-selector-content .type-option {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .type-selector-content .type-option:hover {
+      background: #f8f9fa;
+      border-color: #3b82f6;
+    }
+
+    .close-type-selector {
+      padding: 0.75rem 1.5rem;
+      background: #f8f9fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .close-type-selector:hover {
+      background: #e9ecef;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .additional-form-section {
+        margin: 2rem 1rem 0;
+        padding: 1.5rem;
+      }
+
+      .type-selector-content {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      .type-selector-content .type-options {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -729,7 +2137,7 @@
       <nav class="main-nav">
         <a href="index.html">Home</a>
         <a href="network.html">Find Partners</a>
-        <a href="niche-lab.html">Browse</a>
+        <a href="niche-lab.html">Niche Tool</a>
         <a href="join-community.html" class="active join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
         <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
           <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -753,234 +2161,128 @@
     <section class="join-form-section">
       <div class="main-container">
         <h1 style="text-align: center; margin-bottom: 1rem;">Join Our Community</h1>
-        <p style="text-align: center; margin-bottom: 3rem; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">This goes into our weekly IG bobigos user roundups to boost your visibility. You can find inspiration from others who found their niche with our The Lab, and you can build partnerships — find the right partners and gain visibility that stays on our website & feeds. Your venture will be featured on our network alongside other bobigos users.</p>
-        <div class="form-container">
-          <h2 class="form-title">Community Application</h2>
+        <p style="text-align: center; margin-bottom: 3rem; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">want to grow 24/7 by posting your startup or business to bobigos.com? fill out your own tile here, submit, and start growing infinitely. after submitting, your tile's information may also be featured on our instagram and social media pages, further directing users who want to partner up or find founders who have a niche, all to you!</p>
+        
+        <!-- Categories Field -->
+        <div class="categories-section" style="max-width: 550px; margin: 2rem auto 1rem auto;">
+          <label for="category-input" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000;">Categories (Select up to 3)</label>
+          <div class="tag-input-container">
+            <input type="text" id="category-input" placeholder="Type to search categories..." style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; outline: none; transition: border-color 0.2s ease;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 1px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+            <div class="category-dropdown" id="category-dropdown"></div>
+          </div>
+        </div>
+
+        <!-- Project Card Form Container -->
+        <div class="projects-grid" style="max-width: 550px; margin: 0 auto; overflow: visible;">
+          <div class="project-card" id="join-form-card">
           <form id="join-community-form" action="https://usebasin.com/f/264e81003939" method="POST">
-                          <div class="form-grid">
-                <div class="form-group">
-                  <label for="email">Email *</label>
-                  <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                  <label for="venture-name">Name *</label>
-                  <input type="text" id="venture-name" name="venture-name" required>
-                </div>
-                
-                <div class="form-group">
-                  <label for="social-handle">Social Media Handle (Optional)</label>
-                  <input type="text" id="social-handle" name="social-handle" placeholder="@yourhandle (Instagram, Twitter, etc.)">
-                </div>
-                
-                <div class="form-group">
-                  <label for="venture-type">Submission Type *</label>
-                  <select id="venture-type" name="venture-type" required>
-                    <option value="">Select type...</option>
-                    <option value="small-biz">Small Business</option>
-                    <option value="startup">Startup</option>
-                  </select>
-                </div>
-                
-                <div class="form-group">
-                  <label for="categories">Category * (Select up to 3)</label>
-                  <div class="category-selection">
-                    <div class="category-grid">
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="art">
-                        <span class="category-label">Art/Design/Crafts</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="beauty">
-                        <span class="category-label">Beauty</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="business">
-                        <span class="category-label">Business/Entrepreneurship</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="computer-science">
-                        <span class="category-label">Computer Science</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="engineering">
-                        <span class="category-label">Engineering</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="environment">
-                        <span class="category-label">Environmental</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="finance">
-                        <span class="category-label">Finance</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="film">
-                        <span class="category-label">Film/Performing Arts</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="food-drink">
-                        <span class="category-label">Food/Drink</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="health">
-                        <span class="category-label">Health/Medicine</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="law">
-                        <span class="category-label">Law/Political Science</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="writing">
-                        <span class="category-label">Literature/Writing</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="psychology">
-                        <span class="category-label">Psychology</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="technology">
-                        <span class="category-label">Technology</span>
-                      </label>
-                      <label class="category-option">
-                        <input type="checkbox" name="categories[]" value="education">
-                        <span class="category-label">Tutoring/Education</span>
-                      </label>
-                    </div>
-                    <div class="category-counter">
-                      <span id="category-count">0</span>/3 categories selected
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label for="description">Description * (50 word limit)</label>
-                  <textarea id="description" name="description" maxlength="250" required placeholder="Help potential co-founders or partners understand who you are and what you are interested/skilled in. Focus on what makes you unique and valuable."></textarea>
-                  <div class="word-count"><span id="word-count">0</span>/50 words</div>
-                </div>
-                
-                <div class="form-group">
-                  <label>Links * (Add up to 3 links)</label>
-                  <div id="links-container">
-                    <div class="link-input-group">
-                      <input type="url" name="links[]" required placeholder="https://yourwebsite.com or social media link" class="link-input">
-                      <button type="button" class="remove-link-btn" onclick="removeLink(this)" style="display: none;">Remove</button>
-                    </div>
-                  </div>
-                  <button type="button" id="add-link-btn" onclick="addLink()" style="margin-top: 0.5rem; padding: 0.5rem 1rem; background: #f8f8f8; border: 1px solid #e0e0e0; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">+ Add Another Link</button>
-                </div>
-                
-                <div class="form-group">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                    <label for="niche">Your Niche * (12 word limit)</label>
-                    <a href="niche-lab.html" target="_blank" style="background: #f0f8ff; color: #000; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; white-space: nowrap; border: 1px solid #e6f3ff; transition: all 0.2s ease;">need help answering?</a>
-                  </div>
-                  <textarea id="niche" name="niche" maxlength="200" required placeholder="What's particularly special about you? Do you have a particular special interest? (Example: passionate about sustainable fashion and ethical consumerism)"></textarea>
-                  <div class="word-count"><span id="niche-word-count">0</span>/12 words</div>
-                </div>
-                
-                
-                <!-- Optional Enhancements Section -->
-                <div class="form-group">
-                  <label class="checkbox-container" style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; font-weight: 600; color: #000; margin-bottom: 1rem; padding: 1rem; background: #f8f8f8; border-radius: 8px; border: 1px solid #e0e0e0;">
-                    <input type="checkbox" id="enable-enhancements" name="enable-enhancements" style="margin: 0; width: 18px; height: 18px; accent-color: #000;">
-                    <span>Add Optional Enhancements (for better visibility and customization)</span>
-                  </label>
-                  
-                  <div id="enhancements-section" style="display: none; margin-top: 1rem; padding: 1.5rem; background: #fafafa; border-radius: 8px; border: 1px solid #e0e0e0;">
-                    <div class="form-grid">
-                      <div class="form-group">
-                        <label for="color-preference">Color Code Preference for Instagram promotion Post (Multiple Choice)</label>
-                        <div class="color-selection">
-                          <div class="color-grid">
-                            <label class="color-option">
-                              <input type="checkbox" name="color-preference[]" value="white">
-                              <span class="color-label">White</span>
-                            </label>
-                            <label class="color-option">
-                              <input type="checkbox" name="color-preference[]" value="black">
-                              <span class="color-label">Black</span>
-                            </label>
-                            <label class="color-option">
-                              <input type="checkbox" name="color-preference[]" value="red">
-                              <span class="color-label">Red</span>
-                            </label>
-                            <label class="color-option">
-                              <input type="checkbox" name="color-preference[]" value="orange">
-                              <span class="color-label">Orange</span>
-                            </label>
-                            <label class="color-option">
-                              <input type="checkbox" name="color-preference[]" value="yellow">
-                              <span class="color-label">Yellow</span>
-                            </label>
-                            <label class="color-option">
-                              <input type="checkbox" name="color-preference[]" value="green">
-                              <span class="color-label">Green</span>
-                            </label>
-                            <label class="color-option">
-                              <input type="checkbox" name="color-preference[]" value="blue">
-                              <span class="color-label">Blue</span>
-                            </label>
-                            <label class="color-option">
-                              <input type="checkbox" name="color-preference[]" value="purple">
-                              <span class="color-label">Purple</span>
-                            </label>
-                            <label class="color-option">
-                              <input type="checkbox" name="color-preference[]" value="pink">
-                              <span class="color-label">Pink</span>
-                            </label>
-                            <label class="color-option">
-                              <input type="checkbox" name="color-preference[]" value="pastels">
-                              <span class="color-label">Pastels</span>
-                            </label>
-                            <label class="color-option">
-                              <input type="checkbox" name="color-preference[]" value="vibrant">
-                              <span class="color-label">Vibrant</span>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div class="form-group">
-                        <label for="metrics-evidence">Metrics/Evidence of Reach (Optional)</label>
-                        <textarea id="metrics-evidence" name="metrics-evidence" placeholder="Share any metrics that demonstrate your reach or impact (e.g., follower count, monthly visitors, sales numbers, etc.)"></textarea>
-                      </div>
-                      
-                      <div class="form-group">
-                        <label for="location">Location (Optional - for location-specific businesses)</label>
-                        <input type="text" id="location" name="location" placeholder="City, State, Country (e.g., Austin, TX or London, UK)">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- Permission Checkboxes -->
-                <div class="form-group">
-                  <label style="margin-bottom: 1rem; font-weight: 600; color: #000;">Permissions</label>
-                  
-                  <div style="display: flex; flex-direction: column; gap: 1rem;">
-                    <label class="checkbox-container" style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; font-weight: 500; color: #000; line-height: 1.4;">
-                      <input type="checkbox" id="permission-ig" name="permission-ig" style="margin: 0; width: 18px; height: 18px; accent-color: #000; flex-shrink: 0; margin-top: 2px;">
-                      <span id="permission-ig-text">I give permission for bobigos to share my venture on Instagram and other social media platforms to promote community visibility</span>
-                    </label>
-                    
-                    <label class="checkbox-container" style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; font-weight: 500; color: #000; line-height: 1.4;">
-                      <input type="checkbox" id="permission-partnerships" name="permission-partnerships" style="margin: 0; width: 18px; height: 18px; accent-color: #000; flex-shrink: 0; margin-top: 2px;">
-                      <span id="permission-partnerships-text">I'm open to partnerships and want to be tagged as "open to partnerships" in the community</span>
-                    </label>
-                    
-                    <label class="checkbox-container" id="permission-personal-container" style="display: none; align-items: flex-start; gap: 0.75rem; cursor: pointer; font-weight: 500; color: #000; line-height: 1.4;">
-                      <input type="checkbox" id="permission-personal" name="permission-personal" style="margin: 0; width: 18px; height: 18px; accent-color: #000; flex-shrink: 0; margin-top: 2px;">
-                      <span id="permission-personal-text">I consent to bobigos displaying all information provided in this form on the website</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
               
-          
-            
-            <button type="submit" class="submit-button">Submit</button>
-          </form>
+              <!-- Project Header -->
+              <div class="project-header">
+                <div class="project-title-row">
+                  <input type="text" id="venture-name" name="venture-name" required placeholder="Your venture name" class="project-title-input">
+                </div>
+                <div class="project-tags" id="project-tags-container">
+                  <!-- Project Type Tag -->
+                  <div class="project-type-tag" id="selected-type-display" onclick="openTypeSelector()">Select Type</div>
+                  
+                
+                  <!-- Social Handle Tag -->
+                  <div class="social-handle-tag" id="social-handle-display" style="display: none;">
+                    <span id="social-handle-text">@handle</span>
+                    <button type="button" class="remove-tag-btn" onclick="removeSocialHandle()">×</button>
+                </div>
+                
+                  <!-- Social Handle Input -->
+                  <div class="social-handle-input-container" id="social-handle-input-container">
+                    <input type="text" id="social-handle-input-main" placeholder="@yourhandle" class="social-handle-input-field">
+                </div>
+                
+                  <!-- Category Tags -->
+                  <div id="category-tags-container"></div>
+                  </div>
+                </div>
+                
+              <!-- Hidden inputs for form submission -->
+              <input type="hidden" id="venture-type-hidden" name="venture-type" required>
+              <input type="hidden" id="email-hidden" name="email" required>
+              <input type="hidden" id="social-handle-hidden" name="social-handle">
+              <input type="hidden" id="description-hidden" name="description" required>
+              <input type="hidden" id="niche-hidden" name="niche" required>
+              <input type="hidden" id="categories-hidden" name="categories" required>
+              <input type="hidden" id="links-hidden" name="links" required>
+              <input type="hidden" id="permission-ig-hidden" name="permission-ig">
+
+              <!-- Project Description -->
+              <div class="description-container">
+                <textarea id="description" name="description" required placeholder="help potential co-founders or partners understand what you do; you can include metrics, event types, a mission statement, etc." class="project-description-input"></textarea>
+                <div class="word-count" id="description-word-count">0/50 words</div>
+                </div>
+                
+              <!-- Our Niche Tile -->
+              <div class="our-niche-tile">
+                <div class="niche-header">
+                  <span class="niche-icon">☕️</span>
+                  <span class="niche-title">Our Niche</span>
+                    </div>
+                <div class="niche-input-container">
+                  <textarea id="niche" name="niche" required placeholder="how is your venture unique?" class="niche-content-input"></textarea>
+                  <div class="word-count niche-word-count" id="niche-word-count">0/15 words</div>
+                  </div>
+                </div>
+                
+              <!-- Project Actions -->
+              <div class="project-actions">
+                <div class="connect-section">
+                  <input type="url" id="main-link-input" placeholder="add a link!" class="connect-link-input">
+                  </div>
+                </div>
+                
+            </form>
+                    </div>
+                </div>
+                
+
+        <!-- Email and Permission Fields -->
+        <div class="email-permission-section" style="max-width: 550px; margin: 2rem auto;">
+          <!-- Email Field -->
+          <div class="email-section" style="margin-bottom: 1.5rem;">
+            <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000;">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; outline: none; transition: border-color 0.2s ease;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 1px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+          </div>
+
+          <!-- Permission Field -->
+          <div class="permission-section">
+            <label class="permission-option" style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; padding: 1rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+              <input type="checkbox" id="permission-ig" name="permission-ig" style="margin: 0; margin-top: 0.2rem;">
+              <span class="permission-label" style="font-size: 0.9rem; line-height: 1.4; color: #333;">I give permission for bobigos to share my venture on Instagram and other social media platforms</span>
+            </label>
+          </div>
+        </div>
+                      
+        <!-- Join Button Below Card -->
+        <div class="join-button-container">
+          <button type="submit" form="join-community-form" class="join-bobigos-button">
+            <span>Join bobigos</span>
+            <span class="button-arrow">→</span>
+          </button>
+                      </div>
+                      
+              
+        <!-- Project Type Selector Modal -->
+        <div id="type-selector-modal" class="type-selector-modal">
+          <div class="type-selector-content">
+            <h3>Select Project Type</h3>
+            <div class="type-options">
+              <div class="type-option" onclick="selectProjectType('startup', 'Startup')">
+                <span class="type-label">Startup</span>
+              </div>
+              <div class="type-option" onclick="selectProjectType('small-biz', 'Small Business')">
+                <span class="type-label">Small Business</span>
+              </div>
+            </div>
+            <button type="button" class="close-type-selector" onclick="closeTypeSelector()">Cancel</button>
+          </div>
         </div>
       </div>
     </section>
@@ -993,45 +2295,240 @@
   </footer>
 
   <script>
-    // Word count functionality
-    const descriptionTextarea = document.getElementById('description');
-    const wordCountSpan = document.getElementById('word-count');
-    const nicheTextarea = document.getElementById('niche');
-    const nicheWordCountSpan = document.getElementById('niche-word-count');
-    
-    descriptionTextarea.addEventListener('input', function() {
-      const words = this.value.trim().split(/\s+/).filter(word => word.length > 0);
-      const wordCount = words.length;
-      wordCountSpan.textContent = wordCount;
-      
-      // Remove existing classes
-      wordCountSpan.parentElement.classList.remove('warning', 'error');
-      
-      if (wordCount > 50) {
-        wordCountSpan.parentElement.classList.add('error');
-      } else if (wordCount > 40) {
-        wordCountSpan.parentElement.classList.add('warning');
-      }
+    // Project Card Form JavaScript
+    let formData = {
+      ventureName: '',
+      ventureType: '',
+      email: '',
+      socialHandle: '',
+      description: '',
+      niche: '',
+      categories: [],
+      links: [],
+      mainLink: ''
+    };
+
+    // Available categories for dropdown
+    const availableCategories = [
+      'Art/Design/Crafts', 'Beauty', 'Business', 'Computer Science', 'Engineering',
+      'Environment', 'Finance', 'Film', 'Food/Drink', 'Health', 'Law', 'Psychology',
+      'Technology', 'Tutoring/Education', 'Writing'
+    ];
+
+    // Update form data when inputs change
+    document.getElementById('venture-name').addEventListener('input', function() {
+      formData.ventureName = this.value;
     });
-    
-    nicheTextarea.addEventListener('input', function() {
-      const words = this.value.trim().split(/\s+/).filter(word => word.length > 0);
+
+    document.getElementById('description').addEventListener('input', function() {
+      formData.description = this.value;
+      updateWordCount('description', this.value, 50);
+      autoExpandTextarea(this);
+    });
+
+    document.getElementById('niche').addEventListener('input', function() {
+      formData.niche = this.value;
+      updateWordCount('niche', this.value, 15);
+      autoExpandTextarea(this);
+    });
+
+    // Word count function
+    function updateWordCount(field, text, limit) {
+      const words = text.trim().split(/\s+/).filter(word => word.length > 0);
       const wordCount = words.length;
-      nicheWordCountSpan.textContent = wordCount;
+      const countElement = document.getElementById(`${field}-word-count`);
+      
+      countElement.textContent = `${wordCount}/${limit} words`;
       
       // Remove existing classes
-      nicheWordCountSpan.parentElement.classList.remove('warning', 'error');
+      countElement.classList.remove('warning', 'error');
       
-      if (wordCount > 12) {
-        nicheWordCountSpan.parentElement.classList.add('error');
-      } else if (wordCount > 10) {
-        nicheWordCountSpan.parentElement.classList.add('warning');
+      if (wordCount > limit) {
+        countElement.classList.add('error');
+      } else if (wordCount > limit * 0.8) {
+        countElement.classList.add('warning');
+      }
+    }
+
+    // Auto-expand textarea function
+    function autoExpandTextarea(textarea) {
+      // Reset height to auto to get the correct scrollHeight
+      textarea.style.height = 'auto';
+      
+      // Set height to scrollHeight to fit content
+      textarea.style.height = textarea.scrollHeight + 'px';
+      
+      // Ensure minimum height is maintained based on textarea type
+      let minHeight;
+      if (textarea.id === 'description') {
+        minHeight = 120; // matches min-height in CSS for description
+      } else if (textarea.id === 'niche') {
+        minHeight = 70; // matches min-height in CSS for niche
+      } else {
+        minHeight = 50; // default minimum
+      }
+      
+      if (textarea.scrollHeight < minHeight) {
+        textarea.style.height = minHeight + 'px';
+      }
+    }
+
+    document.getElementById('email').addEventListener('input', function() {
+      formData.email = this.value;
+    });
+
+    // Project Type Selector Functions
+    function openTypeSelector() {
+      document.getElementById('type-selector-modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTypeSelector() {
+      document.getElementById('type-selector-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function selectProjectType(value, label) {
+      formData.ventureType = value;
+      const typeDisplay = document.getElementById('selected-type-display');
+      typeDisplay.textContent = label;
+      typeDisplay.className = `project-type-tag ${value}`;
+      closeTypeSelector();
+    }
+
+    // Social Handle Functions
+    function addSocialHandle() {
+      const input = document.getElementById('social-handle-input');
+      const handle = input.value.trim();
+      
+      if (handle) {
+        formData.socialHandle = handle;
+        const display = document.getElementById('social-handle-display');
+        const text = document.getElementById('social-handle-text');
+        text.textContent = `@${handle}`;
+        display.style.display = 'inline-flex';
+        input.value = '';
+      }
+    }
+
+    function removeSocialHandle() {
+      formData.socialHandle = '';
+      document.getElementById('social-handle-display').style.display = 'none';
+      document.getElementById('social-handle-input-main').style.display = 'inline-block';
+    }
+
+    // Main social handle input functions
+    function addSocialHandleFromMain() {
+      const input = document.getElementById('social-handle-input-main');
+      const handle = input.value.trim();
+      
+      if (handle) {
+        formData.socialHandle = handle;
+        const display = document.getElementById('social-handle-display');
+        const text = document.getElementById('social-handle-text');
+        text.textContent = `@${handle}`;
+        display.style.display = 'inline-flex';
+        input.value = '';
+        input.style.display = 'none';
+      }
+    }
+
+    function removeSocialHandleFromMain() {
+      formData.socialHandle = '';
+      document.getElementById('social-handle-display').style.display = 'none';
+      document.getElementById('social-handle-input-main').style.display = 'inline-block';
+    }
+
+    // Category Functions
+    function addCategory(category) {
+      if (formData.categories.length < 3 && !formData.categories.includes(category)) {
+        formData.categories.push(category);
+        updateCategoryTags();
+        document.getElementById('category-input').value = '';
+        hideCategoryDropdown();
+      }
+    }
+
+    function removeCategory(category) {
+      formData.categories = formData.categories.filter(cat => cat !== category);
+      updateCategoryTags();
+    }
+
+    function updateCategoryTags() {
+      const container = document.getElementById('category-tags-container');
+      container.innerHTML = '';
+      
+      formData.categories.forEach(category => {
+        const tag = document.createElement('div');
+        tag.className = 'category-tag';
+        tag.setAttribute('data-category', category);
+        tag.innerHTML = `
+          <span>${category}</span>
+          <button type="button" class="remove-tag-btn" onclick="removeCategory('${category}')">×</button>
+        `;
+        container.appendChild(tag);
+      });
+    }
+
+    function showCategoryDropdown() {
+      const dropdown = document.getElementById('category-dropdown');
+      const input = document.getElementById('category-input');
+      const query = input.value.toLowerCase();
+      
+      // Debug: Check if availableCategories is defined
+      if (typeof availableCategories === 'undefined') {
+        console.error('availableCategories is not defined');
+        return;
+      }
+      
+      let filtered;
+      if (query === '') {
+        // Show all available categories when empty
+        filtered = availableCategories.filter(cat => !formData.categories.includes(cat));
+      } else {
+        // Filter categories based on query
+        filtered = availableCategories.filter(cat => 
+          cat.toLowerCase().includes(query) && !formData.categories.includes(cat)
+        );
+      }
+      
+      dropdown.innerHTML = '';
+      filtered.forEach(category => {
+        const item = document.createElement('div');
+        item.className = 'category-dropdown-item';
+        item.textContent = category;
+        item.onclick = () => addCategory(category);
+        dropdown.appendChild(item);
+      });
+      
+      dropdown.style.display = filtered.length > 0 ? 'block' : 'none';
+    }
+
+    function hideCategoryDropdown() {
+      document.getElementById('category-dropdown').style.display = 'none';
+    }
+
+    // Category input event listeners
+    document.getElementById('category-input').addEventListener('input', showCategoryDropdown);
+    document.getElementById('category-input').addEventListener('blur', () => {
+      setTimeout(hideCategoryDropdown, 200);
+    });
+    document.getElementById('category-input').addEventListener('focus', showCategoryDropdown);
+    document.getElementById('category-input').addEventListener('click', showCategoryDropdown);
+
+    // Main social handle input event listeners
+    document.getElementById('social-handle-input-main').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        addSocialHandleFromMain();
       }
     });
 
-    // File upload handling for enhancement images
-    let enhancementFiles = [];
-    
+    document.getElementById('social-handle-input-main').addEventListener('blur', function() {
+      if (this.value.trim()) {
+        addSocialHandleFromMain();
+      }
+    });
 
     // Link management functionality
     function addLink() {
@@ -1046,112 +2543,143 @@
       const newLinkGroup = document.createElement('div');
       newLinkGroup.className = 'link-input-group';
       newLinkGroup.innerHTML = `
-        <input type="url" name="links[]" placeholder="https://yourwebsite.com or social media link" class="link-input">
+        <input type="url" name="links[]" required placeholder="https://yourwebsite.com or social media link" class="link-input">
         <button type="button" class="remove-link-btn" onclick="removeLink(this)">Remove</button>
       `;
       
       container.appendChild(newLinkGroup);
       
-      // Show remove buttons for all links when we have more than 1
       if (linkGroups.length >= 1) {
         container.querySelectorAll('.remove-link-btn').forEach(btn => {
-          btn.style.display = 'block';
+          btn.style.display = 'inline-block';
         });
-      }
-      
-      // Hide add button when we reach max
-      if (linkGroups.length >= 2) {
-        document.getElementById('add-link-btn').style.display = 'none';
       }
     }
     
     function removeLink(button) {
-      const linkGroup = button.closest('.link-input-group');
       const container = document.getElementById('links-container');
       const linkGroups = container.querySelectorAll('.link-input-group');
       
-      // Don't allow removing the last link
-      if (linkGroups.length <= 1) {
-        return;
-      }
-      
-      linkGroup.remove();
-      
-      // Show add button again
-      document.getElementById('add-link-btn').style.display = 'block';
-      
-      // Hide remove buttons if we only have 1 link left
-      const remainingGroups = container.querySelectorAll('.link-input-group');
-      if (remainingGroups.length <= 1) {
+      if (linkGroups.length > 1) {
+        button.parentElement.remove();
+        
+        if (linkGroups.length === 2) {
         container.querySelectorAll('.remove-link-btn').forEach(btn => {
           btn.style.display = 'none';
         });
+        }
       }
     }
 
-    // Enhancement functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      
-      // Category selection functionality (without checkboxes)
-      const categoryOptions = document.querySelectorAll('.category-option');
-      const categoryCounter = document.querySelector('.category-counter');
-      let selectedCategories = [];
-      const maxCategories = 3;
+    // Main link input functionality
+    document.getElementById('main-link-input').addEventListener('input', function() {
+      formData.mainLink = this.value;
+    });
 
-      categoryOptions.forEach(option => {
-        option.addEventListener('click', function(e) {
-          e.preventDefault(); // Prevent default label behavior
-          
-          const checkbox = this.querySelector('input[type="checkbox"]');
-          const isSelected = this.classList.contains('selected');
-          
-          if (isSelected) {
-            // Deselect
-            this.classList.remove('selected');
-            checkbox.checked = false;
-            selectedCategories = selectedCategories.filter(cat => cat !== checkbox.value);
-          } else {
-            // Check if we can select more
-            if (selectedCategories.length < maxCategories) {
-              this.classList.add('selected');
-              checkbox.checked = true;
-              selectedCategories.push(checkbox.value);
-            } else {
-              alert(`You can only select up to ${maxCategories} categories.`);
+
+    // Update form data when links change
+    function updateLinksData() {
+      const linkInputs = document.querySelectorAll('.link-input');
+      const allLinks = Array.from(linkInputs).map(input => input.value).filter(link => link.trim());
+      
+      // Add main link if it exists
+      if (formData.mainLink.trim()) {
+        allLinks.push(formData.mainLink.trim());
+      }
+      
+      formData.links = allLinks;
+    }
+
+    // Add event listeners to existing and new link inputs
+    document.addEventListener('input', function(e) {
+      if (e.target.classList.contains('link-input') || e.target.classList.contains('connect-link-input')) {
+        updateLinksData();
+      }
+    });
+
+    // Form submission handling
+    document.getElementById('join-community-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Update all form data
+      updateLinksData();
+      
+      // Validate required fields
+      if (!formData.ventureName.trim()) {
+        alert('Please enter your venture name');
               return;
             }
-          }
-          
-          updateCategoryCounter();
-        });
-      });
-
-      function updateCategoryCounter() {
-        const remaining = maxCategories - selectedCategories.length;
-        categoryCounter.textContent = `${selectedCategories.length}/${maxCategories} selected`;
-        
-        if (remaining === 0) {
-          categoryCounter.classList.add('warning');
-        } else {
-          categoryCounter.classList.remove('warning');
-        }
+      
+      if (!formData.ventureType) {
+        alert('Please select a venture type');
+        return;
+      }
+      
+      if (!formData.email.trim()) {
+        alert('Please enter your email');
+        return;
+      }
+      
+      if (!formData.description.trim()) {
+        alert('Please enter a description');
+        return;
+      }
+      
+      // Check description word count
+      const descriptionWords = formData.description.trim().split(/\s+/).filter(word => word.length > 0).length;
+      if (descriptionWords > 50) {
+        alert('Description must be 50 words or less');
+        return;
+      }
+      
+      if (!formData.niche.trim()) {
+        alert('Please enter your niche');
+        return;
+      }
+      
+      // Check niche word count
+      const nicheWords = formData.niche.trim().split(/\s+/).filter(word => word.length > 0).length;
+      if (nicheWords > 15) {
+        alert('Niche must be 15 words or less');
+        return;
+      }
+      
+      if (formData.categories.length === 0) {
+        alert('Please select at least one category');
+        return;
+      }
+      
+      if (formData.links.length === 0) {
+        alert('Please add at least one link');
+        return;
       }
 
-      // Initialize counter
-      updateCategoryCounter();
+      // Update hidden inputs for form submission
+      document.getElementById('venture-type-hidden').value = formData.ventureType;
+      document.getElementById('email-hidden').value = formData.email;
+      document.getElementById('social-handle-hidden').value = formData.socialHandle;
+      document.getElementById('description-hidden').value = formData.description;
+      document.getElementById('niche-hidden').value = formData.niche;
+      document.getElementById('categories-hidden').value = formData.categories.join(',');
+      document.getElementById('links-hidden').value = formData.links.join(',');
       
-      // Optional enhancements toggle functionality
-      const enableEnhancementsCheckbox = document.getElementById('enable-enhancements');
-      const enhancementsSection = document.getElementById('enhancements-section');
-      
-      enableEnhancementsCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-          enhancementsSection.style.display = 'block';
-        } else {
-          enhancementsSection.style.display = 'none';
-        }
-      });
+      // Get permission checkbox value
+      const permissionIg = document.getElementById('permission-ig').checked;
+      document.getElementById('permission-ig-hidden').value = permissionIg ? 'yes' : 'no';
+
+      // Submit the form
+      this.submit();
     });
+
+    // Close modal when clicking outside
+    document.getElementById('type-selector-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeTypeSelector();
+      }
+    });
+
+    // Initialize
+    updateCategoryTags();
 
     // Update placeholders and permissions based on submission type
     document.getElementById('venture-type').addEventListener('change', function() {
@@ -1281,7 +2809,7 @@
         categoryCounter.textContent = selectedCount;
         
         // Update counter styling
-        categoryCounter.parentElement.className = 'category-counter';
+        categoryCounter.parentElement.className = 'bento-counter';
         if (selectedCount > maxCategories) {
           categoryCounter.parentElement.classList.add('error');
         } else if (selectedCount === maxCategories) {
@@ -1350,3 +2878,4 @@
 
 </body>
 </html>
+
