@@ -2163,8 +2163,7 @@
       
       <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="network.html">browse ventures</a>
-        <a href="niche-lab.html">work corner</a>
+        <a href="network.html" class="active">Browse</a>
         <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
         
         <!-- Auth Buttons (shown when not logged in) -->
@@ -2262,11 +2261,11 @@
             <div class="bento-content">
               <div class="metrics-left">
                 <div class="metric-item">
-                  <span class="metric-number">30+</span>
+                  <span class="metric-number">30</span>
                   <span class="metric-label">partners</span>
                 </div>
                 <div class="metric-item">
-                  <span class="metric-number">15</span>
+                  <span class="metric-number">30+</span>
                   <span class="metric-label">categories</span>
                 </div>
               </div>
@@ -2982,17 +2981,32 @@
 
       for (const category of categories) {
         try {
-          const response = await fetch(`categories/${category}.json`);
-          if (response.ok) {
-            const data = await response.json();
-            const count = Array.isArray(data) ? data.length : 0;
-            updateCategoryCount(category, count);
-        } else {
-            // If file doesn't exist or fails to load, set count to 0
-            updateCategoryCount(category, 0);
+          // Load both startups and ideas
+          const [startupsResponse, ideasResponse] = await Promise.allSettled([
+            fetch(`categories/${category}.json`),
+            fetch(`categories/ideas-${category}.json`)
+          ]);
+          
+          let startupsCount = 0;
+          let ideasCount = 0;
+          
+          // Count startups
+          if (startupsResponse.status === 'fulfilled' && startupsResponse.value.ok) {
+            const startupsData = await startupsResponse.value.json();
+            startupsCount = Array.isArray(startupsData) ? startupsData.length : 0;
           }
+          
+          // Count ideas
+          if (ideasResponse.status === 'fulfilled' && ideasResponse.value.ok) {
+            const ideasData = await ideasResponse.value.json();
+            ideasCount = Array.isArray(ideasData) ? ideasData.length : 0;
+          }
+          
+          // Total count is startups + ideas
+          const totalCount = startupsCount + ideasCount;
+          updateCategoryCount(category, totalCount);
         } catch (error) {
-          console.warn(`Failed to load ${category}.json:`, error);
+          console.warn(`Failed to load counts for ${category}:`, error);
           updateCategoryCount(category, 0);
         }
       }

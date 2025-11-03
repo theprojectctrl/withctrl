@@ -174,6 +174,7 @@
       padding: 2rem;
       transition: all 0.2s ease;
       position: relative;
+      overflow: visible;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
       outline: none;
       break-inside: avoid;
@@ -349,6 +350,662 @@
       margin-left: 0.25rem;
     }
 
+    /* Toggle Buttons */
+    .view-toggle-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .view-toggle-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      border: 2px solid #000;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .view-toggle-button:hover {
+      background: #f8f9fa;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .view-toggle-button.active {
+      background: #000;
+      color: #fff;
+    }
+
+    /* Idea Card Styles */
+    .idea-card {
+      background: #fff;
+      border: 2px dashed #e0e0e0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.2s ease;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.03);
+      outline: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .idea-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .idea-header {
+      margin-bottom: 0.75rem;
+    }
+
+    .idea-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0;
+      color: #000;
+    }
+
+    .idea-description {
+      color: #666;
+      line-height: 1.6;
+      margin: 0 0 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    .idea-mission {
+      background: rgba(121, 183, 255, 0.08);
+      border: 1px solid rgba(121, 183, 255, 0.2);
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .mission-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1976d2;
+    }
+
+    .mission-content {
+      font-size: 0.9rem;
+      color: #333;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .idea-type-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: rgba(121, 183, 255, 0.15);
+      color: #1976d2;
+      border: 1px solid rgba(121, 183, 255, 0.3);
+      margin-top: 0.5rem;
+    }
+
+    /* Collaboration Section */
+    .collaboration-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .collaboration-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .collaborators-list {
+      margin-bottom: 1rem;
+    }
+
+    .collaborator-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      background: rgba(121, 183, 255, 0.05);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .collaborator-contact {
+      color: #1976d2;
+      font-weight: 500;
+    }
+
+    .discord-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      background: #5865F2;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      margin-top: 0.5rem;
+    }
+
+    .discord-link:hover {
+      background: #4752C4;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+    }
+
+    .collaborate-button {
+      background: linear-gradient(135deg, #79b7ff, #a8d8ff);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+      margin-top: 0.5rem;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .collaborate-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(121, 183, 255, 0.3);
+      text-decoration: none;
+      color: white;
+    }
+
+    /* Collaboration Form Modal */
+    .collaboration-form-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1001;
+      overflow-y: auto;
+    }
+
+    .collaboration-form-content {
+      background: #fff;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 500px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .collaboration-form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .collaboration-form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #000;
+      font-size: 0.9rem;
+    }
+
+    .collaboration-form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s ease;
+    }
+
+    .collaboration-form-group input:focus {
+      outline: none;
+      border-color: #79b7ff;
+      box-shadow: 0 0 0 3px rgba(121, 183, 255, 0.1);
+    }
+
+    .collaboration-form-submit {
+      background: #1a1a1a;
+      color: white;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .collaboration-form-submit:hover {
+      transform: scale(1.02);
+    }
+
+    /* Share Idea Discord Tile - styled like "add your own" tile */
+    .share-idea-discord-tile {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border: 2px dashed #dee2e6;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: visible;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 400px;
+      cursor: default;
+    }
+
+    .share-idea-discord-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .share-idea-discord-tile::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      animation: shimmer 3s linear infinite;
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .share-idea-discord-tile:hover::before {
+      opacity: 1;
+    }
+
+    .share-idea-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .share-idea-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #000;
+      margin: 0 0 0.5rem 0;
+      font-family: 'Lucida Console', monospace;
+    }
+
+    .share-idea-subtitle {
+      color: #666;
+      margin: 0 0 1rem 0;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .share-idea-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    .share-idea-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .share-idea-form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .share-idea-form-group input,
+    .share-idea-form-group textarea {
+      padding: 0.6rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      transition: border-color 0.2s ease;
+    }
+
+    .share-idea-form-group input:focus,
+    .share-idea-form-group textarea:focus {
+      outline: none;
+      border-color: #5865F2;
+      box-shadow: 0 0 0 2px rgba(88, 101, 242, 0.1);
+    }
+
+    .share-idea-form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .share-idea-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      min-width: 160px;
+      justify-content: center;
+      background: #5865F2;
+      color: white;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+      margin: 0 auto;
+    }
+
+    .share-idea-button::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(88, 101, 242, 0.8) 60%, 
+        rgba(88, 101, 242, 0.9) 70%, 
+        rgba(88, 101, 242, 0.8) 80%, 
+        rgba(88, 101, 242, 0.9) 90%, 
+        rgba(88, 101, 242, 0.8) 95%, 
+        rgba(88, 101, 242, 0.9) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .share-idea-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #5865F2;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .share-idea-button:hover {
+      transform: scale(1.05);
+      text-decoration: none;
+      color: white;
+      background: #4752C4;
+    }
+
+    .share-idea-button:hover::after {
+      background: #4752C4;
+    }
+
+    .share-idea-button .arrow {
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .share-idea-button:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    /* Join Community Button - styled like back button with rainbow gradient */
+    .join-community-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      min-width: 160px;
+      justify-content: center;
+      background: #1a1a1a;
+      color: white;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+      margin: 0 auto;
+    }
+
+    .join-community-button::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 167, 38, 0.8) 70%, 
+        rgba(255, 235, 59, 0.8) 80%, 
+        rgba(76, 175, 80, 0.8) 90%, 
+        rgba(33, 150, 243, 0.8) 95%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .join-community-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .join-community-button:hover {
+      transform: scale(1.05);
+      text-decoration: none;
+      color: white;
+    }
+
+    .join-community-button .arrow {
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .join-community-button:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    .discord-icon-svg {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+    }
+
+    /* Idea Form Modal */
+    .idea-form-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .idea-form-content {
+      background: #fff;
+      margin: 2rem auto;
+      padding: 2.5rem;
+      border-radius: 16px;
+      max-width: 600px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .idea-form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .idea-form-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      margin: 0;
+    }
+
+    .close-modal-button {
+      background: #f8f9fa;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .close-modal-button:hover {
+      background: #e9ecef;
+      color: #000;
+    }
+
+    .idea-form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .idea-form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #000;
+      font-size: 0.95rem;
+    }
+
+    .idea-form-group input,
+    .idea-form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s ease;
+    }
+
+    .idea-form-group input:focus,
+    .idea-form-group textarea:focus {
+      outline: none;
+      border-color: #79b7ff;
+      box-shadow: 0 0 0 3px rgba(121, 183, 255, 0.1);
+    }
+
+    .idea-form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .idea-form-submit {
+      background: #1a1a1a;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .idea-form-submit:hover {
+      transform: scale(1.02);
+    }
+
     /* Back button - styled like start imagining button with rainbow gradient */
     .back-button {
       font-size: 1rem;
@@ -428,6 +1085,37 @@
         grid-template-columns: 1fr;
         gap: 1rem;
       }
+
+      .view-toggle-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .view-toggle-button,
+      .submit-idea-button {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .idea-form-content {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      .collaboration-form-content {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      .discord-link {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .collaboration-section {
+        margin-top: 1rem;
+        padding-top: 1rem;
+      }
     }
   </style>
 </head>
@@ -441,8 +1129,7 @@
       
       <nav class="main-nav">
         <a href="../index.html">Home</a>
-        <a href="network.html">browse ventures</a>
-        <a href="niche-lab.html">work corner</a>
+        <a href="../network.html" class="active">Browse</a>
         <a href="../join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
       </nav>
     </div>
@@ -455,29 +1142,211 @@
         <p class="category-subtitle" id="category-subtitle">Explore projects in this category</p>
       </div>
       
+      <!-- View Toggle Buttons -->
+      <div class="view-toggle-container">
+        <button class="view-toggle-button active" id="view-all-btn" onclick="switchView('all')">
+          <span>Browse All</span>
+        </button>
+        <button class="view-toggle-button" id="view-startups-btn" onclick="switchView('startups')">
+          <span>View Startups</span>
+        </button>
+        <button class="view-toggle-button" id="view-ideas-btn" onclick="switchView('ideas')">
+          <span>Find Ideas</span>
+        </button>
+      </div>
+      
       <a href="../network.html" class="back-button">
         <span>Go Back</span>
         <span>→</span>
       </a>
+
       
       <div class="projects-grid" id="projects-grid">
-        <!-- Projects will be loaded here by JavaScript -->
+        <!-- Projects/Ideas will be loaded here by JavaScript -->
       </div>
     </div>
   </main>
+
+  <!-- Collaboration Form Modal -->
+  <div id="collaboration-form-modal" class="collaboration-form-modal">
+    <div class="collaboration-form-content">
+      <div class="idea-form-header">
+        <h2 class="idea-form-title">Join as Collaborator</h2>
+        <button class="close-modal-button" onclick="closeCollaborationForm()">×</button>
+      </div>
+      <form id="collaboration-form" action="https://usebasin.com/f/264e81003939" method="POST">
+        <input type="hidden" name="submission-type" value="collaborator">
+        <input type="hidden" name="idea-id" id="collaboration-idea-id">
+        <input type="hidden" name="category" id="collaboration-category-hidden">
+        
+        <div class="collaboration-form-group">
+          <label for="collaborator-name">Your Name</label>
+          <input type="text" id="collaborator-name" name="collaborator-name" placeholder="Your name" required>
+        </div>
+
+        <div class="collaboration-form-group">
+          <label for="collaborator-contact">Your Contact (IG Handle or Email)</label>
+          <input type="text" id="collaborator-contact" name="collaborator-contact" placeholder="@yourhandle or your@email.com" required>
+        </div>
+
+        <button type="submit" class="collaboration-form-submit">Join as Collaborator</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Idea Submission Form Modal -->
+  <div id="idea-form-modal" class="idea-form-modal">
+    <div class="idea-form-content">
+      <div class="idea-form-header">
+        <h2 class="idea-form-title">Share Your Startup Idea</h2>
+        <button class="close-modal-button" onclick="closeIdeaForm()">×</button>
+      </div>
+      <form id="idea-submission-form" action="https://usebasin.com/f/264e81003939" method="POST">
+        <input type="hidden" name="submission-type" value="idea">
+        <input type="hidden" name="category" id="idea-category-hidden">
+        
+        <div class="idea-form-group">
+          <label for="idea-name">Your Name or Handle</label>
+          <input type="text" id="idea-name" name="idea-name" placeholder="Your name or @handle" required>
+        </div>
+
+        <div class="idea-form-group">
+          <label for="idea-title">Idea Title</label>
+          <input type="text" id="idea-title" name="idea-title" placeholder="A catchy name for your idea" required>
+        </div>
+
+        <div class="idea-form-group">
+          <label for="idea-description">What's Your Idea?</label>
+          <textarea id="idea-description" name="idea-description" placeholder="Describe your startup idea or mission statement..." required></textarea>
+        </div>
+
+        <div class="idea-form-group">
+          <label for="idea-mission">Mission Statement (Optional)</label>
+          <textarea id="idea-mission" name="idea-mission" placeholder="What's the mission or vision behind your idea?"></textarea>
+        </div>
+
+        <div class="idea-form-group">
+          <label for="idea-email">Email</label>
+          <input type="email" id="idea-email" name="email" placeholder="your@email.com" required>
+        </div>
+
+        <div class="idea-form-group">
+          <label for="idea-discord">Discord Server Link (Optional)</label>
+          <input type="url" id="idea-discord" name="discord-link" placeholder="https://discord.gg/your-server">
+          <small style="color: #666; font-size: 0.85rem; margin-top: 0.25rem; display: block;">Add a Discord link for people to collaborate on this idea</small>
+        </div>
+
+        <div class="idea-form-group">
+          <label for="idea-contact">Your Contact Info (IG or Email)</label>
+          <input type="text" id="idea-contact" name="contact-info" placeholder="@yourhandle or your@email.com" required>
+          <small style="color: #666; font-size: 0.85rem; margin-top: 0.25rem; display: block;">This will be shown so people can reach out to collaborate</small>
+        </div>
+
+        <button type="submit" class="idea-form-submit">Submit Idea</button>
+      </form>
+    </div>
+  </div>
 
   <script>
     // Get category from URL parameter
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get('category');
+    let currentView = 'all'; // 'all', 'startups', or 'ideas'
     
     if (category) {
       // Update page title and header
       document.getElementById('category-title').textContent = category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
       document.getElementById('category-subtitle').textContent = `Explore ${category.replace(/-/g, ' ')} projects and connect with like-minded entrepreneurs`;
       
-      // Load projects for this category
-      loadCategoryProjects(category);
+      // Set category in hidden input for idea form
+      document.getElementById('idea-category-hidden').value = category;
+      
+      // Load all (startups and ideas) by default
+      loadCategoryAll(category);
+    }
+
+    function switchView(view) {
+      if (!category) {
+        console.error('Category not found');
+        return;
+      }
+      
+      currentView = view;
+      
+      // Update button states
+      const allBtn = document.getElementById('view-all-btn');
+      const startupsBtn = document.getElementById('view-startups-btn');
+      const ideasBtn = document.getElementById('view-ideas-btn');
+      
+      // Remove active class from all buttons
+      allBtn.classList.remove('active');
+      startupsBtn.classList.remove('active');
+      ideasBtn.classList.remove('active');
+      
+      if (view === 'all') {
+        allBtn.classList.add('active');
+        loadCategoryAll(category);
+      } else if (view === 'startups') {
+        startupsBtn.classList.add('active');
+        loadCategoryProjects(category);
+      } else {
+        ideasBtn.classList.add('active');
+        loadCategoryIdeas(category);
+      }
+    }
+
+    async function loadCategoryAll(category) {
+      try {
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = ''; // Clear existing content
+        
+        // Load both startups and ideas
+        const [projectsResponse, ideasResponse] = await Promise.allSettled([
+          fetch(`categories/${category}.json`),
+          fetch(`categories/ideas-${category}.json`)
+        ]);
+        
+        // Add join community tile first (for startups)
+        const joinTile = createJoinCommunityTile();
+        projectsGrid.appendChild(joinTile);
+        
+        // Add Discord tile (for ideas)
+        const discordTile = createShareIdeaDiscordTile();
+        projectsGrid.appendChild(discordTile);
+        
+        // Load and display startups
+        let projects = [];
+        if (projectsResponse.status === 'fulfilled' && projectsResponse.value.ok) {
+          projects = await projectsResponse.value.json();
+        }
+        
+        projects.forEach(project => {
+          const projectCard = createProjectCard(project);
+          projectsGrid.appendChild(projectCard);
+        });
+        
+        // Load and display ideas
+        let ideas = [];
+        if (ideasResponse.status === 'fulfilled' && ideasResponse.value.ok) {
+          ideas = await ideasResponse.value.json();
+        }
+        
+        ideas.forEach((idea, index) => {
+          const ideaCard = createIdeaCard(idea, `idea-${category}-${index}`);
+          projectsGrid.appendChild(ideaCard);
+        });
+        
+        // Initialize masonry layout for browsers that don't support CSS Grid masonry
+        if (!CSS.supports('grid-template-rows', 'masonry')) {
+          setTimeout(() => {
+            initializeMasonryFallback();
+          }, 100);
+        }
+      } catch (error) {
+        console.error('Error loading category content:', error);
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1 / -1;">Error loading content. Please try again.</p>';
+      }
     }
 
     async function loadCategoryProjects(category) {
@@ -486,6 +1355,16 @@
         const projects = await response.json();
         
         const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = ''; // Clear existing content
+        
+        // Add join community tile as first item
+        const joinTile = createJoinCommunityTile();
+        projectsGrid.appendChild(joinTile);
+        
+        if (!projects || projects.length === 0) {
+          // Still show the join tile even if no projects
+          return;
+        }
         
         projects.forEach(project => {
           const projectCard = createProjectCard(project);
@@ -500,8 +1379,136 @@
         }
       } catch (error) {
         console.error('Error loading category projects:', error);
-        document.getElementById('projects-grid').innerHTML = '<p>No projects found for this category.</p>';
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = '';
+        // Still show join tile even if loading fails
+        const joinTile = createJoinCommunityTile();
+        projectsGrid.appendChild(joinTile);
       }
+    }
+
+    async function loadCategoryIdeas(category) {
+      try {
+        const response = await fetch(`categories/ideas-${category}.json`);
+        const ideas = await response.json();
+        
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = ''; // Clear existing content
+        
+        // Add Discord tile as first item
+        const discordTile = createShareIdeaDiscordTile();
+        projectsGrid.appendChild(discordTile);
+        
+        if (!ideas || ideas.length === 0) {
+          // If no ideas, still show the Discord tile
+          return;
+        }
+        
+        ideas.forEach((idea, index) => {
+          const ideaCard = createIdeaCard(idea, `idea-${category}-${index}`);
+          projectsGrid.appendChild(ideaCard);
+        });
+        
+        // Initialize masonry layout for browsers that don't support CSS Grid masonry
+        if (!CSS.supports('grid-template-rows', 'masonry')) {
+          setTimeout(() => {
+            initializeMasonryFallback();
+          }, 100);
+        }
+      } catch (error) {
+        console.error('Error loading category ideas:', error);
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = '';
+        // Still show Discord tile even if loading fails
+        const discordTile = createShareIdeaDiscordTile();
+        projectsGrid.appendChild(discordTile);
+      }
+    }
+
+    function createShareIdeaDiscordTile() {
+      const tile = document.createElement('div');
+      tile.className = 'share-idea-discord-tile';
+      
+      // Get category from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const category = urlParams.get('category') || '';
+      
+      tile.innerHTML = `
+        <span class="share-idea-icon">
+          <svg class="discord-icon-svg" viewBox="0 0 71 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.304 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.0157 50.6034 51.233 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <h3 class="share-idea-title">share your idea</h3>
+        <p class="share-idea-subtitle">submit your startup idea to share with the community</p>
+        <form class="share-idea-form" id="share-idea-form-${Date.now()}" action="https://usebasin.com/f/264e81003939" method="POST">
+          <input type="hidden" name="submission-type" value="idea">
+          <input type="hidden" name="category" value="${category}">
+          
+          <div class="share-idea-form-group">
+            <label for="idea-title-input">Title for Idea</label>
+            <input type="text" id="idea-title-input" name="idea-title" placeholder="Your idea title" required>
+          </div>
+          
+          <div class="share-idea-form-group">
+            <label for="idea-description-input">Idea</label>
+            <textarea id="idea-description-input" name="idea-description" placeholder="Describe your startup idea..." required></textarea>
+          </div>
+          
+          <div class="share-idea-form-group">
+            <label for="idea-email-input">Email</label>
+            <input type="email" id="idea-email-input" name="email" placeholder="your@email.com" required>
+          </div>
+          
+          <button type="submit" class="share-idea-button">
+            <span>Submit Idea</span>
+            <span class="arrow">→</span>
+          </button>
+        </form>
+      `;
+      
+      // Add form submission handler
+      const form = tile.querySelector('form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Validate form
+          const title = this.querySelector('[name="idea-title"]').value.trim();
+          const description = this.querySelector('[name="idea-description"]').value.trim();
+          const email = this.querySelector('[name="email"]').value.trim();
+          
+          if (!title || !description || !email) {
+            alert('Please fill in all fields');
+            return;
+          }
+          
+          // Show success message
+          alert('Thank you! Your idea has been submitted.');
+          
+          // Submit the form
+          this.submit();
+        });
+      }
+      
+      return tile;
+    }
+
+    function createJoinCommunityTile() {
+      const tile = document.createElement('div');
+      tile.className = 'share-idea-discord-tile';
+      
+      tile.innerHTML = `
+        <span class="share-idea-icon">˚୨୧⋆.˚</span>
+        <h3 class="share-idea-title">add your own</h3>
+        <p class="share-idea-subtitle">upload your established startup or small business to showcase to the community</p>
+        <a href="../join-community.html" class="join-community-button">
+          <span>+ join bobigos</span>
+          <span class="arrow">→</span>
+        </a>
+      `;
+      
+      return tile;
     }
 
     function createProjectCard(project) {
@@ -512,11 +1519,12 @@
         <div class="project-header">
           <h3 class="project-title">${project.title}</h3>
           <div class="project-tags">
-            <div class="project-type-tag ${project.type.toLowerCase().replace(/\s+/g, '-')}">${project.type}</div>
+            <div class="project-type-tag ${project.type ? project.type.toLowerCase().replace(/\s+/g, '-') : 'startup'}">${project.type || 'Startup'}</div>
             ${project.socialHandle ? `<div class="social-handle-tag">@${project.socialHandle}</div>` : ''}
           </div>
         </div>
         <p class="project-description">${project.description}</p>
+        ${project.niche ? `
         <div class="our-niche-tile">
           <div class="niche-header">
             <span class="niche-icon">☕️</span>
@@ -524,16 +1532,127 @@
           </div>
           <div class="niche-content">${project.niche}</div>
         </div>
+        ` : ''}
+        ${project.connectionLink && project.connectionLink !== '#' ? `
         <div class="project-actions">
           <a href="${project.connectionLink}" class="apply-button" target="_blank">
             <span>Connect</span>
             <span class="arrow">→</span>
           </a>
         </div>
+        ` : ''}
       `;
       
       return card;
     }
+
+    function createIdeaCard(idea, ideaId) {
+      const card = document.createElement('div');
+      card.className = 'idea-card';
+      const finalIdeaId = ideaId || `idea-${Date.now()}`;
+      card.setAttribute('data-idea-id', finalIdeaId);
+      
+      const discordLink = idea['discord-link'] || idea.discord || '';
+      const collaborators = idea.collaborators || [];
+      
+      card.innerHTML = `
+        <div class="idea-header">
+          <h3 class="idea-title">${idea.title || idea['idea-title']}</h3>
+        </div>
+        <p class="idea-description">${idea.description || idea['idea-description']}</p>
+        
+        <div class="collaboration-section">
+          <div class="collaboration-header">
+            <span>Looking for Collaborators</span>
+          </div>
+          
+          ${collaborators.length > 0 ? `
+          <div class="collaborators-list">
+            ${collaborators.map(collab => `
+              <div class="collaborator-item">
+                <span class="collaborator-contact">${collab.contact || collab}</span>
+              </div>
+            `).join('')}
+          </div>
+          ` : ''}
+          
+          <a href="https://discord.gg/ndktHfFUnJ" target="_blank" class="collaborate-button">
+            Add Yourself as a Collaborator
+          </a>
+        </div>
+      `;
+      
+      return card;
+    }
+
+    function openIdeaForm() {
+      document.getElementById('idea-form-modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeIdeaForm() {
+      document.getElementById('idea-form-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+      document.getElementById('idea-submission-form').reset();
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('idea-form-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeIdeaForm();
+      }
+    });
+
+    // Handle idea form submission
+    document.getElementById('idea-submission-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show success message
+      alert('Thank you! Your idea has been submitted and will be reviewed.');
+      
+      // Reset form and close modal
+      this.reset();
+      closeIdeaForm();
+      
+      // Submit to form endpoint (you can customize this)
+      this.submit();
+    });
+
+    // Collaboration form functions
+    function openCollaborationForm(ideaId) {
+      document.getElementById('collaboration-idea-id').value = ideaId;
+      document.getElementById('collaboration-category-hidden').value = category || '';
+      document.getElementById('collaboration-form-modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCollaborationForm() {
+      document.getElementById('collaboration-form-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+      document.getElementById('collaboration-form').reset();
+    }
+
+    // Close collaboration modal when clicking outside
+    document.getElementById('collaboration-form-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeCollaborationForm();
+      }
+    });
+
+    // Handle collaboration form submission
+    document.getElementById('collaboration-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show success message
+      alert('Thank you! Your collaboration request has been submitted. The idea creator will be notified.');
+      
+      // Reset form and close modal
+      this.reset();
+      closeCollaborationForm();
+      
+      // Submit to form endpoint
+      this.submit();
+    });
 
     // Fallback masonry implementation for browsers without CSS Grid masonry support
     function initializeMasonryFallback() {
