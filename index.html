@@ -1725,6 +1725,33 @@
     /* Hero Boba Graphic Styles */
     .hero-boba-graphic {
       display: block;
+      animation: boba-pulsate 2s ease-in-out infinite;
+    }
+
+    @keyframes boba-pulsate {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    /* Hero Star Icon Styles */
+    .hero-star-icon {
+      display: block;
+      animation: star-pulsate 2s ease-in-out infinite;
+    }
+
+    @keyframes star-pulsate {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: 0.9;
+      }
     }
 
     @media (min-width: 769px) {
@@ -1737,6 +1764,11 @@
     @media (max-width: 768px) {
       .hero-boba-graphic {
         display: none;
+      }
+
+      .hero-star-icon {
+        width: 80px !important;
+        height: auto;
       }
 
       .feed-bentos-squad-grid {
@@ -2000,7 +2032,10 @@
 
           <!-- Hero Section 2: We Help You Succeed -->
           <div class="hero-section" style="margin: 3rem 0; padding: 0;">
-            <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; margin: 0 0 1rem 0; letter-spacing: -0.03em; font-family: 'Lucida Console'; text-align: center; color: #000;">we help you succeed</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap;">
+              <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; margin: 0; letter-spacing: -0.03em; font-family: 'Lucida Console'; text-align: center; color: #000; flex: 1; min-width: 200px;">we help you succeed</h2>
+              <img src="bubbles.png" alt="Bubbles" class="hero-star-icon" style="width: 120px; height: auto; flex-shrink: 0;" />
+            </div>
             <p class="hero-subtext" style="font-size: 1.1rem; color: #666; margin: 0 auto 2rem auto; max-width: 700px; text-align: center; line-height: 1.6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; text-transform: lowercase;">free resources and opportunities designed to help your startup scale and reach new audiences</p>
             <div class="feed-bentos-squad-grid" style="grid-template-columns: repeat(2, 1fr);">
               <!-- Bento 1: Upload Your Startup -->
