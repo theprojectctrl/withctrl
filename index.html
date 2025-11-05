@@ -1147,13 +1147,18 @@
     }
 
     /* About Button Styles (matching network page connect buttons) */
-    .about-button:hover {
+    .about-button:hover,
+    .tutorial-button:hover {
       background: #e9ecef !important;
       border-color: #dee2e6 !important;
       transform: translateY(-1px) !important;
       text-decoration: none !important;
       color: #000 !important;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .tutorial-button {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     .main-footer {
@@ -1343,7 +1348,8 @@
 
       .hero-section .start-imagining-button,
       .hero-section .cta-button.secondary,
-      .hero-section .about-button {
+      .hero-section .about-button,
+      .hero-section .tutorial-button {
         width: 100% !important;
         max-width: 300px !important;
       }
@@ -1562,6 +1568,105 @@
       white-space: nowrap;
     }
 
+    /* Tutorial Modal */
+    .tutorial-modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tutorial-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tutorial-modal-content {
+      position: relative;
+      background-color: #000;
+      padding: 0;
+      width: 90%;
+      max-width: 900px;
+      border-radius: 12px;
+      overflow: hidden;
+      animation: slideUp 0.3s ease;
+    }
+
+    .tutorial-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10001;
+      transition: all 0.2s ease;
+    }
+
+    .tutorial-modal-close:hover {
+      background: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1);
+    }
+
+    .tutorial-modal-close:active {
+      transform: scale(0.95);
+    }
+
+    .tutorial-modal-video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .tutorial-modal iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .tutorial-modal-content {
+        width: 95%;
+      }
+    }
+
     .feed-bento-button {
       display: inline-flex;
       align-items: center;
@@ -1747,10 +1852,10 @@
         </p>
         <div style="text-align: center; display: flex; gap: 1rem; justify-content: center; align-items: center; margin-bottom: 0;">
           <a href="network.html" class="start-imagining-button" style="font-size: 1.15rem; padding: 1.1rem 2.5rem; border-radius: 2rem;">start imagining</a>
-          <a href="#about-bobigos" class="about-button" style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 20px; padding: 0.6rem 2rem; text-decoration: none; color: #000; font-weight: 500; font-size: 1rem; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; min-width: 120px; justify-content: center; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
-            <span>about</span>
+          <button onclick="openTutorialModal()" class="tutorial-button" style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 20px; padding: 0.6rem 2rem; text-decoration: none; color: #000; font-weight: 500; font-size: 1rem; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; min-width: 120px; justify-content: center; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
+            <span>tutorial</span>
             <span class="arrow" style="color: #000; font-size: 1.1rem; margin-left: 0.25rem;">→</span>
-          </a>
+          </button>
         </div>
       </div>
     </section>
@@ -2160,6 +2265,52 @@
       }
 
     });
+
+    // Tutorial Modal Functions
+    function openTutorialModal() {
+      const modal = document.getElementById('tutorialModal');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeTutorialModal() {
+      const modal = document.getElementById('tutorialModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('tutorialModal');
+      if (event.target === modal) {
+        closeTutorialModal();
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeTutorialModal();
+      }
+    });
   </script>
+
+  <!-- Tutorial Modal -->
+  <div id="tutorialModal" class="tutorial-modal">
+    <div class="tutorial-modal-content">
+      <button class="tutorial-modal-close" onclick="closeTutorialModal()" aria-label="Close modal">&times;</button>
+      <div class="tutorial-modal-video-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/CFCKS0e-pOI?autoplay=0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
