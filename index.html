@@ -1568,6 +1568,40 @@
       white-space: nowrap;
     }
 
+    /* Infinite Carousel Styles */
+    .feature-buttons-carousel-wrapper {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+      margin: 2rem 0 2.5rem 0;
+    }
+
+    .feature-buttons-carousel {
+      display: flex;
+      gap: 1rem;
+      width: fit-content;
+      animation: slideInfinite 30s linear infinite;
+    }
+
+    .feature-buttons-carousel:hover {
+      animation-play-state: paused;
+    }
+
+    .feature-buttons-carousel-track {
+      display: flex;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    @keyframes slideInfinite {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
     /* Tutorial Modal */
     .tutorial-modal {
       display: none;
@@ -1688,8 +1722,23 @@
       transform: translateX(4px);
     }
 
+    /* Hero Boba Graphic Styles */
+    .hero-boba-graphic {
+      display: block;
+    }
+
+    @media (min-width: 769px) {
+      .hero-boba-graphic {
+        display: block;
+      }
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
+      .hero-boba-graphic {
+        display: none;
+      }
+
       .feed-bentos-squad-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -1721,11 +1770,14 @@
         margin: 1rem 0 1.5rem 0;
       }
 
+      .feature-buttons-carousel-wrapper {
+        margin: 1.5rem 0 2rem 0;
+        padding: 0 1rem;
+      }
+
       .feature-button-non-clickable {
         font-size: 0.8rem;
         padding: 0.5rem 1.25rem;
-        width: 100%;
-        max-width: 280px;
       }
     }
 
@@ -1749,7 +1801,7 @@
       <nav class="main-nav">
         <a href="index.html" class="active">Home</a>
         <a href="network.html">Browse</a>
-        <a href="join-community.html" class="join-highlight">Join <span style="font-size: 0.9em; color: #000;">+</span></a>
+        <a href="join-community.html" class="join-highlight">upload <span style="font-size: 0.9em; color: #000;">+</span></a>
         
         <!-- Auth Buttons (shown when not logged in) -->
         <button class="auth-button" onclick="authManager.showAuthModal('login')" style="display: none;">
@@ -1896,92 +1948,104 @@
           <div class="feed-image-carousel feed-carousel-landscape">
             <div class="carousel-container">
               <div class="carousel-image active" data-image="0">
-                <img src="idea-shot.png" alt="Idea shot" />
+                <img src="carousel-2.png" alt="Carousel image 2" />
               </div>
               <div class="carousel-image" data-image="1">
-                <img src="ig-feed.png" alt="Instagram feed" class="ig-feed-image" />
+                <img src="carousel-1.png" alt="Carousel image 1" class="ig-feed-image" />
               </div>
               <div class="carousel-image" data-image="2">
-                <img src="network-page-shot.png" alt="Network page" />
+                <img src="carousel-4.png" alt="Carousel image 4" />
+              </div>
+              <div class="carousel-image" data-image="3">
+                <img src="carousel-5.png" alt="Carousel image 5" />
               </div>
             </div>
             <div class="carousel-indicators">
               <span class="indicator active" data-slide="0"></span>
               <span class="indicator" data-slide="1"></span>
               <span class="indicator" data-slide="2"></span>
+              <span class="indicator" data-slide="3"></span>
             </div>
           </div>
           
-          <!-- Bentos Grid (Below Carousel) -->
-          <div class="feed-bentos-squad-grid">
-            <!-- Bento 1: Conversations with Boba + Amigos -->
-            <div class="feed-bento-card">
-              <div class="feed-bento-image-wrapper">
-                <img src="boba-tea.png" alt="Boba tea" class="feed-bento-image" />
-              </div>
-              <h3 style="color: #000; font-size: 1.35rem; font-weight: 800; margin-bottom: 0.6rem; font-family: 'Lucida Console';">have conversations with boba + amigos</h3>
-              <p style="color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.25rem;">visit the "find partners" page to find collaborators who also emphasize creativity and niche thinking.</p>
-              <a href="network.html" class="feed-bento-button">find partners →</a>
+          <!-- Hero Section 1: Find Your Next Co-Founder -->
+          <div class="hero-section" style="margin: 3rem 0; padding: 0;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap;">
+              <img src="boba-tea.png" alt="Boba tea" style="width: 120px; height: auto; flex-shrink: 0;" class="hero-boba-graphic" />
+              <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; margin: 0; letter-spacing: -0.03em; font-family: 'Lucida Console'; text-align: center; color: #000; flex: 1; min-width: 200px;">find your next co-founder</h2>
             </div>
-            
-            <!-- Bento 2: Free Advertising -->
-            <div class="feed-bento-card">
-              <div class="feed-bento-image-wrapper">
-                <img src="sample-submission.png" alt="Sample submission" class="feed-bento-image" />
+            <p class="hero-subtext" style="font-size: 1.1rem; color: #666; margin: 0 auto 2rem auto; max-width: 700px; text-align: center; line-height: 1.6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; text-transform: lowercase;">connect with boba + amigos to build meaningful partnerships that help your venture grow</p>
+            <div class="feed-bentos-squad-grid" style="grid-template-columns: repeat(2, 1fr);">
+              <!-- Bento 1: Share Your Ideas -->
+              <div class="feed-bento-card">
+                <div class="feed-bento-image-wrapper">
+                  <img src="idea-sample.png" alt="Idea sample" class="feed-bento-image" style="object-position: top;" />
+                </div>
+                <h3 style="color: #000; font-size: 1.35rem; font-weight: 800; margin-bottom: 0.6rem; font-family: 'Lucida Console'; text-transform: lowercase;">share your ideas to find collaborators</h3>
+                <p style="color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.25rem;">submit your startup ideas under a category to connect with like-minded founders and build your venture together</p>
+                <a href="network.html" class="feed-bento-button">submit under a category →</a>
               </div>
-              <h3 style="color: #000; font-size: 1.35rem; font-weight: 800; margin-bottom: 0.6rem; font-family: 'Lucida Console'; text-transform: lowercase;">free advertising</h3>
-              <p style="color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.25rem;">sign up to have a post like this on our ig page and to be mentioned in future posts and on the website! choose a design and color code of your preference, and highlight your impact!</p>
-              <a href="join-community.html" class="feed-bento-button">join community →</a>
-            </div>
-            
-            <!-- Bento 3: Discord -->
-            <div class="feed-bento-card">
-              <div class="feed-bento-image-wrapper">
-                <img src="discord.png" alt="Discord" class="feed-bento-image" />
+              
+              <!-- Bento 2: Discord -->
+              <div class="feed-bento-card">
+                <div class="feed-bento-image-wrapper">
+                  <img src="discord.png" alt="Discord" class="feed-bento-image" />
+                </div>
+                <h3 style="color: #000; font-size: 1.35rem; font-weight: 800; margin-bottom: 0.6rem; font-family: 'Lucida Console'; text-transform: lowercase;">join our discord</h3>
+                <p style="color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.25rem;">connect with other founders, share ideas, find collaborators, and get real-time support from the bobigos community!</p>
+                <a href="https://discord.gg/ndktHfFUnJ" target="_blank" class="feed-bento-button">join discord →</a>
               </div>
-              <h3 style="color: #000; font-size: 1.35rem; font-weight: 800; margin-bottom: 0.6rem; font-family: 'Lucida Console'; text-transform: lowercase;">join our discord</h3>
-              <p style="color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.25rem;">connect with other founders, share ideas, find collaborators, and get real-time support from the bobigos community!</p>
-              <a href="https://discord.gg/ndktHfFUnJ" target="_blank" class="feed-bento-button">join discord →</a>
-            </div>
-            
-            <!-- Bento 4: Intern for Bobigos -->
-            <div class="feed-bento-card feed-intern-card">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdScs0f-oLtQvoa-n75dEf-o6_WF8pTcP7PjYTextG86Obqyg/viewform" target="_blank" class="feed-intern-qr-wrapper">
-                <img src="intern-form.jpeg" alt="Intern form QR code" class="feed-intern-qr" />
-              </a>
-              <h3 style="color: #000; font-size: 1.35rem; font-weight: 800; margin-bottom: 0.6rem; margin-top: 1.5rem; font-family: 'Lucida Console'; text-transform: lowercase;">intern for bobigos</h3>
-              <p style="color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem;">gain experience in advertising a youth-led startup with over 600 active users and a reach of over 70k viewers. help us grow and make an impact!</p>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdScs0f-oLtQvoa-n75dEf-o6_WF8pTcP7PjYTextG86Obqyg/viewform" target="_blank" class="feed-bento-button">apply now →</a>
             </div>
           </div>
-        </div>
+
+          <!-- Hero Section 2: We Help You Succeed -->
+          <div class="hero-section" style="margin: 3rem 0; padding: 0;">
+            <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; margin: 0 0 1rem 0; letter-spacing: -0.03em; font-family: 'Lucida Console'; text-align: center; color: #000;">we help you succeed</h2>
+            <p class="hero-subtext" style="font-size: 1.1rem; color: #666; margin: 0 auto 2rem auto; max-width: 700px; text-align: center; line-height: 1.6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; text-transform: lowercase;">free resources and opportunities designed to help your startup scale and reach new audiences</p>
+            <div class="feed-bentos-squad-grid" style="grid-template-columns: repeat(2, 1fr);">
+              <!-- Bento 1: Upload Your Startup -->
+              <div class="feed-bento-card">
+                <div class="feed-bento-image-wrapper">
+                  <img src="startups-shot.png" alt="Startups shot" class="feed-bento-image" />
+                </div>
+                <h3 style="color: #000; font-size: 1.35rem; font-weight: 800; margin-bottom: 0.6rem; font-family: 'Lucida Console'; text-transform: lowercase;">upload your startup or business for 24/7 growth</h3>
+                <p style="color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.25rem;">join our community to get featured on our website and social media, and reach thousands of potential customers and partners</p>
+                <a href="join-community.html" class="feed-bento-button">join community →</a>
+              </div>
+              
+              <!-- Bento 2: Intern for Bobigos -->
+              <div class="feed-bento-card feed-intern-card">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdScs0f-oLtQvoa-n75dEf-o6_WF8pTcP7PjYTextG86Obqyg/viewform" target="_blank" class="feed-intern-qr-wrapper">
+                  <img src="intern-form.jpeg" alt="Intern form QR code" class="feed-intern-qr" />
+                </a>
+                <h3 style="color: #000; font-size: 1.35rem; font-weight: 800; margin-bottom: 0.6rem; margin-top: 1.5rem; font-family: 'Lucida Console'; text-transform: lowercase;">intern for bobigos</h3>
+                <p style="color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem;">gain experience in advertising a youth-led startup with over 600 active users and a reach of over 70k viewers. help us grow and make an impact!</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdScs0f-oLtQvoa-n75dEf-o6_WF8pTcP7PjYTextG86Obqyg/viewform" target="_blank" class="feed-bento-button">apply now →</a>
+              </div>
+            </div>
+          </div>
 
         </div>
 
-        <!-- CTRL User Outcomes Quad Bento -->
-        <div class="outcomes-quad-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2.5rem;">
-          <div class="bento-card outcome-card" style="padding: 2rem; text-align: center;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">🫧</div>
-            <h3 style="color: #000; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; font-family: 'Lucida Console'; text-transform: lowercase;">find a signature</h3>
-            <p style="color: #666; font-size: 0.95rem; line-height: 1.5; margin: 0;">discover your unique niche and what makes your work special</p>
-          </div>
-          
-          <div class="bento-card outcome-card" style="padding: 2rem; text-align: center;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">˙ᵕ˙</div>
-            <h3 style="color: #000; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; font-family: 'Lucida Console'; text-transform: lowercase;">connect with other small starters</h3>
-            <p style="color: #666; font-size: 0.95rem; line-height: 1.5; margin: 0;">build relationships with like-minded creators and collaborators</p>
-          </div>
-          
-          <div class="bento-card outcome-card" style="padding: 2rem; text-align: center;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">⊹ ࣪ ˖</div>
-            <h3 style="color: #000; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; font-family: 'Lucida Console'; text-transform: lowercase;">digitalize your work</h3>
-            <p style="color: #666; font-size: 0.95rem; line-height: 1.5; margin: 0;">turn your passion into digital products and online presence</p>
-          </div>
-          
-          <div class="bento-card outcome-card" style="padding: 2rem; text-align: center;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">🍵</div>
-            <h3 style="color: #000; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; font-family: 'Lucida Console'; text-transform: lowercase;">grow even when you're not working</h3>
-            <p style="color: #666; font-size: 0.95rem; line-height: 1.5; margin: 0;">scale your impact while you're offline through digital systems</p>
+        </div>
+
+        <!-- CTRL User Outcomes Feature Buttons Carousel -->
+        <div class="feature-buttons-carousel-wrapper">
+          <div class="feature-buttons-carousel">
+            <!-- First set of buttons -->
+            <div class="feature-buttons-carousel-track">
+              <div class="feature-button-non-clickable">🫧 find a signature</div>
+              <div class="feature-button-non-clickable">˙ᵕ˙ connect with other small starters</div>
+              <div class="feature-button-non-clickable">⊹ ࣪ ˖ digitalize your work</div>
+              <div class="feature-button-non-clickable">🍵 grow even when you're not working</div>
+            </div>
+            <!-- Duplicate set for seamless loop -->
+            <div class="feature-buttons-carousel-track">
+              <div class="feature-button-non-clickable">🫧 find a signature</div>
+              <div class="feature-button-non-clickable">˙ᵕ˙ connect with other small starters</div>
+              <div class="feature-button-non-clickable">⊹ ࣪ ˖ digitalize your work</div>
+              <div class="feature-button-non-clickable">🍵 grow even when you're not working</div>
+            </div>
           </div>
         </div>
 
