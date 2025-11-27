@@ -1208,6 +1208,19 @@
       }
     }
 
+    /* Tile Type Selector Styles */
+    .tile-type-option.selected {
+      border-color: #79b7ff !important;
+      background: #e3f2fd !important;
+      box-shadow: 0 4px 12px rgba(121, 183, 255, 0.2);
+    }
+    
+    .tile-type-option:hover {
+      border-color: #79b7ff;
+      background: #f8f9ff;
+      transform: translateY(-2px);
+    }
+
     /* Project Card Form Styles - Exact match to network page */
     .project-card {
       background: #fff;
@@ -1227,6 +1240,50 @@
       max-width: 100%;
       min-height: 450px;
       overflow: visible;
+    }
+    
+    /* Idea Card Form Styles - Match actual idea tile appearance */
+    #idea-form-card.idea-card {
+      background: #fff;
+      border: 2px dashed #e0e0e0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.2s ease;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.03);
+      outline: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+      min-height: 400px;
+      overflow: visible;
+    }
+    
+    #idea-form-card.idea-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+    
+    .collaborate-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+    }
+    
+    .idea-title-input::placeholder {
+      color: #999;
+      font-weight: 400;
+    }
+    
+    .idea-description-input::placeholder {
+      color: #999;
+    }
+    
+    .idea-collaborators-input::placeholder {
+      color: #999;
     }
 
     .project-card:hover {
@@ -2313,11 +2370,35 @@
     <section class="join-form-section">
       <div class="main-container">
         <h1 style="text-align: center; margin-bottom: 1rem;">Join Our Community</h1>
-        <p style="text-align: center; margin-bottom: 3rem; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">want to grow 24/7 by posting your startup or business to bobigos.com? fill out your own tile here, submit, and start growing infinitely. after submitting, your tile's information may also be featured on our instagram and social media pages, further directing users who want to partner up or find founders who have a niche, all to you!</p>
+        <p style="text-align: center; margin-bottom: 3rem; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">want to grow 24/7 by posting your startup or business to bobigos.com? fill out your own tile here, submit, and start growing while AFK. after submitting, your tile's information may also be featured on our instagram and social media pages, further directing users who want to partner up or find founders who have a niche, all to you!</p>
+        
+        <!-- Tile Type Selector -->
+        <div class="tile-type-selector" style="max-width: 550px; margin: 0 auto 2rem auto;">
+          <label style="display: block; margin-bottom: 1.5rem; font-weight: 600; color: #000; font-size: 1.25rem; text-align: center;">What would you like to upload?</label>
+          <div class="tile-type-options" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="tile-type-option" id="tile-type-business" onclick="selectTileType('business')" style="padding: 1.5rem; border: 2px solid #e0e0e0; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; background: #fff; text-align: center; display: flex; flex-direction: column;">
+              <div style="font-weight: 700; color: #000; margin-bottom: 1.25rem; font-size: 1.4rem; text-align: center;">Startup / Small Business</div>
+              <div style="font-size: 0.8rem; color: #333; line-height: 1.5; background: rgba(121, 183, 255, 0.08); border-radius: 8px; padding: 1rem; margin-top: auto;">
+                <div style="margin-bottom: 0.6rem;"><strong style="color: #000;">Where it shows:</strong> browse page, our official instagram's user feature posts</div>
+                <div style="margin-bottom: 0.6rem;"><strong style="color: #000;">Features:</strong> add a link & description, display your "niche" statement, larger tiles</div>
+                <div style="color: #666; font-weight: 500; font-style: italic;">Perfect for established ventures looking for partnerships and 24/7 growth</div>
+              </div>
+            </div>
+            <div class="tile-type-option" id="tile-type-idea" onclick="selectTileType('idea')" style="padding: 1.5rem; border: 2px solid #e0e0e0; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; background: #fff; text-align: center; display: flex; flex-direction: column;">
+              <div style="font-weight: 700; color: #000; margin-bottom: 1.25rem; font-size: 1.4rem; text-align: center;">Idea</div>
+              <div style="font-size: 0.8rem; color: #333; line-height: 1.5; background: rgba(121, 183, 255, 0.08); border-radius: 8px; padding: 1rem; margin-top: auto;">
+                <div style="margin-bottom: 0.6rem;"><strong style="color: #000;">Where it shows:</strong> "browse" page, our official instagram's idea posts (includes up to 3 other user ideas)</div>
+                <div style="margin-bottom: 0.6rem;"><strong style="color: #000;">Features:</strong> Discord discussion link, short description & title</div>
+                <div style="color: #666; font-weight: 500; font-style: italic;">Perfect for early-stage ideas seeking team members/participants/users</div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="tile-type-hidden" name="tile-type" value="">
+        </div>
         
         <!-- Categories Field -->
-        <div class="categories-section" style="max-width: 550px; margin: 2rem auto 1rem auto;">
-          <label for="category-input" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000;">Categories (Select up to 3)</label>
+        <div class="categories-section" style="max-width: 550px; margin: 2rem auto 1rem auto; display: none;">
+          <label for="category-input" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000;">Categories (3 maximum)</label>
           <div class="tag-input-container">
             <input type="text" id="category-input" placeholder="Type to search categories..." style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; outline: none; transition: border-color 0.2s ease;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 1px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
             <div class="category-dropdown" id="category-dropdown"></div>
@@ -2326,7 +2407,8 @@
 
         <!-- Project Card Form Container -->
         <div class="projects-grid" style="max-width: 550px; margin: 0 auto; overflow: visible;">
-          <div class="project-card" id="join-form-card">
+          <!-- Business/Startup Form Card -->
+          <div class="project-card" id="business-form-card" style="display: none;">
           <form id="join-community-form" action="https://usebasin.com/f/264e81003939" method="POST">
               
               <!-- Project Header -->
@@ -2356,6 +2438,7 @@
                 </div>
                 
               <!-- Hidden inputs for form submission -->
+              <input type="hidden" id="tile-type-business-hidden" name="tile-type" value="business">
               <input type="hidden" id="venture-type-hidden" name="venture-type" required>
               <input type="hidden" id="email-hidden" name="email" required>
               <input type="hidden" id="social-handle-hidden" name="social-handle">
@@ -2392,11 +2475,57 @@
                 
             </form>
                     </div>
+                    
+          <!-- Idea Form Card -->
+          <div class="idea-card" id="idea-form-card" style="display: none; position: relative;">
+            <form id="idea-community-form" action="https://usebasin.com/f/264e81003939" method="POST">
+              
+              <!-- Idea Number Badge Placeholder (top right) -->
+              <div class="idea-number-badge" style="position: absolute; top: 1rem; right: 1rem; background: #000; color: #fff; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; z-index: 1;">#</div>
+              
+              <!-- Hidden inputs for idea form submission -->
+              <input type="hidden" id="idea-tile-type-hidden" name="tile-type" value="idea">
+              <input type="hidden" id="idea-email-hidden" name="email" required>
+              <input type="hidden" id="idea-description-hidden" name="description" required>
+              <input type="hidden" id="idea-categories-hidden" name="categories" required>
+              <input type="hidden" id="idea-links-hidden" name="links">
+              <input type="hidden" id="idea-collaborators-hidden" name="collaborators">
+              <input type="hidden" id="idea-permission-ig-hidden" name="permission-ig">
+              
+              <!-- Idea Header with Title -->
+              <div class="idea-header" style="margin-bottom: 0.75rem; padding-right: 3rem;">
+                <input type="text" id="idea-title" name="idea-title" required placeholder="your idea title" class="idea-title-input" style="font-size: 1.25rem; font-weight: 700; margin: 0; color: #000; border: none; background: transparent; width: 100%; font-family: inherit; padding: 0; resize: none; outline: none;">
+              </div>
+              
+              <!-- Idea Description -->
+              <div class="description-container" style="margin-bottom: 1rem;">
+                <textarea id="idea-description" name="idea-description" required placeholder="describe your idea and what you're looking for in collaborators" class="idea-description-input" style="color: #666; line-height: 1.6; margin: 0; font-size: 0.95rem; border: none; background: transparent; width: 100%; font-family: inherit; padding: 0; resize: none; outline: none; min-height: 80px; overflow: hidden; transition: height 0.1s ease; position: relative; z-index: 1;"></textarea>
+                <div class="word-count" id="idea-description-word-count" style="position: absolute; bottom: 0.5rem; right: 0.5rem; font-size: 0.75rem; color: #999; background: rgba(255, 255, 255, 0.9); padding: 0.25rem 0.5rem; border-radius: 4px; pointer-events: none;">0/100 words</div>
+              </div>
+              
+              <!-- Discord Discussion Notice (Placeholder) -->
+              <div class="discord-discussion-notice" style="background: rgba(88, 101, 242, 0.08); border: 1px solid rgba(88, 101, 242, 0.2); border-radius: 8px; padding: 0.75rem; margin-top: 1rem; font-size: 0.85rem; color: #333; line-height: 1.5;">
+                <strong style="color: #5865F2; font-weight: 600;">💬 Discord Discussion:</strong> Please title your Discord thread as "<strong style="color: #5865F2; font-weight: 600;">[Category] Idea #[Number]</strong>" so others can easily find and join the discussion.
+              </div>
+              
+              <!-- Looking for Collaborators Section -->
+              <div class="collaboration-section" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(0, 0, 0, 0.1);">
+                <div class="collaboration-header" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; font-size: 0.9rem; font-weight: 600; color: #000;">
+                  <span>Looking for Collaborators</span>
+                </div>
+                
+                <a href="https://discord.gg/ndktHfFUnJ" target="_blank" class="collaborate-button" style="background: linear-gradient(135deg, #5865F2, #7289da); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.2s ease; text-align: center; width: 100%;">
+                  Add Yourself as a Collaborator
+                </a>
+              </div>
+              
+            </form>
+          </div>
                 </div>
                 
 
         <!-- Email and Permission Fields -->
-        <div class="email-permission-section" style="max-width: 550px; margin: 2rem auto;">
+        <div class="email-permission-section" style="max-width: 550px; margin: 2rem auto; display: none;">
           <!-- Email Field -->
           <div class="email-section" style="margin-bottom: 1.5rem;">
             <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000;">Email Address</label>
@@ -2414,8 +2543,12 @@
                       
         <!-- Join Button Below Card -->
         <div class="join-button-container">
-          <button type="submit" form="join-community-form" class="join-bobigos-button">
+          <button type="submit" form="join-community-form" id="business-submit-button" class="join-bobigos-button" style="display: none;">
             <span>Join bobigos</span>
+            <span class="button-arrow">→</span>
+          </button>
+          <button type="submit" form="idea-community-form" id="idea-submit-button" class="join-bobigos-button" style="display: none;">
+            <span>Submit Idea</span>
             <span class="button-arrow">→</span>
           </button>
                       </div>
@@ -2447,6 +2580,49 @@
   </footer>
 
   <script>
+    // Tile Type Selection
+    let selectedTileType = '';
+    
+    function selectTileType(type) {
+      selectedTileType = type;
+      
+      // Update UI
+      const businessOption = document.getElementById('tile-type-business');
+      const ideaOption = document.getElementById('tile-type-idea');
+      const businessCard = document.getElementById('business-form-card');
+      const ideaCard = document.getElementById('idea-form-card');
+      const businessSubmit = document.getElementById('business-submit-button');
+      const ideaSubmit = document.getElementById('idea-submit-button');
+      const categoriesSection = document.querySelector('.categories-section');
+      const emailSection = document.querySelector('.email-permission-section');
+      
+      if (type === 'business') {
+        businessOption.classList.add('selected');
+        ideaOption.classList.remove('selected');
+        businessCard.style.display = 'block';
+        ideaCard.style.display = 'none';
+        if (businessSubmit) businessSubmit.style.display = 'inline-flex';
+        if (ideaSubmit) ideaSubmit.style.display = 'none';
+        if (categoriesSection) categoriesSection.style.display = 'block';
+        if (emailSection) emailSection.style.display = 'block';
+        document.getElementById('tile-type-hidden').value = 'business';
+        // Update category tags display
+        updateCategoryTags();
+      } else if (type === 'idea') {
+        businessOption.classList.remove('selected');
+        ideaOption.classList.add('selected');
+        businessCard.style.display = 'none';
+        ideaCard.style.display = 'block';
+        if (businessSubmit) businessSubmit.style.display = 'none';
+        if (ideaSubmit) ideaSubmit.style.display = 'inline-flex';
+        if (categoriesSection) categoriesSection.style.display = 'block';
+        if (emailSection) emailSection.style.display = 'block';
+        document.getElementById('tile-type-hidden').value = 'idea';
+        // Update category tags display
+        updateCategoryTags();
+      }
+    }
+    
     // Project Card Form JavaScript
     let formData = {
       ventureName: '',
@@ -2458,6 +2634,14 @@
       categories: [],
       links: [],
       mainLink: ''
+    };
+    
+    // Idea Form Data
+    let ideaFormData = {
+      ideaTitle: '',
+      ideaDescription: '',
+      email: '',
+      categories: []
     };
 
     // Available categories for dropdown
@@ -2483,6 +2667,24 @@
       updateWordCount('niche', this.value, 15);
       autoExpandTextarea(this);
     });
+    
+    // Idea form event listeners
+    const ideaTitleInput = document.getElementById('idea-title');
+    const ideaDescriptionInput = document.getElementById('idea-description');
+    
+    if (ideaTitleInput) {
+      ideaTitleInput.addEventListener('input', function() {
+        ideaFormData.ideaTitle = this.value;
+      });
+    }
+    
+    if (ideaDescriptionInput) {
+      ideaDescriptionInput.addEventListener('input', function() {
+        ideaFormData.ideaDescription = this.value;
+        updateWordCount('idea-description', this.value, 100);
+        autoExpandTextarea(this);
+      });
+    }
 
     // Word count function
     function updateWordCount(field, text, limit) {
@@ -2596,6 +2798,10 @@
       if (formData.categories.length < 3 && !formData.categories.includes(category)) {
         formData.categories.push(category);
         updateCategoryTags();
+        // Also update idea form categories if idea form is active
+        if (selectedTileType === 'idea') {
+          ideaFormData.categories = [...formData.categories];
+        }
         document.getElementById('category-input').value = '';
         hideCategoryDropdown();
       }
@@ -2604,22 +2810,29 @@
     function removeCategory(category) {
       formData.categories = formData.categories.filter(cat => cat !== category);
       updateCategoryTags();
+      // Also update idea form categories if idea form is active
+      if (selectedTileType === 'idea') {
+        ideaFormData.categories = [...formData.categories];
+      }
     }
 
     function updateCategoryTags() {
       const container = document.getElementById('category-tags-container');
-      container.innerHTML = '';
       
-      formData.categories.forEach(category => {
-        const tag = document.createElement('div');
-        tag.className = 'category-tag';
-        tag.setAttribute('data-category', category);
-        tag.innerHTML = `
-          <span>${category}</span>
-          <button type="button" class="remove-tag-btn" onclick="removeCategory('${category}')">×</button>
-        `;
-        container.appendChild(tag);
-      });
+      if (container) {
+        container.innerHTML = '';
+        
+        formData.categories.forEach(category => {
+          const tag = document.createElement('div');
+          tag.className = 'category-tag';
+          tag.setAttribute('data-category', category);
+          tag.innerHTML = `
+            <span>${category}</span>
+            <button type="button" class="remove-tag-btn" onclick="removeCategory('${category}')">×</button>
+          `;
+          container.appendChild(tag);
+        });
+      }
     }
 
     function showCategoryDropdown() {
@@ -2724,9 +2937,23 @@
     }
 
     // Main link input functionality
-    document.getElementById('main-link-input').addEventListener('input', function() {
-      formData.mainLink = this.value;
-    });
+    const mainLinkInput = document.getElementById('main-link-input');
+    if (mainLinkInput) {
+      mainLinkInput.addEventListener('input', function() {
+        formData.mainLink = this.value;
+      });
+    }
+    
+    // Category input for idea form (shared with business form)
+    const categoryInput = document.getElementById('category-input');
+    if (categoryInput) {
+      categoryInput.addEventListener('input', function() {
+        // Update idea form categories if idea form is active
+        if (selectedTileType === 'idea') {
+          ideaFormData.categories = formData.categories;
+        }
+      });
+    }
 
 
     // Update form data when links change
@@ -2946,6 +3173,61 @@
       
       // Form will submit to Basin endpoint
     });
+    
+    // Idea form submission handling
+    const ideaForm = document.getElementById('idea-community-form');
+    if (ideaForm) {
+      ideaForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Update idea form data
+        ideaFormData.email = document.getElementById('email').value;
+        ideaFormData.categories = formData.categories;
+        
+        // Validate required fields
+        if (!ideaFormData.ideaTitle.trim()) {
+          alert('Please enter your idea title');
+          return;
+        }
+        
+        if (!ideaFormData.ideaDescription.trim()) {
+          alert('Please enter a description');
+          return;
+        }
+        
+        // Check description word count
+        const descriptionWords = ideaFormData.ideaDescription.trim().split(/\s+/).filter(word => word.length > 0).length;
+        if (descriptionWords > 100) {
+          alert('Description must be 100 words or less');
+          return;
+        }
+        
+        if (!ideaFormData.email.trim()) {
+          alert('Please enter your email');
+          return;
+        }
+        
+        if (ideaFormData.categories.length === 0) {
+          alert('Please select at least one category');
+          return;
+        }
+        
+        // Update hidden inputs for form submission
+        document.getElementById('idea-tile-type-hidden').value = 'idea';
+        document.getElementById('idea-email-hidden').value = ideaFormData.email;
+        document.getElementById('idea-description-hidden').value = ideaFormData.ideaDescription;
+        document.getElementById('idea-categories-hidden').value = ideaFormData.categories.join(',');
+        document.getElementById('idea-links-hidden').value = '';
+        document.getElementById('idea-collaborators-hidden').value = '';
+        
+        // Get permission checkbox value
+        const permissionIg = document.getElementById('permission-ig').checked;
+        document.getElementById('idea-permission-ig-hidden').value = permissionIg ? 'yes' : 'no';
+        
+        // Submit the form
+        this.submit();
+      });
+    }
   </script>
 
   <script>
