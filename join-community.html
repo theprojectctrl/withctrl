@@ -1242,8 +1242,8 @@
       overflow: visible;
     }
     
-    /* Idea Card Form Styles - Match actual idea tile appearance */
-    #idea-form-card.idea-card {
+    /* Event Card Form Styles */
+    #event-form-card {
       background: #fff;
       border: 2px dashed #e0e0e0;
       border-radius: 12px;
@@ -1263,27 +1263,9 @@
       overflow: visible;
     }
     
-    #idea-form-card.idea-card:hover {
+    #event-form-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
-    }
-    
-    .collaborate-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
-    }
-    
-    .idea-title-input::placeholder {
-      color: #999;
-      font-weight: 400;
-    }
-    
-    .idea-description-input::placeholder {
-      color: #999;
-    }
-    
-    .idea-collaborators-input::placeholder {
-      color: #999;
     }
 
     .project-card:hover {
@@ -2379,17 +2361,17 @@
             <div class="tile-type-option" id="tile-type-business" onclick="selectTileType('business')" style="padding: 1.5rem; border: 2px solid #e0e0e0; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; background: #fff; text-align: center; display: flex; flex-direction: column;">
               <div style="font-weight: 700; color: #000; margin-bottom: 1.25rem; font-size: 1.4rem; text-align: center;">Startup / Small Business</div>
               <div style="font-size: 0.8rem; color: #333; line-height: 1.5; background: rgba(121, 183, 255, 0.08); border-radius: 8px; padding: 1rem; margin-top: auto;">
-                <div style="margin-bottom: 0.6rem;"><strong style="color: #000;">Where it shows:</strong> browse page, our official instagram's user feature posts</div>
+                <div style="margin-bottom: 0.6rem;"><strong style="color: #000;">Where it shows:</strong> find a co-host page, our official instagram's user feature posts</div>
                 <div style="margin-bottom: 0.6rem;"><strong style="color: #000;">Features:</strong> add a link & description, display your "niche" statement, larger tiles</div>
                 <div style="color: #666; font-weight: 500; font-style: italic;">Perfect for established ventures looking for partnerships and 24/7 growth</div>
               </div>
             </div>
-            <div class="tile-type-option" id="tile-type-idea" onclick="selectTileType('idea')" style="padding: 1.5rem; border: 2px solid #e0e0e0; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; background: #fff; text-align: center; display: flex; flex-direction: column;">
-              <div style="font-weight: 700; color: #000; margin-bottom: 1.25rem; font-size: 1.4rem; text-align: center;">Idea</div>
+            <div class="tile-type-option" id="tile-type-event" onclick="selectTileType('event')" style="padding: 1.5rem; border: 2px solid #e0e0e0; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; background: #fff; text-align: center; display: flex; flex-direction: column;">
+              <div style="font-weight: 700; color: #000; margin-bottom: 1.25rem; font-size: 1.4rem; text-align: center;">Upload Your Event</div>
               <div style="font-size: 0.8rem; color: #333; line-height: 1.5; background: rgba(121, 183, 255, 0.08); border-radius: 8px; padding: 1rem; margin-top: auto;">
-                <div style="margin-bottom: 0.6rem;"><strong style="color: #000;">Where it shows:</strong> "browse" page, our official instagram's idea posts (includes up to 3 other user ideas)</div>
-                <div style="margin-bottom: 0.6rem;"><strong style="color: #000;">Features:</strong> Discord discussion link, short description & title</div>
-                <div style="color: #666; font-weight: 500; font-style: italic;">Perfect for early-stage ideas seeking team members/participants/users</div>
+                <div style="margin-bottom: 0.6rem;"><strong style="color: #000;">Where it shows:</strong> event pages (conferences, workshops, hackathons, etc.)</div>
+                <div style="margin-bottom: 0.6rem;"><strong style="color: #000;">Features:</strong> get co-hosts, connect with attendees, Google Chat link</div>
+                <div style="color: #666; font-weight: 500; font-style: italic;">Perfect for hosting events and growing your business through community engagement</div>
               </div>
             </div>
           </div>
@@ -2476,49 +2458,115 @@
             </form>
                     </div>
                     
-          <!-- Idea Form Card -->
-          <div class="idea-card" id="idea-form-card" style="display: none; position: relative;">
-            <form id="idea-community-form" action="https://usebasin.com/f/264e81003939" method="POST">
+          <!-- Event Upload Form Card -->
+          <div class="project-card" id="event-form-card" style="display: none;">
+            <form id="event-upload-form" action="https://usebasin.com/f/264e81003939" method="POST">
+              <input type="hidden" name="form-type" value="custom-event">
+              <input type="hidden" name="tile-type" value="event">
               
-              <!-- Idea Number Badge Placeholder (top right) -->
-              <div class="idea-number-badge" style="position: absolute; top: 1rem; right: 1rem; background: #000; color: #fff; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; z-index: 1;">#</div>
-              
-              <!-- Hidden inputs for idea form submission -->
-              <input type="hidden" id="idea-tile-type-hidden" name="tile-type" value="idea">
-              <input type="hidden" id="idea-email-hidden" name="email" required>
-              <input type="hidden" id="idea-description-hidden" name="description" required>
-              <input type="hidden" id="idea-categories-hidden" name="categories" required>
-              <input type="hidden" id="idea-links-hidden" name="links">
-              <input type="hidden" id="idea-collaborators-hidden" name="collaborators">
-              <input type="hidden" id="idea-permission-ig-hidden" name="permission-ig">
-              
-              <!-- Idea Header with Title -->
-              <div class="idea-header" style="margin-bottom: 0.75rem; padding-right: 3rem;">
-                <input type="text" id="idea-title" name="idea-title" required placeholder="your idea title" class="idea-title-input" style="font-size: 1.25rem; font-weight: 700; margin: 0; color: #000; border: none; background: transparent; width: 100%; font-family: inherit; padding: 0; resize: none; outline: none;">
+              <div class="project-header">
+                <h3 class="project-title" style="margin-bottom: 1.5rem;">Upload Your Event</h3>
               </div>
-              
-              <!-- Idea Description -->
-              <div class="description-container" style="margin-bottom: 1rem;">
-                <textarea id="idea-description" name="idea-description" required placeholder="describe your idea and what you're looking for in collaborators" class="idea-description-input" style="color: #666; line-height: 1.6; margin: 0; font-size: 0.95rem; border: none; background: transparent; width: 100%; font-family: inherit; padding: 0; resize: none; outline: none; min-height: 80px; overflow: hidden; transition: height 0.1s ease; position: relative; z-index: 1;"></textarea>
-                <div class="word-count" id="idea-description-word-count" style="position: absolute; bottom: 0.5rem; right: 0.5rem; font-size: 0.75rem; color: #999; background: rgba(255, 255, 255, 0.9); padding: 0.25rem 0.5rem; border-radius: 4px; pointer-events: none;">0/100 words</div>
+
+              <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label for="event-title" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000; font-size: 0.95rem;">
+                  Event Title <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="text" id="event-title" name="event-title" required placeholder="Enter your event title" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
               </div>
-              
-              <!-- Discord Discussion Notice (Placeholder) -->
-              <div class="discord-discussion-notice" style="background: rgba(88, 101, 242, 0.08); border: 1px solid rgba(88, 101, 242, 0.2); border-radius: 8px; padding: 0.75rem; margin-top: 1rem; font-size: 0.85rem; color: #333; line-height: 1.5;">
-                <strong style="color: #5865F2; font-weight: 600;">💬 Discord Discussion:</strong> Please title your Discord thread as "<strong style="color: #5865F2; font-weight: 600;">[Category] Idea #[Number]</strong>" so others can easily find and join the discussion.
+
+              <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label for="organization-name" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000; font-size: 0.95rem;">
+                  Organization / Business Name <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="text" id="organization-name" name="organization-name" required placeholder="Enter your organization or business name" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
               </div>
-              
-              <!-- Looking for Collaborators Section -->
-              <div class="collaboration-section" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(0, 0, 0, 0.1);">
-                <div class="collaboration-header" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; font-size: 0.9rem; font-weight: 600; color: #000;">
-                  <span>Looking for Collaborators</span>
+
+              <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label for="your-name" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000; font-size: 0.95rem;">
+                  Your Name <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="text" id="your-name" name="your-name" required placeholder="Enter your full name" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label for="your-email" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000; font-size: 0.95rem;">
+                  Your Email <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="email" id="your-email" name="your-email" required placeholder="your@email.com" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label for="event-type" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000; font-size: 0.95rem;">
+                  Event Type <span style="color: #ef4444;">*</span>
+                </label>
+                <select id="event-type" name="event-type" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box; background: white;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+                  <option value="">Select event type...</option>
+                  <option value="hosting-a-conference">Hosting a Conference</option>
+                  <option value="hackathon-competition">Hackathon / Competition</option>
+                  <option value="fundraiser">Fundraiser</option>
+                  <option value="workshop-webinar">Workshop / Webinar</option>
+                  <option value="program">Program</option>
+                  <option value="member-recruitment">Member Recruitment</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label for="event-category" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000; font-size: 0.95rem;">
+                  Category <span style="color: #ef4444;">*</span>
+                </label>
+                <select id="event-category" name="category" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box; background: white;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+                  <option value="">Select category...</option>
+                  <option value="art">Art</option>
+                  <option value="beauty">Beauty</option>
+                  <option value="business">Business</option>
+                  <option value="computer-science">Computer Science</option>
+                  <option value="education">Education</option>
+                  <option value="engineering">Engineering</option>
+                  <option value="environment">Environment</option>
+                  <option value="film">Film</option>
+                  <option value="finance">Finance</option>
+                  <option value="food-drink">Food + Drink</option>
+                  <option value="health">Health</option>
+                  <option value="law">Law</option>
+                  <option value="psychology">Psychology</option>
+                  <option value="technology">Technology</option>
+                  <option value="writing">Writing</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label for="event-description" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #000; font-size: 0.95rem;">
+                  Event Description <span style="color: #ef4444;">*</span>
+                </label>
+                <textarea id="event-description" name="event-description" required placeholder="Describe your event in detail. What will attendees learn? What makes it special? (70 word limit)" maxlength="700" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box; resize: vertical; min-height: 120px;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'"></textarea>
+                <div class="word-count" id="event-word-count" style="font-size: 0.85rem; color: #999; margin-top: 0.5rem; text-align: right;">0 / 70 words</div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: #000; font-size: 0.95rem;">
+                  Additional Links (Optional - up to 3)
+                </label>
+                <div id="event-additional-links" style="display: flex; flex-direction: column; gap: 1rem;">
+                  <div class="event-link-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <input type="text" name="event-link-label-1" placeholder="Link 1 Label (e.g., Website)" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+                    <input type="url" name="event-link-url-1" placeholder="https://..." style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+                  </div>
+                  <div class="event-link-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <input type="text" name="event-link-label-2" placeholder="Link 2 Label (e.g., Instagram)" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+                    <input type="url" name="event-link-url-2" placeholder="https://..." style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+                  </div>
+                  <div class="event-link-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <input type="text" name="event-link-label-3" placeholder="Link 3 Label (e.g., Twitter)" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+                    <input type="url" name="event-link-url-3" placeholder="https://..." style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+                  </div>
                 </div>
-                
-                <a href="https://discord.gg/ndktHfFUnJ" target="_blank" class="collaborate-button" style="background: linear-gradient(135deg, #5865F2, #7289da); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.2s ease; text-align: center; width: 100%;">
-                  Add Yourself as a Collaborator
-                </a>
               </div>
-              
+
+              <div class="info-box" style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 1rem; margin-top: 1rem; font-size: 0.9rem; color: #666; line-height: 1.6;">
+                <strong style="color: #000;">What happens next?</strong><br>
+                After you submit your event, you'll receive a Google Chat link via email to discuss your event with our team and potential co-hosts. The link expires after 60 days, but you can always request a new one by contacting builtwithctrl@gmail.com.
+              </div>
             </form>
           </div>
                 </div>
@@ -2547,8 +2595,8 @@
             <span>Join bobigos</span>
             <span class="button-arrow">→</span>
           </button>
-          <button type="submit" form="idea-community-form" id="idea-submit-button" class="join-bobigos-button" style="display: none;">
-            <span>Submit Idea</span>
+          <button type="submit" form="event-upload-form" id="event-submit-button" class="join-bobigos-button" style="display: none;">
+            <span>Submit Event</span>
             <span class="button-arrow">→</span>
           </button>
                       </div>
@@ -2588,38 +2636,36 @@
       
       // Update UI
       const businessOption = document.getElementById('tile-type-business');
-      const ideaOption = document.getElementById('tile-type-idea');
+      const eventOption = document.getElementById('tile-type-event');
       const businessCard = document.getElementById('business-form-card');
-      const ideaCard = document.getElementById('idea-form-card');
+      const eventCard = document.getElementById('event-form-card');
       const businessSubmit = document.getElementById('business-submit-button');
-      const ideaSubmit = document.getElementById('idea-submit-button');
+      const eventSubmit = document.getElementById('event-submit-button');
       const categoriesSection = document.querySelector('.categories-section');
       const emailSection = document.querySelector('.email-permission-section');
       
       if (type === 'business') {
         businessOption.classList.add('selected');
-        ideaOption.classList.remove('selected');
+        eventOption.classList.remove('selected');
         businessCard.style.display = 'block';
-        ideaCard.style.display = 'none';
+        eventCard.style.display = 'none';
         if (businessSubmit) businessSubmit.style.display = 'inline-flex';
-        if (ideaSubmit) ideaSubmit.style.display = 'none';
+        if (eventSubmit) eventSubmit.style.display = 'none';
         if (categoriesSection) categoriesSection.style.display = 'block';
         if (emailSection) emailSection.style.display = 'block';
         document.getElementById('tile-type-hidden').value = 'business';
         // Update category tags display
         updateCategoryTags();
-      } else if (type === 'idea') {
+      } else if (type === 'event') {
         businessOption.classList.remove('selected');
-        ideaOption.classList.add('selected');
+        eventOption.classList.add('selected');
         businessCard.style.display = 'none';
-        ideaCard.style.display = 'block';
+        eventCard.style.display = 'block';
         if (businessSubmit) businessSubmit.style.display = 'none';
-        if (ideaSubmit) ideaSubmit.style.display = 'inline-flex';
-        if (categoriesSection) categoriesSection.style.display = 'block';
-        if (emailSection) emailSection.style.display = 'block';
-        document.getElementById('tile-type-hidden').value = 'idea';
-        // Update category tags display
-        updateCategoryTags();
+        if (eventSubmit) eventSubmit.style.display = 'inline-flex';
+        if (categoriesSection) categoriesSection.style.display = 'none';
+        if (emailSection) emailSection.style.display = 'none';
+        document.getElementById('tile-type-hidden').value = 'event';
       }
     }
     
@@ -2636,12 +2682,16 @@
       mainLink: ''
     };
     
-    // Idea Form Data
-    let ideaFormData = {
-      ideaTitle: '',
-      ideaDescription: '',
-      email: '',
-      categories: []
+    // Event Form Data
+    let eventFormData = {
+      eventTitle: '',
+      organizationName: '',
+      yourName: '',
+      yourEmail: '',
+      eventType: '',
+      category: '',
+      description: '',
+      additionalLinks: []
     };
 
     // Available categories for dropdown
@@ -2668,22 +2718,80 @@
       autoExpandTextarea(this);
     });
     
-    // Idea form event listeners
-    const ideaTitleInput = document.getElementById('idea-title');
-    const ideaDescriptionInput = document.getElementById('idea-description');
+    // Event form event listeners
+    const eventTitleInput = document.getElementById('event-title');
+    const organizationNameInput = document.getElementById('organization-name');
+    const yourNameInput = document.getElementById('your-name');
+    const yourEmailInput = document.getElementById('your-email');
+    const eventTypeInput = document.getElementById('event-type');
+    const eventCategoryInput = document.getElementById('event-category');
+    const eventDescriptionInput = document.getElementById('event-description');
     
-    if (ideaTitleInput) {
-      ideaTitleInput.addEventListener('input', function() {
-        ideaFormData.ideaTitle = this.value;
+    if (eventTitleInput) {
+      eventTitleInput.addEventListener('input', function() {
+        eventFormData.eventTitle = this.value;
       });
     }
     
-    if (ideaDescriptionInput) {
-      ideaDescriptionInput.addEventListener('input', function() {
-        ideaFormData.ideaDescription = this.value;
-        updateWordCount('idea-description', this.value, 100);
+    if (organizationNameInput) {
+      organizationNameInput.addEventListener('input', function() {
+        eventFormData.organizationName = this.value;
+      });
+    }
+    
+    if (yourNameInput) {
+      yourNameInput.addEventListener('input', function() {
+        eventFormData.yourName = this.value;
+      });
+    }
+    
+    if (yourEmailInput) {
+      yourEmailInput.addEventListener('input', function() {
+        eventFormData.yourEmail = this.value;
+      });
+    }
+    
+    if (eventTypeInput) {
+      eventTypeInput.addEventListener('change', function() {
+        eventFormData.eventType = this.value;
+      });
+    }
+    
+    if (eventCategoryInput) {
+      eventCategoryInput.addEventListener('change', function() {
+        eventFormData.category = this.value;
+      });
+    }
+    
+    if (eventDescriptionInput) {
+      eventDescriptionInput.addEventListener('input', function() {
+        eventFormData.description = this.value;
+        updateEventWordCount(this.value);
         autoExpandTextarea(this);
       });
+    }
+    
+    // Event word count function
+    function updateEventWordCount(text) {
+      const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+      const wordCount = words.length;
+      const maxWords = 70;
+      const countElement = document.getElementById('event-word-count');
+      
+      if (countElement) {
+        countElement.textContent = `${wordCount} / ${maxWords} words`;
+        
+        countElement.classList.remove('warning', 'error');
+        if (wordCount > maxWords) {
+          countElement.classList.add('error');
+          eventDescriptionInput.setCustomValidity('Description must be 70 words or less');
+        } else if (wordCount > maxWords * 0.9) {
+          countElement.classList.add('warning');
+          eventDescriptionInput.setCustomValidity('');
+        } else {
+          eventDescriptionInput.setCustomValidity('');
+        }
+      }
     }
 
     // Word count function
@@ -2798,10 +2906,6 @@
       if (formData.categories.length < 3 && !formData.categories.includes(category)) {
         formData.categories.push(category);
         updateCategoryTags();
-        // Also update idea form categories if idea form is active
-        if (selectedTileType === 'idea') {
-          ideaFormData.categories = [...formData.categories];
-        }
         document.getElementById('category-input').value = '';
         hideCategoryDropdown();
       }
@@ -2810,10 +2914,6 @@
     function removeCategory(category) {
       formData.categories = formData.categories.filter(cat => cat !== category);
       updateCategoryTags();
-      // Also update idea form categories if idea form is active
-      if (selectedTileType === 'idea') {
-        ideaFormData.categories = [...formData.categories];
-      }
     }
 
     function updateCategoryTags() {
@@ -2944,14 +3044,10 @@
       });
     }
     
-    // Category input for idea form (shared with business form)
+    // Category input for business form
     const categoryInput = document.getElementById('category-input');
     if (categoryInput) {
       categoryInput.addEventListener('input', function() {
-        // Update idea form categories if idea form is active
-        if (selectedTileType === 'idea') {
-          ideaFormData.categories = formData.categories;
-        }
       });
     }
 
@@ -3174,58 +3270,162 @@
       // Form will submit to Basin endpoint
     });
     
-    // Idea form submission handling
-    const ideaForm = document.getElementById('idea-community-form');
-    if (ideaForm) {
-      ideaForm.addEventListener('submit', function(e) {
+    // Event form submission handling
+    const eventForm = document.getElementById('event-upload-form');
+    if (eventForm) {
+      eventForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Update idea form data
-        ideaFormData.email = document.getElementById('email').value;
-        ideaFormData.categories = formData.categories;
+        // Validate word count
+        const text = eventFormData.description;
+        const wordCount = text.trim().split(/\s+/).filter(word => word.length > 0).length;
         
+        if (wordCount > 70) {
+          alert('Please keep your description to 70 words or less.');
+          return;
+        }
+
+        if (wordCount === 0) {
+          alert('Please provide an event description.');
+          return;
+        }
+
         // Validate required fields
-        if (!ideaFormData.ideaTitle.trim()) {
-          alert('Please enter your idea title');
+        if (!eventFormData.eventTitle.trim()) {
+          alert('Please enter an event title');
           return;
         }
         
-        if (!ideaFormData.ideaDescription.trim()) {
-          alert('Please enter a description');
+        if (!eventFormData.organizationName.trim()) {
+          alert('Please enter your organization/business name');
           return;
         }
         
-        // Check description word count
-        const descriptionWords = ideaFormData.ideaDescription.trim().split(/\s+/).filter(word => word.length > 0).length;
-        if (descriptionWords > 100) {
-          alert('Description must be 100 words or less');
+        if (!eventFormData.yourName.trim()) {
+          alert('Please enter your name');
           return;
         }
         
-        if (!ideaFormData.email.trim()) {
+        if (!eventFormData.yourEmail.trim()) {
           alert('Please enter your email');
           return;
         }
         
-        if (ideaFormData.categories.length === 0) {
-          alert('Please select at least one category');
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(eventFormData.yourEmail)) {
+          alert('Please enter a valid email address');
           return;
         }
         
-        // Update hidden inputs for form submission
-        document.getElementById('idea-tile-type-hidden').value = 'idea';
-        document.getElementById('idea-email-hidden').value = ideaFormData.email;
-        document.getElementById('idea-description-hidden').value = ideaFormData.ideaDescription;
-        document.getElementById('idea-categories-hidden').value = ideaFormData.categories.join(',');
-        document.getElementById('idea-links-hidden').value = '';
-        document.getElementById('idea-collaborators-hidden').value = '';
+        if (!eventFormData.eventType) {
+          alert('Please select an event type');
+          return;
+        }
         
-        // Get permission checkbox value
-        const permissionIg = document.getElementById('permission-ig').checked;
-        document.getElementById('idea-permission-ig-hidden').value = permissionIg ? 'yes' : 'no';
-        
-        // Submit the form
-        this.submit();
+        if (!eventFormData.category) {
+          alert('Please select a category');
+          return;
+        }
+
+        // Disable submit button
+        const submitButton = document.getElementById('event-submit-button');
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.innerHTML = '<span>Submitting...</span>';
+        }
+
+        try {
+          // Submit form data
+          const formData = new FormData(eventForm);
+          
+          // Collect additional links
+          const additionalLinks = [];
+          for (let i = 1; i <= 3; i++) {
+            const labelInput = eventForm.querySelector(`input[name="event-link-label-${i}"]`);
+            const urlInput = eventForm.querySelector(`input[name="event-link-url-${i}"]`);
+            if (labelInput && urlInput) {
+              const label = labelInput.value.trim();
+              const url = urlInput.value.trim();
+              if (label && url) {
+                // Validate URL
+                try {
+                  new URL(url);
+                  additionalLinks.push({ label, url });
+                } catch (e) {
+                  // Invalid URL, skip this link
+                }
+              } else if (url && !label) {
+                // URL without label - use default label
+                try {
+                  new URL(url);
+                  additionalLinks.push({ label: `Link ${i}`, url });
+                } catch (e) {
+                  // Invalid URL, skip this link
+                }
+              }
+            }
+          }
+          
+          // Add additional links to form data if any
+          if (additionalLinks.length > 0) {
+            formData.append('additional-links', JSON.stringify(additionalLinks));
+          }
+          
+          // Add word count to form data
+          formData.append('word-count', wordCount);
+          formData.append('submission-date', new Date().toISOString());
+
+          const response = await fetch(eventForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            // Show success message
+            alert('Thank you! Your event has been submitted. You will receive a Google Chat link via email shortly to discuss your event with our team and potential co-hosts.');
+            eventForm.reset();
+            eventFormData = {
+              eventTitle: '',
+              organizationName: '',
+              yourName: '',
+              yourEmail: '',
+              eventType: '',
+              category: '',
+              description: '',
+              additionalLinks: []
+            };
+            // Clear additional links inputs
+            for (let i = 1; i <= 3; i++) {
+              const labelInput = eventForm.querySelector(`input[name="event-link-label-${i}"]`);
+              const urlInput = eventForm.querySelector(`input[name="event-link-url-${i}"]`);
+              if (labelInput) labelInput.value = '';
+              if (urlInput) urlInput.value = '';
+            }
+            updateEventWordCount('');
+            
+            // Track form submission
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'form_submit', {
+                'event_category': 'Event Upload',
+                'event_label': 'Custom Event Submission'
+              });
+            }
+          } else {
+            throw new Error('Submission failed');
+          }
+        } catch (error) {
+          console.error('Form submission error:', error);
+          alert('Sorry, there was an error submitting your event. Please try again or contact us at builtwithctrl@gmail.com');
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<span>Submit Event</span><span class="button-arrow">→</span>';
+          }
+        }
       });
     }
   </script>

@@ -1,0 +1,23 @@
+[
+  {
+    "tag": "Health",
+    "title": "Example Fundraising Campaign",
+    "description": "This is an example description for a fundraising campaign. Replace this with your actual campaign details.",
+    "niche": "This is the impact report section. Describe the impact, metrics, and outcomes of your fundraising efforts here.",
+    "connectionLink": "https://example.com",
+    "links": [
+      {
+        "label": "Website",
+        "url": "https://example.com"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://instagram.com/example"
+      },
+      {
+        "label": "Twitter",
+        "url": "https://twitter.com/example"
+      }
+    ]
+  }
+]

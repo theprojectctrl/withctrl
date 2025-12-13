@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collaborative Posts - bobigos</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-REKT5H0GXW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-REKT5H0GXW');
+  </script>
+  
+  <!-- Supabase -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  
+  <!-- Auth CSS -->
+  <link rel="stylesheet" href="css/auth.css" />
+  
+  <style>
+    /* Updated minimal theme */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Remove all focus outlines */
+    *:focus {
+      outline: none !important;
+    }
+
+    .main-header {
+      background: transparent;
+      border-bottom: none;
+      padding: 3.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      left: 2rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Category Header */
+    .category-header-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 2rem 0;
+      gap: 2rem;
+    }
+
+    .category-header {
+      text-align: left;
+      flex: 1;
+    }
+
+    .category-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: -0.03em;
+      font-family: 'Lucida Console', monospace !important;
+    }
+
+    .category-subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      margin: 0;
+      max-width: 600px;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+      grid-auto-rows: masonry;
+      align-items: start;
+      justify-items: stretch;
+    }
+
+    /* Fallback for browsers that don't support masonry */
+    @supports not (grid-template-rows: masonry) {
+      .projects-grid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        align-content: flex-start;
+        gap: 2rem;
+      }
+      
+      .projects-grid > * {
+        flex: 0 0 auto;
+        width: calc(33.333% - 1.33rem);
+        margin: 0;
+        align-self: flex-start;
+      }
+      
+      @media (max-width: 1024px) {
+        .projects-grid > * {
+          width: calc(50% - 1rem);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .projects-grid > * {
+          width: calc(50% - 1rem);
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .projects-grid > * {
+          width: 100%;
+        }
+      }
+    }
+
+    .project-card {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: visible;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      outline: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Image Bento Tile */
+    .image-bento-tile {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 0;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      outline: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image-bento-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .image-bento-tile img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px 12px 0 0;
+      object-fit: cover;
+    }
+
+    .image-bento-caption {
+      background-color: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 0 0 12px 12px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      background-image: linear-gradient(to bottom, #000, #666);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    /* Form Styles */
+    .collaborative-post-form {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: visible;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .collaborative-post-form:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #000;
+      font-size: 0.95rem;
+    }
+
+    .form-group label .required {
+      color: #ef4444;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .word-count {
+      font-size: 0.85rem;
+      color: #999;
+      margin-top: 0.5rem;
+      text-align: right;
+    }
+
+    .word-count.warning {
+      color: #f59e0b;
+    }
+
+    .word-count.error {
+      color: #ef4444;
+    }
+
+    .submit-button {
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .submit-button:hover {
+      transform: scale(1.05);
+    }
+
+    .submit-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .project-header {
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem 0;
+      color: #000;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .project-type-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+
+    .social-handle-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: #e3f2fd;
+      color: #1976d2;
+      border: 1px solid #bbdefb;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+
+    .project-description {
+      color: #666;
+      line-height: 1.6;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .project-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .apply-button {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 20px;
+      padding: 0.6rem 2rem;
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      min-width: 120px;
+      justify-content: center;
+    }
+
+    .apply-button:hover {
+      background: #e9ecef;
+      border-color: #dee2e6;
+      transform: translateY(-1px);
+      text-decoration: none;
+      color: #000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .apply-button .arrow {
+      color: #000;
+      font-size: 1.1rem;
+      margin-left: 0.25rem;
+    }
+
+    /* Back button */
+    .back-button {
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: Arial, sans-serif;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      justify-content: center;
+      background: #1a1a1a;
+      color: white;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+      flex-shrink: 0;
+      max-width: 200px;
+    }
+
+    .back-button::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 167, 38, 0.8) 70%, 
+        rgba(255, 235, 59, 0.8) 80%, 
+        rgba(76, 175, 80, 0.8) 90%, 
+        rgba(33, 150, 243, 0.8) 95%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .back-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Grouped Bento Section */
+    .category-icons-section {
+      margin: 3rem 0;
+      text-align: center;
+    }
+
+    .category-icons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* Bento group containers */
+    .bento-group {
+      display: grid;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .bento-group:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Horizontal 3-bento group */
+    .bento-group-horizontal-3 {
+      grid-column: span 3;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bento-header-image {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      display: block;
+      border-radius: 16px;
+      object-fit: contain;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .header-container,
+      .main-container {
+        padding: 0 1rem;
+      }
+
+      .category-header-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 2rem 0;
+      }
+
+      .category-header {
+        text-align: center;
+        width: 100%;
+      }
+
+      .category-subtitle {
+        margin: 0 auto;
+      }
+
+      .back-button {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 1rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .category-icons-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .bento-group-horizontal-3 {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+      }
+
+      .bento-header-image {
+        border-radius: 12px;
+      }
+    }
+  </style>
+</head>
+<body class="category-page" id="top">
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="favicon.png" alt="bobigos" style="width: 32px; height: 32px; margin-right: 12px; vertical-align: middle;">
+        bobigos
+      </a>
+      
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="network.html" class="active">Browse</a>
+        <a href="join-community.html" class="join-highlight">upload <span style="font-size: 0.9em; color: #000;">+</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="main-container">
+      <!-- Grouped Bento Section -->
+      <div class="category-icons-section">
+        <div class="category-icons-grid">
+          <!-- Header image in bento shape -->
+          <div class="bento-group bento-group-horizontal-3">
+            <img src="fundraising-header.png" alt="Collaborative Posts Header" class="bento-header-image" />
+          </div>
+        </div>
+      </div>
+
+      <div class="category-header-wrapper">
+        <div class="category-header">
+          <h1 class="category-title">Collaborative Posts</h1>
+          <p class="category-subtitle">Request a custom promotional post and collaborate with others. Benefits include: combining engagement metrics, growing recognition across audiences, and connecting with people who want to collaborate one-time.</p>
+        </div>
+        
+        <a href="network.html" class="back-button">
+          <span>Go Back</span>
+          <span>→</span>
+        </a>
+      </div>
+      
+      <div class="projects-grid" id="projects-grid">
+        <!-- Projects will be loaded here by JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Create collaborative post form
+    function createCollaborativePostForm() {
+      const formCard = document.createElement('div');
+      formCard.className = 'collaborative-post-form';
+      formCard.innerHTML = `
+        <div class="project-header">
+          <h3 class="project-title" style="margin-bottom: 1.5rem;">Request a Collaborative Post</h3>
+        </div>
+        <form id="collaborative-post-form" action="https://usebasin.com/f/264e81003939" method="POST">
+          <input type="hidden" name="form-type" value="collaborative-post">
+          <input type="hidden" name="tile-type" value="collaborative-post">
+          
+          <div class="form-group">
+            <label for="post-category">
+              Category <span class="required">*</span>
+            </label>
+            <select id="post-category" name="category" required>
+              <option value="">Select category...</option>
+              <option value="art">Art</option>
+              <option value="beauty">Beauty</option>
+              <option value="business">Business</option>
+              <option value="computer-science">Computer Science</option>
+              <option value="education">Education</option>
+              <option value="engineering">Engineering</option>
+              <option value="environment">Environment</option>
+              <option value="film">Film</option>
+              <option value="finance">Finance</option>
+              <option value="food-drink">Food + Drink</option>
+              <option value="health">Health</option>
+              <option value="law">Law</option>
+              <option value="psychology">Psychology</option>
+              <option value="technology">Technology</option>
+              <option value="writing">Writing</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="business-name">
+              Business / Organization Name <span class="required">*</span>
+            </label>
+            <input type="text" id="business-name" name="business-name" required placeholder="Enter your business or organization name">
+          </div>
+
+          <div class="form-group">
+            <label for="social-handle">
+              Instagram / Social Media Handle <span class="required">*</span>
+            </label>
+            <input type="text" id="social-handle" name="social-handle" required placeholder="@yourhandle">
+          </div>
+
+          <div class="form-group">
+            <label for="post-email">
+              Your Email <span class="required">*</span>
+            </label>
+            <input type="email" id="post-email" name="email" required placeholder="your@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="post-type">
+              Post Type <span class="required">*</span>
+            </label>
+            <select id="post-type" name="post-type" required>
+              <option value="">Select post type...</option>
+              <option value="video">Video</option>
+              <option value="photo">Photo(s)</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="post-description">
+              Post Description <span class="required">*</span>
+            </label>
+            <textarea id="post-description" name="description" required placeholder="Describe your post in detail (50 word limit)" maxlength="500"></textarea>
+            <div class="word-count" id="post-word-count">0 / 50 words</div>
+          </div>
+
+          <button type="submit" class="submit-button" id="post-submit-button">
+            <span>Submit Request</span>
+            <span>→</span>
+          </button>
+        </form>
+      `;
+      return formCard;
+    }
+
+    // Load projects from custom-ideas.json
+    async function loadProjects() {
+      try {
+        const response = await fetch('categories/custom-ideas.json');
+        const projects = await response.json();
+        
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = ''; // Clear existing content
+        
+        // Add collaborative post form first
+        const formCard = createCollaborativePostForm();
+        projectsGrid.appendChild(formCard);
+        
+        // Setup form submission handler
+        setupFormHandler();
+        
+        if (!projects || projects.length === 0) {
+          return;
+        }
+        
+        projects.forEach(project => {
+          const projectCard = createProjectCard(project);
+          projectsGrid.appendChild(projectCard);
+        });
+        
+        // Initialize masonry layout for browsers that don't support CSS Grid masonry
+        if (!CSS.supports('grid-template-rows', 'masonry')) {
+          setTimeout(() => {
+            initializeMasonryFallback();
+          }, 100);
+        }
+      } catch (error) {
+        console.error('Error loading projects:', error);
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1 / -1;">Error loading projects. Please try again.</p>';
+      }
+    }
+
+    function createProjectCard(project) {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      
+      // Username / biz name (use title or businessName if available)
+      const displayName = project.businessName || project.title || 'Business Name';
+      
+      // Category tag
+      const categoryTag = project.category ? `<span class="tag tag-category" style="display: inline-block; background: rgba(121, 183, 255, 0.1); color: #79b7ff; padding: 0.25rem 0.75rem; border-radius: 100px; font-size: 0.8rem; font-weight: 500; margin-bottom: 0.75rem;">${project.category}</span>` : '';
+      
+      // Connect link
+      const connectLink = project.connectionLink && project.connectionLink !== '#' ? `
+        <div class="project-actions" style="margin-top: 1rem;">
+          <a href="${project.connectionLink}" class="apply-button" target="_blank">
+            <span>Connect</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      ` : '';
+      
+      card.innerHTML = `
+        <div class="project-header">
+          <h3 class="project-title">${displayName}</h3>
+          ${categoryTag ? `<div class="project-tags">${categoryTag}</div>` : ''}
+        </div>
+        <p class="project-description">${project.description || ''}</p>
+        ${connectLink}
+      `;
+      
+      return card;
+    }
+
+    // Fallback masonry implementation for browsers without CSS Grid masonry support
+    function initializeMasonryFallback() {
+      const grid = document.getElementById('projects-grid');
+      if (!grid) return;
+      
+      const items = Array.from(grid.children);
+      if (items.length === 0) return;
+      
+      // Reset positioning and ensure items are visible for measurement
+      items.forEach(item => {
+        item.style.position = 'static';
+        item.style.transform = 'none';
+        item.style.opacity = '0';
+        item.style.margin = '0';
+        item.style.width = 'auto';
+      });
+      
+      // Force a reflow to ensure measurements are accurate
+      grid.offsetHeight;
+      
+      // Calculate column count based on available width
+      const containerWidth = grid.offsetWidth;
+      const itemWidth = 300; // minmax width
+      const gap = 32; // 2rem in pixels
+      const columns = Math.max(1, Math.floor((containerWidth + gap) / (itemWidth + gap)));
+      
+      // Initialize column heights array
+      const columnHeights = new Array(columns).fill(0);
+      const columnWidth = (containerWidth - (gap * (columns - 1))) / columns;
+      
+      // Position each item in the shortest column
+      items.forEach((item, index) => {
+        // Find the shortest column
+        const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
+        
+        // Calculate position with proper gap spacing
+        const x = shortestColumn * (columnWidth + gap);
+        const y = columnHeights[shortestColumn];
+        
+        // Position the item
+        item.style.position = 'absolute';
+        item.style.left = `${x}px`;
+        item.style.top = `${y}px`;
+        item.style.width = `${columnWidth}px`;
+        item.style.transform = 'none';
+        item.style.opacity = '1';
+        item.style.margin = '0';
+        
+        // Update column height with gap
+        columnHeights[shortestColumn] += item.offsetHeight + gap;
+      });
+      
+      // Set container height and positioning
+      grid.style.height = `${Math.max(...columnHeights)}px`;
+      grid.style.position = 'relative';
+    }
+    
+    // Re-run masonry on window resize
+    window.addEventListener('resize', () => {
+      if (!CSS.supports('grid-template-rows', 'masonry')) {
+        setTimeout(initializeMasonryFallback, 100);
+      }
+    });
+
+    // Form submission handler
+    function setupFormHandler() {
+      const form = document.getElementById('collaborative-post-form');
+      const descriptionTextarea = document.getElementById('post-description');
+      const wordCountDisplay = document.getElementById('post-word-count');
+      const submitButton = document.getElementById('post-submit-button');
+      
+      if (!form || !descriptionTextarea || !wordCountDisplay) return;
+      
+      // Word count function
+      function countWords(text) {
+        return text.trim().split(/\s+/).filter(word => word.length > 0).length;
+      }
+      
+      function updateWordCount() {
+        const text = descriptionTextarea.value;
+        const wordCount = countWords(text);
+        const maxWords = 50;
+        
+        wordCountDisplay.textContent = `${wordCount} / ${maxWords} words`;
+        
+        wordCountDisplay.classList.remove('warning', 'error');
+        if (wordCount > maxWords) {
+          wordCountDisplay.classList.add('error');
+          descriptionTextarea.setCustomValidity('Description must be 50 words or less');
+        } else if (wordCount > maxWords * 0.9) {
+          wordCountDisplay.classList.add('warning');
+          descriptionTextarea.setCustomValidity('');
+        } else {
+          descriptionTextarea.setCustomValidity('');
+        }
+      }
+      
+      descriptionTextarea.addEventListener('input', updateWordCount);
+      
+      // Form submission
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Validate word count
+        const text = descriptionTextarea.value;
+        const wordCount = countWords(text);
+        
+        if (wordCount > 50) {
+          alert('Please keep your description to 50 words or less.');
+          return;
+        }
+
+        if (wordCount === 0) {
+          alert('Please provide a post description.');
+          return;
+        }
+
+        // Validate required fields
+        const businessName = document.getElementById('business-name').value.trim();
+        const socialHandle = document.getElementById('social-handle').value.trim();
+        const email = document.getElementById('post-email').value.trim();
+        const category = document.getElementById('post-category').value;
+        const postType = document.getElementById('post-type').value;
+        
+        if (!businessName) {
+          alert('Please enter your business/organization name');
+          return;
+        }
+        
+        if (!socialHandle) {
+          alert('Please enter your Instagram/social media handle');
+          return;
+        }
+        
+        if (!email) {
+          alert('Please enter your email');
+          return;
+        }
+        
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert('Please enter a valid email address');
+          return;
+        }
+        
+        if (!category) {
+          alert('Please select a category');
+          return;
+        }
+        
+        if (!postType) {
+          alert('Please select a post type');
+          return;
+        }
+
+        // Disable submit button
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.innerHTML = '<span>Submitting...</span>';
+        }
+
+        try {
+          // Submit form data
+          const formData = new FormData(form);
+          
+          // Add word count to form data
+          formData.append('word-count', wordCount);
+          formData.append('submission-date', new Date().toISOString());
+
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            // Show success message
+            alert('Thank you! Your collaborative post request has been submitted. We\'ll be in touch soon!');
+            form.reset();
+            updateWordCount();
+            
+            // Track form submission
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'form_submit', {
+                'event_category': 'Collaborative Post',
+                'event_label': 'Collaborative Post Request'
+              });
+            }
+          } else {
+            throw new Error('Submission failed');
+          }
+        } catch (error) {
+          console.error('Form submission error:', error);
+          alert('Sorry, there was an error submitting your request. Please try again or contact us at builtwithctrl@gmail.com');
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<span>Submit Request</span><span>→</span>';
+          }
+        }
+      });
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProjects();
+    });
+  </script>
+</body>
+</html>
+

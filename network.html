@@ -357,6 +357,7 @@
       width: 420px;
       height: 48px;
       position: relative;
+      z-index: 100;
     }
 
     .search-bar-container:hover {
@@ -391,6 +392,78 @@
     .search-input::placeholder {
       color: #9ca3af;
       font-weight: 400;
+    }
+
+    /* Search Dropdown Styles */
+    .search-dropdown {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      max-height: 400px;
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+    }
+
+    .search-dropdown.show {
+      display: block;
+    }
+
+    .search-result-item {
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-result-item:hover,
+    .search-result-item.selected {
+      background-color: #f8f9fa;
+    }
+
+    .search-result-title {
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+    }
+
+    .search-result-meta {
+      font-size: 0.85rem;
+      color: #666;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .search-result-type {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      background: #e3f2fd;
+      color: #1976d2;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .search-result-category {
+      color: #666;
+    }
+
+    .search-no-results {
+      padding: 1.5rem;
+      text-align: center;
+      color: #999;
+      font-size: 0.9rem;
     }
 
 
@@ -1490,6 +1563,70 @@
       padding: 0 2rem;
     }
 
+    /* Bento group containers - actual grid items */
+    .bento-group {
+      display: grid;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .bento-group:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Horizontal 3-bento group - spans 3 columns */
+    .bento-group-horizontal-3 {
+      grid-column: span 3;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0; /* No gap between grouped items */
+    }
+
+    /* Vertical 2-bento group - spans 1 column, 2 rows */
+    .bento-group-vertical-2 {
+      grid-column: span 1;
+      grid-row: span 2;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 1fr);
+      gap: 0; /* No gap between grouped items */
+    }
+
+    /* Bento image container for images that replace category items */
+    .bento-image-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* Horizontal 3-bento image container - maintain original bento height */
+    .bento-group-horizontal-3.bento-image-container {
+      min-height: 280px;
+      height: 280px;
+    }
+
+    .bento-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 16px;
+    }
+
+    /* Right-positioned vertical group - positioned to the right of 4 items */
+    /* Health/Law/Psychology are in row 4, Technology is in row 5 */
+    /* We want the group in column 3, spanning rows 4-5 */
+    .bento-group-right {
+      grid-column: 3;
+      grid-row: 4 / 6;
+    }
+
     .category-icon-item {
       display: flex;
       flex-direction: column;
@@ -1507,10 +1644,47 @@
       justify-content: space-between;
     }
 
+    /* Items inside groups - remove individual borders/shadows, adjust padding */
+    .bento-group .category-icon-item {
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 1.5rem 1rem;
+      background: transparent;
+    }
+
+    /* Items inside horizontal groups */
+    .bento-group-horizontal-3 .category-icon-item {
+      height: 280px;
+    }
+
+    /* Items inside vertical groups should fill available height */
+    .bento-group-vertical-2 .category-icon-item {
+      height: 100%;
+      min-height: 280px;
+    }
+
+    /* Add dividers between items in groups */
+    .bento-group-horizontal-3 .category-icon-item:not(:last-child) {
+      border-right: 1px solid #e5e7eb;
+    }
+
+    .bento-group-vertical-2 .category-icon-item:not(:last-child) {
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 1.5rem;
+      margin-bottom: 0;
+    }
+
     .category-icon-item:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      border-color: #3b82f6;
+    }
+
+    /* Disable individual hover effects for items inside groups */
+    .bento-group .category-icon-item:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: transparent;
     }
 
     .category-emoji {
@@ -1573,6 +1747,59 @@
       margin-left: 0.25rem;
     }
 
+    /* Event tile styling - product card style */
+    .event-tile-style {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: visible;
+    }
+
+    .event-tile-style .category-emoji {
+      font-size: 4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .event-tile-style .category-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0.5rem 0;
+      line-height: 1.3;
+    }
+
+    .event-tile-style .category-count {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin: 0.25rem 0 1rem 0;
+    }
+
+    /* Event button styling with #BED9F4 color */
+    .event-button {
+      background: #BED9F4 !important;
+      border: none !important;
+      border-radius: 12px !important;
+      padding: 0.75rem 1.5rem !important;
+      color: #000 !important;
+      font-weight: 600 !important;
+      font-size: 0.95rem !important;
+      width: 100%;
+      max-width: 200px;
+      box-shadow: 0 2px 4px rgba(190, 217, 244, 0.3);
+    }
+
+    .event-button:hover {
+      background: #a8c9e8 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(190, 217, 244, 0.4);
+      color: #000 !important;
+    }
+
+    .event-button .arrow {
+      color: #000 !important;
+    }
+
     /* Responsive adjustments for add your own section */
     @media (max-width: 768px) {
       .add-your-own-section {
@@ -1605,9 +1832,33 @@
         gap: 1.5rem;
       }
       
+      /* Horizontal 3-bento group becomes 2 columns on tablet */
+      .bento-group-horizontal-3 {
+        grid-column: span 2;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      /* Vertical groups stay as 1 column */
+      .bento-group-vertical-2 {
+        grid-column: span 1;
+        grid-row: span 2;
+      }
+      
       .category-icon-item {
         height: 260px;
         padding: 1.5rem 1rem;
+      }
+      
+      .bento-group .category-icon-item {
+        padding: 1.25rem 0.75rem;
+      }
+      
+      .bento-group-horizontal-3 .category-icon-item {
+        height: 260px;
+      }
+      
+      .bento-group-vertical-2 .category-icon-item {
+        min-height: 260px;
       }
       
       .category-emoji {
@@ -1630,9 +1881,41 @@
         padding: 0 1rem;
       }
       
+      /* All groups become single column on mobile */
+      .bento-group-horizontal-3 {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+      }
+      
+      .bento-group-vertical-2 {
+        grid-column: span 1;
+        grid-row: span 2;
+        grid-template-columns: 1fr;
+      }
+      
       .category-icon-item {
         height: 240px;
         padding: 1.25rem 1rem;
+      }
+      
+      .bento-group .category-icon-item {
+        padding: 1rem 0.5rem;
+      }
+      
+      .bento-group-horizontal-3 .category-icon-item {
+        height: 240px;
+      }
+      
+      .bento-group-vertical-2 .category-icon-item {
+        min-height: 240px;
+      }
+      
+      /* Remove dividers on mobile for better visual flow */
+      .bento-group-horizontal-3 .category-icon-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
       }
       
       .category-emoji {
@@ -2352,218 +2635,113 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
-    <div style="padding: 0 2rem;">
-      <section class="hero-section bento-card">
-        <div class="hero-layout">
-          <div class="hero-left">
-            <div class="hero-boba">🧋</div>
-          </div>
-          <div class="hero-right">
-            <h1>Network</h1>
-            <p class="hero-subtitle">Connect with <span class="emphasis-blue">entrepreneurs</span> and <span class="emphasis-yellow">innovators</span> to grow your network. You can also get inspired by the bobigos community.</p>
-            <div class="cta-buttons">
-              <a href="join-community.html" class="explore-network-button">
-                + Join bobigos
-              </a>
-              <a href="#why-network" class="apply-button">
-                <span>Benefits</span>
-                <span class="arrow">→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-
     <!-- Community Projects Section -->
     <section class="community-projects-section">
       <div class="main-container">
-        <div class="projects-header">
-          <p class="projects-subtitle">bobigos shows you who's digitalizing their small biz/startup, expanding while afk, and making their ideas real. explore, get inspired, and connect.</p>
-        </div>
+       
         
         <!-- Search Bar -->
         <div class="search-section">
-          <div class="search-bar-container">
+          <div class="search-bar-container" style="position: relative;">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
               <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
-            <input type="text" id="project-search" class="search-input" placeholder="who's building rn?" />
-          </div>
-        </div>
-
-        <!-- Add Your Own Section -->
-        <div class="add-your-own-section">
-          <div class="add-your-own-tile" onclick="window.location.href='join-community.html'">
-            <span class="add-your-own-icon">˚୨୧⋆.˚</span>
-            <h3 class="add-your-own-title">add your own</h3>
-            <p class="add-your-own-subtitle">join bobigos and showcase your niche & venture to the community</p>
-            <a href="join-community.html" class="add-your-own-button">
-              + join bobigos
-              <span class="arrow">→</span>
-            </a>
-          </div>
-          
-          <!-- Additional Bento Tile for Symmetry -->
-          <div class="additional-bento-tile">
-            <div class="bento-content">
-              <div class="metrics-left">
-                <div class="metric-item">
-                  <span class="metric-number">30</span>
-                  <span class="metric-label">partners</span>
-                </div>
-                <div class="metric-item">
-                  <span class="metric-number">30+</span>
-                  <span class="metric-label">categories</span>
-                </div>
-              </div>
-              <div class="laptop-image">
-                <img src="laptop.png" alt="Laptop" />
-              </div>
-            </div>
+            <input type="text" id="project-search" class="search-input" placeholder="what are you looking for?" />
+            <div id="search-dropdown" class="search-dropdown"></div>
           </div>
         </div>
 
         <!-- Category Icons Section -->
         <div class="category-icons-section">
           <div class="category-icons-grid">
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=art'">
-              <div class="category-emoji">💿</div>
-              <div class="category-name">Art/Design/Crafts</div>
-              <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=art" class="category-connect-button" onclick="event.stopPropagation();">
-                <span>Explore</span>
-                <span class="arrow">→</span>
-              </a>
+            <!-- Top 3 bentos grouped horizontally (3-bento-long) - replaced with network header image -->
+            <div class="bento-group bento-group-horizontal-3 bento-image-container">
+              <img src="network-header.png" alt="Network Header" class="bento-image" />
             </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=beauty'">
+            
+            <!-- Computer Science and Finance grouped vertically (2-bento-tall) -->
+            <div class="bento-group bento-group-vertical-2 bento-image-container">
+              <img src="jointbento1.png" alt="Computer Science and Finance" class="bento-image" />
+            </div>
+            
+            <!-- Individual bentos (keep as-is) -->
+            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=engineering&co-host=true'">
               <div class="category-emoji">🫧</div>
-              <div class="category-name">Beauty</div>
+              <div class="category-name">Find a Co-Host</div>
               <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=beauty" class="category-connect-button" onclick="event.stopPropagation();">
+              <a href="category-template.html?category=engineering&co-host=true" class="category-connect-button event-button" onclick="event.stopPropagation();">
                 <span>Explore</span>
                 <span class="arrow">→</span>
               </a>
             </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=business'">
-              <div class="category-emoji">📱</div>
-              <div class="category-name">Business/Entrepreneurship</div>
+            <div class="category-icon-item" onclick="window.location.href='collaborative-posts.html'">
+              <div class="category-emoji">☕️</div>
+              <div class="category-name">Collaborative Posts</div>
               <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=business" class="category-connect-button" onclick="event.stopPropagation();">
+              <a href="collaborative-posts.html" class="category-connect-button event-button" onclick="event.stopPropagation();">
                 <span>Explore</span>
                 <span class="arrow">→</span>
               </a>
             </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=computer-science'">
-              <div class="category-emoji">💻</div>
-              <div class="category-name">Computer Science</div>
-              <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=computer-science" class="category-connect-button" onclick="event.stopPropagation();">
-                <span>Explore</span>
-                <span class="arrow">→</span>
-              </a>
-            </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=engineering'">
-              <div class="category-emoji">⚙️</div>
-              <div class="category-name">Engineering</div>
-              <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=engineering" class="category-connect-button" onclick="event.stopPropagation();">
-                <span>Explore</span>
-                <span class="arrow">→</span>
-              </a>
-            </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=environment'">
-              <div class="category-emoji">🌩️</div>
-              <div class="category-name">Environmental</div>
-              <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=environment" class="category-connect-button" onclick="event.stopPropagation();">
-                <span>Explore</span>
-                <span class="arrow">→</span>
-              </a>
-            </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=finance'">
-              <div class="category-emoji">💰</div>
-              <div class="category-name">Finance</div>
-              <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=finance" class="category-connect-button" onclick="event.stopPropagation();">
-                <span>Explore</span>
-                <span class="arrow">→</span>
-              </a>
-            </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=film'">
+            <div class="category-icon-item event-tile-style" onclick="window.location.href='host-a-conference.html'">
               <div class="category-emoji">📷</div>
-              <div class="category-name">Film/Performing Arts</div>
+              <div class="category-name">Host a Conference</div>
               <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=film" class="category-connect-button" onclick="event.stopPropagation();">
+              <a href="host-a-conference.html" class="category-connect-button event-button" onclick="event.stopPropagation();">
                 <span>Explore</span>
                 <span class="arrow">→</span>
               </a>
             </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=food-drink'">
+            <div class="category-icon-item event-tile-style" onclick="window.location.href='workshops-webinars.html'">
               <div class="category-emoji">🍵</div>
-              <div class="category-name">Food/Drink</div>
+              <div class="category-name">Workshops & Webinars</div>
               <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=food-drink" class="category-connect-button" onclick="event.stopPropagation();">
+              <a href="workshops-webinars.html" class="category-connect-button event-button" onclick="event.stopPropagation();">
                 <span>Explore</span>
                 <span class="arrow">→</span>
               </a>
             </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=health'">
+            <div class="category-icon-item event-tile-style" onclick="window.location.href='hackathons-competitions.html'">
               <div class="category-emoji">🪄</div>
-              <div class="category-name">Health/Medicine</div>
+              <div class="category-name">Hackathons & Competitions</div>
               <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=health" class="category-connect-button" onclick="event.stopPropagation();">
+              <a href="hackathons-competitions.html" class="category-connect-button event-button" onclick="event.stopPropagation();">
                 <span>Explore</span>
                 <span class="arrow">→</span>
               </a>
             </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=law'">
+            <div class="category-icon-item event-tile-style" onclick="window.location.href='fundraising-and-goods.html'">
               <div class="category-emoji">🏛️</div>
-              <div class="category-name">Law/Political Science</div>
+              <div class="category-name">Fundraising & Goods</div>
               <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=law" class="category-connect-button" onclick="event.stopPropagation();">
+              <a href="fundraising-and-goods.html" class="category-connect-button event-button" onclick="event.stopPropagation();">
                 <span>Explore</span>
                 <span class="arrow">→</span>
               </a>
             </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=writing'">
-              <div class="category-emoji">📖</div>
-              <div class="category-name">Literature/Writing</div>
-              <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=writing" class="category-connect-button" onclick="event.stopPropagation();">
-                <span>Explore</span>
-                <span class="arrow">→</span>
-              </a>
-            </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=psychology'">
+            <div class="category-icon-item event-tile-style" onclick="window.location.href='mentored-programs.html'">
               <div class="category-emoji">🔬</div>
-              <div class="category-name">Psychology</div>
+              <div class="category-name">Launch a Program</div>
               <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=psychology" class="category-connect-button" onclick="event.stopPropagation();">
+              <a href="mentored-programs.html" class="category-connect-button event-button" onclick="event.stopPropagation();">
                 <span>Explore</span>
                 <span class="arrow">→</span>
               </a>
             </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=technology'">
-              <div class="category-emoji">👾</div>
-              <div class="category-name">Technology</div>
+            <div class="category-icon-item event-tile-style" onclick="window.location.href='recruit-members.html'">
+              <div class="category-emoji">☁️</div>
+              <div class="category-name">Recruit Members</div>
               <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=technology" class="category-connect-button" onclick="event.stopPropagation();">
+              <a href="recruit-members.html" class="category-connect-button event-button" onclick="event.stopPropagation();">
                 <span>Explore</span>
                 <span class="arrow">→</span>
               </a>
             </div>
-            <div class="category-icon-item" onclick="window.location.href='category-template.html?category=education'">
-              <div class="category-emoji">🧹</div>
-              <div class="category-name">Tutoring/Education</div>
-              <div class="category-count">Loading...</div>
-              <a href="category-template.html?category=education" class="category-connect-button" onclick="event.stopPropagation();">
-                <span>Explore</span>
-                <span class="arrow">→</span>
-              </a>
+            
+            <!-- Literature/Writing and Tutoring/Education grouped vertically (2-bento-tall) - positioned to the right -->
+            <div class="bento-group bento-group-vertical-2 bento-group-right bento-image-container">
+              <img src="jointbento2.png" alt="Literature/Writing and Tutoring/Education" class="bento-image" />
             </div>
           </div>
         </div>
@@ -2808,12 +2986,13 @@
         const selectedType = typeFilter.value;
         const selectedCategory = categoryFilter.value;
         
-        // Get projects data from projects.js
-        if (!window.projectsPage || !window.projectsPage.allProjects) {
+        // Use allSearchableData if available, otherwise fall back to projectsPage data
+        let projectsData = allSearchableData.length > 0 ? allSearchableData : 
+                          (window.projectsPage && window.projectsPage.allProjects ? window.projectsPage.allProjects : []);
+        
+        if (projectsData.length === 0) {
           return;
         }
-        
-        const projectsData = window.projectsPage.allProjects;
         
         // If no filters are applied, show all projects
         if (!searchTerm && !selectedType && !selectedCategory) {
@@ -2851,16 +3030,20 @@
                              niche.includes(searchTerm) || 
                              category.includes(searchTerm);
             } else {
-              // Regular project
-              const title = (project.title || '').toLowerCase();
+              // Regular project or category item
+              const title = (project.title || project.businessName || '').toLowerCase();
               const description = (project.description || '').toLowerCase();
               const category = (project.category || '').toLowerCase();
               const niche = (project.niche || '').toLowerCase();
+              const businessName = (project.businessName || '').toLowerCase();
+              const socialHandle = (project.socialHandle || '').toLowerCase();
               
               searchMatches = title.includes(searchTerm) || 
                              description.includes(searchTerm) || 
                              category.includes(searchTerm) || 
-                             niche.includes(searchTerm);
+                             niche.includes(searchTerm) ||
+                             businessName.includes(searchTerm) ||
+                             socialHandle.includes(searchTerm);
             }
             
             matches = matches && searchMatches;
@@ -3002,16 +3185,286 @@
       }
 
       // Wait for projects to be loaded by projects.js
+      // Load all JSON files from categories folder
+      async function loadAllCategoryData() {
+        const categoryFiles = [
+          'art', 'beauty', 'business', 'computer-science', 'education',
+          'engineering', 'environment', 'film', 'finance', 'food-drink',
+          'health', 'law', 'psychology', 'technology', 'writing',
+          'fundraising-and-goods', 'hackathons-competitions', 'host-a-conference',
+          'mentored-programs', 'recruit-members', 'workshops-webinars',
+          'custom-ideas'
+        ];
+        
+        const allCategoryData = [];
+        
+        // Load all category JSON files in parallel
+        const promises = categoryFiles.map(category => 
+          fetch(`categories/${category}.json`)
+            .then(response => response.ok ? response.json() : [])
+            .then(data => {
+              // Add category info to each item
+              if (Array.isArray(data)) {
+                return data.map(item => ({
+                  ...item,
+                  sourceCategory: category,
+                  sourceType: 'category'
+                }));
+              }
+              return [];
+            })
+            .catch(() => [])
+        );
+        
+        const results = await Promise.all(promises);
+        results.forEach(data => {
+          if (Array.isArray(data)) {
+            allCategoryData.push(...data);
+          }
+        });
+        
+        return allCategoryData;
+      }
+      
+      // Store all data (projects + category data)
+      let allSearchableData = [];
+      let selectedIndex = -1;
+      let searchTimeout;
+      
+      // Load category data immediately for search
+      loadAllCategoryData().then(categoryData => {
+        // If projectsPage data exists, combine it
+        if (window.projectsPage && window.projectsPage.allProjects && window.projectsPage.allProjects.length > 0) {
+          const projectsData = window.projectsPage.allProjects.map(p => ({
+            ...p,
+            sourceType: 'project'
+          }));
+          allSearchableData = [...projectsData, ...categoryData];
+        } else {
+          // Just use category data for now
+          allSearchableData = categoryData;
+        }
+      });
+      
+      // Helper functions for search dropdown
+      function performSearch(term, data) {
+        if (!data || data.length === 0) return [];
+        
+        const results = [];
+        const maxResults = 10;
+        
+        for (const item of data) {
+          if (results.length >= maxResults) break;
+          
+          const title = (item.title || item.businessName || '').toLowerCase();
+          const description = (item.description || '').toLowerCase();
+          const category = (item.category || '').toLowerCase();
+          const niche = (item.niche || '').toLowerCase();
+          const businessName = (item.businessName || '').toLowerCase();
+          const socialHandle = (item.socialHandle || '').toLowerCase();
+          
+          if (title.includes(term) || description.includes(term) || 
+              category.includes(term) || niche.includes(term) ||
+              businessName.includes(term) || socialHandle.includes(term)) {
+            results.push(item);
+          }
+        }
+        
+        return results;
+      }
+      
+      function displaySearchResults(results) {
+        const dropdown = document.getElementById('search-dropdown');
+        if (!dropdown) return;
+        
+        dropdown.innerHTML = '';
+        
+        if (results.length === 0) {
+          dropdown.innerHTML = '<div class="search-no-results">No results found</div>';
+          dropdown.classList.add('show');
+          return;
+        }
+        
+        results.forEach((item, index) => {
+          const resultItem = document.createElement('div');
+          resultItem.className = 'search-result-item';
+          
+          const title = item.title || item.businessName || 'Untitled';
+          const category = item.category || '';
+          const type = item.sourceType === 'category' ? 'Event/Category' : 
+                      item.ventureType === 'person' ? 'Personal Profile' :
+                      item.type || 'Project';
+          
+          resultItem.innerHTML = `
+            <div class="search-result-title">${title}</div>
+            <div class="search-result-meta">
+              <span class="search-result-type">${type}</span>
+              ${category ? `<span class="search-result-category">${category}</span>` : ''}
+            </div>
+          `;
+          
+          resultItem.addEventListener('click', function() {
+            navigateToItem(item);
+          });
+          
+          dropdown.appendChild(resultItem);
+        });
+        
+        dropdown.classList.add('show');
+      }
+      
+      function updateSelection(results) {
+        results.forEach((item, index) => {
+          item.classList.toggle('selected', index === selectedIndex);
+        });
+      }
+      
+      function navigateToItem(item) {
+        const searchDropdown = document.getElementById('search-dropdown');
+        const searchInput = document.getElementById('project-search');
+        
+        // Determine navigation URL based on item type - navigate to the page where item is displayed
+        let url = '#';
+        
+        // Check if item is from a specific event/category page
+        if (item.sourceCategory) {
+          // Category items - navigate to appropriate page
+          const category = item.sourceCategory;
+          
+          // Map category to page
+          const categoryPageMap = {
+            'fundraising-and-goods': 'fundraising-and-goods.html',
+            'hackathons-competitions': 'hackathons-competitions.html',
+            'host-a-conference': 'host-a-conference.html',
+            'mentored-programs': 'mentored-programs.html',
+            'recruit-members': 'recruit-members.html',
+            'workshops-webinars': 'workshops-webinars.html',
+            'custom-ideas': 'collaborative-posts.html'
+          };
+          
+          if (categoryPageMap[category]) {
+            url = categoryPageMap[category];
+            window.location.href = url;
+          } else {
+            // Regular category - go to category template
+            url = `category-template.html?category=${category}`;
+            window.location.href = url;
+          }
+        } else if (item.category) {
+          // Regular project with category - go to category template page
+          const normalizedCategory = item.category.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-').replace(/\+/g, '-');
+          url = `category-template.html?category=${normalizedCategory}`;
+          window.location.href = url;
+        } else if (item.sourceType === 'project') {
+          // Project from projects.json - check if it has a category
+          if (item.category) {
+            const normalizedCategory = item.category.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-').replace(/\+/g, '-');
+            url = `category-template.html?category=${normalizedCategory}`;
+            window.location.href = url;
+          } else {
+            // No category, go to network page
+            url = 'network.html';
+            window.location.href = url;
+          }
+        } else {
+          // Fallback to network page
+          url = 'network.html';
+          window.location.href = url;
+        }
+        
+        // Close dropdown
+        if (searchDropdown) searchDropdown.classList.remove('show');
+        if (searchInput) searchInput.value = '';
+      }
+      
+      // Set up search listeners immediately (outside of conditional)
+      const searchDropdown = document.getElementById('search-dropdown');
+      
+      if (searchInput && searchDropdown) {
+        // Add search event listener for dropdown
+        searchInput.addEventListener('input', function(e) {
+          const searchTerm = this.value.toLowerCase().trim();
+          
+          // Clear any existing timeout
+          clearTimeout(searchTimeout);
+          
+          if (searchTerm.length === 0) {
+            searchDropdown.classList.remove('show');
+            selectedIndex = -1;
+            // Also clear filters when search is empty
+            if (typeof applyFilters === 'function') {
+              applyFilters();
+            }
+            return;
+          }
+          
+          // Debounce search
+          searchTimeout = setTimeout(() => {
+            // Search through all data
+            const dataToSearch = allSearchableData.length > 0 ? allSearchableData : 
+                                (window.projectsPage && window.projectsPage.allProjects ? window.projectsPage.allProjects : []);
+            const results = performSearch(searchTerm, dataToSearch);
+            
+            // Show dropdown with results
+            displaySearchResults(results);
+            selectedIndex = -1;
+          }, 200);
+        });
+        
+        // Handle keyboard navigation
+        searchInput.addEventListener('keydown', function(e) {
+          const dropdown = document.getElementById('search-dropdown');
+          const results = dropdown.querySelectorAll('.search-result-item');
+          
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            selectedIndex = Math.min(selectedIndex + 1, results.length - 1);
+            updateSelection(results);
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            selectedIndex = Math.max(selectedIndex - 1, -1);
+            updateSelection(results);
+          } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (selectedIndex >= 0 && results[selectedIndex]) {
+              results[selectedIndex].click();
+            } else if (results.length > 0) {
+              results[0].click();
+            }
+          } else if (e.key === 'Escape') {
+            dropdown.classList.remove('show');
+            selectedIndex = -1;
+          }
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.search-bar-container')) {
+            searchDropdown.classList.remove('show');
+          }
+        });
+      }
+      
       function initializeSearch() {
         // Check if projectsPage is available and has data
         if (window.projectsPage && window.projectsPage.allProjects && window.projectsPage.allProjects.length > 0) {
           
-          // Populate filter options with current project data
-          populateFilterOptions(window.projectsPage.allProjects);
-          
-          // Add search event listener
-          searchInput.addEventListener('input', function(e) {
-            applyFilters();
+          // Load category data and combine with projects
+          loadAllCategoryData().then(categoryData => {
+            // Mark projects.json data
+            const projectsData = window.projectsPage.allProjects.map(p => ({
+              ...p,
+              sourceType: 'project'
+            }));
+            
+            // Combine all data
+            allSearchableData = [...projectsData, ...categoryData];
+            
+            // Populate filter options with combined data
+            populateFilterOptions(allSearchableData);
+            
+            // Update projectsPage to include all data for rendering
+            window.projectsPage.allProjects = allSearchableData;
           });
           
           // Add filter event listeners
@@ -3131,22 +3584,57 @@
       loadCategoryCounts();
     });
 
+    // Helper function to get the correct JSON filename for a category
+    function getCategoryJsonFile(category) {
+      if (category === 'law') {
+        return 'fundraising-and-goods.json';
+      }
+      return `${category}.json`;
+    }
+
+    // Helper function to get the correct ideas JSON filename for a category
+    function getCategoryIdeasJsonFile(category) {
+      if (category === 'law') {
+        return 'ideas-fundraising-and-goods.json';
+      }
+      return `ideas-${category}.json`;
+    }
+
     // Function to load and update category counts dynamically
     // This includes both startup posts and idea tiles
     async function loadCategoryCounts() {
       const categories = [
-        'art', 'beauty', 'business', 'computer-science', 'engineering', 
+        'art', 'beauty', 'business', 'computer-science', 'engineering',
         'environment', 'finance', 'film', 'food-drink', 'health', 
-        'law', 'writing', 'psychology', 'technology', 'education'
+        'law', 'writing', 'psychology', 'technology', 'education', 'custom-ideas'
       ];
 
       // Load all categories in parallel for better performance
       const countPromises = categories.map(async (category) => {
         try {
+          // Special handling for custom-ideas - only load custom-ideas.json
+          if (category === 'custom-ideas') {
+            try {
+              const response = await fetch(`categories/custom-ideas.json`);
+              if (response.ok) {
+                const ideasData = await response.json();
+                const count = Array.isArray(ideasData) ? ideasData.length : 0;
+                return { category, count };
+              }
+            } catch (error) {
+              console.warn(`Failed to load custom-ideas.json:`, error);
+            }
+            return { category, count: 0 };
+          }
+          
+          // Get the correct JSON filenames
+          const startupsFile = getCategoryJsonFile(category);
+          const ideasFile = getCategoryIdeasJsonFile(category);
+          
           // Load both startups and ideas in parallel
           const [startupsResponse, ideasResponse] = await Promise.allSettled([
-            fetch(`categories/${category}.json`),
-            fetch(`categories/ideas-${category}.json`)
+            fetch(`categories/${startupsFile}`),
+            fetch(`categories/${ideasFile}`)
           ]);
           
           let startupsCount = 0;
@@ -3186,6 +3674,56 @@
       results.forEach(({ category, count }) => {
         updateCategoryCount(category, count);
       });
+      
+      // Special handling for co-host - count all unique projects from all categories
+      try {
+        const allCategoryFiles = [
+          'art', 'beauty', 'business', 'computer-science', 'education',
+          'engineering', 'environment', 'film', 'finance', 'food-drink',
+          'health', 'law', 'psychology', 'technology', 'writing'
+        ];
+        
+        const categoryPromises = allCategoryFiles.map(cat => {
+          const filename = getCategoryJsonFile(cat);
+          return fetch(`categories/${filename}`)
+            .then(response => response.ok ? response.json() : [])
+            .catch(() => []);
+        });
+        
+        const allCategoryData = await Promise.all(categoryPromises);
+        const projectsMap = new Map();
+        
+        allCategoryData.forEach(categoryProjects => {
+          if (Array.isArray(categoryProjects)) {
+            categoryProjects.forEach(project => {
+              if (project && project.title) {
+                const key = project.title.toLowerCase().trim();
+                if (!projectsMap.has(key)) {
+                  projectsMap.set(key, project);
+                }
+              }
+            });
+          }
+        });
+        
+        const uniqueCount = projectsMap.size;
+        
+        // Update co-host count
+        const categoryItems = document.querySelectorAll('.category-icon-item');
+        categoryItems.forEach(item => {
+          const link = item.querySelector('a');
+          const linkHref = link ? link.getAttribute('href') : '';
+          const onclick = item.getAttribute('onclick') || '';
+          if ((linkHref && linkHref.includes('co-host=true')) || (onclick && onclick.includes('co-host=true'))) {
+            const countElement = item.querySelector('.category-count');
+            if (countElement) {
+              countElement.textContent = `${uniqueCount} post${uniqueCount !== 1 ? 's' : ''}`;
+            }
+          }
+        });
+      } catch (error) {
+        console.warn('Failed to update co-host count:', error);
+      }
     }
 
     // Function to update the count display for a specific category
@@ -3193,7 +3731,21 @@
       const categoryItems = document.querySelectorAll('.category-icon-item');
       categoryItems.forEach(item => {
         const onclick = item.getAttribute('onclick');
-        if (onclick && onclick.includes(`category=${category}`)) {
+        const link = item.querySelector('a');
+        const linkHref = link ? link.getAttribute('href') : '';
+        
+        // Check both onclick and link href for category match
+        // Special handling for custom-ideas -> collaborative-posts
+        let matchesCategory = false;
+        if (category === 'custom-ideas') {
+          matchesCategory = (onclick && onclick.includes('collaborative-posts.html')) ||
+                           (linkHref && linkHref.includes('collaborative-posts.html'));
+        } else {
+          matchesCategory = (onclick && onclick.includes(`category=${category}`)) ||
+                           (linkHref && linkHref.includes(`category=${category}`));
+        }
+        
+        if (matchesCategory) {
           const countElement = item.querySelector('.category-count');
           if (countElement) {
             countElement.textContent = `${count} post${count !== 1 ? 's' : ''}`;

@@ -1,0 +1,24 @@
+[
+  {
+    "tag": "Event",
+    "title": "Example Conference",
+    "description": "This is an example description for a conference. Replace this with your actual conference details.",
+    "niche": "This is the impact report section. Describe the impact, metrics, and outcomes of your conference here.",
+    "connectionLink": "https://example.com",
+    "links": [
+      {
+        "label": "Website",
+        "url": "https://example.com"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://instagram.com/example"
+      },
+      {
+        "label": "Twitter",
+        "url": "https://twitter.com/example"
+      }
+    ]
+  }
+]
+

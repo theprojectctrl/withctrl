@@ -1,0 +1,24 @@
+[
+  {
+    "tag": "Program",
+    "title": "Example Mentored Program",
+    "description": "This is an example description for a mentored program. Replace this with your actual program details.",
+    "niche": "This is the impact report section. Describe the impact, metrics, and outcomes of your program here.",
+    "connectionLink": "https://example.com",
+    "links": [
+      {
+        "label": "Website",
+        "url": "https://example.com"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://instagram.com/example"
+      },
+      {
+        "label": "Twitter",
+        "url": "https://twitter.com/example"
+      }
+    ]
+  }
+]
+

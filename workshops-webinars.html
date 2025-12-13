@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workshops & Webinars - bobigos</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-REKT5H0GXW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-REKT5H0GXW');
+  </script>
+  
+  <!-- Supabase -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  
+  <!-- Auth CSS -->
+  <link rel="stylesheet" href="css/auth.css" />
+  
+  <style>
+    /* Updated minimal theme */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Remove all focus outlines */
+    *:focus {
+      outline: none !important;
+    }
+
+    .main-header {
+      background: transparent;
+      border-bottom: none;
+      padding: 3.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      left: 2rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Category Header */
+    .category-header-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 2rem 0;
+      gap: 2rem;
+    }
+
+    .category-header {
+      text-align: left;
+      flex: 1;
+    }
+
+    .category-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: -0.03em;
+      font-family: 'Lucida Console', monospace !important;
+    }
+
+    .category-subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      margin: 0;
+      max-width: 600px;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+      grid-auto-rows: masonry;
+      align-items: start;
+      justify-items: stretch;
+    }
+
+    /* Fallback for browsers that don't support masonry */
+    @supports not (grid-template-rows: masonry) {
+      .projects-grid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        align-content: flex-start;
+        gap: 2rem;
+      }
+      
+      .projects-grid > * {
+        flex: 0 0 auto;
+        width: calc(33.333% - 1.33rem);
+        margin: 0;
+        align-self: flex-start;
+      }
+      
+      @media (max-width: 1024px) {
+        .projects-grid > * {
+          width: calc(50% - 1rem);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .projects-grid > * {
+          width: calc(50% - 1rem);
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .projects-grid > * {
+          width: 100%;
+        }
+      }
+    }
+
+    .project-card {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: visible;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      outline: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Image Bento Tile */
+    .image-bento-tile {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 0;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      outline: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image-bento-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .image-bento-tile img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px 12px 0 0;
+      object-fit: cover;
+    }
+
+    .image-bento-caption {
+      background-color: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 0 0 12px 12px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      background-image: linear-gradient(to bottom, #000, #666);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .project-header {
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem 0;
+      color: #000;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .project-type-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+
+    .social-handle-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: #e3f2fd;
+      color: #1976d2;
+      border: 1px solid #bbdefb;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+
+    .project-description {
+      color: #666;
+      line-height: 1.6;
+      margin: 0 0 1.5rem 0;
+    }
+
+    /* Impact Report Tile */
+    .impact-report-tile {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #f0f0f0;
+    }
+
+    .impact-report-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #666;
+    }
+
+    .impact-report-content {
+      font-size: 0.85rem;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .project-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .apply-button {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 20px;
+      padding: 0.6rem 2rem;
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      min-width: 120px;
+      justify-content: center;
+    }
+
+    .apply-button:hover {
+      background: #e9ecef;
+      border-color: #dee2e6;
+      transform: translateY(-1px);
+      text-decoration: none;
+      color: #000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .apply-button .arrow {
+      color: #000;
+      font-size: 1.1rem;
+      margin-left: 0.25rem;
+    }
+
+    /* Co-host email form styles */
+    .cohost-email-form {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+
+    .cohost-email-form.active {
+      display: block;
+    }
+
+    .cohost-email-form input[type="email"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      margin-bottom: 0.75rem;
+      box-sizing: border-box;
+    }
+
+    .cohost-email-form input[type="email"]:focus {
+      outline: none;
+      border-color: #000;
+    }
+
+    .cohost-submit-button {
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .cohost-submit-button:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+
+    .cohost-submit-button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Link button styles */
+    .link-button {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 20px;
+      padding: 0.6rem 1rem;
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      min-width: 50px;
+    }
+
+    .link-button:hover {
+      background: #e9ecef;
+      border-color: #dee2e6;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .link-button svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+    }
+
+    /* Links form styles */
+    .links-form {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+
+    .links-form.active {
+      display: block;
+    }
+
+    .link-display-item a:hover {
+      background: #e9ecef;
+    }
+
+    /* Back button */
+    .back-button {
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: Arial, sans-serif;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      justify-content: center;
+      background: #1a1a1a;
+      color: white;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+      flex-shrink: 0;
+      max-width: 200px;
+    }
+
+    .back-button::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 167, 38, 0.8) 70%, 
+        rgba(255, 235, 59, 0.8) 80%, 
+        rgba(76, 175, 80, 0.8) 90%, 
+        rgba(33, 150, 243, 0.8) 95%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .back-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Grouped Bento Section */
+    .category-icons-section {
+      margin: 3rem 0;
+      text-align: center;
+    }
+
+    .category-icons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* Bento group containers */
+    .bento-group {
+      display: grid;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .bento-group:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Horizontal 3-bento group */
+    .bento-group-horizontal-3 {
+      grid-column: span 3;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bento-header-image {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      display: block;
+      border-radius: 16px;
+      object-fit: contain;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .header-container,
+      .main-container {
+        padding: 0 1rem;
+      }
+
+      .category-header-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 2rem 0;
+      }
+
+      .category-header {
+        text-align: center;
+        width: 100%;
+      }
+
+      .category-subtitle {
+        margin: 0 auto;
+      }
+
+      .back-button {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 1rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .category-icons-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .bento-group-horizontal-3 {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+      }
+
+      .bento-header-image {
+        border-radius: 12px;
+      }
+    }
+
+    /* Benefit tags styling */
+    .benefit-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 0.75rem;
+      background: #e3f2fd;
+      color: #1976d2;
+      border: 1px solid #bbdefb;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .benefit-tag:hover {
+      background: #bbdefb;
+      transform: translateY(-1px);
+    }
+
+    .plotline-sheet {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .plotline-sheet h4 {
+      margin: 0 0 1rem 0;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    /* Request This Post Section */
+    .request-posts-section {
+      margin: 3rem 0;
+      padding: 2rem 0;
+    }
+
+    .request-posts-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      margin: 0 0 2rem 0;
+      text-align: center;
+      font-family: 'Lucida Console', monospace !important;
+      letter-spacing: -0.02em;
+    }
+
+    /* Current Events Section Header */
+    .current-events-header {
+      margin: 4rem 0 2rem 0;
+      text-align: center;
+    }
+
+    .current-events-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      margin: 0;
+      font-family: 'Lucida Console', monospace !important;
+      letter-spacing: -0.02em;
+      color: #000;
+    }
+
+    .request-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .request-post-card {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 0;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .request-post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .request-post-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px 12px 0 0;
+      object-fit: cover;
+    }
+
+    .request-post-caption {
+      background-color: #fff;
+      padding: 1.5rem 2rem 1rem 2rem;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      background-image: linear-gradient(to bottom, #000, #666);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .request-post-button {
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: calc(100% - 4rem);
+      margin: 0 2rem 1.5rem 2rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .request-post-button:hover {
+      background: #333;
+      transform: translateY(-1px);
+      color: white;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .request-posts-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="category-page" id="top">
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="favicon.png" alt="bobigos" style="width: 32px; height: 32px; margin-right: 12px; vertical-align: middle;">
+        bobigos
+      </a>
+      
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="network.html" class="active">Browse</a>
+        <a href="join-community.html" class="join-highlight">upload <span style="font-size: 0.9em; color: #000;">+</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="main-container">
+      <!-- Grouped Bento Section -->
+      <div class="category-icons-section">
+        <div class="category-icons-grid">
+          <!-- Header image in bento shape -->
+          <div class="bento-group bento-group-horizontal-3">
+            <img src="fundraising-header.png" alt="Workshops & Webinars Header" class="bento-header-image" />
+          </div>
+        </div>
+      </div>
+
+      <div class="category-header-wrapper">
+        <div class="category-header">
+          <h1 class="category-title">Workshops & Webinars</h1>
+          <p class="category-subtitle">Request a custom promotional post and setup for an event of your choosing</p>
+        </div>
+        
+        <a href="join-community.html" class="back-button">
+          <span>Upload Yours</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Request This Post Section -->
+      <div class="request-posts-section">
+        <h2 class="request-posts-title">Request This Post</h2>
+        <div class="request-posts-grid">
+          <div class="request-post-card">
+            <img src="workshop.png" alt="Host a Workshop" />
+            <div class="request-post-caption">host a workshop</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfIvgPyIcVb9meiSMDH9WSQJj0q9ffVfdvO5cFdyG_aw5LoLg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="request-post-button">Request Post</a>
+          </div>
+          <div class="request-post-card">
+            <img src="webinar.png" alt="Host a Webinar" />
+            <div class="request-post-caption">host a webinar</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfIvgPyIcVb9meiSMDH9WSQJj0q9ffVfdvO5cFdyG_aw5LoLg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="request-post-button">Request Post</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Current Events Section Header -->
+      <div class="current-events-header">
+        <h2 class="current-events-title">current events</h2>
+      </div>
+      
+      <div class="projects-grid" id="projects-grid">
+        <!-- Projects will be loaded here by JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Load projects from workshops-webinars.json
+    async function loadProjects() {
+      try {
+        const response = await fetch('categories/workshops-webinars.json');
+        const projects = await response.json();
+        
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = ''; // Clear existing content
+        
+        if (!projects || projects.length === 0) {
+          return;
+        }
+        
+        projects.forEach(project => {
+          const projectCard = createProjectCard(project);
+          projectsGrid.appendChild(projectCard);
+        });
+        
+        // Initialize masonry layout for browsers that don't support CSS Grid masonry
+        if (!CSS.supports('grid-template-rows', 'masonry')) {
+          setTimeout(() => {
+            initializeMasonryFallback();
+          }, 100);
+        }
+      } catch (error) {
+        console.error('Error loading projects:', error);
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1 / -1;">Error loading projects. Please try again.</p>';
+      }
+    }
+
+    function createProjectCard(project) {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      
+      // Determine tag to display
+      const tagDisplay = project.tag ? `<div class="project-type-tag">${project.tag}</div>` : '';
+      
+      // Benefit tags (what attendees get)
+      const benefitTags = [];
+      if (project.benefits) {
+        if (project.benefits.includes('experience') || project.benefits.includes('gain-experience')) {
+          benefitTags.push('<span class="benefit-tag">✨ Gain Experience</span>');
+        }
+        if (project.benefits.includes('certificate') || project.benefits.includes('earn-certificate')) {
+          benefitTags.push('<span class="benefit-tag">📜 Earn Certificate</span>');
+        }
+        if (project.benefits.includes('community-service') || project.benefits.includes('earn-community-service')) {
+          benefitTags.push('<span class="benefit-tag">⏰ Earn Community Service Hours</span>');
+        }
+      }
+      const benefitTagsHTML = benefitTags.length > 0 ? `<div class="benefit-tags" style="margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem;">${benefitTags.join('')}</div>` : '';
+      
+      // Sample plotline sheet (event planning resources)
+      const plotlineSheet = project.plotlineSheet ? `
+        <div class="plotline-sheet" style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+            <span style="font-size: 1.5rem;">📋</span>
+            <h4 style="margin: 0; font-size: 1rem; font-weight: 700;">Sample Event Plan</h4>
+          </div>
+          <div style="font-size: 0.9rem; color: #666; line-height: 1.6;">
+            ${project.plotlineSheet}
+          </div>
+        </div>
+      ` : '';
+      
+      card.innerHTML = `
+        <div class="project-header">
+          <h3 class="project-title">${project.title}</h3>
+          <div class="project-tags">
+            ${tagDisplay}
+            ${project.socialHandle ? `<div class="social-handle-tag">@${project.socialHandle}</div>` : ''}
+          </div>
+        </div>
+        <p class="project-description">${project.description}</p>
+        ${benefitTagsHTML}
+        ${plotlineSheet}
+        <p class="project-description-note" style="font-size: 0.9rem; color: #666; font-style: italic; margin-top: 0.5rem;">Please provide detailed information about your workshop/webinar so potential co-hosts know what they're getting into.</p>
+        ${project.connectionLink && project.connectionLink !== '#' ? `
+        <div class="project-actions">
+          <button class="apply-button cohost-button" data-project-title="${project.title}">
+            <span>co-host it</span>
+          </button>
+          ${project.links && project.links.length > 0 ? `
+          <button class="link-button" data-project-title="${project.title}" title="View links">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+          </button>
+          ` : ''}
+        </div>
+        <div class="cohost-email-form" data-project-title="${project.title}">
+          <input type="email" placeholder="Enter your email" class="cohost-email-input" required />
+          <button type="button" class="cohost-submit-button" data-project-title="${project.title}">Submit</button>
+        </div>
+        ${project.links && project.links.length > 0 ? `
+        <div class="links-form" data-project-title="${project.title}">
+          ${project.links.map((link, index) => `
+            <div class="link-display-item" style="margin-bottom: 0.75rem;">
+              <a href="${link.url}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.5rem; color: #000; text-decoration: none; font-weight: 500; padding: 0.5rem; border-radius: 6px; transition: background 0.2s ease;">
+                <span style="font-size: 0.9rem;">${link.label || `Link ${index + 1}`}</span>
+                <svg style="width: 14px; height: 14px; opacity: 0.6;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+          `).join('')}
+        </div>
+        ` : ''}
+        ` : ''}
+      `;
+      
+      return card;
+    }
+
+    // Fallback masonry implementation for browsers without CSS Grid masonry support
+    function initializeMasonryFallback() {
+      const grid = document.getElementById('projects-grid');
+      if (!grid) return;
+      
+      const items = Array.from(grid.children);
+      if (items.length === 0) return;
+      
+      // Reset positioning and ensure items are visible for measurement
+      items.forEach(item => {
+        item.style.position = 'static';
+        item.style.transform = 'none';
+        item.style.opacity = '0';
+        item.style.margin = '0';
+        item.style.width = 'auto';
+      });
+      
+      // Force a reflow to ensure measurements are accurate
+      grid.offsetHeight;
+      
+      // Calculate column count based on available width
+      const containerWidth = grid.offsetWidth;
+      const itemWidth = 300; // minmax width
+      const gap = 32; // 2rem in pixels
+      const columns = Math.max(1, Math.floor((containerWidth + gap) / (itemWidth + gap)));
+      
+      // Initialize column heights array
+      const columnHeights = new Array(columns).fill(0);
+      const columnWidth = (containerWidth - (gap * (columns - 1))) / columns;
+      
+      // Position each item in the shortest column
+      items.forEach((item, index) => {
+        // Find the shortest column
+        const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
+        
+        // Calculate position with proper gap spacing
+        const x = shortestColumn * (columnWidth + gap);
+        const y = columnHeights[shortestColumn];
+        
+        // Position the item
+        item.style.position = 'absolute';
+        item.style.left = `${x}px`;
+        item.style.top = `${y}px`;
+        item.style.width = `${columnWidth}px`;
+        item.style.transform = 'none';
+        item.style.opacity = '1';
+        item.style.margin = '0';
+        
+        // Update column height with gap
+        columnHeights[shortestColumn] += item.offsetHeight + gap;
+      });
+      
+      // Set container height and positioning
+      grid.style.height = `${Math.max(...columnHeights)}px`;
+      grid.style.position = 'relative';
+    }
+    
+    // Re-run masonry on window resize
+    window.addEventListener('resize', () => {
+      if (!CSS.supports('grid-template-rows', 'masonry')) {
+        setTimeout(initializeMasonryFallback, 100);
+      }
+    });
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProjects();
+      
+      // Add event listeners for co-host buttons after projects are loaded
+      setTimeout(() => {
+        setupCohostButtons();
+        setupLinksButtons();
+      }, 500);
+    });
+
+    // Setup co-host button functionality
+    function setupCohostButtons() {
+      // Handle co-host button clicks
+      document.querySelectorAll('.cohost-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const projectTitle = this.getAttribute('data-project-title');
+          const form = document.querySelector(`.cohost-email-form[data-project-title="${projectTitle}"]`);
+          if (form) {
+            form.classList.toggle('active');
+            // Close links form if open
+            const linksForm = document.querySelector(`.links-form[data-project-title="${projectTitle}"]`);
+            if (linksForm && linksForm.classList.contains('active')) {
+              linksForm.classList.remove('active');
+            }
+            const emailInput = form.querySelector('.cohost-email-input');
+            if (form.classList.contains('active') && emailInput) {
+              emailInput.focus();
+            }
+          }
+        });
+      });
+
+      // Handle form submissions
+      document.querySelectorAll('.cohost-submit-button').forEach(button => {
+        button.addEventListener('click', async function(e) {
+          e.preventDefault();
+          const projectTitle = this.getAttribute('data-project-title');
+          const form = document.querySelector(`.cohost-email-form[data-project-title="${projectTitle}"]`);
+          const emailInput = form.querySelector('.cohost-email-input');
+          const email = emailInput.value.trim();
+
+          // Validate email
+          if (!email) {
+            alert('Please enter your email address');
+            return;
+          }
+
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+          }
+
+          // Disable button
+          this.disabled = true;
+          this.textContent = 'Submitting...';
+
+          try {
+            // Submit to the same endpoint as join-community forms
+            const formData = new FormData();
+            formData.append('form-type', 'co-host-interest');
+            formData.append('email', email);
+            formData.append('project-title', projectTitle);
+            formData.append('project-type', 'workshops-webinars');
+            formData.append('submission-date', new Date().toISOString());
+
+            const response = await fetch('https://usebasin.com/f/264e81003939', {
+              method: 'POST',
+              body: formData,
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+
+            if (response.ok) {
+              alert('Thank you! Your interest in co-hosting has been submitted. We\'ll be in touch soon!');
+              emailInput.value = '';
+              form.classList.remove('active');
+            } else {
+              throw new Error('Submission failed');
+            }
+          } catch (error) {
+            console.error('Form submission error:', error);
+            alert('Sorry, there was an error submitting your information. Please try again or contact us at builtwithctrl@gmail.com');
+          } finally {
+            this.disabled = false;
+            this.textContent = 'Submit';
+          }
+        });
+      });
+    }
+
+    // Setup links button functionality
+    function setupLinksButtons() {
+      // Handle link button clicks - just toggle display
+      document.querySelectorAll('.link-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const projectTitle = this.getAttribute('data-project-title');
+          const form = document.querySelector(`.links-form[data-project-title="${projectTitle}"]`);
+          if (form) {
+            form.classList.toggle('active');
+            // Close cohost form if open
+            const cohostForm = document.querySelector(`.cohost-email-form[data-project-title="${projectTitle}"]`);
+            if (cohostForm && cohostForm.classList.contains('active')) {
+              cohostForm.classList.remove('active');
+            }
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>
+

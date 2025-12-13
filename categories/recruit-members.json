@@ -1,0 +1,24 @@
+[
+  {
+    "tag": "Recruitment",
+    "title": "Example Recruitment Campaign",
+    "description": "This is an example description for a member recruitment campaign. Replace this with your actual campaign details.",
+    "niche": "This is the impact report section. Describe the impact, metrics, and outcomes of your recruitment efforts here.",
+    "connectionLink": "https://example.com",
+    "links": [
+      {
+        "label": "Website",
+        "url": "https://example.com"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://instagram.com/example"
+      },
+      {
+        "label": "Twitter",
+        "url": "https://twitter.com/example"
+      }
+    ]
+  }
+]
+

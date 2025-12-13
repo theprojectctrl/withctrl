@@ -309,6 +309,32 @@
       line-height: 1.4;
     }
 
+    /* Impact Report Tile (for Fundraising & Goods) */
+    .impact-report-tile {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #f0f0f0;
+    }
+
+    .impact-report-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #666;
+    }
+
+    .impact-report-content {
+      font-size: 0.85rem;
+      color: #333;
+      line-height: 1.4;
+    }
+
     .project-actions {
       display: flex;
       justify-content: center;
@@ -383,6 +409,49 @@
     .view-toggle-button.active {
       background: #000;
       color: #fff;
+    }
+
+    /* Co-Host Category Filter */
+    .co-host-filter-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+
+    .filter-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .category-filter-select {
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      border: 2px solid #000;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 250px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .category-filter-select:hover {
+      background: #f8f9fa;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-filter-select:focus {
+      outline: none;
+      border-color: #3b82f6;
     }
 
     /* Idea Card Styles */
@@ -1152,6 +1221,196 @@
         padding-top: 1rem;
       }
     }
+
+    /* Grouped Bento Section (for Fundraising & Goods page) */
+    .impact-metrics-section {
+      display: none;
+      margin: 3rem 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    .category-icons-section {
+      margin: 0;
+      text-align: center;
+    }
+
+    .category-icons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* Bento group containers - actual grid items */
+    .bento-group {
+      display: grid;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .bento-group:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Horizontal 3-bento group - spans 3 columns */
+    .bento-group-horizontal-3 {
+      grid-column: span 3;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0; /* No gap between grouped items */
+    }
+
+    .category-icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      height: 280px;
+      margin: 0 auto;
+      justify-content: space-between;
+    }
+
+    /* Items inside groups - remove individual borders/shadows, adjust padding */
+    .bento-group .category-icon-item {
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 1.5rem 1rem;
+      background: transparent;
+    }
+
+    /* Items inside horizontal groups */
+    .bento-group-horizontal-3 .category-icon-item {
+      height: 280px;
+    }
+
+    /* Add dividers between items in groups */
+    .bento-group-horizontal-3 .category-icon-item:not(:last-child) {
+      border-right: 1px solid #e5e7eb;
+    }
+
+    .category-icon-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Disable individual hover effects for items inside groups */
+    .bento-group .category-icon-item:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: transparent;
+    }
+
+    .category-emoji {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      display: block;
+      line-height: 1;
+    }
+
+    .category-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #000;
+      font-family: 'Lucida Console', monospace !important;
+      text-align: center;
+      line-height: 1.2;
+      margin: 0.5rem 0 0.25rem 0;
+    }
+
+    .category-count {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #666;
+      margin: 0 0 0.75rem 0;
+      text-align: center;
+    }
+
+    .category-connect-button {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 20px;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      min-width: 120px;
+      justify-content: center;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .category-connect-button:hover {
+      background: #e9ecef;
+      border-color: #dee2e6;
+      transform: translateY(-1px);
+      text-decoration: none;
+      color: #000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-connect-button .arrow {
+      color: #000;
+      font-size: 1.1rem;
+      margin-left: 0.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .category-icons-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .bento-group-horizontal-3 {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+      }
+
+      .bento-group-horizontal-3 .category-icon-item {
+        height: auto;
+        min-height: 280px;
+      }
+
+      .bento-group-horizontal-3 .category-icon-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 1.5rem;
+        margin-bottom: 0;
+      }
+
+      .category-emoji {
+        font-size: 4rem;
+      }
+
+      .category-name {
+        font-size: 1.1rem;
+      }
+
+      .category-count {
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
 <body class="category-page" id="top">
@@ -1190,11 +1449,72 @@
         </button>
       </div>
       
+      <!-- Category Filter for Co-Host Page -->
+      <div class="co-host-filter-container" id="co-host-filter-container" style="display: none;">
+        <label for="category-filter-select" class="filter-label">Filter by Category:</label>
+        <select id="category-filter-select" class="category-filter-select" onchange="filterCoHostProjects(this.value)">
+          <option value="">All Categories</option>
+          <option value="Art">Art/Design/Crafts</option>
+          <option value="Beauty">Beauty</option>
+          <option value="Business">Business/Entrepreneurship</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Education">Education</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Environment">Environment</option>
+          <option value="Film">Film/Performing Arts</option>
+          <option value="Finance">Finance</option>
+          <option value="Food">Food/Drink</option>
+          <option value="Health">Health/Medicine</option>
+          <option value="Law">Law/Political Science</option>
+          <option value="Psychology">Psychology</option>
+          <option value="Technology">Technology</option>
+          <option value="Writing">Literature/Writing</option>
+          <option value="Tutoring">Tutoring/Education</option>
+        </select>
+      </div>
+      
       <a href="../network.html" class="back-button">
         <span>Go Back</span>
         <span>→</span>
       </a>
 
+      <!-- Grouped Bento Section (for Fundraising & Goods page) -->
+      <div class="impact-metrics-section" id="impact-metrics-section">
+        <div class="category-icons-section">
+          <div class="category-icons-grid">
+            <!-- Top 3 bentos grouped horizontally (3-bento-long) -->
+            <div class="bento-group bento-group-horizontal-3">
+              <div class="category-icon-item" onclick="window.location.href='category-template.html?category=art'">
+                <div class="category-emoji">💿</div>
+                <div class="category-name">Art/Design/Crafts</div>
+                <div class="category-count">Loading...</div>
+                <a href="category-template.html?category=art" class="category-connect-button" onclick="event.stopPropagation();">
+                  <span>Explore</span>
+                  <span class="arrow">→</span>
+                </a>
+              </div>
+              <div class="category-icon-item" onclick="window.location.href='category-template.html?category=beauty'">
+                <div class="category-emoji">🫧</div>
+                <div class="category-name">Beauty</div>
+                <div class="category-count">Loading...</div>
+                <a href="category-template.html?category=beauty" class="category-connect-button" onclick="event.stopPropagation();">
+                  <span>Explore</span>
+                  <span class="arrow">→</span>
+                </a>
+              </div>
+              <div class="category-icon-item" onclick="window.location.href='category-template.html?category=business'">
+                <div class="category-emoji">📱</div>
+                <div class="category-name">Business/Entrepreneurship</div>
+                <div class="category-count">Loading...</div>
+                <a href="category-template.html?category=business" class="category-connect-button" onclick="event.stopPropagation();">
+                  <span>Explore</span>
+                  <span class="arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div class="projects-grid" id="projects-grid">
         <!-- Projects/Ideas will be loaded here by JavaScript -->
@@ -1287,22 +1607,169 @@
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get('category');
     let currentView = 'all'; // 'all', 'startups', or 'ideas'
+    let allCoHostProjects = []; // Store all projects for filtering
     
     if (category) {
-      // Update page title and header
-      document.getElementById('category-title').textContent = category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-      document.getElementById('category-subtitle').textContent = `Explore ${category.replace(/-/g, ' ')} projects and connect with like-minded entrepreneurs`;
+      // Check if this is the co-host view (engineering category with co-host parameter)
+      const isCoHost = urlParams.get('co-host') === 'true' || urlParams.get('co-host') === '1';
       
-      // Set category in hidden input for idea form
-      document.getElementById('idea-category-hidden').value = category;
-      
-      // Load all (startups and ideas) by default
-      loadCategoryAll(category);
+      // If it's engineering category AND co-host parameter is present, load all projects
+      if (category === 'engineering' && isCoHost) {
+        document.getElementById('category-title').textContent = 'Find a Co-Host';
+        document.getElementById('category-subtitle').textContent = 'Browse all projects across all categories to find your perfect co-host';
+        document.getElementById('idea-category-hidden').value = category;
+        // Hide view toggle buttons for co-host
+        const viewToggleContainer = document.querySelector('.view-toggle-container');
+        if (viewToggleContainer) {
+          viewToggleContainer.style.display = 'none';
+        }
+        // Show category filter for co-host
+        createCategoryFilter();
+        loadAllProjects();
+      } else if (category === 'custom-ideas') {
+        // Special handling for custom ideas
+        document.getElementById('category-title').textContent = 'Post a Custom Idea';
+        document.getElementById('category-subtitle').textContent = 'Share your startup ideas and connect with potential collaborators';
+        document.getElementById('idea-category-hidden').value = 'custom-ideas';
+        // Hide view toggle buttons for custom ideas
+        const viewToggleContainer = document.querySelector('.view-toggle-container');
+        if (viewToggleContainer) {
+          viewToggleContainer.style.display = 'none';
+        }
+        // Load custom ideas
+        loadCustomIdeas();
+      } else {
+        // Update page title and header
+        document.getElementById('category-title').textContent = category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        document.getElementById('category-subtitle').textContent = `Explore ${category.replace(/-/g, ' ')} projects and connect with like-minded entrepreneurs`;
+        
+        // Set category in hidden input for idea form
+        document.getElementById('idea-category-hidden').value = category;
+        
+        // Show impact metrics section for Fundraising & Goods (law category)
+        if (category === 'law') {
+          const impactSection = document.getElementById('impact-metrics-section');
+          if (impactSection) {
+            impactSection.style.display = 'block';
+          }
+        }
+        
+        // Load all (startups and ideas) by default
+        loadCategoryAll(category);
+      }
+    }
+
+    // List of all category names (excluding ideas-* and all-posts)
+    const allCategories = [
+      'art', 'beauty', 'business', 'computer-science', 'education', 
+      'engineering', 'environment', 'film', 'finance', 'food-drink', 
+      'health', 'law', 'psychology', 'technology', 'writing'
+    ];
+
+    // Helper function to get the correct JSON filename for a category
+    function getCategoryJsonFile(category) {
+      if (category === 'law') {
+        return 'fundraising-and-goods.json';
+      }
+      return `${category}.json`;
+    }
+
+    // Helper function to get the correct ideas JSON filename for a category
+    function getCategoryIdeasJsonFile(category) {
+      if (category === 'law') {
+        return 'ideas-fundraising-and-goods.json';
+      }
+      return `ideas-${category}.json`;
+    }
+
+    async function loadAllProjects() {
+      try {
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = ''; // Clear existing content
+        
+        // Add join community tile first
+        const joinTile = createJoinCommunityTile();
+        projectsGrid.appendChild(joinTile);
+        
+        // List of all category names (excluding ideas-* and all-posts)
+        const allCategories = [
+          'art', 'beauty', 'business', 'computer-science', 'education', 
+          'engineering', 'environment', 'film', 'finance', 'food-drink', 
+          'health', 'law', 'psychology', 'technology', 'writing'
+        ];
+        
+        // Load all category JSON files in parallel
+        const categoryPromises = allCategories.map(cat => 
+          fetch(`categories/${cat}.json`)
+            .then(response => response.ok ? response.json() : [])
+            .catch(() => [])
+        );
+        
+        const allCategoryData = await Promise.all(categoryPromises);
+        
+        // Flatten and deduplicate projects by title
+        const projectsMap = new Map();
+        allCategoryData.forEach(categoryProjects => {
+          if (Array.isArray(categoryProjects)) {
+            categoryProjects.forEach(project => {
+              if (project && project.title) {
+                // Use title as unique key for deduplication
+                const key = project.title.toLowerCase().trim();
+                if (!projectsMap.has(key)) {
+                  projectsMap.set(key, project);
+                }
+              }
+            });
+          }
+        });
+        
+        // Convert map values to array
+        const uniqueProjects = Array.from(projectsMap.values());
+        
+        // Store projects globally for filtering
+        allCoHostProjects = uniqueProjects;
+        
+        if (uniqueProjects.length === 0) {
+          // Still show the join tile even if no projects
+          return;
+        }
+        
+        // Display all unique projects
+        displayCoHostProjects(uniqueProjects);
+        
+        // Initialize masonry layout for browsers that don't support CSS Grid masonry
+        if (!CSS.supports('grid-template-rows', 'masonry')) {
+          setTimeout(() => {
+            initializeMasonryFallback();
+          }, 100);
+        }
+      } catch (error) {
+        console.error('Error loading all projects:', error);
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = '';
+        const joinTile = createJoinCommunityTile();
+        projectsGrid.appendChild(joinTile);
+        projectsGrid.innerHTML += '<p style="text-align: center; color: #666; grid-column: 1 / -1;">Error loading projects. Please try again.</p>';
+      }
     }
 
     function switchView(view) {
       if (!category) {
         console.error('Category not found');
+        return;
+      }
+      
+      // Special handling for co-host
+      const isCoHost = urlParams.get('co-host') === 'true';
+      if (isCoHost && category === 'engineering') {
+        // Co-host only shows all projects, so disable view switching or just reload
+        loadAllProjects();
+        return;
+      }
+      
+      // Special handling for custom-ideas - only shows ideas
+      if (category === 'custom-ideas') {
+        loadCustomIdeas();
         return;
       }
       
@@ -1330,24 +1797,109 @@
       }
     }
 
+    // Function to show category filter for co-host page
+    function createCategoryFilter() {
+      const filterContainer = document.getElementById('co-host-filter-container');
+      if (filterContainer) {
+        filterContainer.style.display = 'flex';
+      }
+    }
+
+    // Function to display projects (used for filtering)
+    function displayCoHostProjects(projects) {
+      const projectsGrid = document.getElementById('projects-grid');
+      // Clear existing projects but keep the join tile
+      const joinTile = projectsGrid.querySelector('.share-idea-discord-tile');
+      projectsGrid.innerHTML = '';
+      if (joinTile) {
+        projectsGrid.appendChild(joinTile);
+      } else {
+        // Re-add join tile if it doesn't exist
+        const newJoinTile = createJoinCommunityTile();
+        projectsGrid.appendChild(newJoinTile);
+      }
+      
+      // Display filtered projects
+      projects.forEach(project => {
+        const projectCard = createProjectCard(project);
+        projectsGrid.appendChild(projectCard);
+      });
+      
+      // Initialize masonry layout
+      if (!CSS.supports('grid-template-rows', 'masonry')) {
+        setTimeout(() => {
+          initializeMasonryFallback();
+        }, 100);
+      }
+    }
+
+    // Function to filter projects by category
+    function filterCoHostProjects(selectedCategory) {
+      if (!selectedCategory || selectedCategory === '') {
+        // Show all projects
+        displayCoHostProjects(allCoHostProjects);
+        return;
+      }
+      
+      // Map filter values to actual category values in projects
+      const categoryMapping = {
+        'Art': ['Art', 'Design', 'Graphic Design', 'Crafts', 'Photography', 'Product Design'],
+        'Beauty': ['Beauty', 'Hairstyling', 'Barber'],
+        'Business': ['Business', 'Entrepreneurship', 'Marketing', 'Sales', 'Consulting', 'Operations', 'Human Resources'],
+        'Computer Science': ['Computer Science', 'Data', 'STEM'],
+        'Education': ['Education'],
+        'Engineering': ['Engineering'],
+        'Environment': ['Environment', 'Landscaping'],
+        'Film': ['Film', 'Performing Arts'],
+        'Finance': ['Finance'],
+        'Food': ['Food', 'Drink', 'Restaurants'],
+        'Health': ['Health', 'Medicine'],
+        'Law': ['Law', 'Political Science'],
+        'Psychology': ['Psychology'],
+        'Technology': ['Technology'],
+        'Writing': ['Writing', 'Literature'],
+        'Tutoring': ['Tutoring', 'Education']
+      };
+      
+      const categoriesToMatch = categoryMapping[selectedCategory] || [selectedCategory];
+      
+      // Filter projects that match any of the mapped categories
+      const filteredProjects = allCoHostProjects.filter(project => {
+        if (!project.category) return false;
+        const projectCategory = project.category.toLowerCase();
+        return categoriesToMatch.some(cat => 
+          projectCategory.includes(cat.toLowerCase()) || 
+          cat.toLowerCase().includes(projectCategory)
+        );
+      });
+      
+      displayCoHostProjects(filteredProjects);
+    }
+
     async function loadCategoryAll(category) {
       try {
         const projectsGrid = document.getElementById('projects-grid');
         projectsGrid.innerHTML = ''; // Clear existing content
         
+        // Get the correct JSON filenames
+        const projectsFile = getCategoryJsonFile(category);
+        const ideasFile = getCategoryIdeasJsonFile(category);
+        
         // Load both startups and ideas
         const [projectsResponse, ideasResponse] = await Promise.allSettled([
-          fetch(`categories/${category}.json`),
-          fetch(`categories/ideas-${category}.json`)
+          fetch(`categories/${projectsFile}`),
+          fetch(`categories/${ideasFile}`)
         ]);
         
-        // Add join community tile first (for startups)
-        const joinTile = createJoinCommunityTile();
-        projectsGrid.appendChild(joinTile);
-        
-        // Add Discord tile (for ideas)
-        const discordTile = createShareIdeaDiscordTile();
-        projectsGrid.appendChild(discordTile);
+        // Add join community tile first (for startups) - skip for fundraising & goods
+        if (category !== 'law') {
+          const joinTile = createJoinCommunityTile();
+          projectsGrid.appendChild(joinTile);
+          
+          // Add Discord tile (for ideas) - skip for fundraising & goods
+          const discordTile = createShareIdeaDiscordTile();
+          projectsGrid.appendChild(discordTile);
+        }
         
         // Load and display startups
         let projects = [];
@@ -1386,18 +1938,21 @@
 
     async function loadCategoryProjects(category) {
       try {
-        const response = await fetch(`categories/${category}.json`);
+        const projectsFile = getCategoryJsonFile(category);
+        const response = await fetch(`categories/${projectsFile}`);
         const projects = await response.json();
         
         const projectsGrid = document.getElementById('projects-grid');
         projectsGrid.innerHTML = ''; // Clear existing content
         
-        // Add join community tile as first item
-        const joinTile = createJoinCommunityTile();
-        projectsGrid.appendChild(joinTile);
+        // Add join community tile as first item - skip for fundraising & goods
+        if (category !== 'law') {
+          const joinTile = createJoinCommunityTile();
+          projectsGrid.appendChild(joinTile);
+        }
         
         if (!projects || projects.length === 0) {
-          // Still show the join tile even if no projects
+          // Still show the join tile even if no projects (unless it's fundraising & goods)
           return;
         }
         
@@ -1416,26 +1971,69 @@
         console.error('Error loading category projects:', error);
         const projectsGrid = document.getElementById('projects-grid');
         projectsGrid.innerHTML = '';
-        // Still show join tile even if loading fails
-        const joinTile = createJoinCommunityTile();
-        projectsGrid.appendChild(joinTile);
+        // Still show join tile even if loading fails - skip for fundraising & goods
+        if (category !== 'law') {
+          const joinTile = createJoinCommunityTile();
+          projectsGrid.appendChild(joinTile);
+        }
       }
     }
 
-    async function loadCategoryIdeas(category) {
+    async function loadCustomIdeas() {
       try {
-        const response = await fetch(`categories/ideas-${category}.json`);
+        const response = await fetch(`categories/custom-ideas.json`);
         const ideas = await response.json();
         
         const projectsGrid = document.getElementById('projects-grid');
         projectsGrid.innerHTML = ''; // Clear existing content
         
-        // Add Discord tile as first item
+        // Add Discord tile as first item (pinned)
         const discordTile = createShareIdeaDiscordTile();
         projectsGrid.appendChild(discordTile);
         
-        if (!ideas || ideas.length === 0) {
+        if (!ideas || !Array.isArray(ideas) || ideas.length === 0) {
           // If no ideas, still show the Discord tile
+          return;
+        }
+        
+        ideas.forEach((idea, index) => {
+          const ideaCard = createIdeaCard(idea, `idea-custom-${index}`, index + 1, 'custom-ideas');
+          projectsGrid.appendChild(ideaCard);
+        });
+        
+        // Initialize masonry layout for browsers that don't support CSS Grid masonry
+        if (!CSS.supports('grid-template-rows', 'masonry')) {
+          setTimeout(() => {
+            initializeMasonryFallback();
+          }, 100);
+        }
+      } catch (error) {
+        console.error('Error loading custom ideas:', error);
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = '';
+        // Still show Discord tile even if loading fails
+        const discordTile = createShareIdeaDiscordTile();
+        projectsGrid.appendChild(discordTile);
+      }
+    }
+
+    async function loadCategoryIdeas(category) {
+      try {
+        const ideasFile = getCategoryIdeasJsonFile(category);
+        const response = await fetch(`categories/${ideasFile}`);
+        const ideas = await response.json();
+        
+        const projectsGrid = document.getElementById('projects-grid');
+        projectsGrid.innerHTML = ''; // Clear existing content
+        
+        // Add Discord tile as first item - skip for fundraising & goods
+        if (category !== 'law') {
+          const discordTile = createShareIdeaDiscordTile();
+          projectsGrid.appendChild(discordTile);
+        }
+        
+        if (!ideas || ideas.length === 0) {
+          // If no ideas, still show the Discord tile (unless it's fundraising & goods)
           return;
         }
         
@@ -1454,9 +2052,11 @@
         console.error('Error loading category ideas:', error);
         const projectsGrid = document.getElementById('projects-grid');
         projectsGrid.innerHTML = '';
-        // Still show Discord tile even if loading fails
-        const discordTile = createShareIdeaDiscordTile();
-        projectsGrid.appendChild(discordTile);
+        // Still show Discord tile even if loading fails - skip for fundraising & goods
+        if (category !== 'law') {
+          const discordTile = createShareIdeaDiscordTile();
+          projectsGrid.appendChild(discordTile);
+        }
       }
     }
 
@@ -1550,16 +2150,31 @@
       const card = document.createElement('div');
       card.className = 'project-card';
       
-      card.innerHTML = `
-        <div class="project-header">
-          <h3 class="project-title">${project.title}</h3>
-          <div class="project-tags">
-            <div class="project-type-tag ${project.type ? project.type.toLowerCase().replace(/\s+/g, '-') : 'startup'}">${project.type || 'Startup'}</div>
-            ${project.socialHandle ? `<div class="social-handle-tag">@${project.socialHandle}</div>` : ''}
+      // Check if this is the fundraising-and-goods category
+      const isFundraisingGoods = category === 'law';
+      
+      // Determine tag to display
+      let tagDisplay = '';
+      if (isFundraisingGoods && project.tag) {
+        tagDisplay = `<div class="project-type-tag">${project.tag}</div>`;
+      } else {
+        tagDisplay = `<div class="project-type-tag ${project.type ? project.type.toLowerCase().replace(/\s+/g, '-') : 'startup'}">${project.type || 'Startup'}</div>`;
+      }
+      
+      // Determine niche/impact report section
+      let nicheSection = '';
+      if (isFundraisingGoods && project.niche) {
+        nicheSection = `
+        <div class="impact-report-tile">
+          <div class="impact-report-header">
+            <span class="niche-icon">☕️</span>
+            <span class="niche-title">Impact Report</span>
           </div>
+          <div class="impact-report-content">${project.niche}</div>
         </div>
-        <p class="project-description">${project.description}</p>
-        ${project.niche ? `
+        `;
+      } else if (project.niche) {
+        nicheSection = `
         <div class="our-niche-tile">
           <div class="niche-header">
             <span class="niche-icon">☕️</span>
@@ -1567,11 +2182,26 @@
           </div>
           <div class="niche-content">${project.niche}</div>
         </div>
-        ` : ''}
+        `;
+      }
+      
+      // Determine button text
+      const buttonText = isFundraisingGoods ? 'Request' : 'Connect';
+      
+      card.innerHTML = `
+        <div class="project-header">
+          <h3 class="project-title">${project.title}</h3>
+          <div class="project-tags">
+            ${tagDisplay}
+            ${project.socialHandle ? `<div class="social-handle-tag">@${project.socialHandle}</div>` : ''}
+          </div>
+        </div>
+        <p class="project-description">${project.description}</p>
+        ${nicheSection}
         ${project.connectionLink && project.connectionLink !== '#' ? `
         <div class="project-actions">
           <a href="${project.connectionLink}" class="apply-button" target="_blank">
-            <span>Connect</span>
+            <span>${buttonText}</span>
             <span class="arrow">→</span>
           </a>
         </div>

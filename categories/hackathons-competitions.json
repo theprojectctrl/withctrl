@@ -1,0 +1,24 @@
+[
+  {
+    "tag": "Event",
+    "title": "Example Hackathon",
+    "description": "This is an example description for a hackathon or competition. Replace this with your actual event details.",
+    "niche": "This is the impact report section. Describe the impact, metrics, and outcomes of your hackathon here.",
+    "connectionLink": "https://example.com",
+    "links": [
+      {
+        "label": "Website",
+        "url": "https://example.com"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://instagram.com/example"
+      },
+      {
+        "label": "Twitter",
+        "url": "https://twitter.com/example"
+      }
+    ]
+  }
+]
+
