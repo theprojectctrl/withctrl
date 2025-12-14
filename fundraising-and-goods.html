@@ -139,6 +139,16 @@
       justify-items: stretch;
     }
 
+    /* Ready-for-use Events Grid */
+    #ready-for-use-events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+      align-items: start;
+      justify-items: stretch;
+    }
+
     /* Fallback for browsers that don't support masonry */
     @supports not (grid-template-rows: masonry) {
       .projects-grid {
@@ -821,6 +831,182 @@
       color: #000;
     }
 
+    /* Ready-for-use Events Section Header */
+    .ready-for-use-events-header {
+      margin: 4rem 0 2rem 0;
+      text-align: center;
+    }
+
+    .ready-for-use-events-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      margin: 0;
+      font-family: 'Lucida Console', monospace !important;
+      letter-spacing: -0.02em;
+      color: #000;
+    }
+
+    /* Pre-vetted Event Tile */
+    .pre-vetted-event-tile {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border: 2px dashed #dee2e6;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: visible;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      align-self: start;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .pre-vetted-event-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .pre-vetted-event-tile::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      animation: shimmer 3s linear infinite;
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .pre-vetted-event-tile:hover::before {
+      opacity: 1;
+    }
+
+    .pre-vetted-badge {
+      display: inline-block;
+      background: rgba(33, 150, 243, 0.1);
+      color: #1976d2;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid rgba(33, 150, 243, 0.2);
+      margin-bottom: 1rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .pre-vetted-event-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #000;
+      margin: 0 0 0.75rem 0;
+      font-family: 'Lucida Console', monospace !important;
+    }
+
+    .pre-vetted-event-description {
+      color: #666;
+      margin: 0 0 1.5rem 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .pre-vetted-event-link {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      min-width: 160px;
+      justify-content: center;
+      background: #1a1a1a;
+      color: white;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .pre-vetted-event-link::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 167, 38, 0.8) 70%, 
+        rgba(255, 235, 59, 0.8) 80%, 
+        rgba(76, 175, 80, 0.8) 90%, 
+        rgba(33, 150, 243, 0.8) 95%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .pre-vetted-event-link::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .pre-vetted-event-link:hover {
+      transform: scale(1.05);
+      text-decoration: none;
+      color: white;
+    }
+
+    .pre-vetted-event-link .arrow {
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .pre-vetted-event-link:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
     .request-posts-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1166,6 +1352,38 @@
             <div class="request-post-caption">start a fundraising campaign team</div>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1keT2ueCy2DCTEqbT3UewDjEsLS4mo15bpL0kPP5xfvgiQQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="request-post-button">Request Post</a>
           </div>
+        </div>
+      </div>
+
+      <!-- Ready-for-use Events Section -->
+      <div class="ready-for-use-events-header">
+        <h2 class="ready-for-use-events-title">ready-for-use events</h2>
+      </div>
+      
+      <div class="projects-grid" id="ready-for-use-events-grid">
+        <!-- Pre-vetted Event Tile -->
+        <div class="pre-vetted-event-tile">
+          <span class="pre-vetted-badge">Pre-vetted Event Idea</span>
+          <h3 class="pre-vetted-event-title">American Heart Association Fundraising Campaign</h3>
+          <p class="pre-vetted-event-description">
+            Join the American Heart Association's mission to combat heart disease and stroke. Funds raised support groundbreaking cardiovascular research, public health education programs, and community initiatives aimed at improving heart health nationwide. You can use this pre-vetted event idea in any of the post options above.
+          </p>
+          <a href="https://raiseyourwayforaha.funraise.org/start-fundraising" target="_blank" rel="noopener noreferrer" class="pre-vetted-event-link">
+            <span>Start Fundraising</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+        <!-- Pre-vetted Event Tile - Girls Who Code -->
+        <div class="pre-vetted-event-tile">
+          <span class="pre-vetted-badge">Pre-vetted Event Idea</span>
+          <h3 class="pre-vetted-event-title">Fundraise for Girls Who Code</h3>
+          <p class="pre-vetted-event-description">
+            Support Girls Who Code's mission to close the gender gap in technology. Funds raised help inspire, educate, and equip students who identify as girls or nonbinary with computing skills and opportunities in tech. You can use this pre-vetted event idea in any of the post options above.
+          </p>
+          <a href="https://give.girlswhocode.com/campaign/in-your-workplace/c134115" target="_blank" rel="noopener noreferrer" class="pre-vetted-event-link">
+            <span>Start Fundraising</span>
+            <span class="arrow">→</span>
+          </a>
         </div>
       </div>
 
