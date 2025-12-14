@@ -2429,6 +2429,7 @@
               <input type="hidden" id="categories-hidden" name="categories" required>
               <input type="hidden" id="links-hidden" name="links" required>
               <input type="hidden" id="permission-ig-hidden" name="permission-ig">
+              <input type="hidden" id="event-types-hidden" name="event-types">
 
               <!-- Project Description -->
               <div class="description-container">
@@ -2447,6 +2448,62 @@
                   <div class="word-count niche-word-count" id="niche-word-count">0/15 words</div>
                   </div>
                 </div>
+                
+              <!-- Event Types Field -->
+              <div class="event-types-container" id="event-types-container" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                <label for="event-types" style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: #000; font-size: 0.95rem;">
+                  What kind of events would you like to co-host or join?
+                </label>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                  <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+                    <input type="checkbox" name="event-types[]" value="conferences" style="margin: 0;">
+                    <span style="font-size: 0.9rem; color: #333;">Conferences</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+                    <input type="checkbox" name="event-types[]" value="panels" style="margin: 0;">
+                    <span style="font-size: 0.9rem; color: #333;">Panels</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+                    <input type="checkbox" name="event-types[]" value="workshops" style="margin: 0;">
+                    <span style="font-size: 0.9rem; color: #333;">Workshops</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+                    <input type="checkbox" name="event-types[]" value="webinars" style="margin: 0;">
+                    <span style="font-size: 0.9rem; color: #333;">Webinars</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+                    <input type="checkbox" name="event-types[]" value="hackathons" style="margin: 0;">
+                    <span style="font-size: 0.9rem; color: #333;">Hackathons</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+                    <input type="checkbox" name="event-types[]" value="competitions" style="margin: 0;">
+                    <span style="font-size: 0.9rem; color: #333;">Competitions</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+                    <input type="checkbox" name="event-types[]" value="fundraising" style="margin: 0;">
+                    <span style="font-size: 0.9rem; color: #333;">Fundraising</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+                    <input type="checkbox" name="event-types[]" value="raising-goods" style="margin: 0;">
+                    <span style="font-size: 0.9rem; color: #333;">Raising Goods/Supplies</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+                    <input type="checkbox" name="event-types[]" value="launching-program" style="margin: 0;">
+                    <span style="font-size: 0.9rem; color: #333;">Launching a Program</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+                    <input type="checkbox" name="event-types[]" value="recruiting-members" style="margin: 0;">
+                    <span style="font-size: 0.9rem; color: #333;">Recruiting Members</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; transition: all 0.2s ease;" onmouseover="this.style.background='#e9ecef'; this.style.borderColor='#dee2e6'" onmouseout="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'">
+                    <input type="checkbox" name="event-types[]" value="other" id="event-types-other" style="margin: 0;">
+                    <span style="font-size: 0.9rem; color: #333;">Other</span>
+                  </label>
+                </div>
+                <div id="event-types-other-input-container" style="display: none; margin-top: 0.75rem;">
+                  <input type="text" id="event-types-other-input" name="event-types-other" placeholder="Please specify..." style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.2s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'" onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
+                </div>
+              </div>
                 
               <!-- Project Actions -->
               <div class="project-actions">
@@ -3138,6 +3195,15 @@
       document.getElementById('categories-hidden').value = formData.categories.join(',');
       document.getElementById('links-hidden').value = formData.links.join(',');
       
+      // Collect event types (for startups)
+      const eventTypesCheckboxes = document.querySelectorAll('input[name="event-types[]"]:checked');
+      const eventTypes = Array.from(eventTypesCheckboxes).map(cb => cb.value);
+      const otherInput = document.getElementById('event-types-other-input');
+      if (eventTypes.includes('other') && otherInput.value.trim()) {
+        eventTypes[eventTypes.indexOf('other')] = `other: ${otherInput.value.trim()}`;
+      }
+      document.getElementById('event-types-hidden').value = eventTypes.join(',');
+      
       // Get permission checkbox value
       const permissionIg = document.getElementById('permission-ig').checked;
       document.getElementById('permission-ig-hidden').value = permissionIg ? 'yes' : 'no';
@@ -3155,6 +3221,17 @@
 
     // Initialize
     updateCategoryTags();
+    
+    // Handle "other" checkbox for event types
+    document.getElementById('event-types-other').addEventListener('change', function() {
+      const otherInputContainer = document.getElementById('event-types-other-input-container');
+      if (this.checked) {
+        otherInputContainer.style.display = 'block';
+      } else {
+        otherInputContainer.style.display = 'none';
+        document.getElementById('event-types-other-input').value = '';
+      }
+    });
 
     // Update placeholders and permissions based on submission type
     document.getElementById('venture-type').addEventListener('change', function() {
