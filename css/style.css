@@ -34,8 +34,8 @@
     text-transform: lowercase !important;
   }
   
-  /* Preserve original case for form elements and code */
-  input, textarea, button, code, pre, .code-block {
+  /* Preserve original case for form elements, code, hero sections, and navigation */
+  input, textarea, button, code, pre, .code-block, .hero-section h1, .hero-section h1 *, .hero-section h1 span, .hero-subtitle, .hero-subtitle *, .start-imagining-button, .tutorial-button, .tutorial-button *, .main-nav a, .logo, .main-nav a[href="network.html"], .main-nav a[href*="network.html"] {
     text-transform: none !important;
   }
   
@@ -45,10 +45,13 @@
     font-weight: normal !important;
   }
   
+  /* Exception: hero-section h1 can use any font - must come after general rule */
+  .hero-section h1 {
+    font-family: unset !important;
+    font-weight: inherit !important;
+  }
+  
   /* Additional header font rules for better coverage */
-  .hero-section h1,
-  .hero-section h2,
-  .hero-section h3,
   .bento-card h3,
   .feature-card h3,
   .mission-card h3,
@@ -63,6 +66,30 @@
   .timeline-content h4 {
     font-family: var(--header-font) !important;
     font-weight: normal !important;
+  }
+  
+  /* Hero sections can use any font - no restrictions */
+  .hero-section h1,
+  .hero-section h2,
+  .hero-section h3,
+  .hero-section h4,
+  .hero-section h5,
+  .hero-section h6,
+  .hero-section * {
+    font-family: unset !important;
+    font-weight: inherit !important;
+  }
+  
+  /* Exception for hero-section h1 to allow custom fonts */
+  .hero-section h1,
+  .hero-section h1 *,
+  .hero-section h1 span,
+  .hero-subtitle,
+  .hero-subtitle *,
+  .start-imagining-button,
+  .tutorial-button,
+  .tutorial-button * {
+    text-transform: none !important;
   }
 
   /* Comprehensive header font coverage - ensure ALL headers use Lucida Console */
@@ -2909,7 +2936,6 @@
   .section-title, .enhancement-title, .network-title, .idea-title,
   .be-hero h1, .biz-enhancer-content h1, .network-content h1, .niche-lab-content h1,
   .submission-section h1, .submission-section h2, .submission-section h3, .submission-section h4, .submission-section h5, .submission-section h6,
-  .hero-section h1, .hero-section h2, .hero-section h3,
   .content-section h1, .content-section h2, .content-section h3, .content-section h4, .content-section h5, .content-section h6,
   .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6,
   .page-header h1, .page-header h2, .page-header h3, .page-header h4, .page-header h5, .page-header h6,
@@ -2958,6 +2984,27 @@
     font-family: "Lucida Console", monospace !important;
   }
   
+  /* Exception: Allow ALL hero-section elements to use their inline font-family - must come after the rule above */
+  html body .hero-section h1[style*="font-family"],
+  html body .hero-section h2[style*="font-family"],
+  html body .hero-section h3[style*="font-family"],
+  html body .hero-section h4[style*="font-family"],
+  html body .hero-section h5[style*="font-family"],
+  html body .hero-section h6[style*="font-family"],
+  html body .hero-section *[style*="font-family"] {
+    font-family: unset !important;
+  }
+  
+  /* Exception: Allow ALL hero-section headers to use any font, even without inline styles */
+  html body .hero-section h1,
+  html body .hero-section h2,
+  html body .hero-section h3,
+  html body .hero-section h4,
+  html body .hero-section h5,
+  html body .hero-section h6 {
+    font-family: unset !important;
+  }
+  
   /* But keep navigation headers with their original font */
   html body .main-nav h1, html body .main-nav h2, html body .main-nav h3, 
   html body .main-nav h4, html body .main-nav h5, html body .main-nav h6,
@@ -2997,6 +3044,47 @@
   /* Make hero subtitle use body font instead of header font */
   .hero-subtitle {
     font-family: 'Inter', sans-serif !important;
+  }
+  
+  /* FINAL OVERRIDE: Remove ALL font restrictions from hero sections - must come after all other rules */
+  .hero-section h1,
+  .hero-section h2,
+  .hero-section h3,
+  .hero-section h4,
+  .hero-section h5,
+  .hero-section h6,
+  .hero-section * h1,
+  .hero-section * h2,
+  .hero-section * h3,
+  .hero-section * h4,
+  .hero-section * h5,
+  .hero-section * h6,
+  html body .hero-section h1,
+  html body .hero-section h2,
+  html body .hero-section h3,
+  html body .hero-section h4,
+  html body .hero-section h5,
+  html body .hero-section h6,
+  html body .hero-section * h1,
+  html body .hero-section * h2,
+  html body .hero-section * h3,
+  html body .hero-section * h4,
+  html body .hero-section * h5,
+  html body .hero-section * h6,
+  .help-hero-section h1,
+  .help-hero-section h2,
+  .help-hero-section h3,
+  .help-hero-section h4,
+  .help-hero-section h5,
+  .help-hero-section h6,
+  html body .help-hero-section h1,
+  html body .help-hero-section h2,
+  html body .help-hero-section h3,
+  html body .help-hero-section h4,
+  html body .help-hero-section h5,
+  html body .help-hero-section h6 {
+    font-family: unset !important;
+    font-weight: inherit !important;
   }
   
   /* Mobile menu toggle button */

@@ -5,7 +5,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Additional header font rules for better coverage */
-.hero-section h1,
 .hero-section h2,
 .hero-section h3,
 .bento-card h3,
@@ -1324,7 +1323,7 @@ div h1, div h2, div h3, div h4, div h5, div h6,
 .section-title, .enhancement-title, .network-title, .idea-title,
 .be-hero h1, .biz-enhancer-content h1, .network-content h1, .niche-lab-content h1,
 .submission-section h1, .submission-section h2, .submission-section h3, .submission-section h4, .submission-section h5, .submission-section h6,
-.hero-section h1, .hero-section h2, .hero-section h3,
+.hero-section h2, .hero-section h3,
 .content-section h1, .content-section h2, .content-section h3, .content-section h4, .content-section h5, .content-section h6,
 .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6,
 .page-header h1, .page-header h2, .page-header h3, .page-header h4, .page-header h5, .page-header h6,

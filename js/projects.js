@@ -727,6 +727,41 @@ document.addEventListener('DOMContentLoaded', () => {
           tags.appendChild(partnershipTag);
         }
         
+        // Add event type tags if available
+        if (project.eventTypes && Array.isArray(project.eventTypes) && project.eventTypes.length > 0) {
+          project.eventTypes.forEach((eventType, index) => {
+            const eventTypeTag = document.createElement('span');
+            // Alternate between blue and yellow-orange based on index
+            const colorClass = index % 2 === 0 ? 'tag-event-type-blue' : 'tag-event-type-yellow';
+            eventTypeTag.className = `tag tag-event-type ${colorClass}`;
+            
+            // Map event type values to display names
+            const eventTypeMap = {
+              'conferences': 'Conferences',
+              'panels': 'Panels',
+              'workshops': 'Workshops',
+              'webinars': 'Webinars',
+              'hackathons': 'Hackathons',
+              'competitions': 'Competitions',
+              'fundraising': 'Fundraising',
+              'raising-goods': 'Raising Goods',
+              'launching-program': 'Launching Program',
+              'recruiting-members': 'Recruiting Members',
+              'other': 'Other'
+            };
+            
+            // Handle "other" with custom text
+            let displayText = eventType;
+            if (typeof eventType === 'string' && eventType.startsWith('other:')) {
+              displayText = eventType.replace('other:', '').trim();
+            } else {
+              displayText = eventTypeMap[eventType] || eventType;
+            }
+            
+            eventTypeTag.textContent = displayText;
+            tags.appendChild(eventTypeTag);
+          });
+        }
 
         
         card.querySelector('.project-description').textContent = limitTo70Words(project.description);
@@ -754,11 +789,23 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Action buttons
         const instagramBtn = card.querySelector('.instagram-button');
+        const downloadBtn = card.querySelector('.download-button');
         const connectBtn = card.querySelector('.apply-button');
         
         // Hide Instagram button since we no longer have Instagram data
         if (instagramBtn) {
           instagramBtn.style.display = 'none';
+        }
+        
+        // Set download button for poster
+        if (downloadBtn) {
+          const posterLink = project.posterLink || project.downloadablePoster || project.poster || '';
+          if (posterLink && posterLink !== '#') {
+            downloadBtn.href = posterLink;
+            downloadBtn.style.display = 'inline-flex';
+          } else {
+            downloadBtn.style.display = 'none';
+          }
         }
         
         if (connectBtn) {
