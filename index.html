@@ -440,7 +440,8 @@
       padding: 0.5rem 1.5rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
-      width: 500px;
+      width: 100%;
+      max-width: 500px;
       height: 48px;
     }
 
@@ -1881,6 +1882,81 @@
         font-size: 0.8rem;
         padding: 0.5rem 1.25rem;
       }
+
+      /* Search bar mobile fixes */
+      .search-bar-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.5rem 1rem;
+        margin: 0 1rem;
+      }
+
+      .search-input-wrapper {
+        font-size: 0.9rem;
+      }
+
+      /* Hero section mobile improvements */
+      .hero-section {
+        padding: 2rem 1rem !important;
+        min-height: auto !important;
+      }
+
+      .hero-section h1 {
+        font-size: clamp(2rem, 8vw, 3.5rem) !important;
+        padding: 0 1rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem !important;
+        padding: 0 1rem;
+      }
+
+      /* Content wrapper mobile padding */
+      .content-wrapper {
+        padding: 0 1rem !important;
+      }
+
+      /* Dashboard grid mobile spacing */
+      .dashboard-grid {
+        margin-top: -5rem !important;
+        padding-top: 4rem !important;
+      }
+
+      /* Feed carousel mobile */
+      .feed-image-carousel {
+        margin: 0 1rem;
+      }
+
+      /* Bubble tea emoji mobile positioning */
+      .bubble-tea-emoji {
+        display: none !important;
+      }
+
+      /* Hero buttons mobile layout */
+      .hero-buttons-container {
+        flex-direction: column !important;
+        width: 100%;
+        padding: 0 1rem;
+      }
+
+      .hero-buttons-container .start-imagining-button,
+      .hero-buttons-container .tutorial-button {
+        width: 100% !important;
+        max-width: 300px !important;
+        font-size: 1.1rem !important;
+        padding: 0.875rem 1.5rem !important;
+      }
+
+      /* How it works header mobile */
+      .how-it-works-header {
+        font-size: clamp(2rem, 8vw, 3.5rem) !important;
+        padding: 0 1rem;
+      }
+
+      /* Feed bento container mobile */
+      .feed-bento-container {
+        padding: 0 1rem;
+      }
     }
 
   </style>
@@ -1981,33 +2057,29 @@
           </div>
         </div>
         <h1 style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 0.75rem; color: #000; font-family: 'Lucida Console'; text-transform: none !important;">
-          No time? <span style="font-style: italic; text-transform: none !important;">No Problem!</span> <br><span style="text-transform: none !important;">Built for Busy Founders</span>
+          Growing From Home? <span style="font-style: italic; text-transform: none !important;">Join the Amigos!</span> <br><span style="text-transform: none !important;">Built for Busy Founders</span>
         </h1>
         <p class="hero-subtitle" style="font-size: 1.5rem; color: #000; margin-bottom: 1rem; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6; text-transform: none !important;">
-          Where organizations ask for help raising goods/items, and people help an Amigo. Add Yours to request a growth timeline and a post on our website and social media pages. Share your cause 🫧 
+          Where organizations ask for help raising goods/items, and volunteers help host drives and donate goods on your behalf. Bobigos is the perfect place for volunteers to earn community service hours, and for busy founders to make an impact! Share your cause 🫧 
         </p>
-        <div style="text-align: center; display: flex; gap: 1rem; justify-content: center; align-items: center; margin-bottom: 0;">
+        <div class="hero-buttons-container" style="text-align: center; display: flex; gap: 1rem; justify-content: center; align-items: center; margin-bottom: 0;">
           <a href="network.html" class="start-imagining-button" style="font-size: 1.25rem; padding: 0.875rem 2rem; border-radius: 2rem; text-transform: none !important;">View Amigos</a>
-          <button onclick="openTutorialModal()" class="tutorial-button" style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 2rem; padding: 0.875rem 2rem; text-decoration: none; color: #000; font-weight: 500; font-size: 1.25rem; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; justify-content: center; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; text-transform: none !important;">
-            <span style="text-transform: none !important;">Tutorial</span>
-            <svg class="play-icon" style="width: 18px; height: 18px; margin-left: 0.25rem;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" fill="none"/>
-              <path d="M10 8L16 12L10 16V8Z" fill="currentColor"/>
-            </svg>
-          </button>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1keT2ueCy2DCTEqbT3UewDjEsLS4mo15bpL0kPP5xfvgiQQ/viewform?usp=header" target="_blank" class="tutorial-button" style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 2rem; padding: 0.875rem 2rem; text-decoration: none; color: #000; font-weight: 500; font-size: 1.25rem; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; justify-content: center; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; text-transform: none !important;">
+            <span style="text-transform: none !important;">Ask for Help</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="dashboard-grid" style="margin-top: -10rem; border-top: 2px dashed #ccc; padding-top: 8rem;">
+    <section class="dashboard-grid" style="margin-top: -10rem; padding-top: 8rem;">
       <div class="content-wrapper" style="max-width: 1100px; margin: 0 auto;">
         <!-- Feed-like Bento Section -->
         <div class="feed-bento-container" style="margin-bottom: 2.5rem;">
           <!-- How it works Header -->
-          <h1 class="how-it-works-header" style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 0.75rem; color: #000; text-transform: none !important; text-align: center;">How it works</h1>
+          <h1 class="how-it-works-header" style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 0.75rem; color: #000; text-transform: none !important; text-align: center;">Raise Goods Remotely</h1>
           
           <!-- Hero Subtitle -->
-          <p class="hero-subtitle" style="font-size: 1.25rem; color: #666; margin: 0 auto 2rem auto; max-width: 700px; text-align: center; line-height: 1.6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; text-transform: none;">
+          <p class="hero-subtitle" style="font-size: 1.25rem; color: #666; margin: 0 auto 3rem auto; max-width: 700px; text-align: center; line-height: 1.6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; text-transform: none;"n>
             Bobigos was developed to help you push your ideas from your laptop to the world. Simply <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1keT2ueCy2DCTEqbT3UewDjEsLS4mo15bpL0kPP5xfvgiQQ/viewform?usp=header" target="_blank" style="text-decoration: underline; color: #000; font-weight: 600;">fill out a form</a>, and we help call for volunteers to host drives and donate goods on your behalf – the most accessible road to impact!
           </p>
           
@@ -2015,6 +2087,16 @@
           <div class="feed-image-carousel feed-carousel-landscape">
             <img src="oneform.jpeg" alt="One form" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" />
           </div>
+
+        </div>
+
+        <!-- Earn Community Service Hours Section -->
+        <div style="margin-top: 4rem; text-align: center;">
+          <h1 class="how-it-works-header" style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: #000; text-transform: none !important; text-align: center;">Earn Community Service Hours</h1>
+          <p class="hero-subtitle" style="font-size: 1.25rem; color: #666; margin: 0 auto; max-width: 700px; text-align: center; line-height: 1.6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; text-transform: none;">
+            Find a cause that matters to you and host a donation drive or donate your own goods for community service hours! Snap shots throughout your drive including your raised goods or of your personal donations to submit proof of your work!
+          </p>
+        </div>
 
         </div>
 
