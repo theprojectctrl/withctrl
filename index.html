@@ -124,6 +124,15 @@
       text-transform: none !important;
     }
     
+    .main-nav button.join-highlight {
+      color: #000;
+      text-decoration: none;
+      font-weight: 500;
+      transition: none;
+      font-size: 1.2rem;
+      text-transform: none !important;
+    }
+    
     .main-nav a[href="network.html"] {
       font-size: 1.3rem;
       font-weight: 600;
@@ -1723,6 +1732,88 @@
       }
     }
 
+    /* Typeform Modal */
+    .typeform-modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .typeform-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .typeform-modal-content {
+      position: relative;
+      background-color: #fff;
+      padding: 0;
+      width: 90%;
+      max-width: 900px;
+      height: 90vh;
+      max-height: 800px;
+      border-radius: 12px;
+      overflow: hidden;
+      animation: slideUp 0.3s ease;
+    }
+
+    .typeform-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #000;
+      font-size: 28px;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10001;
+      transition: all 0.2s ease;
+    }
+
+    .typeform-modal-close:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: scale(1.1);
+    }
+
+    .typeform-modal-close:active {
+      transform: scale(0.95);
+    }
+
+    .typeform-modal-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .typeform-modal-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .typeform-modal-content {
+        width: 95%;
+        height: 85vh;
+      }
+    }
+
     .feed-bento-button {
       display: inline-flex;
       align-items: center;
@@ -1978,7 +2069,7 @@
       
       <nav class="main-nav">
         <a href="network.html">Browse</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1keT2ueCy2DCTEqbT3UewDjEsLS4mo15bpL0kPP5xfvgiQQ/viewform?usp=header" target="_blank" class="join-highlight">Start Raising</a>
+        <button onclick="openTypeformModal()" class="join-highlight" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; text-decoration: none; padding: 0; font-size: 1.2rem; font-weight: 500;">Start Raising</button>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSejU-BWdM-_kd3nJxI1raWxgMsi-Awx9qxmsCGhtXYjLsU_4A/viewform" target="_blank">Volunteer Form</a>
         
         <!-- Auth Buttons (shown when not logged in) -->
@@ -2019,9 +2110,9 @@
         </svg>
         <span>Browse</span>
       </a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1keT2ueCy2DCTEqbT3UewDjEsLS4mo15bpL0kPP5xfvgiQQ/viewform?usp=header" target="_blank" class="mobile-nav-item">
+      <button onclick="openTypeformModal()" class="mobile-nav-item" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; text-decoration: none; padding: 0; width: 100%; text-align: left;">
         <span>Start Raising</span>
-      </a>
+      </button>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSejU-BWdM-_kd3nJxI1raWxgMsi-Awx9qxmsCGhtXYjLsU_4A/viewform" target="_blank" class="mobile-nav-item">
         <span>Volunteer Form</span>
       </a>
@@ -2067,10 +2158,7 @@
           Where organizations ask for help raising goods/items, and volunteers help host drives and donate goods on your behalf. Bobigos is the perfect place for volunteers to earn community service hours, and for busy founders to make an impact! Share your cause 🫧 
         </p>
         <div class="hero-buttons-container" style="text-align: center; display: flex; gap: 1rem; justify-content: center; align-items: center; margin-bottom: 0;">
-          <a href="network.html" class="start-imagining-button" style="font-size: 1.25rem; padding: 0.875rem 2rem; border-radius: 2rem; text-transform: none !important;">View Amigos</a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1keT2ueCy2DCTEqbT3UewDjEsLS4mo15bpL0kPP5xfvgiQQ/viewform?usp=header" target="_blank" class="tutorial-button" style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 2rem; padding: 0.875rem 2rem; text-decoration: none; color: #000; font-weight: 500; font-size: 1.25rem; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; justify-content: center; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; text-transform: none !important;">
-            <span style="text-transform: none !important;">Ask for Help</span>
-          </a>
+          <button onclick="openTypeformModal()" class="start-imagining-button" style="font-size: 1.25rem; padding: 0.875rem 2rem; border-radius: 2rem; text-transform: none !important;">Start Raising</button>
         </div>
       </div>
     </section>
@@ -2299,6 +2387,57 @@
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
         closeTutorialModal();
+        closeTypeformModal();
+      }
+    });
+
+    // Immediately ensure body can scroll on page load
+    if (document.body) {
+      document.body.style.overflow = '';
+    }
+
+    // Typeform Modal Functions
+    function openTypeformModal() {
+      const modal = document.getElementById('typeformModal');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeTypeformModal() {
+      const modal = document.getElementById('typeformModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close Typeform modal when clicking outside
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('typeformModal');
+      if (event.target === modal) {
+        closeTypeformModal();
+      }
+    });
+
+    // Ensure body overflow is reset on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Reset body overflow on page load
+      document.body.style.overflow = '';
+      // Ensure modal is closed on page load
+      const modal = document.getElementById('typeformModal');
+      if (modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    // Also reset on window load as a fallback
+    window.addEventListener('load', function() {
+      document.body.style.overflow = '';
+      const modal = document.getElementById('typeformModal');
+      if (modal) {
+        modal.classList.remove('active');
       }
     });
   </script>
@@ -2316,5 +2455,18 @@
       </div>
     </div>
   </div>
+
+  <!-- Typeform Modal -->
+  <div id="typeformModal" class="typeform-modal">
+    <div class="typeform-modal-content">
+      <button class="typeform-modal-close" onclick="closeTypeformModal()" aria-label="Close modal">&times;</button>
+      <div class="typeform-modal-wrapper">
+        <div data-tf-live="01KFX6QKFGKNJYE7PGT68AJMMN"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Typeform Embed Script -->
+  <script src="//embed.typeform.com/next/embed.js"></script>
 </body>
 </html>
