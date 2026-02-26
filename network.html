@@ -27,6 +27,12 @@
   
   <style>
     /* Updated minimal theme */
+    html {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
@@ -37,6 +43,9 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     
     main {
@@ -1290,10 +1299,10 @@
       }
     }
     
-    /* Help Bento Grid - matching category-template styling */
+    /* Help Bento Grid - 2 columns wide, masonry */
     .help-bento-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
       gap: 2rem;
       margin-top: 2rem;
       grid-auto-rows: masonry;
@@ -1313,24 +1322,12 @@
       
       .help-bento-grid > * {
         flex: 0 0 auto;
-        width: calc(33.333% - 1.33rem);
+        width: calc(50% - 1rem);
         margin: 0;
         align-self: flex-start;
       }
       
-      @media (max-width: 1024px) {
-        .help-bento-grid > * {
-          width: calc(50% - 1rem);
-        }
-      }
-      
-      @media (max-width: 768px) {
-        .help-bento-grid > * {
-          width: calc(50% - 1rem);
-        }
-      }
-      
-      @media (max-width: 480px) {
+      @media (max-width: 900px) {
         .help-bento-grid > * {
           width: 100%;
         }
@@ -2723,103 +2720,6 @@
       }
     }
 
-    /* Typeform Modal */
-    .typeform-modal {
-      display: none;
-      position: fixed;
-      z-index: 10000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(4px);
-      animation: fadeIn 0.3s ease;
-    }
-
-    .typeform-modal.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .typeform-modal-content {
-      position: relative;
-      background-color: #fff;
-      padding: 0;
-      width: 90%;
-      max-width: 900px;
-      height: 90vh;
-      max-height: 800px;
-      border-radius: 12px;
-      overflow: hidden;
-      animation: slideUp 0.3s ease;
-    }
-
-    .typeform-modal-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      color: #000;
-      font-size: 28px;
-      font-weight: bold;
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10001;
-      transition: all 0.2s ease;
-    }
-
-    .typeform-modal-close:hover {
-      background: rgba(255, 255, 255, 1);
-      transform: scale(1.1);
-    }
-
-    .typeform-modal-close:active {
-      transform: scale(0.95);
-    }
-
-    .typeform-modal-wrapper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    .typeform-modal-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from {
-        transform: translateY(20px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .typeform-modal-content {
-        width: 95%;
-        height: 85vh;
-      }
-    }
   </style>
 </head>
 <body class="network" id="top">
@@ -2848,7 +2748,7 @@
       
       <nav class="main-nav">
         <a href="network.html" class="active">Browse</a>
-        <button onclick="openTypeformModal()" class="join-highlight" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; text-decoration: none; padding: 0; font-size: 1.2rem; font-weight: 500;">Start Raising</button>
+        <a href="https://tally.so/r/7RNjqZ" target="_blank" class="join-highlight" style="font-size: 1.2rem; font-weight: 500;">Start Raising</a>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSejU-BWdM-_kd3nJxI1raWxgMsi-Awx9qxmsCGhtXYjLsU_4A/viewform" target="_blank">Volunteer Form</a>
         
         <!-- Auth Buttons (shown when not logged in) -->
@@ -2889,9 +2789,9 @@
         </svg>
         <span>Browse</span>
       </a>
-      <button onclick="openTypeformModal()" class="mobile-nav-item" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; text-decoration: none; padding: 0; width: 100%; text-align: left;">
+      <a href="https://tally.so/r/7RNjqZ" target="_blank" class="mobile-nav-item">
         <span>Start Raising</span>
-      </button>
+      </a>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSejU-BWdM-_kd3nJxI1raWxgMsi-Awx9qxmsCGhtXYjLsU_4A/viewform" target="_blank" class="mobile-nav-item">
         <span>Volunteer Form</span>
       </a>
@@ -2919,7 +2819,7 @@
       <h1 style="font-family: Arial, sans-serif; font-weight: bold; font-size: clamp(2.5rem, 5vw, 4rem); color: #000; margin: 0; text-transform: none !important;">Help an Amigo</h1>
       <p class="hero-subtitle">See what other organizations are currently raising & contribute to their cause to earn community service hours!</p>
       <div style="margin-top: 2rem;">
-        <button onclick="openTypeformModal()" class="start-imagining-button" style="font-size: 1.25rem; padding: 0.875rem 2rem; border-radius: 2rem; text-transform: none !important;">Add Yours</button>
+        <a href="https://tally.so/r/7RNjqZ" target="_blank" class="start-imagining-button" style="font-size: 1.25rem; padding: 0.875rem 2rem; border-radius: 2rem; text-transform: none !important;">Add Yours</a>
       </div>
     </section>
     
@@ -3917,11 +3817,11 @@
       // Force a reflow to ensure measurements are accurate
       grid.offsetHeight;
       
-      // Calculate column count based on available width
+      // Calculate column count: max 2 columns, min tile width 420px
       const containerWidth = grid.offsetWidth;
-      const itemWidth = 300; // minmax width
+      const itemWidth = 420;
       const gap = 32; // 2rem in pixels
-      const columns = Math.max(1, Math.floor((containerWidth + gap) / (itemWidth + gap)));
+      const columns = Math.min(2, Math.max(1, Math.floor((containerWidth + gap) / (itemWidth + gap))));
       
       // Initialize column heights array
       const columnHeights = new Array(columns).fill(0);
@@ -3988,13 +3888,12 @@
           const cardElement = document.createElement('div');
           cardElement.className = 'help-bento-card';
           const volunteerId = `volunteer-${index}-${Date.now()}`;
-          const hostDriveId = `hostdrive-${index}-${Date.now()}`;
           
           cardElement.innerHTML = `
             <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
               <div style="background: transparent; color: #000; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.5rem; border-radius: 6px; border: 1px solid #000; display: inline-block; text-transform: none !important; white-space: nowrap; width: fit-content; flex-shrink: 0;">${card.tag}</div>
               ${card.type ? `
-              <div style="font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 4px; background: #e6f2ff; color: #000; display: inline-block; text-transform: none !important; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;">${card.type}</div>
+              <div style="font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 4px; background: ${card.typeColor || '#e6f2ff'}; color: #000; display: inline-block; text-transform: none !important; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;">${card.type}</div>
               ` : ''}
             </div>
             <h2 style="font-size: 1.5rem; font-weight: 700; color: #111827; margin-bottom: 1rem; line-height: 1.3; font-family: Arial, sans-serif; text-transform: none !important;">${card.title}</h2>
@@ -4018,43 +3917,17 @@
               </div>
             </div>
             ` : ''}
-            ${card.hostDriveGuide ? `
-            <div style="margin-bottom: 1rem; background: #f8f9fa; border-radius: 8px; border: 1px solid #e5e7eb; overflow: hidden;">
-              <button onclick="toggleGuide('${hostDriveId}')" style="width: 100%; padding: 1rem; background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; text-align: left; font-family: Arial, sans-serif;">
-                <h3 style="font-size: 1rem; font-weight: 600; color: #111827; margin: 0; font-family: Arial, sans-serif; text-transform: none !important;">Host Drive Guide</h3>
-                <svg id="icon-${hostDriveId}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; transition: transform 0.2s ease; color: #6b7280;">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              <div id="${hostDriveId}" style="display: none; padding: 0 1rem 1rem 1rem; transition: all 0.3s ease;">
-                ${Array.isArray(card.hostDriveGuide) ? `
-                  <ul style="margin: 0; padding-left: 1.25rem; list-style-type: disc; color: #6b7280; font-size: 0.9375rem; line-height: 1.6;">
-                    ${card.hostDriveGuide.map(item => `<li style="margin-bottom: 0.5rem; text-transform: none !important;">${item}</li>`).join('')}
-                  </ul>
-                ` : `
-                  <p style="margin: 0; color: #6b7280; font-size: 0.9375rem; line-height: 1.6; text-transform: none !important;">${card.hostDriveGuide}</p>
-                `}
-              </div>
-            </div>
-            ` : ''}
             <div style="display: flex; gap: 0.75rem; margin-top: auto; flex-wrap: wrap;">
-              ${card.posterLink || card.downloadablePoster || card.poster ? `
-              <a href="${card.posterLink || card.downloadablePoster || card.poster}" target="_blank" style="background: #f8f9fa; color: #000; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.625rem 1.25rem; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; text-transform: none !important;">
-                <svg class="download-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                Print Poster
-              </a>
-              ` : ''}
-              <a href="${card.visitLink}" style="background: #f8f9fa; color: #000; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.625rem 1.25rem; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; text-transform: none !important;">
+              ${card.visitLink ? `
+              <a href="${card.visitLink}" target="_blank" style="background: #f8f9fa; color: #000; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.625rem 1.25rem; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; text-transform: none !important;">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" style="stroke: currentColor; stroke-width: 2;">
                   <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor"/>
                   <circle cx="12" cy="12" r="5" stroke="currentColor"/>
                   <circle cx="17" cy="7" r="1" fill="currentColor"/>
                 </svg>
+                Visit
               </a>
+              ` : ''}
             </div>
           `;
           
@@ -4090,76 +3963,16 @@
       }
     });
 
-    // Immediately ensure body can scroll on page load
-    if (document.body) {
-      document.body.style.overflow = '';
-    }
-
-    // Typeform Modal Functions
-    function openTypeformModal() {
-      const modal = document.getElementById('typeformModal');
-      if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeTypeformModal() {
-      const modal = document.getElementById('typeformModal');
-      if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    }
-
-    // Close Typeform modal when clicking outside
-    window.addEventListener('click', function(event) {
-      const modal = document.getElementById('typeformModal');
-      if (event.target === modal) {
-        closeTypeformModal();
-      }
-    });
-
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeTypeformModal();
-      }
-    });
-
-    // Ensure body overflow is reset on page load
+    // Ensure body can scroll on page load (in case any script sets overflow)
     document.addEventListener('DOMContentLoaded', function() {
-      // Reset body overflow on page load
       document.body.style.overflow = '';
-      // Ensure modal is closed on page load
-      const modal = document.getElementById('typeformModal');
-      if (modal) {
-        modal.classList.remove('active');
-      }
+      document.documentElement.style.overflow = '';
     });
-
-    // Also reset on window load as a fallback
     window.addEventListener('load', function() {
       document.body.style.overflow = '';
-      const modal = document.getElementById('typeformModal');
-      if (modal) {
-        modal.classList.remove('active');
-      }
+      document.documentElement.style.overflow = '';
     });
   </script>
-
-  <!-- Typeform Modal -->
-  <div id="typeformModal" class="typeform-modal">
-    <div class="typeform-modal-content">
-      <button class="typeform-modal-close" onclick="closeTypeformModal()" aria-label="Close modal">&times;</button>
-      <div class="typeform-modal-wrapper">
-        <div data-tf-live="01KFX6QKFGKNJYE7PGT68AJMMN"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Typeform Embed Script -->
-  <script src="//embed.typeform.com/next/embed.js"></script>
 </body>
 </html>
 

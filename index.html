@@ -33,6 +33,13 @@
       --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
+    html {
+      scroll-behavior: smooth;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
@@ -41,10 +48,9 @@
       margin: 0;
       padding: 0;
       text-transform: none;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     
     h1, h2, h3, h4, h5, h6 {
@@ -1732,88 +1738,6 @@
       }
     }
 
-    /* Typeform Modal */
-    .typeform-modal {
-      display: none;
-      position: fixed;
-      z-index: 10000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(4px);
-      animation: fadeIn 0.3s ease;
-    }
-
-    .typeform-modal.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .typeform-modal-content {
-      position: relative;
-      background-color: #fff;
-      padding: 0;
-      width: 90%;
-      max-width: 900px;
-      height: 90vh;
-      max-height: 800px;
-      border-radius: 12px;
-      overflow: hidden;
-      animation: slideUp 0.3s ease;
-    }
-
-    .typeform-modal-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      color: #000;
-      font-size: 28px;
-      font-weight: bold;
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10001;
-      transition: all 0.2s ease;
-    }
-
-    .typeform-modal-close:hover {
-      background: rgba(255, 255, 255, 1);
-      transform: scale(1.1);
-    }
-
-    .typeform-modal-close:active {
-      transform: scale(0.95);
-    }
-
-    .typeform-modal-wrapper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    .typeform-modal-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    @media (max-width: 768px) {
-      .typeform-modal-content {
-        width: 95%;
-        height: 85vh;
-      }
-    }
-
     .feed-bento-button {
       display: inline-flex;
       align-items: center;
@@ -2069,7 +1993,7 @@
       
       <nav class="main-nav">
         <a href="network.html">Browse</a>
-        <button onclick="openTypeformModal()" class="join-highlight" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; text-decoration: none; padding: 0; font-size: 1.2rem; font-weight: 500;">Start Raising</button>
+        <a href="https://tally.so/r/7RNjqZ" target="_blank" class="join-highlight" style="font-size: 1.2rem; font-weight: 500;">Start Raising</a>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSejU-BWdM-_kd3nJxI1raWxgMsi-Awx9qxmsCGhtXYjLsU_4A/viewform" target="_blank">Volunteer Form</a>
         
         <!-- Auth Buttons (shown when not logged in) -->
@@ -2110,9 +2034,9 @@
         </svg>
         <span>Browse</span>
       </a>
-      <button onclick="openTypeformModal()" class="mobile-nav-item" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; text-decoration: none; padding: 0; width: 100%; text-align: left;">
+      <a href="https://tally.so/r/7RNjqZ" target="_blank" class="mobile-nav-item">
         <span>Start Raising</span>
-      </button>
+      </a>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSejU-BWdM-_kd3nJxI1raWxgMsi-Awx9qxmsCGhtXYjLsU_4A/viewform" target="_blank" class="mobile-nav-item">
         <span>Volunteer Form</span>
       </a>
@@ -2158,7 +2082,7 @@
           Where organizations ask for help raising goods/items, and volunteers help host drives and donate goods on your behalf. Bobigos is the perfect place for volunteers to earn community service hours, and for busy founders to make an impact! Share your cause 🫧 
         </p>
         <div class="hero-buttons-container" style="text-align: center; display: flex; gap: 1rem; justify-content: center; align-items: center; margin-bottom: 0;">
-          <button onclick="openTypeformModal()" class="start-imagining-button" style="font-size: 1.25rem; padding: 0.875rem 2rem; border-radius: 2rem; text-transform: none !important;">Start Raising</button>
+          <a href="https://tally.so/r/7RNjqZ" target="_blank" class="start-imagining-button" style="font-size: 1.25rem; padding: 0.875rem 2rem; border-radius: 2rem; text-transform: none !important;">Start Raising</a>
         </div>
       </div>
     </section>
@@ -2172,7 +2096,7 @@
           
           <!-- Hero Subtitle -->
           <p class="hero-subtitle" style="font-size: 1.25rem; color: #666; margin: 0 auto 3rem auto; max-width: 700px; text-align: center; line-height: 1.6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; text-transform: none;"n>
-            Bobigos was developed to help you push your ideas from your laptop to the world. Simply <a href="#" onclick="openTypeformModal(); return false;" style="text-decoration: underline; color: #000; font-weight: 600; cursor: pointer;">fill out a form</a>, and we help call for volunteers to host drives and donate goods on your behalf – the most accessible road to impact!
+            Bobigos was developed to help you push your ideas from your laptop to the world. Simply <a href="https://tally.so/r/7RNjqZ" target="_blank" style="text-decoration: underline; color: #000; font-weight: 600;">fill out a form</a>, and we help call for volunteers to host drives and donate goods on your behalf – the most accessible road to impact!
           </p>
           
           <!-- Single Image -->
@@ -2387,58 +2311,17 @@
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
         closeTutorialModal();
-        closeTypeformModal();
       }
     });
 
-    // Immediately ensure body can scroll on page load
-    if (document.body) {
-      document.body.style.overflow = '';
-    }
-
-    // Typeform Modal Functions
-    function openTypeformModal() {
-      const modal = document.getElementById('typeformModal');
-      if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeTypeformModal() {
-      const modal = document.getElementById('typeformModal');
-      if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    }
-
-    // Close Typeform modal when clicking outside
-    window.addEventListener('click', function(event) {
-      const modal = document.getElementById('typeformModal');
-      if (event.target === modal) {
-        closeTypeformModal();
-      }
-    });
-
-    // Ensure body overflow is reset on page load
+    // Ensure body can scroll on page load
     document.addEventListener('DOMContentLoaded', function() {
-      // Reset body overflow on page load
       document.body.style.overflow = '';
-      // Ensure modal is closed on page load
-      const modal = document.getElementById('typeformModal');
-      if (modal) {
-        modal.classList.remove('active');
-      }
+      document.documentElement.style.overflow = '';
     });
-
-    // Also reset on window load as a fallback
     window.addEventListener('load', function() {
       document.body.style.overflow = '';
-      const modal = document.getElementById('typeformModal');
-      if (modal) {
-        modal.classList.remove('active');
-      }
+      document.documentElement.style.overflow = '';
     });
   </script>
 
@@ -2456,17 +2339,5 @@
     </div>
   </div>
 
-  <!-- Typeform Modal -->
-  <div id="typeformModal" class="typeform-modal">
-    <div class="typeform-modal-content">
-      <button class="typeform-modal-close" onclick="closeTypeformModal()" aria-label="Close modal">&times;</button>
-      <div class="typeform-modal-wrapper">
-        <div data-tf-live="01KFX6QKFGKNJYE7PGT68AJMMN"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Typeform Embed Script -->
-  <script src="//embed.typeform.com/next/embed.js"></script>
 </body>
 </html>
