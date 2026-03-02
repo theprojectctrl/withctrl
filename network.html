@@ -52,6 +52,29 @@
       flex: 1;
     }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .goods-counter-value {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to bottom, #000 0%, #888 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
     /* Remove all focus outlines */
     *:focus {
       outline: none !important;
@@ -2818,6 +2841,12 @@
     <section class="help-hero-section" style="text-align: center; padding: 3rem 2rem; margin-bottom: 2rem;">
       <h1 style="font-family: Arial, sans-serif; font-weight: bold; font-size: clamp(2.5rem, 5vw, 4rem); color: #000; margin: 0; text-transform: none !important;">Help an Amigo</h1>
       <p class="hero-subtitle">See what other organizations are currently raising & contribute to their cause to earn community service hours!</p>
+      <div class="goods-counter-wrap" style="margin-top: 1.5rem;">
+        <p class="goods-counter-label" style="margin: 0 0 0.25rem 0; font-size: 0.95rem; color: #555;">Goods raised remotely</p>
+        <p class="goods-counter-display" style="margin: 0;">
+          <span id="goods-counter-value" class="goods-counter-value">0</span>
+        </p>
+      </div>
       <div style="margin-top: 2rem;">
         <a href="https://tally.so/r/7RNjqZ" target="_blank" class="start-imagining-button" style="font-size: 1.25rem; padding: 0.875rem 2rem; border-radius: 2rem; text-transform: none !important;">Add Yours</a>
       </div>
@@ -3972,6 +4001,40 @@
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
     });
+
+    // Goods counter: set the number below (editable only in code). Counter animates from 0 to this value on load/refresh.
+    (function() {
+      var GOODS_RAISED_TARGET = 150; // <-- Edit this number to set total goods raised
+      var DURATION_MS = 2000;
+      var elDisplay = document.getElementById('goods-counter-value');
+
+      function animateTo(target, callback) {
+        if (!elDisplay) return;
+        var start = 0;
+        var startTime = null;
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var elapsed = timestamp - startTime;
+          var progress = Math.min(elapsed / DURATION_MS, 1);
+          progress = 1 - Math.pow(1 - progress, 2);
+          var current = Math.round(start + (target - start) * progress);
+          elDisplay.textContent = current.toLocaleString();
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            elDisplay.textContent = target.toLocaleString();
+            if (callback) callback();
+          }
+        }
+        requestAnimationFrame(step);
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        if (!elDisplay) return;
+        var target = Math.max(0, parseInt(GOODS_RAISED_TARGET, 10) || 0);
+        animateTo(target);
+      });
+    })();
   </script>
 </body>
 </html>
